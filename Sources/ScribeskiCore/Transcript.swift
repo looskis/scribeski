@@ -11,21 +11,38 @@ public struct Transcript: Codable, Hashable, Sendable {
     public var tracks: [Speaker: Track]
     public var segments: [Segment]
     public var gaps: [Gap]
+    /// Stretches of the client's line where a second voice was heard (BUILD_PLAN P2.5): a
+    /// flag for the worker (someone else in the room?), never a relabelling. Nil when the
+    /// check didn't run (no diarizer model, or a transcript from before it existed).
+    public var otherVoices: [Span]?
 
     public init(sessionId: String, startedAt: String? = nil, retention: Retention,
-                tracks: [Speaker: Track], segments: [Segment], gaps: [Gap] = []) {
+                tracks: [Speaker: Track], segments: [Segment], gaps: [Gap] = [], otherVoices: [Span]? = nil) {
         self.sessionId = sessionId
         self.startedAt = startedAt
         self.retention = retention
         self.tracks = tracks
         self.segments = segments
         self.gaps = gaps
+        self.otherVoices = otherVoices
     }
 
     enum CodingKeys: String, CodingKey {
         case schema, retention, tracks, segments, gaps
         case sessionId = "session_id"
         case startedAt = "started_at"
+        case otherVoices = "other_voices"
+    }
+
+    /// A stretch of session time, in seconds.
+    public struct Span: Codable, Hashable, Sendable {
+        public var start: Double
+        public var end: Double
+
+        public init(start: Double, end: Double) {
+            self.start = start
+            self.end = end
+        }
     }
 
     public struct Track: Codable, Hashable, Sendable {

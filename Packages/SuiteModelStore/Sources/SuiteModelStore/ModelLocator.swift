@@ -10,10 +10,21 @@ public struct ModelLocator: Sendable {
 
     /// `appName` names the app's Application Support folder, where its selection file lives.
     public init(appName: String, appID: String, suiteName: String = "Looski", groupID: String? = nil) throws {
-        store = try ModelStore(location: ModelStore.resolveLocation(groupID: groupID, suiteName: suiteName))
+        store = try ModelStore(location: StoreLocation.resolve(groupID: groupID, suiteName: suiteName,
+                                                               environment: Self.appEnvironment))
         selections = SelectionStore(url: FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
             .appendingPathComponent("\(appName)/models.json"))
         self.appID = appID
+    }
+
+    /// What an app honours of `SUITE_MODEL_STORE`: Debug builds only. A shipped app can't be
+    /// pointed at other weights by a variable anyone can set with `launchctl setenv`.
+    static var appEnvironment: [String: String] {
+        #if DEBUG
+        ProcessInfo.processInfo.environment
+        #else
+        [:]
+        #endif
     }
 
     public func resolution(_ role: ModelRole) -> Resolution {

@@ -160,6 +160,7 @@ enum DevModes {
             options.rebuildAt = args.firstIndex(of: "--rebuild-at").flatMap { Double(args[$0 + 1]) }
             options.silent = args.contains("--silent")
             options.cancelEcho = !args.contains("--no-aec")
+            options.secondVoice = args.contains("--second-voice")
             let parakeet = args.contains("--engine") && args[args.firstIndex(of: "--engine")! + 1] == "parakeet"
             let out = args[i + 3]
             let done = DispatchSemaphore(value: 0)
@@ -200,6 +201,16 @@ enum DevModes {
             }
             done.wait()
             exit(0)
+        }
+        if let i = args.firstIndex(of: "--snapshot-review"), i + 4 < args.count {
+            MainActor.assumeIsolated {
+                do {
+                    try MenuSnapshots.writeReview(to: URL(fileURLWithPath: args[i + 1]), outcome: URL(fileURLWithPath: args[i + 2]),
+                                                  profile: URL(fileURLWithPath: args[i + 3]), transcript: URL(fileURLWithPath: args[i + 4]),
+                                                  select: i + 5 < args.count ? args[i + 5] : nil)
+                    exit(0)
+                } catch { print(error); exit(1) }
+            }
         }
         if let i = args.firstIndex(of: "--snapshot"), i + 1 < args.count {
             let dir = URL(fileURLWithPath: args[i + 1])

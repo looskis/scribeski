@@ -28,6 +28,24 @@ import Transcription
         try writeWindows(to: directory)
     }
 
+    /// The review panel on demo files, dressed for a retained session with a second voice
+    /// and a required field left blank (`--snapshot-review`).
+    public static func writeReview(to directory: URL, outcome: URL, profile: URL, transcript: URL, select key: String?) throws {
+        try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
+        let model = SessionModel(driver: SimulatedDriver(), retention: .untilConfirm)
+        try model.loadDemoReview(outcome: outcome, profile: profile, transcript: transcript, select: key)
+        model.canPlayAudio = true
+        if var t = model.transcript, let client = t.segments.first(where: { $0.speaker == .client && $0.start > 60 }) {
+            t.otherVoices = [.init(start: client.start, end: client.end)]
+            model.transcript = t
+        }
+        for (name, filter) in [("10-review-all", ReviewFilter.all), ("10-review-attention", .attention)] {
+            model.reviewFilter = filter
+            try render(ReviewView(model: model).frame(width: 520, height: 680), appearance: .aqua)
+                .write(to: directory.appendingPathComponent("\(name).png"))
+        }
+    }
+
     /// Onboarding, Settings, and Sessions, from fixed state (no TCC, Safari, or model store).
     static func writeWindows(to directory: URL) throws {
         let suite = "scribeski.snapshots"

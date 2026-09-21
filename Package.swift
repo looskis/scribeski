@@ -66,7 +66,7 @@ let package = Package(
         .executableTarget(
             name: "scribeski",
             dependencies: [
-                "ScribeskiCore", "FormDriver", "Extraction", "Orchestrator",
+                "ScribeskiCore", "FormDriver", "Extraction", "Orchestrator", "Transcription",
                 .product(name: "SuiteModelStore", package: "SuiteModelStore"),
             ]
         ),
@@ -75,7 +75,7 @@ let package = Package(
         .testTarget(name: "StorageTests", dependencies: ["Storage", "ScribeskiCore"]),
         .testTarget(name: "OrchestratorTests", dependencies: ["Orchestrator", "FormDriver", "ScribeskiCore"]),
         .testTarget(name: "TranscriptionTests", dependencies: ["Transcription", "Capture", "ScribeskiCore"]),
-        .testTarget(name: "ScribeskiUITests", dependencies: ["ScribeskiUI", "Capture", "ScribeskiCore", "Orchestrator", "FormDriver"]),
+        .testTarget(name: "ScribeskiUITests", dependencies: ["ScribeskiUI", "Capture", "ScribeskiCore", "Orchestrator", "FormDriver", "Transcription"]),
         .testTarget(name: "FormDriverTests", dependencies: ["FormDriver", "ScribeskiCore"]),
         .testTarget(
             name: "ScribeskiCoreTests",

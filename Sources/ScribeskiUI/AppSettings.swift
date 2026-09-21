@@ -1,6 +1,7 @@
 import Foundation
 import Observation
 import ScribeskiCore
+import Transcription
 
 /// Policy and preferences (BUILD_PLAN P3.5, P4.2). Stored in the app's defaults domain, so an
 /// agency can lock any of them with a configuration profile (managed preferences): a locked

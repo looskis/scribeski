@@ -53,7 +53,7 @@ recorder shrinks to an optional tee.
 Treat P1.5 (extraction) and P2.2 (tap + aggregate device) as ±50%: they carry the most
 unknowns.
 
-### Progress (2026-09-22)
+### Progress (2026-09-23)
 
 | Task | State | What's left |
 | --- | --- | --- |
@@ -63,21 +63,29 @@ unknowns.
 | P1.3 Filler + read-back | ✅ | Playwright and real Safari |
 | P1.4 Mapping | ✅ | `map` + egress scrub; Gemma's mapping agrees 98/107 with the hand-reviewed one (`eval/extraction-2026-09-22.md`) |
 | P1.5 Extraction | ✅ | Runs against Gemma 4 26B-A4B; verifier hardened by 3 real runs |
-| P1.6 Eval | 🟡 | Sample session: 0 blank / 0 risk / 87.3% / cache pass / 248 s. Corpus and held-out runs, 31B comparison, speed |
-| P1.7 Demo CLI + MCP shim | 🟡 | `scribeski note --transcript …`: transcript → filled front tab in one command (same pipeline as the app). MCP shim not built |
+| P1.6 Eval | ✅ | Transcript → field mapping signed off 2026-09-23. Sample session: 0 blank / 0 risk / 87.3% / cache pass / 248 s. Corpus-wide runs continue with the distillation work |
+| P1.7 Demo CLI + MCP shim | ✅ | `scribeski note --transcript …` (transcript → filled front tab). **MCP shim dropped (2026-09-23):** the app, CLI and Playwright cover it, and a tool that runs `eval` in whatever tab is in front is exactly what the Safari incident warned against |
 | P1.8 Model store | ✅ | Default models pulled into `Looski/Models` and served by llama-server |
 | P2.0 App shell | ✅ | `App/Scribeski.xcodeproj`, Apple Development signed. Mic, audio capture, and Safari automation granted and **survive a rebuild with a new CDHash** |
 | P2.1 Call-app discovery | 🟡 | Grouped by responsible app; "in a call" = using the mic, ranked first; native apps followed by bundle ID (re-attach verified); "call started" prompt. Needs a real Meet and Zoom call |
 | P2.2 Tap + aggregate | 🟡 | One clock, tap isolated, 0 drops; rebuild + gaps (forced); **echo cancellation** (tap as reference, 17 dB live, 0 echo lines); **45-min synthetic run clean**. Needs: a real unplug/AirPods switch, a real 45-min call |
 | P2.3 Segmenter + hygiene | 🟡 | VAD, locked + wiped buffers, bounded queue → gaps, FileVault gate, sleep assertion, degrade → alert → gap proven with a throttled transcriber; 45-min run: 0 gaps, 0 bytes written |
 | P2.4 Transcribers | ✅ | Parakeet (default) and SpeechAnalyzer behind one protocol; tracks merged into `Transcript`; lanes restart on crash |
-| P2.7 Synthetic audio + proofs | 🟡 | `scripts/synth-audio.swift` + `--transcribe-probe` harness: 0% WER, **0 bytes written**. Needs: CI-able form, audit-log check (P3.5) |
+| P2.5 Qwen3-ASR + second voice | ✅ | **Second-voice flag built:** Sortformer (FluidAudio, catalog model) on the client track only, off the capture thread; spans in `Transcript.otherVoices`, shown in review and the transcript, never relabelled. Qwen3-ASR: not needed (decided 2026-09-23; not in FluidAudio through 0.17.1). If the P2.8 bake-off shows Parakeet failing on real calls, try FluidAudio's other engines first |
+| P2.6 Encrypted audio tee | ✅ | `AudioVault`: 1 s AES-GCM chunks (AAD session/track/index) under the session's own audio key, fsync every 5 s, torn tail dropped; purged at confirm (`until_confirm`) or after N days; review playback. Live probe `--retain`: every segment has decryptable audio |
+| P2.7 Synthetic audio + proofs | ✅ | `scripts/e2e.sh`: synth session → live capture (client tapped, distractor running, worker injected) → gates on WER, gaps, distractor absence, **bytes written** and **no file > 64 KB in data/temp/caches**; `--retain` checks the audio copy. CI needs the audio-capture grant from an MDM profile |
+| P2.8 ASR bake-off | 🟡 | **Harness built:** `scribeski asr-bakeoff <dir>` runs each engine through the streaming path on recorded two-track sessions and reports WER, entity error rate, RTF and gaps (`eval/asr-bakeoff.md`), saving transcripts for `extract` + `score`. Needs: the 6–10 role-played sessions (Zoom "separate audio file per participant") with hand-corrected references |
 | P3.1 Orchestrator | 🟡 | **Chart bound at Start** (found by URL, client read from the banner, confirmed by Start); extraction from the learned form; fill finds that client's tab anywhere, brings it forward, banner re-checked in the page. Keyed client tags in the audit. Same chart in two tabs: the worker picks. **Crash resume** from sealed transcript checkpoints (20 s) or sealed results |
 | P3.2 LLM sidecar | ✅ | `LlamaServer`: unix socket in a 0700 dir, key via file, `/slots` + web UI off and **verified**, started after Stop, stopped after extraction |
-| P3.3 Review panel | 🟡 | Floating panel: status chips, quotes with speaker/time, Show in form, worker edits, **proposed changes (follow-ups)**, Undo all, confirm; chart confirmation before fill. Missing: validation/second-voice badges, consistency flags, playback (retained modes) |
-| P3.4 Learn-form + mapping UI | 🟡 | Learn window: read → banner picker (suggested, patterns proposed, live preview) → exact egress preview (scrubbed, local model) → generate → review → save. Templates, form packs, stable keys, **drift re-matching** (app + `forms rematch`). Missing: walk mode for lazily rendered wizards (no fixture yet), a remote provider option |
-| P3.5 Storage + audit | 🟡 | Per-session Keychain key, AES-GCM blobs, purge = key destroyed, retention scheduler, Spotlight/TM exclusion verified, hash-chained audit (JSONL). Missing: N/2N unconfirmed gate, agency-locked policy, data-protection keychain (needs provisioning) |
-| P3.6 Menu-bar UX | 🟡 | Every state real, incl. "Ready to fill". Missing: settings, completion notification |
+| P3.3 Review panel | ✅ | Floating panel: status chips, quotes with speaker/time, Show in form, worker edits, proposed changes (follow-ups), Undo all (identity-checked, only our own writes), confirm. **Playback** of a quote's audio (retained modes), **required-but-blank** badges, **second-voice** flag. Cross-field consistency flags: not needed (decided 2026-09-23) |
+| P3.4 Learn-form + mapping UI | 🟡 | Learn window: read → banner picker (suggested, patterns proposed, live preview) → exact egress preview (scrubbed, local model) → generate → review → save. Templates, form packs, stable keys, **drift re-matching** (app + `forms rematch`). Walk mode for lazily rendered wizards: not needed (decided 2026-09-23). Missing: a remote provider option |
+| P3.5 Storage + audit | ✅ | Per-session keys (audio has its own), AES-GCM, purge = key destroyed, retention incl. unreviewed-age cap, `sessions.noindex` + TM exclusion, hash-chained audit, N/2N unreviewed gate, agency-locked policy (managed prefs). Release builds need the data-protection keychain (fail closed): provisioning profile is an admin step (SHIPPING.md §1) |
+| P3.6 Menu-bar UX | ✅ | Every state real, incl. "Ready to fill". Settings (General/Transcription/Models/About), Sessions window, generic completion notification, onboarding (P4.3) |
+| P4.1 Packaging | 🟡 | `scripts/build-llama-server.sh` (pinned b10964, static, Metal embedded, OS libs only), embedded + hardened-runtime signed in `Contents/Helpers`; `scripts/release.sh` (archive, Sparkle re-sign, checks, notarize + staple, DMG, Gatekeeper, appcast item) rehearsed with `--local`. Needs: Developer ID cert, notary credentials, provisioning profile (SHIPPING.md) |
+| P4.2 Settings + models UI | ✅ | Settings → Models: per-role choice, download with progress, custom = not validated; About with licences |
+| P4.3 Onboarding | ✅ | Welcome → permissions (live) → Safari JS check → models → recording choice → learn a form → mic check; reopens from the menu/Settings |
+| P4.4 Updates + crash policy | 🟡 | Sparkle 2.10 wired, inert until `UPDATE_FEED`/`UPDATE_PUBLIC_KEY` are set; XPC services removed (not sandboxed). No crash SDK; no core dumps. Needs: EdDSA key + HTTPS host (SHIPPING.md §3) |
+| P4.5 Security review | ✅ | SECURITY.md: threat model, controls, checklist. Review found 4 must-fix + 10 should-fix; all code findings fixed. Open decisions listed there |
 | P1.9 Distilled classifier | ✅ | **Shipped r3** (`dist/scribeski-classifier-r3`, 2026-09-23): Qwen3-1.7B, 8-bit MLX, 2 s/session, 62 fields; blank = needs review. Sealed test: 0 risk-field errors, 0.38% wrong, 18% of facts filled. Reports: `eval/classifier-*2026-09-23.md`. Left: HF upload + catalog pin; Swift/MLX integration |
 
 ---

@@ -48,6 +48,11 @@ import UserNotifications
         preparedFor = (engine, vocabulary)
         prepared = Task { try await transcriber.prepare(locale: Locale(identifier: "en_US"), vocabulary: vocabulary) }
         store = try? SessionStore()
+        // A note-writing helper left by a crash would hold the last transcript in memory.
+        LlamaServer.sweepOrphans()
+        NotificationCenter.default.addObserver(forName: NSApplication.willTerminateNotification, object: nil, queue: nil) { _ in
+            LlamaServer.stopAll()
+        }
         // Retention scheduler: at launch, then hourly (BUILD_PLAN P3.5).
         Task { [weak self] in
             while let self {
@@ -88,10 +93,12 @@ import UserNotifications
         try? audit.append(session: sessionID, event: event, details)
     }
 
+    /// Unreviewed sessions go after the same window as confirmed ones (Settings → General).
     private func purgeDue() {
-        for id in (try? store?.purgeDue()) ?? [] {
-            try? audit.append(session: id, event: "purged", ["reason": "retention"])
-        }
+        guard let report = store?.purgeDue(unreviewedDays: settings.transcriptDays) else { return }
+        for (id, reason) in report.purged { _ = try? audit.append(session: id, event: "purged", ["reason": reason]) }
+        for id in report.audioPurged { _ = try? audit.append(session: id, event: "audio_purged", ["reason": "retention"]) }
+        for (id, error) in report.failed { _ = try? audit.append(session: id, event: "purge_failed", ["error": error]) }
     }
 
     // MARK: - Recording
@@ -139,6 +146,8 @@ import UserNotifications
                 try live.start(source: source)
                 #endif
                 self.live = live
+                // The second-voice flag loads alongside (a few seconds); the session doesn't wait.
+                Task.detached { if let d = try? await SecondVoiceDetector.fromModelStore() { live.attach(secondVoice: d) } }
                 recordingStarted = .now
                 sleepAssertion = SessionGuards.SleepAssertion()
                 model.statusNote = nil
@@ -238,8 +247,9 @@ import UserNotifications
             model.transition(to: .readyToFill)
             stage("readyToFill")
             locateChart(model: model)
-            Self.notify("Notes are ready", model.chart.map { "Fill \($0.shortName)'s chart when you're ready." }
-                        ?? "Choose the chart to fill.")
+            // Notification Center keeps its own copy, outside our encryption and retention, and
+            // shows it on the lock screen: never a client name or record number here.
+            Self.notify("Notes are ready", model.chart == nil ? "Choose the chart to fill." : "Review and fill when you're ready.")
         } catch {
             model.statusNote = nil
             Self.notify("Notes couldn't be written", "Open Scribeski to retry. The transcript is saved.")
@@ -318,7 +328,9 @@ import UserNotifications
                 model.outcome = outcome
                 if let id = sessionID { try? store?.seal(outcome.reports, as: "fill-reports", in: id) }
                 var counts: [String: String] = ["page_requests": String(outcome.pageNetworkRequests),
-                                                "identity": outcome.identity, "client": client]
+                                                // The page reports this: log only the two known values.
+                                                "identity": outcome.identity == "verified" ? "verified" : "unchecked",
+                                                "client": client]
                 for r in outcome.reports { counts[r.outcome.rawValue, default: "0"] = String(Int(counts[r.outcome.rawValue] ?? "0")! + 1) }
                 log("filled", counts)
                 refreshPlayback(model)
@@ -406,6 +418,7 @@ import UserNotifications
 
     /// A notification while the worker is elsewhere (P3.6). Clicking it opens the panel. No
     /// session content: the client's short name at most.
+    /// Generic text only: no client names, record numbers, or transcript (see above).
     static func notify(_ title: String, _ body: String) {
         guard !NSApplication.shared.isActive else { return }
         let content = UNMutableNotificationContent()
@@ -506,11 +519,13 @@ import UserNotifications
         guard let store, let id = sessionID, store.hasAudio(id) else { model.canPlayAudio = false; return }
         do {
             // A little either side, so the first and last words aren't clipped.
-            let samples = try AudioVault.read(store, sessionID: id, speaker: segment.speaker,
+            var samples = try AudioVault.read(store, sessionID: id, speaker: segment.speaker,
                                               from: max(0, segment.start - 0.3), to: segment.end + 0.3)
             let player = self.player ?? SegmentPlayer()
             self.player = player
             model.playingSegmentID = segment.id
+            // `play` copies into its own buffer (wiped after playback); wipe this copy now.
+            defer { samples.withUnsafeMutableBytes { if let b = $0.baseAddress { memset_s(b, $0.count, 0, $0.count) } } }
             try player.play(samples) { [weak model] in
                 if model?.playingSegmentID == segment.id { model?.playingSegmentID = nil }
             }
@@ -577,14 +592,4 @@ extension SessionModel {
         guard rms > 0 else { return 0 }
         return min(max((20 * log10(rms) + 60) / 60, 0), 1)
     }
-}
-
-/// Words the transcriber should expect (DESIGN §3: biasing matters more than model choice).
-/// A starting list; P3.4 adds the agency's own terms and the client's name from the form.
-public enum Vocabulary {
-    public static let `default` = [
-        "SNAP", "TANF", "SSI", "SSDI", "CPS", "IEP", "ADLs", "IADLs", "WIC", "Medi-Cal", "Medicaid",
-        "PHQ-9", "GAD-7", "HSA", "IHSS", "CalFresh", "Section 8", "SI", "HI",
-        "sertraline", "fluoxetine", "trazodone", "quetiapine", "buprenorphine", "naloxone",
-    ]
 }

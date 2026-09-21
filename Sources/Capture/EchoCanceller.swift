@@ -57,6 +57,10 @@ public final class EchoCanceller {
         var suppress = suppressDb, active = suppressActiveDb
         speex_preprocess_ctl(preprocess, SPEEX_PREPROCESS_SET_ECHO_SUPPRESS, &suppress)
         speex_preprocess_ctl(preprocess, SPEEX_PREPROCESS_SET_ECHO_SUPPRESS_ACTIVE, &active)
+        // Sized once so they never reallocate (a reallocation leaves the old audio in freed
+        // memory); `consume` zeroes what it shifts out.
+        reference.reserveCapacity(2 * maxReference)
+        mic.reserveCapacity(2 * maxReference)
     }
 
     deinit {
@@ -70,7 +74,7 @@ public final class EchoCanceller {
     /// The client's audio, as it went to the speakers.
     public func reference(_ samples: UnsafeBufferPointer<Int16>) {
         reference.append(contentsOf: samples)
-        if reference.count > maxReference { reference.removeFirst(reference.count - maxReference) }
+        if reference.count > maxReference { Self.consume(&reference, reference.count - maxReference) }
     }
 
     /// Mic audio in; echo-cancelled mic audio out, in whole frames (up to 10 ms held back).
@@ -100,11 +104,11 @@ public final class EchoCanceller {
                     }
                 }
             }
-            reference.removeFirst(n)
+            Self.consume(&reference, n)
             used += n
             out.withUnsafeBufferPointer(emit)
         }
-        mic.removeFirst(used)
+        Self.consume(&mic, used)
     }
 
     /// Restarts the ERLE meter without resetting the filter (to measure converged performance).
@@ -127,6 +131,15 @@ public final class EchoCanceller {
         var e = 0.0
         for i in 0..<n { let x = Double(p[i]); e += x * x }
         return e / Double(n)
+    }
+
+    /// Drops the first `n` samples and zeroes the slots the shift vacated (still in the
+    /// buffer, past `count`): appending zeros within capacity overwrites them, no reallocation.
+    static func consume(_ a: inout [Int16], _ n: Int) {
+        guard n > 0 else { return }
+        a.removeFirst(n)
+        a.append(contentsOf: repeatElement(0, count: n))
+        a.removeLast(n)
     }
 
     private func wipe(_ a: inout [Int16]) {

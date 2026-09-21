@@ -127,8 +127,8 @@ public struct NotePipeline: Sendable {
 
     /// "Show in form": opens the field's step and scrolls to it. Changes nothing.
     public func focus(key: String, at chart: ChartCandidate) async throws {
-        let (session, profile, _) = try await open(chart)
-        try await session.focus(profile: profile, key: key)
+        let (session, profile, identity) = try await open(chart)
+        try await session.focus(profile: profile, key: key, identity: identity)
     }
 
     /// Writes the worker's own value for one field, replacing whatever is there.
@@ -139,10 +139,11 @@ public struct NotePipeline: Sendable {
         return outcome.reports.first
     }
 
-    /// Puts every field back the way it was before Scribeski wrote to it.
+    /// Puts every field back the way it was before Scribeski wrote to it, on the bound
+    /// client's chart only, skipping fields that have changed since.
     public func undo(reports: [FillReport], at chart: ChartCandidate) async throws -> [PageSession.UndoResult] {
-        let (session, profile, _) = try await open(chart)
-        return try await session.undo(profile: profile, reports: reports)
+        let (session, profile, identity) = try await open(chart)
+        return try await session.undo(profile: profile, reports: reports, identity: identity)
     }
 
     /// A session on the chart's own tab (not whatever is in front), after bringing it forward

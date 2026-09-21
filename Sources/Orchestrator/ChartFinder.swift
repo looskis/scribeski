@@ -162,10 +162,18 @@ public struct ChartFinder: Sendable {
         return nil
     }
 
-    /// Reads one element's text in one tab. The selector travels as a JSON string literal.
+    /// Reads one element's text in one tab. The selector travels as a JSON string literal; CSS,
+    /// or `xpath=…` as the page bundle's banner candidates write it (same rule as `queryAll`).
     @Sendable public static func bannerText(_ tab: SafariTab, _ selector: String) throws -> String {
+        try ScriptingBridgeSafari(tab: tab).evaluate(bannerScript(selector))
+    }
+
+    static func bannerScript(_ selector: String) throws -> String {
         let literal = String(decoding: try JSONEncoder().encode(selector), as: UTF8.self)
-        let js = "(function(){var e=document.querySelector(\(literal));return e?String(e.textContent):\"\";})()"
-        return try ScriptingBridgeSafari(tab: tab).evaluate(js)
+        return "(function(){var s=\(literal),e=null;try{"
+            + "e=s.indexOf(\"xpath=\")===0"
+            + "?document.evaluate(s.slice(6),document,null,9,null).singleNodeValue"
+            + ":document.querySelector(s);}catch(x){}"
+            + "return e?String(e.textContent):\"\";})()"
     }
 }

@@ -322,12 +322,22 @@
     return {
       schema: "scribeski.form-profile/1",
       origin: location.origin,
-      path_pattern: location.pathname,
+      path_pattern: generalizePath(location.pathname),
       fingerprint: fingerprint(fields),
       steps,
       fields,
       unreachable
     };
+  }
+  function generalizePath(path) {
+    return path.split("/").map((seg) => {
+      let s = seg;
+      try {
+        s = decodeURIComponent(seg);
+      } catch {
+      }
+      return /\d.*\d.*\d/.test(s) || /^[0-9a-f]{8}-[0-9a-f]{4}-/i.test(s) || /^[0-9a-f]{12,}$/i.test(s) ? "*" : seg;
+    }).join("/");
   }
   function isGeneratedId(id) {
     return /^:r[0-9a-z]+:$/i.test(id) || /^(mui|ember|ext-gen|react-select|headlessui|radix|downshift|rc_select|cdk|mat-[a-z-]+|p-[a-z]+)[-_:]?\w*\d+/i.test(id) || /[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}/i.test(id) || /[0-9a-f]{12,}/i.test(id) || /\d{5,}/.test(id);
@@ -777,9 +787,19 @@
     const canon = (s) => s.normalize("NFKC").toLowerCase().replace(/\s+/g, " ").trim();
     const el = queryAll(document, identity.selector)[0];
     const want = canon(identity.expected ?? "");
-    if (!el || !want || !canon(el.textContent ?? "").includes(want)) throw new Error("identity_mismatch");
+    if (!el || !want || !containsToken(canon(el.textContent ?? ""), want)) throw new Error("identity_mismatch");
+  }
+  function containsToken(text, want) {
+    const word = /[\p{L}\p{N}]/u;
+    for (let i = text.indexOf(want); i >= 0; i = text.indexOf(want, i + 1)) {
+      const before = i > 0 ? text[i - 1] : "";
+      const after = text[i + want.length] ?? "";
+      if (!word.test(before) && !word.test(after)) return true;
+    }
+    return false;
   }
   async function focusField(cmd) {
+    if (cmd.identity) checkIdentity(cmd.identity);
     const field = cmd.profile.fields.find((f) => f.key === cmd.key);
     if (!field) throw new Error(`not_found: ${cmd.key}`);
     const step = cmd.profile.steps.find((s) => s.id === field.step);
@@ -793,6 +813,7 @@
     return { focused: cmd.key };
   }
   async function undo(cmd) {
+    if (cmd.identity) checkIdentity(cmd.identity);
     const byKey = new Map(cmd.profile.fields.map((f) => [f.key, f]));
     const results = [];
     const work = [];
@@ -808,8 +829,17 @@
       const els = resolveField(w.field);
       if (!els.length) return;
       mark(els, false);
+      const now = readValue(w.field, els);
+      if (sameValue(now, w.value)) {
+        w.els = els;
+        return;
+      }
+      if (!sameValue(now, w.report.read_back ?? "")) {
+        w.result.outcome = "changed_since";
+        w.result.read_back = now;
+        return;
+      }
       w.els = els;
-      if (sameValue(readValue(w.field, els), w.value)) return;
       if (await write(w.field, els, w.value, false) === "unsupported") w.result.outcome = "unrestorable";
     });
     await sleep(Math.max(0, cmd.settle_ms ?? DEFAULT_SETTLE_MS));

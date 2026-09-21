@@ -1,6 +1,7 @@
 import Capture
 import Foundation
 import ScribeskiCore
+import Transcription
 import Testing
 @testable import ScribeskiUI
 

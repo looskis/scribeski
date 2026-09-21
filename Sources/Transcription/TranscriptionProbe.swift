@@ -32,6 +32,9 @@ public enum TranscriptionProbe {
         /// real capture. `none` (the default) keeps the zero-recording byte check meaningful.
         public var retention: Retention = .none
         public var audio: (@Sendable (Utterance) -> Void)?
+        /// Run the second-voice flag (P2.5) on the client track; the report's transcript
+        /// carries `other_voices`.
+        public var secondVoice = false
 
         public init(source: String, seconds: Double) {
             self.source = source
@@ -69,6 +72,8 @@ public enum TranscriptionProbe {
 
     public static func run(_ options: Options, transcriber: any Transcriber = SpeechAnalyzerTranscriber()) async throws -> Report {
         try await transcriber.prepare(locale: Locale(identifier: "en_US"), vocabulary: options.vocabulary)
+        // Before the players start, so loading the model doesn't eat the first lines.
+        let detector = options.secondVoice ? try await SecondVoiceDetector.fromModelStore() : nil
 
         // Launch the players first: a process only has an audio object once it's playing.
         var players: [Process] = []
@@ -98,6 +103,7 @@ public enum TranscriptionProbe {
         let source = try resolve(spec)
         let live = LiveTranscription(retention: options.retention, transcriber: transcriber,
                                      handlers: .init(audio: options.audio))
+        if let detector { live.attach(secondVoice: detector) }
         let writtenBefore = bytesWritten()
         let captureStarted = clock.now
         try live.start(source: source, useMicrophone: options.useMicrophone && options.workerFile == nil,

@@ -1,5 +1,6 @@
 import AppKit
 import ScribeskiCore
+import Transcription
 import SuiteModelStore
 import SwiftUI
 import UniformTypeIdentifiers
@@ -203,6 +204,9 @@ public struct AboutView: View {
                  + "(\(Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String ?? "0"))")
                 .foregroundStyle(.secondary)
             Text("Everything runs on this Mac. Scribeski sends nothing about your sessions anywhere.").font(.callout)
+            if let check = AppHooks.checkForUpdates {
+                Button("Check for Updates…") { check() }
+            }
             Divider()
             Text("Built with").font(.headline)
             ForEach(Self.credits, id: \.0) { name, note in

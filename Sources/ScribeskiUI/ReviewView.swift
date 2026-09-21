@@ -134,6 +134,20 @@ public struct ReviewView: View {
                       systemImage: "exclamationmark.shield")
                     .font(.caption).foregroundStyle(.orange)
             }
+            let fields = Dictionary(uniqueKeysWithValues: e.profile.fields.map { ($0.key, $0) })
+            let required = e.results.filter { requiredBlank($0, fields[$0.key]) }.count
+            if required > 0 {
+                Label("\(required) required field\(required == 1 ? " is" : "s are") still blank. The form may not save until \(required == 1 ? "it's" : "they're") filled.",
+                      systemImage: "asterisk.circle.fill")
+                    .font(.caption).foregroundStyle(.red)
+            }
+            if let voices = model.transcript?.otherVoices, !voices.isEmpty {
+                let at = voices.prefix(4).map { Duration.seconds($0.start).formatted(.time(pattern: .minuteSecond)) }
+                    .joined(separator: ", ") + (voices.count > 4 ? "…" : "")
+                Label("Another voice was heard on the client's line (\(at)). Check who was present before relying on those lines.",
+                      systemImage: "person.2.wave.2")
+                    .font(.caption).foregroundStyle(.orange)
+            }
             if let gaps = model.transcript?.gaps, !gaps.isEmpty {
                 Label("\(gaps.count) stretch\(gaps.count == 1 ? "" : "es") of audio missing from the transcript. Anything said then isn't here.",
                       systemImage: "exclamationmark.triangle.fill")
@@ -158,7 +172,7 @@ public struct ReviewView: View {
         let shown = e.results.filter { r in
             let s = status(r)
             return switch model.reviewFilter {
-            case .attention: s.needsAttention
+            case .attention: s.needsAttention || requiredBlank(r, fields[r.key])
             case .all: fields[r.key]?.kind != .hidden
             case .filled: s == .filled || s == .edited || s == .calculated
             case .blank: s == .insufficientEvidence
@@ -171,7 +185,7 @@ public struct ReviewView: View {
                     Section(Self.stepTitle(step.id)) {
                         ForEach(rows, id: \.key) { r in
                             FieldRow(label: fields[r.key]?.label ?? r.key, value: displayValue(r, fields[r.key]),
-                                     status: status(r))
+                                     status: status(r), requiredBlank: requiredBlank(r, fields[r.key]))
                                 .tag(r.key)
                         }
                     }
@@ -233,6 +247,13 @@ public struct ReviewView: View {
         model.outcome?.reports.last { $0.key == key }
     }
 
+    /// The form marks it required and Scribeski left it empty: the worker must fill it (in
+    /// the form or here) before the note can be saved.
+    private func requiredBlank(_ r: FieldResult, _ f: FormProfile.Field?) -> Bool {
+        guard let f, f.required, f.kind != .hidden, !f.computed, model.edited[r.key] == nil else { return false }
+        return [.insufficientEvidence, .needsJudgement, .writeFailed].contains(status(r))
+    }
+
     private func status(_ r: FieldResult) -> ReviewStatus {
         ReviewStatus.of(r, report(r.key), edited: model.edited[r.key] != nil,
                         updatable: model.extraction?.template?.updatable ?? [])
@@ -276,11 +297,16 @@ private struct FieldRow: View {
     let label: String
     let value: String?
     let status: ReviewStatus
+    var requiredBlank = false
 
     var body: some View {
         VStack(alignment: .leading, spacing: 2) {
             HStack {
                 Text(label).lineLimit(1)
+                if requiredBlank {
+                    Text("required").font(.caption2.weight(.semibold)).foregroundStyle(.red)
+                        .accessibilityLabel("Required, still blank")
+                }
                 Spacer(minLength: 4)
                 Chip(status: status, short: true)
             }

@@ -220,11 +220,41 @@ test.describe("filler", () => {
     expect(marked).toBe(0);
   });
 
+  test("undo checks the client and leaves fields changed since alone", async ({ page }) => {
+    await openMockEhr(page);
+    const profile = await profileOf(page);
+    const before = await ok(page, { op: "read_values", profile });
+    const results = [
+      { key: "pronouns", status: "filled", value: "SHE_HER" },
+      { key: "client_preferred_name", status: "filled", value: "Dani" },
+    ];
+    const res = await ok(page, { op: "fill", profile, results, identity: RECORD });
+
+    // Another client's chart: nothing is restored.
+    const wrong = await run(page, { op: "undo", profile, reports: res.reports, identity: { ...RECORD, expected: "AB-999999" } });
+    expect(wrong).toMatchObject({ ok: false, error: "identity_mismatch" });
+
+    // The worker retyped one field after the fill: undo leaves their value.
+    await page.fill("#client_preferred_name", "Daniela R.");
+    const undone = await ok(page, { op: "undo", profile, reports: res.reports, identity: RECORD });
+    const outcomes = byKey(undone.results);
+    expect(outcomes.get("pronouns")!.outcome).toBe("restored");
+    expect(outcomes.get("client_preferred_name")).toMatchObject({ outcome: "changed_since", read_back: "Daniela R." });
+    const after = await ok(page, { op: "read_values", profile });
+    expect(after.pronouns).toEqual(before.pronouns);
+    expect(after.client_preferred_name).toBe("Daniela R.");
+  });
+
   test("identity mismatch writes nothing", async ({ page }) => {
     await openMockEhr(page);
     const profile = await profileOf(page);
     const before = await ok(page, { op: "read_values", profile });
-    for (const identity of [{ selector: "#record_banner", expected: "AB-999999" }, { selector: "#no_such_banner", expected: "AB-114322" }]) {
+    for (const identity of [
+      { selector: "#record_banner", expected: "AB-999999" },
+      { selector: "#no_such_banner", expected: "AB-114322" },
+      // A prefix of the shown record isn't that record.
+      { selector: "#record_banner", expected: "AB-11432" },
+    ]) {
       const state = await run(page, { op: "fill", profile, results: sessionResults(profile), identity }, 15000);
       expect(state).toMatchObject({ ok: false, error: "identity_mismatch" });
     }

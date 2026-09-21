@@ -38,7 +38,10 @@ public struct TranscriptView: View {
                     LazyVStack(alignment: .leading, spacing: 8) {
                         ForEach(rows) { row in
                             switch row {
-                            case .segment(let s): SegmentRow(segment: s)
+                            case .segment(let s):
+                                SegmentRow(segment: s, otherVoice: s.speaker == .client && (transcript.otherVoices ?? []).contains {
+                                    $0.start < s.end && s.start < $0.end
+                                })
                             case .gap(let g, _): GapRow(gap: g)
                             }
                         }
@@ -62,6 +65,7 @@ private func clock(_ seconds: Double) -> String {
 
 private struct SegmentRow: View {
     let segment: Transcript.Segment
+    var otherVoice = false
 
     var body: some View {
         HStack(alignment: .firstTextBaseline, spacing: 10) {
@@ -72,6 +76,11 @@ private struct SegmentRow: View {
                 .frame(width: 44, alignment: .leading)
             Text(segment.text).textSelection(.enabled)
             Spacer(minLength: 0)
+            if otherVoice {
+                Image(systemName: "person.2.wave.2").foregroundStyle(.orange)
+                    .help("Another voice was heard on the client's line here")
+                    .accessibilityLabel("Another voice heard")
+            }
             if let c = segment.confidence, c < 0.5 {
                 Image(systemName: "questionmark.circle").foregroundStyle(.orange)
                     .help("Low recognition confidence (\(Int(c * 100))%)")

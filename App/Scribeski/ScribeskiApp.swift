@@ -43,11 +43,13 @@ struct ScribeskiApp: App {
         let models = ModelsModel()
         _models = State(initialValue: models)
         _onboarding = State(initialValue: OnboardingModel(session: model, models: models))
+        Updates.shared.start()
     }
 
     var body: some Scene {
         MenuBarExtra {
             MenuView(model: model)
+                .hiddenFromScreenSharing()
         } label: {
             Image(systemName: model.menuBarSymbol)
                 .background(AppEvents(model: model))
@@ -57,6 +59,7 @@ struct ScribeskiApp: App {
         // The review panel floats beside Safari (P3.3), so it stays visible while you check the form.
         Window("Review", id: ReviewView.windowID) {
             ReviewView(model: model)
+                .hiddenFromScreenSharing()
         }
         .defaultSize(width: 520, height: 680)
         .windowLevel(.floating)
@@ -67,18 +70,21 @@ struct ScribeskiApp: App {
 
         Window("Learn a form", id: LearnView.windowID) {
             LearnView(model: learn)
+                .hiddenFromScreenSharing()
         }
         .defaultSize(width: 620, height: 640)
 
         // Opened from a "call started" notification: the same controls as the menu.
         Window("Start transcribing", id: "start") {
             MenuView(model: model)
+                .hiddenFromScreenSharing()
         }
         .windowResizability(.contentSize)
         .windowLevel(.floating)
 
         Window("Sessions", id: SessionsView.windowID) {
             SessionsView(model: model)
+                .hiddenFromScreenSharing()
         }
         .defaultSize(width: 560, height: 380)
 
@@ -95,6 +101,7 @@ struct ScribeskiApp: App {
 
         Window("Transcript", id: TranscriptView.windowID) {
             TranscriptView(model: model)
+                .hiddenFromScreenSharing()
         }
         .defaultSize(width: 640, height: 520)
         .defaultLaunchBehavior(Self.demoTranscript ? .presented : .suppressed)

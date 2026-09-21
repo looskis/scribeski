@@ -15,13 +15,30 @@ public struct SessionKeys: Sendable {
     public enum Failure: Error, CustomStringConvertible {
         case keychain(OSStatus)
         case missing(String)
+        /// Release builds need the data-protection keychain, which needs a provisioned app.
+        case notProvisioned
 
         public var description: String {
             switch self {
             case .keychain(let s): "Keychain error \(s): \(SecCopyErrorMessageString(s, nil) as String? ?? "")"
             case .missing(let id): "No key for session \(id): it was destroyed, so its data is gone."
+            case .notProvisioned:
+                "This copy of Scribeski can't use the Mac's secure keychain, so it can't store a session safely "
+                    + "and won't start one. Reinstall Scribeski, or contact whoever set it up."
             }
         }
+    }
+
+    /// Where keys may be created and read. Release: the data-protection keychain only, failing
+    /// closed. The login keychain is backed up and migrated, so neither "this device only" nor
+    /// "deleting the key deletes the data" would hold there. Debug builds and tests, which
+    /// aren't provisioned, fall back to it.
+    public static var allowedBackends: [Backend] {
+        #if DEBUG
+        [.dataProtection, .login]
+        #else
+        [.dataProtection]
+        #endif
     }
 
     /// Where keys live. The data-protection keychain honours "this device only, when
@@ -44,7 +61,7 @@ public struct SessionKeys: Sendable {
     public func create(for id: String) throws -> Backend {
         let key = SymmetricKey(size: .bits256)
         let data = key.withUnsafeBytes { Data($0) }
-        for backend in [Backend.dataProtection, .login] {
+        for backend in Self.allowedBackends {
             var q = base(id, backend)
             q[kSecValueData as String] = data
             q[kSecAttrAccessible as String] = kSecAttrAccessibleWhenUnlockedThisDeviceOnly
@@ -54,11 +71,11 @@ public struct SessionKeys: Sendable {
             if status == errSecMissingEntitlement { continue }
             throw Failure.keychain(status)
         }
-        throw Failure.keychain(errSecMissingEntitlement)
+        throw Failure.notProvisioned
     }
 
     public func key(for id: String) throws -> SymmetricKey {
-        for backend in [Backend.dataProtection, .login] {
+        for backend in Self.allowedBackends {
             var q = base(id, backend)
             q[kSecReturnData as String] = true
             var out: CFTypeRef?
@@ -70,7 +87,7 @@ public struct SessionKeys: Sendable {
         throw Failure.missing(id)
     }
 
-    /// Destroys the key. Idempotent.
+    /// Destroys the key, wherever it is (both keychains, so nothing lingers). Idempotent.
     public func destroy(_ id: String) throws {
         for backend in [Backend.dataProtection, .login] {
             let status = SecItemDelete(base(id, backend) as CFDictionary)

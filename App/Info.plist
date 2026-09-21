@@ -24,6 +24,16 @@
 	<string>Scribeski transcribes your side of the session from your microphone.</string>
 	<key>NSAudioCaptureUsageDescription</key>
 	<string>Scribeski transcribes the client's side of the session from your call app's audio. Audio is not recorded unless your retention setting says so.</string>
+	<key>SUFeedURL</key>
+	<string>$(SCRIBESKI_UPDATE_FEED)</string>
+	<key>SUPublicEDKey</key>
+	<string>$(SCRIBESKI_UPDATE_PUBLIC_KEY)</string>
+	<key>SUEnableSystemProfiling</key>
+	<false/>
+	<key>SUVerifyUpdateBeforeExtraction</key>
+	<true/>
+	<key>SURequireSignedFeed</key>
+	<true/>
 	<key>NSAppleEventsUsageDescription</key>
 	<string>Scribeski fills the form in Safari after you review the session.</string>
 </dict>

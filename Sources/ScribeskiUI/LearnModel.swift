@@ -166,7 +166,8 @@ import ScribeskiCore
     public var chart: FormMapping.Chart? {
         guard let tab, let url = URL(string: tab.url), let scheme = url.scheme, let host = url.host(),
               let selector = bannerSelector, !idPattern.isEmpty else { return nil }
-        return .init(origin: "\(scheme)://\(host)\(url.port.map { ":\($0)" } ?? "")", pathPattern: url.path(),
+        return .init(origin: "\(scheme)://\(host)\(url.port.map { ":\($0)" } ?? "")",
+                     pathPattern: FormMapping.Chart.generalizePath(url.path()),
                      bannerSelector: selector, clientIDPattern: idPattern,
                      clientNamePattern: namePattern.isEmpty ? nil : namePattern)
     }

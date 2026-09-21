@@ -109,9 +109,9 @@ import Testing
         vault.finish()
         try box.store.update("SES-AV6", stage: "reviewing")
 
-        #expect(try box.store.purgeDue(now: created.addingTimeInterval(2 * 86_400)).isEmpty)
+        #expect(box.store.purgeDue(now: created.addingTimeInterval(2 * 86_400)) == .init())
         #expect(box.store.hasAudio("SES-AV6"))
-        #expect(try box.store.purgeDue(now: created.addingTimeInterval(4 * 86_400)).isEmpty, "the session stays")
+        #expect(box.store.purgeDue(now: created.addingTimeInterval(4 * 86_400)).audioPurged == ["SES-AV6"], "the session stays")
         #expect(!box.store.hasAudio("SES-AV6"))
         #expect(box.keys.exists("SES-AV6"))
     }

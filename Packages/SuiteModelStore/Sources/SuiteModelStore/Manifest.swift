@@ -108,8 +108,8 @@ public struct ModelManifest: Codable, Sendable, Hashable, Identifiable {
                 throw ModelStoreError.invalidManifest("bad sha256 for \(file.path) in \(id)")
             }
             guard file.size >= 0 else { throw ModelStoreError.invalidManifest("negative size for \(file.path)") }
-            guard let scheme = file.url.scheme?.lowercased(), scheme == "https" || scheme == "http" else {
-                throw ModelStoreError.invalidManifest("unsupported URL scheme for \(file.path) in \(id)")
+            guard file.url.scheme?.lowercased() == "https" else {
+                throw ModelStoreError.invalidManifest("model files download over HTTPS only: \(file.path) in \(id)")
             }
         }
         // A file path must not also be a directory prefix of another (`a` and `a/b`).

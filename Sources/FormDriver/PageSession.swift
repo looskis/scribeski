@@ -33,12 +33,16 @@ public final class PageSession: @unchecked Sendable {
         self.bundleVersion = version
     }
 
-    /// Loads the bundle from `SCRIBESKI_PAGE_BUNDLE`, else the copy built into this module.
+    /// Loads the copy built into this module (Debug builds: `SCRIBESKI_PAGE_BUNDLE` overrides,
+    /// for page development). Never in Release: an environment variable anyone can set with
+    /// `launchctl setenv` would run their script in EHR tabs under our Automation permission.
     public static func loadBundle() throws(Error) -> String {
+        #if DEBUG
         if let path = ProcessInfo.processInfo.environment["SCRIBESKI_PAGE_BUNDLE"],
            let s = try? String(contentsOfFile: path, encoding: .utf8) {
             return s
         }
+        #endif
         guard let url = Bundle.module.url(forResource: "scribeski-page", withExtension: "js"),
               let s = try? String(contentsOf: url, encoding: .utf8)
         else { throw .bundleMissing }

@@ -1,5 +1,7 @@
+import Darwin
 import Foundation
 import SuiteModelStore
+import Synchronization
 
 /// The local LLM sidecar (BUILD_PLAN P3.2): `llama-server`, spawned only after recording
 /// stops (never during the call: ~16 GB of weights would fight the call app on 32 GB), and
@@ -103,7 +105,7 @@ public final class LlamaServer: @unchecked Sendable {
         try fm.createDirectory(at: dir, withIntermediateDirectories: true, attributes: [.posixPermissions: 0o700])
         directory = dir
         let socket = dir.appendingPathComponent("llm.sock").path
-        let key = Self.randomKey()
+        let key = try Self.randomKey()
         let keyFile = dir.appendingPathComponent("key")
         fm.createFile(atPath: keyFile.path, contents: Data(key.utf8), attributes: [.posixPermissions: 0o600])
 
@@ -111,12 +113,16 @@ public final class LlamaServer: @unchecked Sendable {
         p.executableURL = configuration.binary
         p.arguments = ["-m", configuration.model.path, "--host", socket, "--api-key-file", keyFile.path]
             + configuration.arguments
+        // Not the app's environment: llama.cpp takes most options from LLAMA_ARG_* variables,
+        // so an inherited one could quietly re-enable what the flags turn off.
+        p.environment = ["TMPDIR": fm.temporaryDirectory.path]
         p.standardOutput = FileHandle.nullDevice
         let err = Pipe()
         p.standardError = err
         err.fileHandleForReading.readabilityHandler = { [tail = stderrTail] h in tail.append(h.availableData) }
         try p.run()
         process = p
+        Self.running.withLock { $0[ObjectIdentifier(self)] = Weak(self) }
 
         let client = UnixSocketChatClient(socketPath: socket, model: configuration.modelName, apiKey: key)
         do {
@@ -133,6 +139,7 @@ public final class LlamaServer: @unchecked Sendable {
 
     /// Ends the process (erasing its KV cache) and removes the socket directory.
     public func stop() {
+        Self.running.withLock { _ = $0.removeValue(forKey: ObjectIdentifier(self)) }
         if let p = process, p.isRunning {
             p.terminate()
             let deadline = Date().addingTimeInterval(5)
@@ -165,31 +172,87 @@ public final class LlamaServer: @unchecked Sendable {
         throw Failure.notReady("no healthy response in \(configuration.startupTimeout)")
     }
 
-    /// Verified against the running server, not assumed from the flags.
+    /// Verified against the running server, not assumed from the flags. Each probe must get an
+    /// answer: a probe that fails (a timeout, a dropped connection) fails the check.
     private func verifyLockdown(_ http: UnixSocketHTTP, apiKey: String) async throws {
         var quick = http
         quick.timeout = .seconds(5)
         let auth = ["Authorization": "Bearer \(apiKey)"]
-        if let r = try? await quick.request("GET", "/slots", headers: auth), (200..<300).contains(r.status) {
+        func probe(_ method: String, _ path: String, _ headers: [String: String], _ body: Data? = nil) async throws -> (status: Int, body: Data) {
+            do {
+                let r = try await quick.request(method, path, headers: headers, body: body)
+                return (r.status, r.body)
+            } catch {
+                throw Failure.lockdown("couldn't check \(path) (\(error))")
+            }
+        }
+        if (200..<300).contains(try await probe("GET", "/slots", auth).status) {
             throw Failure.lockdown("/slots is enabled")
         }
-        if let r = try? await quick.request("GET", "/", headers: auth),
-           (200..<300).contains(r.status), String(decoding: r.body, as: UTF8.self).contains("<html") {
+        let root = try await probe("GET", "/", auth)
+        if (200..<300).contains(root.status), String(decoding: root.body, as: UTF8.self).localizedCaseInsensitiveContains("<html") {
             throw Failure.lockdown("the web UI is enabled")
         }
         // Without the key, completions must be refused.
         let body = Data(#"{"messages":[{"role":"user","content":"ping"}],"max_tokens":1}"#.utf8)
-        if let r = try? await quick.request("POST", "/v1/chat/completions",
-                                            headers: ["Content-Type": "application/json"], body: body),
-           r.status != 401 {
-            throw Failure.lockdown("requests without the API key get \(r.status)")
+        let anonymous = try await probe("POST", "/v1/chat/completions", ["Content-Type": "application/json"], body)
+        if anonymous.status != 401 {
+            throw Failure.lockdown("requests without the API key get \(anonymous.status)")
         }
     }
 
-    static func randomKey() -> String {
+    static func randomKey() throws -> String {
         var bytes = [UInt8](repeating: 0, count: 32)
-        _ = SecRandomCopyBytes(kSecRandomDefault, bytes.count, &bytes)
+        guard SecRandomCopyBytes(kSecRandomDefault, bytes.count, &bytes) == errSecSuccess else {
+            throw Failure.lockdown("no randomness for the API key")
+        }
         return bytes.map { String(format: "%02x", $0) }.joined()
+    }
+
+    // MARK: - Lifetime beyond one session
+
+    private final class Weak: @unchecked Sendable {
+        weak var server: LlamaServer?
+        init(_ server: LlamaServer) { self.server = server }
+    }
+    private static let running = Mutex<[ObjectIdentifier: Weak]>([:])
+
+    /// Stops every helper this process started. Call at quit: a helper outliving the app would
+    /// keep the last transcript in its KV cache until reboot.
+    public static func stopAll() {
+        for w in running.withLock({ Array($0.values) }) { w.server?.stop() }
+    }
+
+    /// At launch: ends helpers a crashed or killed Scribeski left behind (our bundled binary,
+    /// orphaned to launchd), and removes their socket directories. Returns how many it ended.
+    @discardableResult
+    public static func sweepOrphans(helper: URL = Bundle.main.bundleURL.appendingPathComponent("Contents/Helpers/llama-server")) -> Int {
+        var ended = 0, alive = 0
+        let want = helper.resolvingSymlinksInPath().path
+        let count = proc_listallpids(nil, 0)
+        var pids = [pid_t](repeating: 0, count: Int(max(count, 0)) + 64)
+        let n = Int(proc_listallpids(&pids, Int32(pids.count * MemoryLayout<pid_t>.stride)))
+        for pid in pids.prefix(max(n, 0)) where pid > 0 {
+            var path = [CChar](repeating: 0, count: 4 * Int(MAXPATHLEN))
+            guard proc_pidpath(pid, &path, UInt32(path.count)) > 0,
+                  String(cString: path) == want else { continue }
+            var info = proc_bsdinfo()
+            guard proc_pidinfo(pid, PROC_PIDTBSDINFO, 0, &info, Int32(MemoryLayout<proc_bsdinfo>.size)) > 0,
+                  info.pbi_uid == getuid() else { continue }
+            if info.pbi_ppid == 1 {
+                kill(pid, SIGKILL)
+                ended += 1
+            } else {
+                alive += 1 // another running Scribeski's helper: leave it and its directory
+            }
+        }
+        if alive == 0 {
+            let tmp = FileManager.default.temporaryDirectory
+            for name in (try? FileManager.default.contentsOfDirectory(atPath: tmp.path)) ?? [] where name.hasPrefix("scribeski-llm-") {
+                try? FileManager.default.removeItem(at: tmp.appendingPathComponent(name))
+            }
+        }
+        return ended
     }
 }
 

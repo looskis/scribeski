@@ -191,6 +191,24 @@ func mockLibrary() throws -> FormLibrary {
     }
 }
 
+@Suite struct PathGeneralization {
+    @Test func recordNumbersInTheURLAreNotKept() {
+        for (path, want) in [
+            ("/index.html", "/index.html"),
+            ("/clients/114322/notes/new", "/clients/*/notes/new"),
+            ("/chart/AB-114322/intake", "/chart/*/intake"),
+            ("/v2/forms/progress-note", "/v2/forms/progress-note"),
+            ("/r/3f2b8c1a-9d4e-4c1b-8a7f-2e6d5c4b3a21/edit", "/r/*/edit"),
+            ("/doc/a1b2c3d4e5f6a7b8", "/doc/*"),
+        ] {
+            #expect(FormMapping.Chart.generalizePath(path) == want, "\(path)")
+        }
+        let chart = FormMapping.Chart(origin: "https://ehr.example", pathPattern: FormMapping.Chart.generalizePath("/clients/114322/notes/new"),
+                                      bannerSelector: "#b", clientIDPattern: "(\\d+)")
+        #expect(chart.matches("https://ehr.example/clients/998877/notes/new"), "another client's page")
+    }
+}
+
 @Suite struct ByAddress {
     func tab(_ w: Int, order: Int, current: Bool, _ url: String) -> SafariTab {
         SafariTab(windowID: w, tabIndex: 1, windowOrder: order, isCurrentTab: current, url: url, title: "t")
@@ -222,5 +240,19 @@ func mockLibrary() throws -> FormLibrary {
         #expect(form.contains("Riverside"))
         let loading = ChartFinder(forms: library, listTabs: { open }, readBanner: { _, _ in "" })
         guard case .noClient = loading.lookup("http://127.0.0.1:8787/index.html") else { Issue.record("no client yet"); return }
+    }
+}
+
+@Suite struct BannerScript {
+    /// The script handles both selector kinds the learn flow can save. (Run for real in the
+    /// Playwright suite's banner tests; here, that it's well-formed and carries the selector
+    /// only as data.)
+    @Test func readsCSSOrXPathAndQuotesTheSelector() throws {
+        let css = try ChartFinder.bannerScript("#record_banner")
+        #expect(css.contains(##"var s="#record_banner""##))
+        let xp = try ChartFinder.bannerScript("xpath=/html/body/div[1]/h2")
+        #expect(xp.contains("document.evaluate(s.slice(6)"))
+        let hostile = try ChartFinder.bannerScript(##"");alert(1);(""##)
+        #expect(hostile.contains(##"var s="\");alert(1);(\""##), "stays a string literal")
     }
 }

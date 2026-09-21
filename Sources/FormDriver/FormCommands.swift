@@ -73,21 +73,28 @@ extension PageSession {
         try decode([BannerCandidate].self, try await run(["op": "banner_candidates"], timeout: .seconds(10)))
     }
 
-    /// Opens the field's step, scrolls to it, and focuses it. Changes no value.
-    public func focus(profile: FormProfile, key: String) async throws(Error) {
-        _ = try await run(["op": "focus", "profile": try jsonObject(profile), "key": key], timeout: .seconds(10))
+    /// Opens the field's step, scrolls to it, and focuses it. Changes no value. With
+    /// `identity`, only on the bound client's chart.
+    public func focus(profile: FormProfile, key: String, identity: Identity? = nil) async throws(Error) {
+        var command: [String: Any] = ["op": "focus", "profile": try jsonObject(profile), "key": key]
+        if let identity { command["identity"] = ["selector": identity.selector, "expected": identity.expected] }
+        _ = try await run(command, timeout: .seconds(10))
     }
 
-    /// Restores each field to the value it had before `reports` were written.
-    public func undo(profile: FormProfile, reports: [FillReport]) async throws(Error) -> [UndoResult] {
-        let raw = try await run(["op": "undo", "profile": try jsonObject(profile), "reports": try jsonObject(reports)],
-                                timeout: .seconds(60))
+    /// Restores each field to the value it had before `reports` were written: only on the
+    /// bound client's chart (`identity`), and only fields still holding what was written.
+    public func undo(profile: FormProfile, reports: [FillReport], identity: Identity?) async throws(Error) -> [UndoResult] {
+        var command: [String: Any] = ["op": "undo", "profile": try jsonObject(profile), "reports": try jsonObject(reports)]
+        if let identity { command["identity"] = ["selector": identity.selector, "expected": identity.expected] }
+        let raw = try await run(command, timeout: .seconds(60))
         struct Response: Decodable { var results: [UndoResult] }
         return try decode(Response.self, raw).results
     }
 
     public struct UndoResult: Decodable, Sendable {
         public var key: String
+        /// restored | failed | unrestorable | not_found | changed_since (left alone: it no
+        /// longer holds what Scribeski wrote).
         public var outcome: String
     }
 

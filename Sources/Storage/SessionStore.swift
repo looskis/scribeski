@@ -49,11 +49,19 @@ public final class SessionStore: @unchecked Sendable {
     public init(root: URL = SessionStore.defaultRoot, keys: SessionKeys = SessionKeys()) throws {
         self.root = root
         self.keys = keys
-        try FileManager.default.createDirectory(at: sessionsDirectory, withIntermediateDirectories: true)
+        let fm = FileManager.default
+        // Earlier builds used `sessions/`: move it under the `.noindex` name.
+        let legacy = root.appendingPathComponent("sessions", isDirectory: true)
+        if fm.fileExists(atPath: legacy.path), !fm.fileExists(atPath: sessionsDirectory.path) {
+            try? fm.moveItem(at: legacy, to: sessionsDirectory)
+        }
+        try fm.createDirectory(at: sessionsDirectory, withIntermediateDirectories: true)
         try applyExclusions()
     }
 
-    public var sessionsDirectory: URL { root.appendingPathComponent("sessions", isDirectory: true) }
+    /// `.noindex`: Spotlight skips a folder with this suffix anywhere, where
+    /// `.metadata_never_index` is only documented to work at a volume's root.
+    public var sessionsDirectory: URL { root.appendingPathComponent("sessions.noindex", isDirectory: true) }
     func directory(_ id: String) -> URL { sessionsDirectory.appendingPathComponent(id, isDirectory: true) }
 
     // MARK: - Exclusions
@@ -73,6 +81,7 @@ public final class SessionStore: @unchecked Sendable {
     /// Reads both exclusions back from disk.
     public func verifyExclusions() -> (spotlight: Bool, backup: Bool) {
         let spotlight = FileManager.default.fileExists(atPath: root.appendingPathComponent(".metadata_never_index").path)
+            && sessionsDirectory.lastPathComponent.hasSuffix(".noindex")
         let backup = (try? root.resourceValues(forKeys: [.isExcludedFromBackupKey]).isExcludedFromBackup) ?? false
         return (spotlight, backup ?? false)
     }
@@ -194,20 +203,50 @@ public final class SessionStore: @unchecked Sendable {
         }
     }
 
-    /// Purges everything past its date, and sessions that never got past arming (a capture
-    /// that failed to start) after an hour; and audio past its own retention. Run at launch
-    /// and hourly. Returns the sessions it purged entirely.
-    public func purgeDue(now: Date = .now) throws -> [String] {
+    /// What a retention pass did. Failures don't stop the pass; they're reported for the audit.
+    public struct PurgeReport: Sendable, Equatable {
+        public var purged: [String: String] = [:]        // session → reason
+        public var audioPurged: [String] = []
+        public var failed: [String: String] = [:]        // session → error type
+        public var purgedIDs: [String] { purged.keys.sorted() }
+    }
+
+    /// Purges, each for its reason: confirmed sessions past their transcript retention;
+    /// sessions that never got past arming (a capture that failed to start), after an hour;
+    /// sessions never reviewed, `unreviewedDays` after they were made (nil: never); and audio
+    /// past its own retention. Run at launch and hourly.
+    public func purgeDue(now: Date = .now, unreviewedDays: Int? = nil) -> PurgeReport {
+        var report = PurgeReport()
         let all = sessions()
-        let due = all.filter {
-            ($0.purgeAfter ?? .distantFuture) <= now
-                || ($0.stage == "armed" && $0.confirmed == nil && now.timeIntervalSince($0.created) > 3600)
-        }.map(\.id)
-        for id in due { try purge(id) }
-        for m in all where !due.contains(m.id) && Self.audioDue(m, now: now) && hasAudio(m.id) {
-            try purgeAudio(m.id)
+        for m in all {
+            let reason: String?
+            if (m.purgeAfter ?? .distantFuture) <= now {
+                reason = "retention"
+            } else if m.stage == "armed", m.confirmed == nil, now.timeIntervalSince(m.created) > 3600 {
+                reason = "never_started"
+            } else if let days = unreviewedDays, m.confirmed == nil,
+                      (Calendar.current.date(byAdding: .day, value: days, to: m.created) ?? .distantFuture) <= now {
+                reason = "unreviewed"
+            } else {
+                reason = nil
+            }
+            guard let reason else { continue }
+            do {
+                try purge(m.id)
+                report.purged[m.id] = reason
+            } catch {
+                report.failed[m.id] = "\(type(of: error))"
+            }
         }
-        return due
+        for m in all where report.purged[m.id] == nil && Self.audioDue(m, now: now) && hasAudio(m.id) {
+            do {
+                try purgeAudio(m.id)
+                report.audioPurged.append(m.id)
+            } catch {
+                report.failed[m.id] = "\(type(of: error))"
+            }
+        }
+        return report
     }
 
     private func writeMeta(_ meta: Meta) throws {

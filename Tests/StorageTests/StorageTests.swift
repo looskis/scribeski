@@ -68,8 +68,22 @@ final class Sandbox {
         try box.store.create(id: "SES-NEW", retention: .none)
         try box.store.confirm("SES-NEW", transcriptDays: 30)
         try box.store.create(id: "SES-OPEN", retention: .none)
-        #expect(try box.store.purgeDue() == ["SES-OLD"])
+        try box.store.update("SES-OPEN", stage: "reviewing")
+        #expect(box.store.purgeDue(unreviewedDays: 30).purged == ["SES-OLD": "retention"])
         #expect(box.store.unconfirmed.map(\.id) == ["SES-OPEN"])
+    }
+
+    @Test func unreviewedSessionsDontLiveForever() throws {
+        let box = Sandbox()
+        let day: TimeInterval = 86_400
+        try box.store.create(id: "SES-STALE", retention: .none, at: Date(timeIntervalSinceNow: -31 * day))
+        try box.store.update("SES-STALE", stage: "reviewing")
+        try box.store.create(id: "SES-RECENT", retention: .none, at: Date(timeIntervalSinceNow: -2 * day))
+        try box.store.update("SES-RECENT", stage: "reviewing")
+        #expect(box.store.purgeDue().purged.isEmpty, "no cap given: kept")
+        #expect(box.store.purgeDue(unreviewedDays: 30).purged == ["SES-STALE": "unreviewed"])
+        #expect(!box.keys.exists("SES-STALE"))
+        #expect(box.keys.exists("SES-RECENT"))
     }
 
     @Test func dataDirectoryIsExcludedFromSpotlightAndBackups() {

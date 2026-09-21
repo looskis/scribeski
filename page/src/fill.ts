@@ -44,6 +44,8 @@ export interface UndoCommand {
   op: "undo";
   profile: FormProfile;
   reports: FillReport[];
+  /** Same wrong-client guard as fill: restoring client A's values into B's chart is a write. */
+  identity?: { selector: string; expected: string };
   settle_ms?: number;
 }
 
@@ -57,7 +59,9 @@ export interface FillResponse {
 
 export interface UndoResult {
   key: string;
-  outcome: "restored" | "failed" | "unrestorable" | "not_found";
+  /** `changed_since`: the field no longer holds what we wrote (the worker or the page changed
+   *  it), so it's left alone rather than overwritten with the old value. */
+  outcome: "restored" | "failed" | "unrestorable" | "not_found" | "changed_since";
   read_back: FieldValue | null;
 }
 
@@ -172,7 +176,21 @@ function checkIdentity(identity: { selector: string; expected: string }): void {
   const canon = (s: string) => s.normalize("NFKC").toLowerCase().replace(/\s+/g, " ").trim();
   const el = queryAll(document, identity.selector)[0];
   const want = canon(identity.expected ?? "");
-  if (!el || !want || !canon(el.textContent ?? "").includes(want)) throw new Error("identity_mismatch");
+  if (!el || !want || !containsToken(canon(el.textContent ?? ""), want)) throw new Error("identity_mismatch");
+}
+
+/**
+ * `want` appears in `text` as a whole token: not glued to a letter or digit either side, so
+ * record "AB-11432" doesn't match a banner showing "AB-114322".
+ */
+export function containsToken(text: string, want: string): boolean {
+  const word = /[\p{L}\p{N}]/u;
+  for (let i = text.indexOf(want); i >= 0; i = text.indexOf(want, i + 1)) {
+    const before = i > 0 ? text[i - 1] : "";
+    const after = text[i + want.length] ?? "";
+    if (!word.test(before) && !word.test(after)) return true;
+  }
+  return false;
 }
 
 // --------------------------------------------------------------------------------- focus
@@ -181,6 +199,7 @@ export interface FocusCommand {
   op: "focus";
   profile: FormProfile;
   key: string;
+  identity?: { selector: string; expected: string };
 }
 
 /**
@@ -188,6 +207,7 @@ export interface FocusCommand {
  * scrolls it to the middle of the view, and focuses it. Changes no value.
  */
 export async function focusField(cmd: FocusCommand): Promise<{ focused: string }> {
+  if (cmd.identity) checkIdentity(cmd.identity);
   const field = cmd.profile.fields.find((f) => f.key === cmd.key);
   if (!field) throw new Error(`not_found: ${cmd.key}`);
   const step = cmd.profile.steps.find((s) => s.id === field.step);
@@ -205,6 +225,7 @@ export async function focusField(cmd: FocusCommand): Promise<{ focused: string }
 // ---------------------------------------------------------------------------------- undo
 
 export async function undo(cmd: UndoCommand): Promise<{ results: UndoResult[] }> {
+  if (cmd.identity) checkIdentity(cmd.identity);
   const byKey = new Map(cmd.profile.fields.map((f) => [f.key, f]));
   const results: UndoResult[] = [];
   const work: (Work & { result: UndoResult })[] = [];
@@ -222,8 +243,18 @@ export async function undo(cmd: UndoCommand): Promise<{ results: UndoResult[] }>
     const els = resolveField(w.field);
     if (!els.length) return;
     mark(els, false);
+    const now = readValue(w.field, els);
+    if (sameValue(now, w.value)) {
+      w.els = els;
+      return;
+    }
+    // Only undo our own write: if the field has moved on since, leave it (and say so).
+    if (!sameValue(now, w.report.read_back ?? "")) {
+      w.result.outcome = "changed_since";
+      w.result.read_back = now;
+      return;
+    }
     w.els = els;
-    if (sameValue(readValue(w.field, els), w.value)) return;
     if ((await write(w.field, els, w.value, false)) === "unsupported") w.result.outcome = "unrestorable";
   });
 

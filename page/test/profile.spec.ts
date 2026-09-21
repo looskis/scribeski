@@ -1,6 +1,7 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { expect, test, type Page } from "@playwright/test";
 import type { Field, FormProfile } from "../src/types";
+import { generalizePath } from "../src/profile";
 import { inject, ok, openMockEhr } from "./helpers";
 
 // The profiler against the mock EHR. FIELDS.md is the ground truth and is parsed here, so
@@ -220,4 +221,12 @@ test.describe("profiler", () => {
     expect(found[0]).toEqual({ selector: "#record_banner", text: "Record AB-114322 · REYES, Daniela" });
     for (const c of found) expect(c.selector).not.toMatch(/case_number|input|select/);
   });
+});
+
+test("record numbers in the URL path aren't kept in the profile", () => {
+  expect(generalizePath("/index.html")).toBe("/index.html");
+  expect(generalizePath("/clients/114322/notes/new")).toBe("/clients/*/notes/new");
+  expect(generalizePath("/chart/AB-114322/intake")).toBe("/chart/*/intake");
+  expect(generalizePath("/v2/forms/progress-note")).toBe("/v2/forms/progress-note");
+  expect(generalizePath("/r/3f2b8c1a-9d4e-4c1b-8a7f-2e6d5c4b3a21/edit")).toBe("/r/*/edit");
 });

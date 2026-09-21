@@ -44,6 +44,7 @@ public final class LiveTranscription: Sendable {
     private let lanes = Mutex<[Speaker: Lane]>([:])
     private let lastEnd = Mutex<[Speaker: Double]>([:])
     private let capture = Mutex<CaptureController?>(nil)
+    private let secondVoice = Mutex<SecondVoiceDetector?>(nil)
     private let failures = Mutex<[String]>([])
     private let events = Mutex<[BacklogEvent]>([])
     /// Lanes currently degraded or alerting, so each event fires once per episode.
@@ -103,9 +104,16 @@ public final class LiveTranscription: Sendable {
     /// Worker lines dropped as the client's audio leaking into the mic (after `stop`).
     public var bleedDropped: Int { assembler.bleedDropped }
 
+    /// Flags a second voice on the client's line from here on (P2.5). Optional: sessions run
+    /// without it when the diarizer model isn't downloaded.
+    public func attach(secondVoice detector: SecondVoiceDetector) {
+        secondVoice.withLock { $0 = detector }
+    }
+
     /// Feeds an utterance from any producer: capture, or a file for tests.
     public func submit(_ utterance: Utterance) {
         if retention.retainsAudio { handlers.audio?(utterance) }
+        secondVoice.withLock { $0 }?.add(utterance)
         let queue = lane(for: utterance.speaker).queue
         // Judged on the backlog *with* this utterance, before pushing, so the alert always
         // precedes the gap its push may cause.
@@ -163,7 +171,11 @@ public final class LiveTranscription: Sendable {
         let all = lanes.withLock { $0 }
         for lane in all.values { lane.queue.finish() }
         for lane in all.values { await lane.task.value }
-        return assembler.transcript(sessionId: sessionId, startedAt: startedAt, retention: retention)
+        var transcript = assembler.transcript(sessionId: sessionId, startedAt: startedAt, retention: retention)
+        if let detector = secondVoice.withLock({ d -> SecondVoiceDetector? in defer { d = nil }; return d }) {
+            transcript.otherVoices = await detector.finish()
+        }
+        return transcript
     }
 
     private func record(_ gap: Transcript.Gap) {

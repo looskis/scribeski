@@ -1,6 +1,8 @@
 #!/usr/bin/env swift
 // Renders a transcript fixture into two single-speaker tracks with macOS voices (BUILD_PLAN P2.7).
 //   swift scripts/synth-audio.swift fixtures/sample-session.txt <outdir> [--minutes 2]
+//     [--second-voice FROM-TO]   client lines starting in that window (seconds) in another
+//                                voice, as if someone else in the room spoke (P2.5's flag)
 // Writes worker.wav, client.wav, distractor.wav (16 kHz mono Int16) and reference.json
 // ([{speaker, start, end, text}] on the tracks' clock). Lines keep their turn order; a line
 // starts at its fixture timestamp or when the previous line ends, whichever is later.
@@ -15,13 +17,17 @@ guard args.count >= 3 else {
 let fixture = URL(fileURLWithPath: args[1])
 let out = URL(fileURLWithPath: args[2])
 let minutes = args.firstIndex(of: "--minutes").flatMap { Double(args[$0 + 1]) } ?? 2
+let secondVoice: ClosedRange<Double>? = args.firstIndex(of: "--second-voice").flatMap { i in
+    let parts = args[i + 1].split(separator: "-").compactMap { Double($0) }
+    return parts.count == 2 ? parts[0]...parts[1] : nil
+}
 try FileManager.default.createDirectory(at: out, withIntermediateDirectories: true)
 
 let voices = ["WORKER": "Samantha", "CLIENT": "Daniel"]
 let rate = 16_000.0
 let pattern = try NSRegularExpression(pattern: #"^\[(\d+):(\d\d)\] (WORKER|CLIENT): (.+)$"#)
 
-struct Line: Encodable { let speaker: String; let start: Double; let end: Double; let text: String }
+struct Line: Encodable { let speaker: String; let start: Double; let end: Double; let text: String; var voice: String? = nil }
 
 func render(_ text: String, voice: String) throws -> [Int16] {
     let tmp = FileManager.default.temporaryDirectory.appendingPathComponent("synth-\(UUID()).wav")
@@ -46,13 +52,14 @@ for raw in try String(contentsOf: fixture, encoding: .utf8).split(separator: "\n
     let stamp = Double(group(1))! * 60 + Double(group(2))!
     guard stamp < minutes * 60 else { break }
     let speaker = group(3), text = group(4)
-    let samples = try render(text, voice: voices[speaker]!)
+    let other = speaker == "CLIENT" && secondVoice?.contains(stamp) == true
+    let samples = try render(text, voice: other ? "Karen" : voices[speaker]!)
     let start = max(stamp, cursor)
     let end = start + Double(samples.count) / rate
     let at = Int(start * rate)
     if tracks[speaker]!.count < at { tracks[speaker]! += [Int16](repeating: 0, count: at - tracks[speaker]!.count) }
     tracks[speaker]! += samples
-    reference.append(Line(speaker: speaker.lowercased(), start: start, end: end, text: text))
+    reference.append(Line(speaker: speaker.lowercased(), start: start, end: end, text: text, voice: other ? "other" : nil))
     cursor = end + 0.4
 }
 

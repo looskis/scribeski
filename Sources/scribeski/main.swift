@@ -27,6 +27,8 @@ usage: scribeski <command>
   packs export <file> | import <file>
                                form packs: learned forms + session templates, to share across an agency
   models <subcommand>          shared model store: where | list | status | pull | use | reset
+  asr-bakeoff <dir> [--engines parakeet,speechanalyzer] [--out eval/asr-bakeoff.md]
+                               streaming WER, entity errors and speed per engine on recorded sessions (P2.8)
   version                      print the version
 
   Safari commands take --transport scriptingbridge|applescript (default scriptingbridge).
@@ -159,6 +161,13 @@ case "packs":
 case "fill-chart":
     do {
         try await NoteCommand.fillChart(flags)
+    } catch {
+        fail("\(error)")
+    }
+
+case "asr-bakeoff":
+    do {
+        try await BakeoffCommand.run(positional, flags)
     } catch {
         fail("\(error)")
     }

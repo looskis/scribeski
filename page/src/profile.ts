@@ -58,12 +58,26 @@ export function profile(): FormProfile {
   return {
     schema: "scribeski.form-profile/1",
     origin: location.origin,
-    path_pattern: location.pathname,
+    path_pattern: generalizePath(location.pathname),
     fingerprint: fingerprint(fields),
     steps,
     fields,
     unreachable,
   };
+}
+
+/**
+ * The page's path with record-specific segments as `*`: an EHR that puts the client's number
+ * in the URL (`/clients/114322/notes/new`) mustn't have it saved in the form profile, and the
+ * form should match every client's page. A segment is record-specific if it has 3+ digits,
+ * or looks like a UUID or a long hex id.
+ */
+export function generalizePath(path: string): string {
+  return path.split("/").map((seg) => {
+    let s = seg;
+    try { s = decodeURIComponent(seg); } catch { /* keep as is */ }
+    return /\d.*\d.*\d/.test(s) || /^[0-9a-f]{8}-[0-9a-f]{4}-/i.test(s) || /^[0-9a-f]{12,}$/i.test(s) ? "*" : seg;
+  }).join("/");
 }
 
 /**

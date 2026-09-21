@@ -65,6 +65,19 @@ public struct FormMapping: Codable, Hashable, Sendable {
             return u.path().range(of: "^\(escaped)$", options: .regularExpression) != nil
         }
 
+        /// The path with record-specific segments as `*` (3+ digits, a UUID, a long hex id), so
+        /// a client's number in the URL isn't saved and the chart matches every client's page.
+        /// Same rule as the page bundle's `generalizePath`.
+        public static func generalizePath(_ path: String) -> String {
+            path.split(separator: "/", omittingEmptySubsequences: false).map { seg -> String in
+                let s = String(seg).removingPercentEncoding ?? String(seg)
+                let digits = s.filter(\.isNumber).count
+                let uuid = s.range(of: #"^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-"#, options: .regularExpression) != nil
+                let hex = s.count >= 12 && s.allSatisfy(\.isHexDigit)
+                return digits >= 3 || uuid || hex ? "*" : String(seg)
+            }.joined(separator: "/")
+        }
+
         /// Patterns proposed from one example of the banner's text, for the worker to check:
         /// the ID-looking token generalized by shape (`AB-114322` → `([A-Z]{2}-\d{6})`), led
         /// by the word before it if there is one, and the name as whatever follows a separator.

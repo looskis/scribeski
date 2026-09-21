@@ -19,10 +19,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
----
-
-Third-party code keeps its own license: Sources/CSpeexEcho is SpeexDSP (BSD 3-Clause,
-see Sources/CSpeexEcho/COPYING). Dependencies fetched at build time (FluidAudio,
-Sparkle, llama.cpp) and the models the app downloads are under their own licenses,
-listed in the app's About pane.

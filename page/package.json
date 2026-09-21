@@ -1,6 +1,7 @@
 {
   "name": "scribeski-page",
   "version": "0.0.1",
+  "license": "MIT",
   "private": true,
   "description": "The only code that touches the EHR DOM. Built to one IIFE, injected over AppleScript `do JavaScript` (Safari) or page.evaluate (Playwright).",
   "type": "module",

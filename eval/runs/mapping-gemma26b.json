@@ -1,0 +1,1022 @@
+{
+  "schema": "scribeski.form-mapping/1",
+  "profile_fingerprint": "sha256:2573c87040e5248ae62bb73981c3b13329fee992bc4a84b3c73f6bcc17eddf18",
+  "fields": {
+    "case_number": {
+      "intent": "Records the unique administrative identifier for the case. Evidence is provided by the worker or administrative records.",
+      "mode": "discrete",
+      "evidence_speaker": "any",
+      "max_chars": 10
+    },
+    "client_first_name": {
+      "intent": "Records the client's legal first name. Evidence is provided by the client or their legal documentation.",
+      "mode": "discrete",
+      "evidence_speaker": "client",
+      "max_chars": 50
+    },
+    "client_last_name": {
+      "intent": "Records the client's legal last name. Evidence is provided by the client or their legal documentation.",
+      "mode": "discrete",
+      "evidence_speaker": "client",
+      "max_chars": 50
+    },
+    "client_preferred_name": {
+      "intent": "Records the name the client uses in social or daily contexts. Evidence is provided by the client.",
+      "mode": "discrete",
+      "evidence_speaker": "client",
+      "max_chars": 50
+    },
+    "client_dob": {
+      "intent": "Records the client's legal date of birth. Evidence is provided by the client or legal documentation.",
+      "mode": "discrete",
+      "evidence_speaker": "client"
+    },
+    "pronouns": {
+      "intent": "Records the pronouns the client uses for themselves. Do not infer pronouns from the client's gender identity or appearance.",
+      "mode": "discrete",
+      "evidence_speaker": "client",
+      "option_semantics": {
+        "SHE_HER": "The client explicitly states they use she/her pronouns.",
+        "HE_HIM": "The client explicitly states they use he/him pronouns.",
+        "THEY_THEM": "The client explicitly states they use they/them pronouns.",
+        "OTHER": "The client specifies pronouns other than the standard options provided.",
+        "NOT_ASKED": "Leave blank"
+      }
+    },
+    "gender_identity": {
+      "intent": "Records how the client identifies their gender. Do not infer gender identity from pronouns or appearance.",
+      "mode": "discrete",
+      "evidence_speaker": "client",
+      "option_semantics": {
+        "WOMAN": "The client identifies as a woman.",
+        "MAN": "The client identifies as a man.",
+        "NONBINARY": "The client identifies as nonbinary.",
+        "TRANSGENDER_WOMAN": "The client identifies as a transgender woman.",
+        "TRANSGENDER_MAN": "The client identifies as a transgender man.",
+        "OTHER": "The client identifies with a gender identity not listed.",
+        "DECLINED": "The client explicitly states they do not wish to disclose their gender identity."
+      }
+    },
+    "contact_phone": {
+      "intent": "Records the client's primary telephone number. Evidence is provided by the client.",
+      "mode": "discrete",
+      "evidence_speaker": "client",
+      "max_chars": 20
+    },
+    "contact_email": {
+      "intent": "Records the client's primary email address. Evidence is provided by the client.",
+      "mode": "discrete",
+      "evidence_speaker": "client",
+      "max_chars": 100
+    },
+    "contact_ok_voicemail": {
+      "intent": "Records the client's consent regarding leaving messages on their phone. Evidence is provided by the client.",
+      "mode": "discrete",
+      "evidence_speaker": "client",
+      "option_semantics": {
+        "YES": "The client gives permission to leave a voicemail.",
+        "NO": "The client explicitly states they do not want a voicemail left."
+      }
+    },
+    "address_line": {
+      "intent": "Records the client's street address. Evidence is provided by the client.",
+      "mode": "discrete",
+      "evidence_speaker": "client",
+      "max_chars": 100
+    },
+    "address_city": {
+      "intent": "Records the city of the client's residence. Evidence is provided by the client.",
+      "mode": "discrete",
+      "evidence_speaker": "client",
+      "max_chars": 50
+    },
+    "address_zip": {
+      "intent": "Records the ZIP code of the client's residence. Evidence is provided by the client.",
+      "mode": "discrete",
+      "evidence_speaker": "client",
+      "max_chars": 10
+    },
+    "language_combo": {
+      "intent": "Records the client's preferred language for communication. Evidence is provided by the client.",
+      "mode": "discrete",
+      "evidence_speaker": "client",
+      "option_semantics": {
+        "ENGLISH": "The client states English is their preferred language.",
+        "SPANISH": "The client states Spanish is their preferred language.",
+        "VIETNAMESE": "The client states Vietnamese is their preferred language.",
+        "TAGALOG": "The client states Tagalog is their preferred language.",
+        "MANDARIN": "The client states Mandarin is their preferred language.",
+        "ARABIC": "The client states Arabic is their preferred language.",
+        "OTHER": "The client specifies a preferred language other than those listed."
+      }
+    },
+    "interpreter_needed": {
+      "intent": "Records whether the client requires an interpreter for communication. Evidence is provided by the client or the worker's observation of a language barrier.",
+      "mode": "discrete",
+      "evidence_speaker": "any",
+      "option_semantics": {
+        "YES": "The client or worker indicates an interpreter is required.",
+        "NO": "The client or worker indicates an interpreter is not required."
+      }
+    },
+    "session_date": {
+      "intent": "Records the date the session occurred.",
+      "mode": "skip",
+      "evidence_speaker": "any"
+    },
+    "session_type": {
+      "intent": "Records the classification of the session encounter.",
+      "mode": "discrete",
+      "evidence_speaker": "any",
+      "option_semantics": {
+        "INTAKE": "The session is an initial assessment or intake.",
+        "FOLLOW_UP": "The session is a scheduled follow-up to previous treatment.",
+        "CRISIS": "The session is an unscheduled or urgent crisis intervention."
+      }
+    },
+    "session_modality": {
+      "intent": "Records the medium through which the service was delivered.",
+      "mode": "discrete",
+      "evidence_speaker": "any",
+      "option_semantics": {
+        "VIDEO": "The session was conducted via video conferencing.",
+        "PHONE": "The session was conducted via telephone.",
+        "IN_PERSON": "The session was conducted in person at a physical location."
+      }
+    },
+    "f_f79934c38a": {
+      "intent": "Records the total length of the session in minutes.",
+      "mode": "discrete",
+      "evidence_speaker": "any",
+      "max_chars": 3
+    },
+    "referral_source": {
+      "intent": "Records the entity or person that initiated the client's entry into services.",
+      "mode": "discrete",
+      "evidence_speaker": "client",
+      "option_semantics": {
+        "SELF": "The client sought services on their own without a referral.",
+        "SCHOOL": "The referral came from an educational institution.",
+        "PCP": "The referral came from a primary care physician.",
+        "HOSPITAL": "The referral came from a hospital or medical facility.",
+        "CPS": "The referral came from Child Protective Services.",
+        "COURT": "The referral came from a court or legal system.",
+        "COMMUNITY_ORG": "The referral came from a community-based organization.",
+        "OTHER": "The referral came from a source not listed above."
+      }
+    },
+    "consent_telehealth": {
+      "intent": "Records the method by which the client consented to telehealth services.",
+      "mode": "discrete",
+      "evidence_speaker": "any",
+      "option_semantics": {
+        "VERBAL": "The client provided verbal consent for telehealth.",
+        "WRITTEN": "The client provided written consent for telehealth.",
+        "DECLINED": "The client refused to consent to telehealth."
+      }
+    },
+    "insurance_type": {
+      "intent": "Records the type of health insurance coverage the client has.",
+      "mode": "discrete",
+      "evidence_speaker": "client",
+      "option_semantics": {
+        "MEDI_CAL": "The client has Medi-Cal coverage.",
+        "MEDICARE": "The client has Medicare coverage.",
+        "PRIVATE": "The client has private commercial insurance.",
+        "UNINSURED": "The client has no health insurance.",
+        "UNKNOWN": "The client's insurance status is unknown."
+      }
+    },
+    "insurance_member_id": {
+      "intent": "Records the specific identification number for the client's insurance policy.",
+      "mode": "discrete",
+      "evidence_speaker": "client",
+      "max_chars": 50
+    },
+    "emergency_contact_name": {
+      "intent": "Records the full name of the client's designated emergency contact.",
+      "mode": "discrete",
+      "evidence_speaker": "client",
+      "max_chars": 100
+    },
+    "emergency_contact_phone": {
+      "intent": "Records the telephone number for the client's designated emergency contact.",
+      "mode": "discrete",
+      "evidence_speaker": "client",
+      "max_chars": 20
+    },
+    "emergency_contact_relationship": {
+      "intent": "Records the relationship of the emergency contact to the client.",
+      "mode": "discrete",
+      "evidence_speaker": "client",
+      "option_semantics": {
+        "PARENT": "The contact is the client's parent.",
+        "SIBLING": "The contact is the client's sibling.",
+        "PARTNER": "The contact is the client's partner.",
+        "CHILD": "The contact is the client's child.",
+        "FRIEND": "The contact is a friend of the client.",
+        "OTHER": "The contact has a relationship other than those listed."
+      }
+    },
+    "release_of_info": {
+      "intent": "Records which entities the client has signed releases for.",
+      "mode": "discrete",
+      "evidence_speaker": "client",
+      "option_semantics": {
+        "PCP": "A release is on file for the Primary Care Provider.",
+        "PSYCHIATRIST": "A release is on file for a Psychiatrist.",
+        "SCHOOL": "A release is on file for the client's school.",
+        "FAMILY": "A release is on file for family members.",
+        "NONE": "No releases are on file."
+      }
+    },
+    "phq9_1": {
+      "intent": "Records the client's response to the PHQ-9 item regarding anhedonia.",
+      "mode": "discrete",
+      "evidence_speaker": "client",
+      "option_semantics": {
+        "0": "The client reports not at all.",
+        "1": "The client reports several days.",
+        "2": "The client reports more than half the days.",
+        "3": "The client reports nearly every day."
+      }
+    },
+    "phq9_2": {
+      "intent": "Records the client's response to the PHQ-9 item regarding depressed mood.",
+      "mode": "discrete",
+      "evidence_speaker": "client",
+      "option_semantics": {
+        "0": "The client reports not at all.",
+        "1": "The client reports several days.",
+        "2": "The client reports more than half the days.",
+        "3": "The client reports nearly every day."
+      }
+    },
+    "phq9_3": {
+      "intent": "Records the client's response to the PHQ-9 item regarding sleep disturbance.",
+      "mode": "discrete",
+      "evidence_speaker": "client",
+      "option_semantics": {
+        "0": "The client reports not at all.",
+        "1": "The client reports several days.",
+        "2": "The client reports more than half the days.",
+        "3": "The client reports nearly every day."
+      }
+    },
+    "phq9_4": {
+      "intent": "Records the frequency of feeling tired or having little energy based on the client's self-report.",
+      "mode": "discrete",
+      "evidence_speaker": "client",
+      "option_semantics": {
+        "0": "Client states they do not feel tired or lack energy at all.",
+        "1": "Client states they feel tired or lack energy for several days.",
+        "2": "Client states they feel tired or lack energy for more than half the days.",
+        "3": "Client states they feel tired or lack energy nearly every day."
+      }
+    },
+    "phq9_5": {
+      "intent": "Records the frequency of changes in appetite or overeating based on the client's self-report.",
+      "mode": "discrete",
+      "evidence_speaker": "client",
+      "option_semantics": {
+        "0": "Client states they have no issues with appetite or overeating.",
+        "1": "Client states they have appetite or overeating issues for several days.",
+        "2": "Client states they have appetite or overeating issues for more than half the days.",
+        "3": "Client states they have appetite or overeating issues nearly every day."
+      }
+    },
+    "phq9_6": {
+      "intent": "Records the frequency of feelings of failure or self-disappointment based on the client's self-report.",
+      "mode": "discrete",
+      "evidence_speaker": "client",
+      "option_semantics": {
+        "0": "Client states they do not feel like a failure or that they have let people down.",
+        "1": "Client states they feel like a failure or have let people down for several days.",
+        "2": "Client states they feel like a failure or have let people down for more than half the days.",
+        "3": "Client states they feel like a failure or have let people down nearly every day."
+      }
+    },
+    "phq9_7": {
+      "intent": "Records the frequency of difficulty concentrating based on the client's self-report.",
+      "mode": "discrete",
+      "evidence_speaker": "client",
+      "option_semantics": {
+        "0": "Client states they have no trouble concentrating.",
+        "1": "Client states they have trouble concentrating for several days.",
+        "2": "Client states they have trouble concentrating for more than half the days.",
+        "3": "Client states they have trouble concentrating nearly every day."
+      }
+    },
+    "phq9_8": {
+      "intent": "Records the frequency of psychomotor changes (slowing down or restlessness) as perceived by others, based on the client's self-report.",
+      "mode": "discrete",
+      "evidence_speaker": "client",
+      "option_semantics": {
+        "0": "Client states others have not noticed changes in their movement or speech.",
+        "1": "Client states others have noticed changes in movement or speech for several days.",
+        "2": "Client states others have noticed changes in movement or speech for more than half the days.",
+        "3": "Client states others have noticed changes in movement or speech nearly every day."
+      }
+    },
+    "phq9_9": {
+      "intent": "Records the frequency of thoughts of self-harm or death based on the client's self-report.",
+      "mode": "discrete",
+      "evidence_speaker": "client",
+      "option_semantics": {
+        "0": "Client states they have no thoughts of death or hurting themselves.",
+        "1": "Client states they have had thoughts of death or hurting themselves for several days.",
+        "2": "Client states they have had thoughts of death or hurting themselves for more than half the days.",
+        "3": "Client states they have had thoughts of death or hurting themselves nearly every day."
+      }
+    },
+    "phq9_score": {
+      "intent": "PHQ-9 total, computed in code from the 9 items.",
+      "mode": "derived",
+      "evidence_speaker": "any",
+      "derive": {
+        "function": "phq9_total",
+        "inputs": [
+          "phq9_1",
+          "phq9_2",
+          "phq9_3",
+          "phq9_4",
+          "phq9_5",
+          "phq9_6",
+          "phq9_7",
+          "phq9_8",
+          "phq9_9"
+        ]
+      }
+    },
+    "phq9_severity": {
+      "intent": "PHQ-9 severity band, computed in code from the 9 items.",
+      "mode": "derived",
+      "evidence_speaker": "any",
+      "derive": {
+        "function": "phq9_band",
+        "inputs": [
+          "phq9_1",
+          "phq9_2",
+          "phq9_3",
+          "phq9_4",
+          "phq9_5",
+          "phq9_6",
+          "phq9_7",
+          "phq9_8",
+          "phq9_9"
+        ]
+      }
+    },
+    "phq9_difficulty": {
+      "intent": "Records the level of functional impairment caused by the symptoms mentioned in the PHQ-9.",
+      "mode": "discrete",
+      "evidence_speaker": "client",
+      "option_semantics": {
+        "NOT_DIFFICULT": "Client states the problems are not difficult at all to manage.",
+        "SOMEWHAT": "Client states the problems are somewhat difficult to manage.",
+        "VERY": "Client states the problems are very difficult to manage.",
+        "EXTREMELY": "Client states the problems are extremely difficult to manage."
+      }
+    },
+    "gad7_status": {
+      "intent": "Records whether the GAD-7 assessment was administered, deferred, declined, or not indicated during the session.",
+      "mode": "discrete",
+      "evidence_speaker": "any",
+      "option_semantics": {
+        "COMPLETED": "The worker or client confirms the GAD-7 was completed.",
+        "DEFERRED": "The worker notes the GAD-7 was postponed to a later time.",
+        "DECLINED": "The client explicitly refuses to complete the GAD-7.",
+        "NOT_INDICATED": "The worker determines the GAD-7 is not necessary for this session."
+      }
+    },
+    "gad7_1": {
+      "intent": "Records the frequency of feeling nervous, anxious, or on edge based on the client's self-report.",
+      "mode": "discrete",
+      "evidence_speaker": "client",
+      "option_semantics": {
+        "0": "Client states they do not feel nervous, anxious, or on edge at all.",
+        "1": "Client states they feel nervous, anxious, or on edge for several days.",
+        "2": "Client states they feel nervous, anxious, or on edge for more than half the days.",
+        "3": "Client states they feel nervous, anxious, or on edge nearly every day."
+      }
+    },
+    "gad7_2": {
+      "intent": "Records the frequency of inability to control worrying based on the client's self-report.",
+      "mode": "discrete",
+      "evidence_speaker": "client",
+      "option_semantics": {
+        "0": "Client states they have no trouble controlling worry.",
+        "1": "Client states they have trouble controlling worry for several days.",
+        "2": "Client states they have trouble controlling worry for more than half the days.",
+        "3": "Client states they have trouble controlling worry nearly every day."
+      }
+    },
+    "gad7_3": {
+      "intent": "Records the frequency of excessive worrying about various topics based on the client's self-report.",
+      "mode": "discrete",
+      "evidence_speaker": "client",
+      "option_semantics": {
+        "0": "Client states they do not worry too much about different things.",
+        "1": "Client states they worry too much about different things for several days.",
+        "2": "Client states they worry too much about different things for more than half the days.",
+        "3": "Client states they worry too much about different things nearly every day."
+      }
+    },
+    "gad7_4": {
+      "intent": "Records the frequency of difficulty relaxing based on the client's self-report.",
+      "mode": "discrete",
+      "evidence_speaker": "client",
+      "option_semantics": {
+        "0": "Client states they have no trouble relaxing.",
+        "1": "Client states they have trouble relaxing for several days.",
+        "2": "Client states they have trouble relaxing for more than half the days.",
+        "3": "Client states they have trouble relaxing nearly every day."
+      }
+    },
+    "gad7_5": {
+      "intent": "Records the frequency of restlessness based on the client's self-report.",
+      "mode": "discrete",
+      "evidence_speaker": "client",
+      "option_semantics": {
+        "0": "Client states they do not feel restless or unable to sit still.",
+        "1": "Client states they feel restless for several days.",
+        "2": "Client states they feel restless for more than half the days.",
+        "3": "Client states they feel restless nearly every day."
+      }
+    },
+    "gad7_6": {
+      "intent": "Records the frequency of irritability based on the client's self-report.",
+      "mode": "discrete",
+      "evidence_speaker": "client",
+      "option_semantics": {
+        "0": "Client states they do not become easily annoyed or irritable.",
+        "1": "Client states they become easily annoyed or irritable for several days.",
+        "2": "Client states they become easily annoyed or irritable for more than half the days.",
+        "3": "Client states they become easily annoyed or irritable nearly every day."
+      }
+    },
+    "gad7_7": {
+      "intent": "Records the frequency of feeling fearful or afraid of catastrophe based on the client's self-report.",
+      "mode": "discrete",
+      "evidence_speaker": "client",
+      "option_semantics": {
+        "0": "Client states they do not feel afraid as if something awful might happen.",
+        "1": "Client states they feel afraid as if something awful might happen for several days.",
+        "2": "Client states they feel afraid as if something awful might happen for more than half the days.",
+        "3": "Client states they feel afraid as if something awful might happen nearly every day."
+      }
+    },
+    "gad7_score": {
+      "intent": "GAD-7 total, computed in code from the 7 items.",
+      "mode": "derived",
+      "evidence_speaker": "any",
+      "derive": {
+        "function": "gad7_total",
+        "inputs": [
+          "gad7_1",
+          "gad7_2",
+          "gad7_3",
+          "gad7_4",
+          "gad7_5",
+          "gad7_6",
+          "gad7_7"
+        ]
+      }
+    },
+    "gad7_severity": {
+      "intent": "GAD-7 severity band, computed in code from the 7 items.",
+      "mode": "derived",
+      "evidence_speaker": "any",
+      "derive": {
+        "function": "gad7_band",
+        "inputs": [
+          "gad7_1",
+          "gad7_2",
+          "gad7_3",
+          "gad7_4",
+          "gad7_5",
+          "gad7_6",
+          "gad7_7"
+        ]
+      }
+    },
+    "si_ideation": {
+      "intent": "Records the presence and type of suicidal ideation expressed by the client. Do not infer ideation from general expressions of hopelessness or sadness.",
+      "mode": "discrete",
+      "evidence_speaker": "client",
+      "option_semantics": {
+        "NONE": "Client states they have no thoughts of suicide.",
+        "PASSIVE": "Client expresses thoughts of wanting to die or wishing they wouldn't wake up, but has no intent to act.",
+        "ACTIVE_NO_PLAN": "Client expresses active thoughts of killing themselves but has not formulated a specific method or plan.",
+        "ACTIVE_WITH_PLAN": "Client expresses active thoughts of killing themselves and has a specific method or plan in mind."
+      }
+    },
+    "si_frequency": {
+      "intent": "Records how often the client has experienced suicidal ideation over the past two weeks. Based on client's self-report of frequency.",
+      "mode": "discrete",
+      "evidence_speaker": "client",
+      "option_semantics": {
+        "NONE": "Client states they have had no suicidal ideation in the last two weeks.",
+        "SEVERAL_DAYS": "Client states ideation occurred on several days in the last two weeks.",
+        "MORE_THAN_HALF": "Client states ideation occurred on more than half the days in the last two weeks.",
+        "NEARLY_EVERY_DAY": "Client states ideation occurred almost every day in the last two weeks."
+      }
+    },
+    "si_plan": {
+      "intent": "Records whether the client has a specific plan for suicide. Based on client's description of their thoughts.",
+      "mode": "discrete",
+      "evidence_speaker": "client",
+      "option_semantics": {
+        "NO": "Client explicitly states they have no plan.",
+        "YES": "Client describes a specific method or way they intend to end their life.",
+        "NOT_ASSESSED": "Leave blank"
+      }
+    },
+    "si_intent": {
+      "intent": "Records the client's level of intent to act on suicidal thoughts. Based on client's stated desire or lack thereof to act.",
+      "mode": "discrete",
+      "evidence_speaker": "client",
+      "option_semantics": {
+        "NO": "Client states they have no intention of acting on their thoughts.",
+        "YES": "Client states they intend to act on their suicidal thoughts.",
+        "NOT_ASSESSED": "Leave blank"
+      }
+    },
+    "si_means": {
+      "intent": "Records the client's access to lethal means for suicide. Based on client's report of their environment or belongings.",
+      "mode": "discrete",
+      "evidence_speaker": "client",
+      "option_semantics": {
+        "NO_ACCESS": "Client states they do not have access to lethal means.",
+        "HAS_ACCESS": "Client states they have access to lethal means (e.g., firearms, medications, etc.).",
+        "NOT_ASSESSED": "Leave blank"
+      }
+    },
+    "si_prior_attempts": {
+      "intent": "Records the client's history of suicide attempts. Based on client's self-reported history.",
+      "mode": "discrete",
+      "evidence_speaker": "client",
+      "option_semantics": {
+        "NONE": "Client states they have never attempted suicide.",
+        "ONE": "Client states they have had one prior suicide attempt.",
+        "MULTIPLE": "Client states they have had more than one prior suicide attempt.",
+        "UNKNOWN": "Leave blank"
+      }
+    },
+    "hi_ideation": {
+      "intent": "Records the presence and type of homicidal ideation expressed by the client. Do not infer homicidal intent from anger or frustration.",
+      "mode": "discrete",
+      "evidence_speaker": "client",
+      "option_semantics": {
+        "NONE": "Client states they have no thoughts of harming others.",
+        "PASSIVE": "Client expresses thoughts of wanting to harm others but has no specific plan or intent.",
+        "ACTIVE": "Client expresses active thoughts of harming a specific person or people."
+      }
+    },
+    "hi_plan": {
+      "intent": "Records whether the client has a specific plan for homicide. Based on client's description of their thoughts.",
+      "mode": "discrete",
+      "evidence_speaker": "client",
+      "option_semantics": {
+        "NO": "Client states they have no plan to harm others.",
+        "YES": "Client describes a specific method or way they intend to harm others.",
+        "NOT_ASSESSED": "Leave blank"
+      }
+    },
+    "safety_plan": {
+      "intent": "Records the status of the safety planning process during the session. Based on worker's actions and client's participation.",
+      "mode": "discrete",
+      "evidence_speaker": "any",
+      "option_semantics": {
+        "COMPLETED": "A new safety plan was fully developed and finalized during the session.",
+        "UPDATED": "An existing safety plan was modified or updated during the session.",
+        "REVIEWED": "An existing safety plan was reviewed for effectiveness during the session.",
+        "DEFERRED": "The worker decided to postpone safety planning to a later time.",
+        "DECLINED": "The client refused to participate in safety planning.",
+        "NOT_INDICATED": "Leave blank"
+      }
+    },
+    "risk_narrative": {
+      "intent": "A summary of the clinical reasoning and evidence regarding the client's risk of harm to self or others. Written by the clinician.",
+      "mode": "narrative",
+      "evidence_speaker": "any",
+      "max_chars": 1200
+    },
+    "risk_level": {
+      "intent": "The clinician's professional determination of the client's overall risk level. This is a clinical judgment.",
+      "mode": "clinician_only",
+      "evidence_speaker": "any"
+    },
+    "supervisor_consult": {
+      "intent": "Records whether the clinician consulted with a supervisor regarding the client's case or risk. Based on worker's actions.",
+      "mode": "discrete",
+      "evidence_speaker": "any",
+      "option_semantics": {
+        "YES": "Clinician states they consulted with a supervisor.",
+        "NO": "Clinician states they did not consult with a supervisor.",
+        "PLANNED": "Clinician states they intend to consult with a supervisor."
+      }
+    },
+    "protective_factors": {
+      "intent": "Records factors identified by the client that motivate them to remain safe or stay connected to life. Based on client's statements.",
+      "mode": "discrete",
+      "evidence_speaker": "client",
+      "option_semantics": {
+        "FAMILY_CONNECTION": "Client mentions family as a reason to stay safe.",
+        "CHILDREN_IN_HOME": "Client mentions their children as a reason to stay safe.",
+        "FUTURE_ORIENTATION": "Client expresses goals or reasons to look toward the future.",
+        "RELIGIOUS_BELIEFS": "Client mentions faith or religious community as a reason to stay safe.",
+        "TREATMENT_ENGAGEMENT": "Client expresses commitment to the therapeutic process.",
+        "PETS": "Client mentions pets as a reason to stay safe."
+      }
+    },
+    "crisis_resources": {
+      "intent": "Records which specific crisis resources the worker provided to the client during the session. Based on worker's actions.",
+      "mode": "discrete",
+      "evidence_speaker": "any",
+      "option_semantics": {
+        "LINE_988": "Worker provided information for the 988 Lifeline.",
+        "COUNTY_CRISIS": "Worker provided information for the local county crisis line.",
+        "MOBILE_CRISIS": "Worker provided information for a mobile crisis team.",
+        "WARMLINE": "Worker provided information for a warmline.",
+        "NONE": "Leave blank"
+      }
+    },
+    "presenting_problem": {
+      "intent": "A narrative summary of the reasons the client is seeking services. Based on the client's description of their concerns.",
+      "mode": "narrative",
+      "evidence_speaker": "any",
+      "max_chars": 1200
+    },
+    "psychosocial_history": {
+      "intent": "Records the client's background, life events, and social circumstances as described by the client.",
+      "mode": "narrative",
+      "evidence_speaker": "any",
+      "max_chars": 1200
+    },
+    "interventions": {
+      "intent": "Summarizes the specific therapeutic or case management actions taken by the worker during the session.",
+      "mode": "narrative",
+      "evidence_speaker": "any",
+      "max_chars": 1000
+    },
+    "plan": {
+      "intent": "Outlines the agreed-upon next steps for the client and the worker following the session.",
+      "mode": "narrative",
+      "evidence_speaker": "any",
+      "max_chars": 800
+    },
+    "client_strengths": {
+      "intent": "Summarizes the internal assets, skills, or external supports identified by the client or observed by the worker.",
+      "mode": "narrative",
+      "evidence_speaker": "any",
+      "max_chars": 800
+    },
+    "housing_status": {
+      "intent": "Records the client's current stability and type of housing situation.",
+      "mode": "discrete",
+      "evidence_speaker": "client",
+      "option_semantics": {
+        "STABLE": "Client states they have permanent, secure housing.",
+        "AT_RISK": "Client expresses concern about losing housing or facing eviction.",
+        "DOUBLED_UP": "Client is staying with others temporarily due to lack of space.",
+        "SHELTERED": "Client is currently staying in a formal shelter system.",
+        "UNSHELTERED": "Client is experiencing homelessness (e.g., street, car, park)."
+      }
+    },
+    "living_situation": {
+      "intent": "Records the specific household composition or people the client resides with.",
+      "mode": "discrete",
+      "evidence_speaker": "client",
+      "option_semantics": {
+        "ALONE": "Client states they live by themselves.",
+        "WITH_FAMILY": "Client states they live with relatives.",
+        "WITH_PARTNER": "Client states they live with a significant other.",
+        "ROOMMATES": "Client states they live with non-family roommates.",
+        "OTHER": "Client states they live with people not covered by other categories."
+      }
+    },
+    "employment_status": {
+      "intent": "Records the client's current work or labor force status.",
+      "mode": "discrete",
+      "evidence_speaker": "client",
+      "option_semantics": {
+        "EMPLOYED_FT": "Client states they work full-time hours.",
+        "EMPLOYED_PT": "Client states they work part-time hours.",
+        "UNEMPLOYED": "Client states they are currently without a job.",
+        "NOT_IN_LABOR_FORCE": "Client states they are not looking for work (e.g., retired, homemaker).",
+        "DISABLED": "Client states they are unable to work due to a disability.",
+        "STUDENT": "Client states they are currently enrolled in school."
+      }
+    },
+    "food_security": {
+      "intent": "Records whether the client has consistent access to adequate food.",
+      "mode": "discrete",
+      "evidence_speaker": "client",
+      "option_semantics": {
+        "SECURE": "Client states they have reliable access to food.",
+        "INSECURE": "Client states they struggle to afford or access food."
+      }
+    },
+    "income_sources": {
+      "intent": "Records the specific ways the client receives financial support.",
+      "mode": "discrete",
+      "evidence_speaker": "client",
+      "option_semantics": {
+        "WAGES": "Client reports earning money from employment.",
+        "UNEMPLOYMENT_INSURANCE": "Client reports receiving unemployment benefits.",
+        "SNAP": "Client reports receiving SNAP or CalFresh.",
+        "TANF": "Client reports receiving TANF or CalWORKs.",
+        "SSI": "Client reports receiving SSI.",
+        "SSDI": "Client reports receiving SSDI.",
+        "CHILD_SUPPORT": "Client reports receiving child support.",
+        "NONE": "Client reports having no income sources."
+      }
+    },
+    "transportation": {
+      "intent": "Records the client's ability to access transportation for appointments or work.",
+      "mode": "discrete",
+      "evidence_speaker": "client",
+      "option_semantics": {
+        "RELIABLE": "Client states they have consistent, dependable transportation.",
+        "UNRELIABLE": "Client states transportation is inconsistent or difficult to secure.",
+        "NONE": "Client states they have no means of transportation."
+      }
+    },
+    "legal_involvement": {
+      "intent": "Records any current involvement with the legal or child welfare systems.",
+      "mode": "discrete",
+      "evidence_speaker": "client",
+      "option_semantics": {
+        "NONE": "Client states they have no legal involvement.",
+        "PROBATION": "Client states they are on probation.",
+        "PENDING_CASE": "Client states they have an active or pending legal case.",
+        "FAMILY_COURT": "Client states they are involved in family court proceedings.",
+        "CPS_OPEN": "Client states they have an open CPS case."
+      }
+    },
+    "children_in_home": {
+      "intent": "Records whether minor children reside in the client's household.",
+      "mode": "discrete",
+      "evidence_speaker": "client",
+      "option_semantics": {
+        "YES": "Client states there are minor children living in the home.",
+        "NO": "Client states there are no minor children living in the home."
+      }
+    },
+    "substances": {
+      "intent": "Records substances used by the client within the last 30 days.",
+      "mode": "discrete",
+      "evidence_speaker": "client",
+      "option_semantics": {
+        "ALCOHOL": "Client reports using alcohol.",
+        "CANNABIS": "Client reports using cannabis.",
+        "OPIOIDS": "Client reports using opioids.",
+        "STIMULANTS": "Client reports using stimulants.",
+        "SEDATIVES": "Client reports using sedatives.",
+        "NONE_REPORTED": "Client reports no substance use in the last 30 days."
+      }
+    },
+    "alcohol_frequency": {
+      "intent": "Records how often the client consumes alcohol.",
+      "mode": "discrete",
+      "evidence_speaker": "client",
+      "option_semantics": {
+        "NEVER": "Client states they never consume alcohol.",
+        "MONTHLY_OR_LESS": "Client states they consume alcohol once a month or less.",
+        "TWO_TO_FOUR_PER_MONTH": "Client states they consume alcohol 2–4 times per month.",
+        "TWO_TO_THREE_PER_WEEK": "Client states they consume alcohol 2–3 times per week.",
+        "FOUR_PLUS_PER_WEEK": "Client states they consume alcohol 4 or more times per week."
+      }
+    },
+    "tobacco_use": {
+      "intent": "Records the client's history of tobacco or nicotine use.",
+      "mode": "discrete",
+      "evidence_speaker": "client",
+      "option_semantics": {
+        "NEVER": "Client states they have never used tobacco/nicotine.",
+        "FORMER": "Client states they used to use tobacco/nicotine but have quit.",
+        "CURRENT": "Client states they currently use tobacco/nicotine."
+      }
+    },
+    "substance_tx_history": {
+      "intent": "Records the client's history of receiving treatment for substance use. Evidence comes from the client's self-report of past treatment settings.",
+      "mode": "discrete",
+      "evidence_speaker": "client",
+      "option_semantics": {
+        "NONE": "Client states they have never received treatment for substance use.",
+        "OUTPATIENT": "Client states they have attended outpatient treatment programs.",
+        "RESIDENTIAL": "Client states they have attended residential/inpatient treatment programs.",
+        "MAT": "Client states they have participated in Medication-Assisted Treatment."
+      }
+    },
+    "pcp_name": {
+      "intent": "Records the name of the client's primary care physician. Evidence comes from the client's report of their medical provider.",
+      "mode": "discrete",
+      "evidence_speaker": "client",
+      "max_chars": 100
+    },
+    "medication_adherence": {
+      "intent": "Records how consistently the client takes prescribed medications. Evidence comes from the client's report of their medication habits.",
+      "mode": "discrete",
+      "evidence_speaker": "client",
+      "option_semantics": {
+        "ADHERENT": "Client states they take all medications exactly as prescribed.",
+        "PARTIAL": "Client states they sometimes miss doses or take medications inconsistently.",
+        "NOT_TAKING": "Client states they are not taking their prescribed medications at all.",
+        "NONE_PRESCRIBED": "Leave blank if the client states they are not currently prescribed any medications."
+      }
+    },
+    "current_medications": {
+      "intent": "Records a list of medications the client is currently taking. Evidence comes from the client's report of their medication regimen.",
+      "mode": "narrative",
+      "evidence_speaker": "any",
+      "max_chars": 1000
+    },
+    "medical_conditions": {
+      "intent": "Records the client's known medical diagnoses or health conditions. Evidence comes from the client's report of their medical history.",
+      "mode": "narrative",
+      "evidence_speaker": "any",
+      "max_chars": 1000
+    },
+    "sleep_hours": {
+      "intent": "Records the typical number of hours the client sleeps per night. Evidence comes from the client's report of their sleep patterns.",
+      "mode": "discrete",
+      "evidence_speaker": "client",
+      "max_chars": 20
+    },
+    "support_system": {
+      "intent": "Records the types of social supports the client identifies as having. Evidence comes from the client's report of their social network.",
+      "mode": "discrete",
+      "evidence_speaker": "client",
+      "option_semantics": {
+        "FAMILY": "Client identifies family members as part of their support system.",
+        "FRIENDS": "Client identifies friends as part of their support system.",
+        "FAITH_COMMUNITY": "Client identifies a religious or spiritual community as part of their support system.",
+        "PEER_GROUP": "Client identifies a peer group (e.g., recovery groups) as part of their support system.",
+        "NONE": "Leave blank if the client states they have no social supports."
+      }
+    },
+    "mse_appearance": {
+      "intent": "Records the clinician's observation of the client's physical presentation. This is a professional observation.",
+      "mode": "clinician_only",
+      "evidence_speaker": "any"
+    },
+    "mse_mood": {
+      "intent": "Records the client's subjective report of their emotional state. Evidence must be the client's own words.",
+      "mode": "narrative",
+      "evidence_speaker": "any",
+      "max_chars": 500
+    },
+    "mse_affect": {
+      "intent": "Records the clinician's observation of the client's expressed emotion. This is a professional observation.",
+      "mode": "clinician_only",
+      "evidence_speaker": "any"
+    },
+    "mse_thought_process": {
+      "intent": "Records the clinician's observation of the organization and flow of the client's thoughts. This is a professional observation.",
+      "mode": "clinician_only",
+      "evidence_speaker": "any"
+    },
+    "mse_orientation": {
+      "intent": "Records the clinician's assessment of the client's awareness of person, place, time, and situation. This is a professional observation.",
+      "mode": "clinician_only",
+      "evidence_speaker": "any"
+    },
+    "mse_insight": {
+      "intent": "Records the clinician's assessment of the client's understanding of their situation or illness. This is a professional observation.",
+      "mode": "clinician_only",
+      "evidence_speaker": "any"
+    },
+    "mse_judgment": {
+      "intent": "Records the clinician's assessment of the client's ability to make sound decisions. This is a professional observation.",
+      "mode": "clinician_only",
+      "evidence_speaker": "any"
+    },
+    "adl_bathing": {
+      "intent": "Records the clinician's assessment of the client's ability to perform bathing tasks. This is a professional observation.",
+      "mode": "clinician_only",
+      "evidence_speaker": "any"
+    },
+    "adl_dressing": {
+      "intent": "Records the client's ability to dress themselves. Evidence comes from the client's description of daily self-care tasks or the worker's observation of physical limitations.",
+      "mode": "discrete",
+      "evidence_speaker": "client",
+      "option_semantics": {
+        "INDEPENDENT": "The client states they can dress themselves without help.",
+        "NEEDS_ASSISTANCE": "The client states they require some help or tools to dress themselves.",
+        "DEPENDENT": "The client states they are unable to dress themselves and rely entirely on others.",
+        "NOT_ASSESSED": "Leave blank"
+      }
+    },
+    "adl_eating": {
+      "intent": "Records the client's ability to feed themselves. Evidence comes from the client's description of mealtime capabilities or physical limitations.",
+      "mode": "discrete",
+      "evidence_speaker": "client",
+      "option_semantics": {
+        "INDEPENDENT": "The client states they can feed themselves without help.",
+        "NEEDS_ASSISTANCE": "The client states they require some help or adaptive equipment to eat.",
+        "DEPENDENT": "The client states they are unable to feed themselves and rely entirely on others.",
+        "NOT_ASSESSED": "Leave blank"
+      }
+    },
+    "adl_mobility": {
+      "intent": "Records the client's ability to move around. Evidence comes from the client's description of walking, transferring, or using mobility aids.",
+      "mode": "discrete",
+      "evidence_speaker": "client",
+      "option_semantics": {
+        "INDEPENDENT": "The client states they can move around their environment without help.",
+        "NEEDS_ASSISTANCE": "The client states they require some help or mobility aids to move.",
+        "DEPENDENT": "The client states they are unable to move themselves and rely entirely on others.",
+        "NOT_ASSESSED": "Leave blank"
+      }
+    },
+    "iadl_finances": {
+      "intent": "Records the client's ability to manage their money. Evidence comes from the client's description of paying bills or managing income.",
+      "mode": "discrete",
+      "evidence_speaker": "client",
+      "option_semantics": {
+        "INDEPENDENT": "The client states they manage their own finances without help.",
+        "NEEDS_ASSISTANCE": "The client states they require some help with money management or bill paying.",
+        "DEPENDENT": "The client states they are unable to manage their finances and rely entirely on others.",
+        "NOT_ASSESSED": "Leave blank"
+      }
+    },
+    "iadl_transport": {
+      "intent": "Records the client's ability to use transportation. Evidence comes from the client's description of getting to appointments or navigating transit.",
+      "mode": "discrete",
+      "evidence_speaker": "client",
+      "option_semantics": {
+        "INDEPENDENT": "The client states they can use transportation independently.",
+        "NEEDS_ASSISTANCE": "The client states they require some help or assistance to use transportation.",
+        "DEPENDENT": "The client states they are unable to use transportation and rely entirely on others.",
+        "NOT_ASSESSED": "Leave blank"
+      }
+    },
+    "iadl_medications": {
+      "intent": "Records the client's ability to manage their medications. Evidence comes from the client's description of taking their prescribed medicine.",
+      "mode": "discrete",
+      "evidence_speaker": "client",
+      "option_semantics": {
+        "INDEPENDENT": "The client states they manage their own medication regimen without help.",
+        "NEEDS_ASSISTANCE": "The client states they require some help or reminders to take medications.",
+        "DEPENDENT": "The client states they are unable to manage their medications and rely entirely on others.",
+        "NOT_ASSESSED": "Leave blank"
+      }
+    },
+    "referrals_made": {
+      "intent": "Records which specific resources or services the worker has referred the client to. Evidence comes from the worker's statements regarding referrals provided during the session.",
+      "mode": "discrete",
+      "evidence_speaker": "any",
+      "option_semantics": {
+        "FOOD_BANK": "The worker states a referral to a food bank was made.",
+        "HOUSING_NAV": "The worker states a referral to housing navigation was made.",
+        "BENEFITS": "The worker states a referral for benefits enrollment was made.",
+        "PSYCHIATRY": "The worker states a referral to psychiatry was made.",
+        "SUBSTANCE_TX": "The worker states a referral to substance-use treatment was made.",
+        "LEGAL_AID": "The worker states a referral to legal aid was made.",
+        "NONE": "The worker states no referrals were made."
+      }
+    },
+    "client_goal": {
+      "intent": "Records the client's stated goals for treatment or life. Evidence comes from the client's own words.",
+      "mode": "narrative",
+      "evidence_speaker": "any",
+      "max_chars": 1200
+    },
+    "next_appointment": {
+      "intent": "Records the scheduled date for the next session. Evidence comes from the worker's statements regarding the schedule.",
+      "mode": "discrete",
+      "evidence_speaker": "any"
+    },
+    "follow_up_interval": {
+      "intent": "Records the agreed-upon frequency of future sessions. Evidence comes from the worker's statements regarding the follow-up plan.",
+      "mode": "discrete",
+      "evidence_speaker": "any",
+      "option_semantics": {
+        "WEEKLY": "The worker states the client will be seen weekly.",
+        "BIWEEKLY": "The worker states the client will be seen every 2 weeks.",
+        "MONTHLY": "The worker states the client will be seen monthly.",
+        "AS_NEEDED": "The worker states the client will be seen on an as-needed basis."
+      }
+    },
+    "level_of_care": {
+      "intent": "Records the clinician's professional recommendation for the intensity of services required. This is a professional judgment.",
+      "mode": "clinician_only",
+      "evidence_speaker": "any"
+    },
+    "diagnosis_impression": {
+      "intent": "Records the clinician's professional diagnostic assessment. This is a professional judgment.",
+      "mode": "clinician_only",
+      "evidence_speaker": "any"
+    },
+    "note_attestation": {
+      "intent": "Records the clinician's formal attestation that the note is an accurate reflection of services provided.",
+      "mode": "discrete",
+      "evidence_speaker": "any",
+      "option_semantics": {
+        "ATTESTED": "The clinician checks the box to attest to the note."
+      }
+    }
+  }
+}

@@ -1,0 +1,172 @@
+# Extraction eval: session-08-long.json
+
+**Result: FAIL**
+
+## Gates
+
+| gate | result | detail |
+| --- | --- | --- |
+| must_leave_blank violations = 0 | pass | 0 |
+| risk-field errors = 0 | FAIL | 1 |
+| must-fill accuracy ≥ 90% | FAIL | 73.6% (64/87) |
+| prefix cache (no request re-processes the prefix) | pass | 0 misses; request 1 = 14126, mean after = 133 |
+
+Review load (accepted, but the HUD must flag for review): 0
+
+## Blank violations (0)
+
+None.
+
+## Risk-field errors (1)
+
+| key | bucket | expected | actual | |
+| --- | --- | --- | --- | --- |
+| safety_plan (risk) | must_fill | UPDATED | ∅ (rejected) | **FAIL** |
+
+## Traps
+
+| trap | result | failed fields | needs manual review |
+| --- | --- | --- | --- |
+| zip_corrected_late | pass |  |  |
+| lethal_means_asked_has_access | pass |  | risk_narrative |
+| passive_si_frequency | pass |  |  |
+| prior_attempt_once | pass |  | risk_narrative |
+| safety_plan_updated | **FAIL** | safety_plan |  |
+| clinician_only_spoken | pass |  |  |
+| roi_psychiatrist_only | pass |  |  |
+| family_members_meds_and_problems | pass |  | psychosocial_history |
+| opioids_historical | pass |  |  |
+| prescribed_trazodone_not_sedative_use | pass |  |  |
+| lamotrigine_partial_but_iadl_independent | pass |  |  |
+| adl_motivation_not_ability | pass |  |  |
+| finances_assisted | pass |  |  |
+| skipping_lunch_food_insecurity | **FAIL** | phq9_5 |  |
+| daughter_not_in_home | **FAIL** | living_situation, protective_factors |  |
+| family_court_legal | pass |  |  |
+| income_three_sources | **FAIL** | employment_status |  |
+| dual_coverage | pass |  |  |
+| gender_explicit | pass |  |  |
+| referral_source_peer_group | pass |  |  |
+| instrument_totals_not_spoken | **FAIL** | phq9_score, phq9_severity, gad7_score, gad7_severity |  |
+| risk_level_never_stated | pass |  | risk_narrative |
+| worker_only_metadata | **FAIL** | safety_plan, follow_up_interval |  |
+
+## Must-fill accuracy: 73.6% (64/87)
+
+| key | bucket | expected | actual | |
+| --- | --- | --- | --- | --- |
+| employment_status | must_fill | DISABLED | ∅ (rejected) | **FAIL** |
+| follow_up_interval | must_fill | WEEKLY | ∅ (rejected) | **FAIL** |
+| gad7_1 | must_fill | 1 | ∅ (rejected) | **FAIL** |
+| gad7_2 | must_fill | 1 | ∅ (rejected) | **FAIL** |
+| gad7_3 | must_fill | 2 | ∅ (rejected) | **FAIL** |
+| gad7_4 | must_fill | 1 | ∅ (rejected) | **FAIL** |
+| gad7_5 | must_fill | 0 | ∅ (rejected) | **FAIL** |
+| gad7_6 | must_fill | 2 | ∅ (rejected) | **FAIL** |
+| housing_status | must_fill | STABLE | ∅ (rejected) | **FAIL** |
+| living_situation | must_fill | WITH_FAMILY | ∅ (rejected) | **FAIL** |
+| phq9_1 | must_fill | 2 | ∅ (rejected) | **FAIL** |
+| phq9_4 | must_fill | 3 | ∅ (rejected) | **FAIL** |
+| phq9_5 | must_fill | 1 | ∅ (rejected) | **FAIL** |
+| phq9_7 | must_fill | 2 | ∅ (rejected) | **FAIL** |
+| phq9_8 | must_fill | 0 | ∅ (rejected) | **FAIL** |
+| safety_plan (risk) | must_fill | UPDATED | ∅ (rejected) | **FAIL** |
+| tobacco_use | must_fill | NEVER | ∅ (rejected) | **FAIL** |
+| protective_factors | checkbox_constraints | include [CHILDREN_IN_HOME, PETS, RELIGIOUS_BELIEFS, TREATMENT_ENGAGEMENT], exclude [] | ∅ (rejected) | **FAIL** |
+| support_system | checkbox_constraints | include [FAITH_COMMUNITY, FAMILY, PEER_GROUP], exclude [NONE] | [FAMILY, PEER_GROUP] | **FAIL** |
+| gad7_score | derived | 8 | ∅ (insufficient_evidence) | **FAIL** |
+| gad7_severity | derived | MILD | ∅ (insufficient_evidence) | **FAIL** |
+| phq9_score | derived | 17 | ∅ (insufficient_evidence) | **FAIL** |
+| phq9_severity | derived | MODERATELY_SEVERE | ∅ (insufficient_evidence) | **FAIL** |
+| adl_bathing | must_fill | INDEPENDENT | INDEPENDENT | ok |
+| adl_dressing | must_fill | INDEPENDENT | INDEPENDENT | ok |
+| adl_eating | must_fill | INDEPENDENT | INDEPENDENT | ok |
+| alcohol_frequency | must_fill | MONTHLY_OR_LESS | MONTHLY_OR_LESS | ok |
+| case_number | must_fill | AB-502268 | AB-502268 | ok |
+| children_in_home | must_fill | YES | YES | ok |
+| consent_telehealth | must_fill | VERBAL | VERBAL | ok |
+| contact_ok_voicemail | must_fill | YES | YES | ok |
+| emergency_contact_relationship | must_fill | SIBLING | SIBLING | ok |
+| food_security | must_fill | INSECURE | INSECURE | ok |
+| gad7_7 | must_fill | 1 | 1 | ok |
+| gad7_status | must_fill | COMPLETED | COMPLETED | ok |
+| gender_identity | must_fill | WOMAN | WOMAN | ok |
+| hi_ideation (risk) | must_fill | NONE | NONE | ok |
+| iadl_finances | must_fill | NEEDS_ASSISTANCE | NEEDS_ASSISTANCE | ok |
+| iadl_medications | must_fill | INDEPENDENT | INDEPENDENT | ok |
+| iadl_transport | must_fill | INDEPENDENT | INDEPENDENT | ok |
+| income_sources | must_fill | [CHILD_SUPPORT, SNAP, SSDI] | [SNAP, SSDI, CHILD_SUPPORT] | ok |
+| interpreter_needed | must_fill | NO | NO | ok |
+| language_combo | must_fill | ENGLISH | ENGLISH | ok |
+| legal_involvement | must_fill | FAMILY_COURT | FAMILY_COURT | ok |
+| medication_adherence | must_fill | PARTIAL | PARTIAL | ok |
+| phq9_2 | must_fill | 2 | 2 | ok |
+| phq9_3 | must_fill | 3 | 3 | ok |
+| phq9_6 | must_fill | 2 | 2 | ok |
+| phq9_9 | must_fill | 2 | 2 | ok |
+| phq9_difficulty | must_fill | VERY | VERY | ok |
+| pronouns | must_fill | SHE_HER | SHE_HER | ok |
+| referral_source | must_fill | COMMUNITY_ORG | COMMUNITY_ORG | ok |
+| referrals_made | must_fill | [BENEFITS, LEGAL_AID] | [BENEFITS, LEGAL_AID] | ok |
+| release_of_info | must_fill | [PSYCHIATRIST] | [PSYCHIATRIST] | ok |
+| session_type | must_fill | INTAKE | INTAKE | ok |
+| si_frequency (risk) | must_fill | MORE_THAN_HALF | MORE_THAN_HALF | ok |
+| si_ideation (risk) | must_fill | PASSIVE | PASSIVE | ok |
+| si_intent (risk) | must_fill | NO | NO | ok |
+| si_means (risk) | must_fill | HAS_ACCESS | HAS_ACCESS | ok |
+| si_plan (risk) | must_fill | NO | NO | ok |
+| si_prior_attempts (risk) | must_fill | ONE | ONE | ok |
+| substance_tx_history | must_fill | OUTPATIENT | OUTPATIENT | ok |
+| transportation | must_fill | UNRELIABLE | UNRELIABLE | ok |
+| adl_mobility | acceptable | one of [null, NOT_ASSESSED, INDEPENDENT] | ∅ (insufficient_evidence) | ok |
+| hi_plan (risk) | acceptable | one of [null, NO, NOT_ASSESSED] | NO | ok |
+| insurance_type | acceptable | one of [MEDICARE, MEDI_CAL] | MEDI_CAL | ok |
+| crisis_resources | checkbox_constraints | include [COUNTY_CRISIS, LINE_988], exclude [NONE, WARMLINE] | [LINE_988, COUNTY_CRISIS] | ok |
+| substances | checkbox_constraints | include [CANNABIS], exclude [NONE_REPORTED, OPIOIDS, SEDATIVES, STIMULANTS] | [ALCOHOL, CANNABIS] | ok |
+| address_city | text_match | equals case_insensitive Northgate | Northgate | ok |
+| address_line | text_match | contains case_insensitive [3301 kestrel, 210] | 3301 Kestrel Way, Apartment 210 | ok |
+| address_zip | text_match | equals digits 95404 | 95404 | ok |
+| client_dob | text_match | equals date 1981-01-30 | 1981-01-30 | ok |
+| client_first_name | text_match | equals case_insensitive Jolene | Jolene | ok |
+| client_goal | text_match | contains case_insensitive [winter, hospital] | I want to get through the winter without ending up in the hospital. | ok |
+| client_last_name | text_match | equals case_insensitive Marsh | Marsh | ok |
+| client_preferred_name | text_match | equals case_insensitive Jo | Jo | ok |
+| contact_email | text_match | equals case_insensitive jolene.marsh@example.com | jolene.marsh@example.com | ok |
+| contact_phone | text_match | equals digits 7075550153 | 707-555-0153 | ok |
+| current_medications | text_match | contains case_insensitive [lamotrigine, 200, trazodone, levothyroxine] | Lamotrigine, 200 milligrams, in the morning; Trazodone, 50 milligrams at night; levothyroxine, 75 micrograms. | ok |
+| emergency_contact_name | text_match | equals case_insensitive Paula Greene | Paula Greene | ok |
+| emergency_contact_phone | text_match | equals digits 7075550164 | 707-555-0164 | ok |
+| insurance_member_id | text_match | equals digits 91402837 | 91402837 | ok |
+| medical_conditions | text_match | contains case_insensitive thyroid | Hypothyroidism and prediabetic (borderline). | ok |
+| mse_mood | text_match | contains case_insensitive [heavy, wading through mud] | Heavy. Like I'm wading through mud. | ok |
+| next_appointment | text_match | equals date 2026-11-03 | 2026-11-03 | ok |
+| pcp_name | text_match | contains case_insensitive ross | Dr. Imani Ross, Northgate Family Health | ok |
+| sleep_hours | text_match | equals digits 1011 | ten, eleven hours | ok |
+
+## Narratives (manual concept review)
+
+| key | status | chars | citations |
+| --- | --- | --- | --- |
+| client_strengths | filled | 255 | 4 |
+| interventions | filled | 260 | 6 |
+| plan | filled | 343 | 4 |
+| presenting_problem | filled | 299 | 4 |
+| psychosocial_history | filled | 269 | 4 |
+| risk_narrative (risk) | filled | 396 | 7 |
+
+## Rejections by reason
+
+- question_mismatch: 2
+- quote_not_found: 18
+- segment_not_found: 2
+
+Statuses: clinician_only 11 · filled 70 · insufficient_evidence 5 · rejected 18
+
+## Prefix cache
+
+- requests: 89, parallel slots: 1
+- request 1 prefill: 14126 tokens
+- requests 2..N prefill: 11705 tokens (mean 0.94% of request 1)
+- misses (a request after the first 1 with prefill > 7063 tokens): 0 → pass
+
+Summed model time: 270126 ms

@@ -1,0 +1,1568 @@
+[
+  {
+    "evidence" : [
+
+    ],
+    "key" : "case_number",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 8240,
+    "prefill_tokens" : 6486,
+    "status" : "insufficient_evidence"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "Guadalupe Torres.",
+        "segment" : "s0023"
+      },
+      {
+        "quote" : "Guadalupe nada más me dice el doctor.",
+        "segment" : "s0026"
+      }
+    ],
+    "key" : "client_first_name",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 2033,
+    "prefill_tokens" : 171,
+    "status" : "filled",
+    "value" : "Guadalupe"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "Guadalupe Torres.",
+        "segment" : "s0023"
+      }
+    ],
+    "key" : "client_last_name",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1525,
+    "prefill_tokens" : 169,
+    "status" : "filled",
+    "value" : "Torres"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "Sí, dígame Lupe.",
+        "segment" : "s0026"
+      }
+    ],
+    "key" : "client_preferred_name",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1428,
+    "prefill_tokens" : 172,
+    "status" : "filled",
+    "value" : "Lupe"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "El catorce de noviembre de 1973.",
+        "segment" : "s0028"
+      }
+    ],
+    "key" : "client_dob",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1538,
+    "prefill_tokens" : 166,
+    "status" : "filled",
+    "value" : "1973-11-14"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "Ella. Ella está bien.",
+        "segment" : "s0031"
+      }
+    ],
+    "key" : "pronouns",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1515,
+    "prefill_tokens" : 262,
+    "status" : "filled",
+    "value" : "SHE_HER"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "Ella. Ella está bien.",
+        "segment" : "s0031"
+      }
+    ],
+    "key" : "gender_identity",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1372,
+    "prefill_tokens" : 322,
+    "status" : "filled",
+    "value" : "WOMAN"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "Este mismo, mi celular. Es el 909-555-0162.",
+        "segment" : "s0033"
+      }
+    ],
+    "key" : "contact_phone",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 2006,
+    "prefill_tokens" : 175,
+    "status" : "filled",
+    "value" : "909-555-0162"
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "contact_email",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 812,
+    "prefill_tokens" : 166,
+    "status" : "insufficient_evidence"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "Sí, sí, puede dejar mensaje. Yo los escucho.",
+        "segment" : "s0035"
+      }
+    ],
+    "key" : "contact_ok_voicemail",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1358,
+    "prefill_tokens" : 208,
+    "status" : "filled",
+    "value" : "YES"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "Vivo en el 418 de Olive Street, en Linwood.",
+        "segment" : "s0039"
+      }
+    ],
+    "key" : "address_line",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1756,
+    "prefill_tokens" : 182,
+    "status" : "filled",
+    "value" : "418 Olive Street, Linwood"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "Vivo en el 418 de Olive Street, en Linwood.",
+        "segment" : "s0039"
+      }
+    ],
+    "key" : "address_city",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1369,
+    "prefill_tokens" : 160,
+    "status" : "filled",
+    "value" : "Linwood"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "418 Olive Street, Linwood.",
+        "segment" : "s0040"
+      },
+      {
+        "quote" : "92507.",
+        "segment" : "s0041"
+      }
+    ],
+    "key" : "address_zip",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1676,
+    "prefill_tokens" : 161,
+    "status" : "filled",
+    "value" : "92507"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "En español, por favor. El inglés lo entiendo un poquito, pero para estas cosas prefiero el español.",
+        "segment" : "s0019"
+      }
+    ],
+    "key" : "language_combo",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1849,
+    "prefill_tokens" : 288,
+    "status" : "filled",
+    "value" : "SPANISH"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "Sí, así está muy bien. No necesito intérprete, con usted me entiendo.",
+        "segment" : "s0021"
+      }
+    ],
+    "key" : "interpreter_needed",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1636,
+    "prefill_tokens" : 204,
+    "status" : "filled",
+    "value" : "NO"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "Hoy es su primera cita con nosotros, es la entrevista inicial, así que le voy a hacer muchas preguntas.",
+        "segment" : "s0013"
+      }
+    ],
+    "key" : "session_type",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1749,
+    "prefill_tokens" : 211,
+    "status" : "filled",
+    "value" : "INTAKE"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "La doctora de la clínica. La doctora Nguyen. Le conté cómo me sentía y me dio el número de ustedes.",
+        "segment" : "s0043"
+      }
+    ],
+    "key" : "referral_source",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1932,
+    "prefill_tokens" : 302,
+    "status" : "filled",
+    "value" : "PCP"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "Hoy vamos a hacer la cita por teléfono, no en persona. ¿Me da su permiso verbal para tener la sesión por teléfono?",
+        "segment" : "s0009"
+      },
+      {
+        "quote" : "Sí, está bien. Por teléfono está bien.",
+        "segment" : "s0010"
+      }
+    ],
+    "key" : "consent_telehealth",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 2424,
+    "prefill_tokens" : 205,
+    "status" : "filled",
+    "value" : "VERBAL"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "Tengo Medi-Cal.",
+        "segment" : "s0045"
+      }
+    ],
+    "key" : "insurance_type",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1253,
+    "prefill_tokens" : 248,
+    "status" : "filled",
+    "value" : "MEDI_CAL"
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "insurance_member_id",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 843,
+    "prefill_tokens" : 203,
+    "status" : "insufficient_evidence"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "A mi hijo, Julio. Julio Torres.",
+        "segment" : "s0048"
+      }
+    ],
+    "key" : "emergency_contact_name",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1250,
+    "prefill_tokens" : 169,
+    "status" : "filled",
+    "value" : "Julio Torres"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "Es el 909-555-0177.",
+        "segment" : "s0050"
+      }
+    ],
+    "key" : "emergency_contact_phone",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1793,
+    "prefill_tokens" : 163,
+    "status" : "filled",
+    "value" : "909-555-0177"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "Julio es su hijo.",
+        "segment" : "s0051"
+      },
+      {
+        "quote" : "Sí, mi hijo el mayor.",
+        "segment" : "s0052"
+      }
+    ],
+    "key" : "emergency_contact_relationship",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1874,
+    "prefill_tokens" : 242,
+    "status" : "filled",
+    "value" : "CHILD"
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "release_of_info",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 925,
+    "prefill_tokens" : 324,
+    "status" : "insufficient_evidence"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "Más de la mitad de los días. Antes me gustaba coser, y ya ni la máquina saco.",
+        "segment" : "s0106"
+      }
+    ],
+    "key" : "phq9_1",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1800,
+    "prefill_tokens" : 275,
+    "status" : "filled",
+    "value" : "2"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "Sentirse decaída, deprimida o sin esperanzas.",
+        "segment" : "s0107"
+      },
+      {
+        "quote" : "Casi todos los días.",
+        "segment" : "s0108"
+      }
+    ],
+    "key" : "phq9_2",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1847,
+    "prefill_tokens" : 271,
+    "status" : "filled",
+    "value" : "3"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "La tres. Dificultad para dormir o permanecer dormida, o dormir demasiado.",
+        "segment" : "s0109"
+      },
+      {
+        "quote" : "Más de la mitad de los días. Unas noches duermo un poquito mejor, pero la mayoría no.",
+        "segment" : "s0110"
+      }
+    ],
+    "key" : "phq9_3",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 2561,
+    "prefill_tokens" : 278,
+    "status" : "filled",
+    "value" : "2"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "La cinco. Sentirse cansada o con poca energía.",
+        "segment" : "s0111"
+      },
+      {
+        "quote" : "Más de la mitad de los días también.",
+        "segment" : "s0112"
+      }
+    ],
+    "key" : "phq9_4",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1866,
+    "prefill_tokens" : 269,
+    "reject_reason" : "quote_not_found",
+    "status" : "rejected",
+    "value" : "2"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "Poco apetito o comer en exceso.",
+        "segment" : "s0113"
+      },
+      {
+        "quote" : "Varios días. Como le dije, unos días no se me antoja nada.",
+        "segment" : "s0114"
+      }
+    ],
+    "key" : "phq9_5",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 2242,
+    "prefill_tokens" : 282,
+    "status" : "filled",
+    "value" : "1"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "Varios días. Por lo del entierro. Siento que le fallé a mi mamá por no ir.",
+        "segment" : "s0116"
+      },
+      {
+        "quote" : "La seis. Sentirse mal con usted misma, o que es un fracaso, o que ha quedado mal con usted misma o con su familia.",
+        "segment" : "s0115"
+      }
+    ],
+    "key" : "phq9_6",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 2893,
+    "prefill_tokens" : 295,
+    "status" : "filled",
+    "value" : "1"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "Varios días. Veo la novela y luego no me acuerdo de qué pasó.",
+        "segment" : "s0118"
+      },
+      {
+        "quote" : "Varios días. Moverse o hablar tan lento que otras personas lo pudieran notar, o lo contrario, estar tan inquieta que se mueve mucho más de lo normal.",
+        "segment" : "s0119"
+      },
+      {
+        "quote" : "Varios días. Veo la novela y luego no me acuerdo de qué pasó.",
+        "segment" : "s0118"
+      }
+    ],
+    "key" : "phq9_7",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 3611,
+    "prefill_tokens" : 284,
+    "reject_reason" : "quote_not_found",
+    "status" : "rejected",
+    "value" : "1"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "No, eso no. Nada.",
+        "segment" : "s0120"
+      }
+    ],
+    "key" : "phq9_8",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1493,
+    "prefill_tokens" : 312,
+    "status" : "filled",
+    "value" : "0"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "Pensamientos de que estaría mejor muerta, o de lastimarse de alguna manera.",
+        "segment" : "s0121"
+      },
+      {
+        "quote" : "No, eso no. Nunca.",
+        "segment" : "s0122"
+      }
+    ],
+    "key" : "phq9_9",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 2227,
+    "prefill_tokens" : 288,
+    "status" : "filled",
+    "value" : "0"
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "phq9_score",
+    "status" : "insufficient_evidence"
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "phq9_severity",
+    "status" : "insufficient_evidence"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "Algo difícil. Hago todo, pero me cuesta.",
+        "segment" : "s0125"
+      }
+    ],
+    "key" : "phq9_difficulty",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1607,
+    "prefill_tokens" : 274,
+    "status" : "filled",
+    "value" : "SOMEWHAT"
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "gad7_status",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 896,
+    "prefill_tokens" : 233,
+    "status" : "insufficient_evidence"
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "gad7_1",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1057,
+    "prefill_tokens" : 274,
+    "status" : "insufficient_evidence"
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "gad7_2",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1023,
+    "prefill_tokens" : 275,
+    "status" : "insufficient_evidence"
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "gad7_3",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 949,
+    "prefill_tokens" : 274,
+    "status" : "insufficient_evidence"
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "gad7_4",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1037,
+    "prefill_tokens" : 264,
+    "status" : "insufficient_evidence"
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "gad7_5",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 968,
+    "prefill_tokens" : 279,
+    "status" : "insufficient_evidence"
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "gad7_6",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1039,
+    "prefill_tokens" : 269,
+    "status" : "insufficient_evidence"
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "gad7_7",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1036,
+    "prefill_tokens" : 276,
+    "status" : "insufficient_evidence"
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "gad7_score",
+    "status" : "insufficient_evidence"
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "gad7_severity",
+    "status" : "insufficient_evidence"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "No, no. Eso nunca. Por mis nietos, y por Dios. Eso no.",
+        "segment" : "s0128"
+      },
+      {
+        "quote" : "No, nunca.",
+        "segment" : "s0130"
+      },
+      {
+        "quote" : "No, señorita. A nadie.",
+        "segment" : "s0132"
+      }
+    ],
+    "key" : "si_ideation",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 2832,
+    "prefill_tokens" : 279,
+    "status" : "filled",
+    "value" : "NONE"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "No, eso no. Nunca.",
+        "segment" : "s0122"
+      },
+      {
+        "quote" : "No, no. Eso nunca. Por mis nietos, y por Dios. Eso no.",
+        "segment" : "s0128"
+      }
+    ],
+    "key" : "si_frequency",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 2369,
+    "prefill_tokens" : 257,
+    "status" : "filled",
+    "value" : "NONE"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "No, no. Eso nunca. Por mis nietos, y por Dios. Eso no.",
+        "segment" : "s0128"
+      },
+      {
+        "quote" : "No, nunca.",
+        "segment" : "s0130"
+      }
+    ],
+    "key" : "si_plan",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 2206,
+    "prefill_tokens" : 223,
+    "status" : "filled",
+    "value" : "NO"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "No, no. Eso nunca. Por mis nietos, y por Dios. Eso no.",
+        "segment" : "s0128"
+      },
+      {
+        "quote" : "No, nunca.",
+        "segment" : "s0130"
+      },
+      {
+        "quote" : "No, señorita. A nadie.",
+        "segment" : "s0132"
+      }
+    ],
+    "key" : "si_intent",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 2765,
+    "prefill_tokens" : 222,
+    "status" : "filled",
+    "value" : "NO"
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "si_means",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 965,
+    "prefill_tokens" : 279,
+    "status" : "insufficient_evidence"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "No, nunca.",
+        "segment" : "s0130"
+      }
+    ],
+    "key" : "si_prior_attempts",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1387,
+    "prefill_tokens" : 233,
+    "status" : "filled",
+    "value" : "NONE"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "No, señorita. A nadie.",
+        "segment" : "s0132"
+      },
+      {
+        "quote" : "No, señorita. A nadie.",
+        "segment" : "s0132"
+      }
+    ],
+    "key" : "hi_ideation",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 2036,
+    "prefill_tokens" : 224,
+    "status" : "filled",
+    "value" : "NONE"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "No, señorita. A nadie.",
+        "segment" : "s0132"
+      }
+    ],
+    "key" : "hi_plan",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1299,
+    "prefill_tokens" : 228,
+    "status" : "filled",
+    "value" : "NO"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "Igual le quiero dar un número, por si algún día lo necesita. Es el 988. Puede llamar o mandar mensaje a cualquier hora, y hay atención en español.",
+        "segment" : "s0133"
+      }
+    ],
+    "key" : "safety_plan",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 2173,
+    "prefill_tokens" : 260,
+    "status" : "filled",
+    "value" : "NOT_INDICATED"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "¿Ha tenido pensamientos de quitarse la vida?",
+        "segment" : "s0127"
+      },
+      {
+        "quote" : "No, no. Eso nunca. Por mis nietos, y por Dios. Eso no.",
+        "segment" : "s0128"
+      },
+      {
+        "quote" : "¿Y alguna vez en su vida ha intentado hacerse daño o quitarse la vida?",
+        "segment" : "s0129"
+      },
+      {
+        "quote" : "No, nunca.",
+        "segment" : "s0130"
+      },
+      {
+        "quote" : "¿Y ha tenido pensamientos de hacerle daño a otra persona?",
+        "segment" : "s0131"
+      },
+      {
+        "quote" : "No, señorita. A nadie.",
+        "segment" : "s0132"
+      },
+      {
+        "quote" : "Es el 988. Puede llamar o mandar mensaje a cualquier hora, y hay atención en español.",
+        "segment" : "s0133"
+      }
+    ],
+    "key" : "risk_narrative",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 8462,
+    "prefill_tokens" : 227,
+    "status" : "filled",
+    "value" : "The worker asked if the client has had thoughts of suicide. The client responded that she has never had such thoughts, citing her grandchildren and God. The worker asked if the client has ever attempted to harm or kill herself. The client stated she has never done so. The worker asked if the client has had thoughts of harming another person. The client denied having such thoughts. The worker provided the 988 crisis number and mentioned it is available in Spanish."
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "risk_level",
+    "status" : "clinician_only"
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "supervisor_consult",
+    "status" : "clinician_only"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "Mis hijos. Julio me llama todos los días. Y mi hija me trae a los niños.",
+        "segment" : "s0097"
+      },
+      {
+        "quote" : "Quiero volver a tener ganas de hacer mis cosas. Y dormir mejor. Nada más eso.",
+        "segment" : "s0172"
+      },
+      {
+        "quote" : "Voy a misa los domingos. Eso me ayuda mucho, la verdad. Es lo que me da fuerza.",
+        "segment" : "s0100"
+      }
+    ],
+    "key" : "protective_factors",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 4535,
+    "prefill_tokens" : 336,
+    "status" : "filled",
+    "value" : [
+      "FAMILY_CONNECTION",
+      "FUTURE_ORIENTATION",
+      "RELIGIOUS_BELIEFS"
+    ]
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "Es el 988. Puede llamar o mandar mensaje a cualquier hora, y hay atención en español.",
+        "segment" : "s0133"
+      }
+    ],
+    "key" : "crisis_resources",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 2154,
+    "prefill_tokens" : 296,
+    "status" : "filled",
+    "value" : [
+      "LINE_988"
+    ]
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "Es que en julio se murió mi mamá.",
+        "segment" : "s0056"
+      },
+      {
+        "quote" : "Y desde entonces no me siento bien. Lloro mucho. Estoy en el trabajo y de repente me pongo a llorar.",
+        "segment" : "s0062"
+      },
+      {
+        "quote" : "Y no duermo bien. Me despierto a las tres de la mañana pensando en ella, y ya no me vuelvo a dormir.",
+        "segment" : "s0064"
+      },
+      {
+        "quote" : "Antes me gustaba coser, y ya ni la máquina saco.",
+        "segment" : "s0106"
+      },
+      {
+        "quote" : "Triste. Muy triste, y cansada.",
+        "segment" : "s0070"
+      }
+    ],
+    "key" : "presenting_problem",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 6606,
+    "prefill_tokens" : 193,
+    "status" : "filled",
+    "value" : "The client reported that her mother passed away in July. Since her mother's death, the client has experienced frequent crying, difficulty sleeping, and a loss of interest in activities. The client described her mood as feeling sad, very sad, and tired."
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "Con mi esposo, Ramón. Nada más los dos.",
+        "segment" : "s0078"
+      },
+      {
+        "quote" : "Rentamos un apartamento. Llevamos doce años ahí.",
+        "segment" : "s0083"
+      },
+      {
+        "quote" : "No, mis hijos ya son grandes. Ya no viven con nosotros. Julio tiene treinta y uno y mi hija tiene veintiocho.",
+        "segment" : "s0080"
+      },
+      {
+        "quote" : "Tengo tres nietos. Ellos vienen los domingos.",
+        "segment" : "s0081"
+      },
+      {
+        "quote" : "Sí, trabajo medio tiempo en un hotel, limpiando cuartos. Como veinte horas a la semana.",
+        "segment" : "s0085"
+      },
+      {
+        "quote" : "Sí. Mi sueldo y el de Ramón. Él trabaja en la construcción.",
+        "segment" : "s0089"
+      },
+      {
+        "quote" : "Tengo Medi-Cal.",
+        "segment" : "s0045"
+      },
+      {
+        "quote" : "Mis hijos. Julio me llama todos los días. Y mi hija me trae a los niños.",
+        "segment" : "s0097"
+      },
+      {
+        "quote" : "Y las señoras de la iglesia. Me han traído comida, rezaron un rosario por mi mamá.",
+        "segment" : "s0098"
+      }
+    ],
+    "key" : "psychosocial_history",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 11191,
+    "prefill_tokens" : 203,
+    "status" : "filled",
+    "value" : "The client lives with her husband, Ramón, in a rented apartment in Linwood, where they have resided for twelve years. The client's children are adults and do not live in the home; her son is thirty-one and her daughter is twenty-eight. The client has three grandchildren who visit on Sundays. The client works part-time at a hotel cleaning rooms for approximately twenty hours per week. The client's household income is derived from her wages and her husband's wages from construction work. The client receives Medi-Cal. The client receives social support from her children and from women at her church."
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "Hoy vamos a hacer la cita por teléfono, no en persona. ¿Me da su permiso verbal para tener la sesión por teléfono?",
+        "segment" : "s0009"
+      },
+      {
+        "quote" : "Sí, está bien. Por teléfono está bien.",
+        "segment" : "s0010"
+      },
+      {
+        "quote" : "Y yo uso un programa que me ayuda con mis notas, que escribe lo que decimos. ¿Está de acuerdo?",
+        "segment" : "s0011"
+      },
+      {
+        "quote" : "Sí, no hay problema.",
+        "segment" : "s0012"
+      },
+      {
+        "quote" : "Y lo que hablamos es confidencial. Las excepciones son si me preocupa que alguien esté en peligro, usted u otra persona, o si un niño está siendo lastimado.",
+        "segment" : "s0016"
+      },
+      {
+        "quote" : "Y la última. Pensamientos de que estaría mejor muerta, o de lastimarse de alguna manera.",
+        "segment" : "s0121"
+      },
+      {
+        "quote" : "Igual le quiero dar un número, por si algún día lo necesita. Es el 988. Puede llamar o mandar mensaje a cualquier hora, y hay atención en español.",
+        "segment" : "s0133"
+      },
+      {
+        "quote" : "Claro que no es tan fácil. El duelo tiene su tiempo.",
+        "segment" : "s0094"
+      },
+      {
+        "quote" : "Es muy común sentir culpa en el duelo, sobre todo cuando uno está lejos. No quiere decir que usted le falló a su mamá.",
+        "segment" : "s0152"
+      },
+      {
+        "quote" : "Lupe, lo que usted está sintiendo, la tristeza, las ganas de llorar, no dormir, es parte del duelo. Y a veces el duelo se pone muy pesado, sobre todo cuando no pudimos despedirnos.",
+        "segment" : "s0158"
+      },
+      {
+        "quote" : "Escribirle una carta, decirle lo que le hubiera dicho en el entierro. No tiene que enseñársela a nadie.",
+        "segment" : "s0163"
+      },
+      {
+        "quote" : "Cuando se despierte a las tres, en vez de quedarse en la cama dándole vueltas, puede levantarse un rato, tomar un té, y regresar cuando le dé sueño.",
+        "segment" : "s0165"
+      },
+      {
+        "quote" : "También le quiero dar la información de un grupo de duelo en español. Se reúne los jueves en la tarde en la parroquia de San Judas.",
+        "segment" : "s0167"
+      },
+      {
+        "quote" : "Sí. Es gratis y es en español. Le mando la información por mensaje de texto.",
+        "segment" : "s0169"
+      }
+    ],
+    "key" : "interventions",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 19715,
+    "prefill_tokens" : 198,
+    "status" : "filled",
+    "value" : "The worker obtained verbal consent for the session to be conducted via telephone. The worker obtained consent for the use of a recording program to assist with note-taking. The worker provided information regarding the limits of confidentiality. The worker administered the PHQ-9 assessment. The worker provided the 988 crisis number and information about Spanish-language services. The worker provided psychoeducation regarding the grieving process. The worker suggested coping strategies, including writing a letter to her deceased mother and getting out of bed when experiencing middle-of-the-night awakenings. The worker provided a referral for a Spanish-language grief group."
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "Puede ser. Lo voy a intentar.",
+        "segment" : "s0164"
+      },
+      {
+        "quote" : "Sí. Y voy a ver lo del grupo.",
+        "segment" : "s0177"
+      },
+      {
+        "quote" : "Le mando la información por mensaje de texto.",
+        "segment" : "s0169"
+      },
+      {
+        "quote" : "El martes 13, a las diez. Sí, me queda bien.",
+        "segment" : "s0175"
+      }
+    ],
+    "key" : "plan",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 5001,
+    "prefill_tokens" : 186,
+    "status" : "filled",
+    "value" : "The client will attempt to write a letter to her mother and will look into the grief group at San Judas parish. The worker will send information about the grief group via text message. The next session is scheduled for Tuesday, October 13, 2026, at 10:00 AM via telephone."
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "Mis hijos. Julio me llama todos los días. Y mi hija me trae a los niños.",
+        "segment" : "s0097"
+      },
+      {
+        "quote" : "Y las señoras de la iglesia. Me han traído comida, rezaron un rosario por mi mamá.",
+        "segment" : "s0098"
+      },
+      {
+        "quote" : "Voy a misa los domingos. Eso me ayuda mucho, la verdad. Es lo que me da fuerza.",
+        "segment" : "s0100"
+      }
+    ],
+    "key" : "client_strengths",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 5694,
+    "prefill_tokens" : 191,
+    "reject_reason" : "segment_not_found",
+    "status" : "filled",
+    "value" : "The client has a support system consisting of her children and the women from her church. The client attends Mass on Sundays, which she finds helpful."
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "Rentamos un apartamento. Llevamos doce años ahí. Estamos bien, el dueño es buena gente.",
+        "segment" : "s0083"
+      }
+    ],
+    "key" : "housing_status",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1727,
+    "prefill_tokens" : 277,
+    "status" : "filled",
+    "value" : "STABLE"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "Con mi esposo, Ramón. Nada más los dos.",
+        "segment" : "s0078"
+      }
+    ],
+    "key" : "living_situation",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1662,
+    "prefill_tokens" : 243,
+    "status" : "filled",
+    "value" : "WITH_PARTNER"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "La primera. Poco interés o placer en hacer las cosas.",
+        "segment" : "s0105"
+      },
+      {
+        "quote" : "Más de la mitad de los días. Antes me gustaba coser, y ya ni la máquina saco.",
+        "segment" : "s0106"
+      },
+      {
+        "quote" : "Más de la mitad de los días. La dos. Sentirse decaída, deprimida o sin esperanzas.",
+        "segment" : "s0107"
+      },
+      {
+        "quote" : "Casi todos los días. ",
+        "segment" : "s0108"
+      }
+    ],
+    "key" : "employment_status",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 4959,
+    "prefill_tokens" : 277,
+    "status" : "filled",
+    "value" : "EMPLOYED_PT"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "No, gracias a Dios comida sí hay. Mi esposo trabaja, yo trabajo. Eso no es el problema.",
+        "segment" : "s0076"
+      }
+    ],
+    "key" : "food_security",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1694,
+    "prefill_tokens" : 210,
+    "status" : "filled",
+    "value" : "SECURE"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "Sí, trabajo medio tiempo en un hotel, limpiando cuartos. Como veinte horas a la semana.",
+        "segment" : "s0085"
+      }
+    ],
+    "key" : "income_sources",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 2136,
+    "prefill_tokens" : 354,
+    "status" : "filled",
+    "value" : [
+      "WAGES"
+    ]
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "Sí, tengo mi carro. Viejito, pero anda bien.",
+        "segment" : "s0091"
+      }
+    ],
+    "key" : "transportation",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1701,
+    "prefill_tokens" : 215,
+    "status" : "filled",
+    "value" : "RELIABLE"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "No, no. Eso nunca. Por mis nietos, y por Dios. Eso no.",
+        "segment" : "s0128"
+      }
+    ],
+    "key" : "legal_involvement",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1700,
+    "prefill_tokens" : 291,
+    "status" : "filled",
+    "value" : "NONE"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "No, mis hijos ya son grandes. Ya no viven con nosotros. Julio tiene treinta y uno y mi hija tiene veintiocho.",
+        "segment" : "s0080"
+      }
+    ],
+    "key" : "children_in_home",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 2009,
+    "prefill_tokens" : 210,
+    "status" : "filled",
+    "value" : "NO"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "No, yo no tomo. Nunca me ha gustado.",
+        "segment" : "s0144"
+      },
+      {
+        "quote" : "No, nada de eso.",
+        "segment" : "s0146"
+      },
+      {
+        "quote" : "No, nunca he fumado.",
+        "segment" : "s0148"
+      }
+    ],
+    "key" : "substances",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 3018,
+    "prefill_tokens" : 359,
+    "status" : "filled",
+    "value" : [
+      "NONE_REPORTED"
+    ]
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "Toma alcohol?",
+        "segment" : "s0143"
+      },
+      {
+        "quote" : "No, yo no tomo. Nunca me ha gustado.",
+        "segment" : "s0144"
+      }
+    ],
+    "key" : "alcohol_frequency",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 2243,
+    "prefill_tokens" : 320,
+    "status" : "filled",
+    "value" : "NEVER"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "No, nunca he fumado.",
+        "segment" : "s0148"
+      }
+    ],
+    "key" : "tobacco_use",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1513,
+    "prefill_tokens" : 218,
+    "status" : "filled",
+    "value" : "NEVER"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "No, yo no tomo. Nunca me ha gustado.",
+        "segment" : "s0144"
+      }
+    ],
+    "key" : "substance_tx_history",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1465,
+    "prefill_tokens" : 237,
+    "status" : "filled",
+    "value" : "NONE"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "la doctora Nguyen, en la clínica familiar de Linwood",
+        "segment" : "s0142"
+      }
+    ],
+    "key" : "pcp_name",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1758,
+    "prefill_tokens" : 172,
+    "status" : "filled",
+    "value" : "Doctora Nguyen, clínica familiar de Linwood"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "La metformina. De quinientos miligramos, dos veces al día.",
+        "segment" : "s0138"
+      },
+      {
+        "quote" : "Sí, todos los días, en la mañana y en la noche. Eso no se me olvida. Ramón me la pone junto al café.",
+        "segment" : "s0140"
+      }
+    ],
+    "key" : "medication_adherence",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 2911,
+    "prefill_tokens" : 244,
+    "status" : "filled",
+    "value" : "ADHERENT"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "La metformina. De quinientos miligramos, dos veces al día.",
+        "segment" : "s0138"
+      }
+    ],
+    "key" : "current_medications",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1924,
+    "prefill_tokens" : 180,
+    "status" : "filled",
+    "value" : "La metformina. De quinientos miligramos, dos veces al día."
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "Tengo diabetes. Desde hace como seis años.",
+        "segment" : "s0136"
+      }
+    ],
+    "key" : "medical_conditions",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1637,
+    "prefill_tokens" : 161,
+    "status" : "filled",
+    "value" : "Diabetes (for about six years)"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "Como cinco horas. Cinco, más o menos.",
+        "segment" : "s0066"
+      }
+    ],
+    "key" : "sleep_hours",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1342,
+    "prefill_tokens" : 180,
+    "status" : "filled",
+    "value" : "5"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "Mis hijos. Julio me llama todos los días. Y mi hija me trae a los niños.",
+        "segment" : "s0097"
+      },
+      {
+        "quote" : "Y las señoras de la iglesia. Me han traído comida, rezaron un rosario por mi mamá.",
+        "segment" : "s0098"
+      }
+    ],
+    "key" : "support_system",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 4640,
+    "prefill_tokens" : 306,
+    "status" : "filled",
+    "value" : [
+      "FAMILY",
+      "FAITH_COMMUNITY"
+    ]
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "mse_appearance",
+    "status" : "clinician_only"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "Triste. Muy triste, y cansada.",
+        "segment" : "s0070"
+      }
+    ],
+    "key" : "mse_mood",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1741,
+    "prefill_tokens" : 179,
+    "status" : "filled",
+    "value" : "Triste. Muy triste, y cansada."
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "mse_affect",
+    "status" : "clinician_only"
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "mse_thought_process",
+    "status" : "clinician_only"
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "mse_orientation",
+    "status" : "clinician_only"
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "mse_insight",
+    "status" : "clinician_only"
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "mse_judgment",
+    "status" : "clinician_only"
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "adl_bathing",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 978,
+    "prefill_tokens" : 261,
+    "status" : "insufficient_evidence"
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "adl_dressing",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 977,
+    "prefill_tokens" : 257,
+    "status" : "insufficient_evidence"
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "adl_eating",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 979,
+    "prefill_tokens" : 270,
+    "status" : "insufficient_evidence"
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "adl_mobility",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 974,
+    "prefill_tokens" : 257,
+    "status" : "insufficient_evidence"
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "iadl_finances",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 973,
+    "prefill_tokens" : 272,
+    "status" : "insufficient_evidence"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "¿Y tiene cómo llegar a sus citas, al trabajo?",
+        "segment" : "s0090"
+      },
+      {
+        "quote" : "Sí, tengo mi carro. Viejito, pero anda bien.",
+        "segment" : "s0091"
+      }
+    ],
+    "key" : "iadl_transport",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 2198,
+    "prefill_tokens" : 259,
+    "status" : "filled",
+    "value" : "INDEPENDENT"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "Sí, todos los días, en la mañana y en la noche. Eso no se me olvida. Ramón me la pone junto al café.",
+        "segment" : "s0140"
+      }
+    ],
+    "key" : "iadl_medications",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1996,
+    "prefill_tokens" : 271,
+    "status" : "filled",
+    "value" : "INDEPENDENT"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "Le mando la información por mensaje de texto.",
+        "segment" : "s0169"
+      }
+    ],
+    "key" : "referrals_made",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1838,
+    "prefill_tokens" : 332,
+    "status" : "filled",
+    "value" : [
+      "NONE"
+    ]
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "Quiero volver a tener ganas de hacer mis cosas. Y dormir mejor. Nada más eso.",
+        "segment" : "s0172"
+      }
+    ],
+    "key" : "client_goal",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 2232,
+    "prefill_tokens" : 175,
+    "status" : "filled",
+    "value" : "Quiero volver a tener ganas de hacer mis cosas. Y dormir mejor. Nada más eso."
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "El martes 13, a las diez. Sí, me queda bien.",
+        "segment" : "s0175"
+      }
+    ],
+    "key" : "next_appointment",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1699,
+    "prefill_tokens" : 149,
+    "status" : "filled",
+    "value" : "2026-10-13"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "Me gustaría que nos viéramos cada dos semanas por ahora.",
+        "segment" : "s0174"
+      },
+      {
+        "quote" : "cada dos semanas",
+        "segment" : "s0237"
+      }
+    ],
+    "key" : "follow_up_interval",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1870,
+    "prefill_tokens" : 208,
+    "reject_reason" : "segment_not_found",
+    "status" : "rejected",
+    "value" : "BIWEEKLY"
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "level_of_care",
+    "status" : "clinician_only"
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "diagnosis_impression",
+    "status" : "clinician_only"
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "note_attestation",
+    "status" : "clinician_only"
+  }
+]

@@ -1,0 +1,1482 @@
+[
+  {
+    "evidence" : [
+      {
+        "quote" : "AB-318845",
+        "segment" : "s0013"
+      },
+      {
+        "quote" : "AB-318845",
+        "segment" : "s0014"
+      }
+    ],
+    "key" : "case_number",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 7169,
+    "prefill_tokens" : 4930,
+    "status" : "filled",
+    "value" : "AB-318845"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "Terrence Oyelaran",
+        "segment" : "s0016"
+      }
+    ],
+    "key" : "client_first_name",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1106,
+    "prefill_tokens" : 171,
+    "status" : "filled",
+    "value" : "Terrence"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "Terrence Oyelaran",
+        "segment" : "s0016"
+      }
+    ],
+    "key" : "client_last_name",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1126,
+    "prefill_tokens" : 169,
+    "status" : "filled",
+    "value" : "Oyelaran"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "Most people call me Terry.",
+        "segment" : "s0004"
+      }
+    ],
+    "key" : "client_preferred_name",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1110,
+    "prefill_tokens" : 172,
+    "status" : "filled",
+    "value" : "Terry"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "February 8th, 1979",
+        "segment" : "s0018"
+      }
+    ],
+    "key" : "client_dob",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1383,
+    "prefill_tokens" : 166,
+    "status" : "filled",
+    "value" : "1979-02-08"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "What pronouns do you use?",
+        "segment" : "s0019"
+      },
+      {
+        "quote" : "He/him.",
+        "segment" : "s0020"
+      }
+    ],
+    "key" : "pronouns",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 2003,
+    "prefill_tokens" : 441,
+    "status" : "filled",
+    "value" : "HE_HIM"
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "gender_identity",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1225,
+    "prefill_tokens" : 501,
+    "status" : "insufficient_evidence"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "323-555-0106",
+        "segment" : "s0022"
+      }
+    ],
+    "key" : "contact_phone",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1504,
+    "prefill_tokens" : 175,
+    "status" : "filled",
+    "value" : "323-555-0106"
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "contact_email",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 770,
+    "prefill_tokens" : 166,
+    "status" : "insufficient_evidence"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "And can we leave you a voicemail there?",
+        "segment" : "s0023"
+      },
+      {
+        "quote" : "Yeah, that's fine.",
+        "segment" : "s0024"
+      }
+    ],
+    "key" : "contact_ok_voicemail",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 2016,
+    "prefill_tokens" : 387,
+    "status" : "filled",
+    "value" : "YES"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "88 Harbor Boulevard, Apartment 3C. Castor Bay. 90744.",
+        "segment" : "s0026"
+      }
+    ],
+    "key" : "address_line",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1923,
+    "prefill_tokens" : 182,
+    "status" : "filled",
+    "value" : "88 Harbor Boulevard, Apartment 3C. Castor Bay. 90744."
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "Castor Bay",
+        "segment" : "s0026"
+      }
+    ],
+    "key" : "address_city",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1054,
+    "prefill_tokens" : 160,
+    "status" : "filled",
+    "value" : "Castor Bay"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "90744",
+        "segment" : "s0026"
+      }
+    ],
+    "key" : "address_zip",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1170,
+    "prefill_tokens" : 161,
+    "status" : "filled",
+    "value" : "90744"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "What language do you want for our sessions?",
+        "segment" : "s0029"
+      },
+      {
+        "quote" : "English",
+        "segment" : "s0030"
+      }
+    ],
+    "key" : "language_combo",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1975,
+    "prefill_tokens" : 467,
+    "status" : "filled",
+    "value" : "ENGLISH"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "No interpreter?",
+        "segment" : "s0031"
+      },
+      {
+        "quote" : "No, no interpreter.",
+        "segment" : "s0032"
+      }
+    ],
+    "key" : "interpreter_needed",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1806,
+    "prefill_tokens" : 383,
+    "status" : "filled",
+    "value" : "NO"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "This is an intake, our first meeting, so there are a lot of questions today.",
+        "segment" : "s0005"
+      }
+    ],
+    "key" : "session_type",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 2496,
+    "prefill_tokens" : 390,
+    "status" : "filled",
+    "value" : "INTAKE"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "Who sent you our way?",
+        "segment" : "s0033"
+      },
+      {
+        "quote" : "My doctor. Dr. Abara.",
+        "segment" : "s0034"
+      }
+    ],
+    "key" : "referral_source",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 2083,
+    "prefill_tokens" : 481,
+    "status" : "filled",
+    "value" : "PCP"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "First — we're meeting by video. Do I have your verbal consent for a video session?",
+        "segment" : "s0007"
+      },
+      {
+        "quote" : "Yes.",
+        "segment" : "s0008"
+      }
+    ],
+    "key" : "consent_telehealth",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 2853,
+    "prefill_tokens" : 384,
+    "status" : "filled",
+    "value" : "VERBAL"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "And your health coverage?",
+        "segment" : "s0035"
+      },
+      {
+        "quote" : "Medi-Cal.",
+        "segment" : "s0036"
+      }
+    ],
+    "key" : "insurance_type",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1946,
+    "prefill_tokens" : 427,
+    "status" : "filled",
+    "value" : "MEDI_CAL"
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "insurance_member_id",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 816,
+    "prefill_tokens" : 203,
+    "status" : "insufficient_evidence"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "My daughter. Nia Oyelaran. 323-555-0115.",
+        "segment" : "s0038"
+      }
+    ],
+    "key" : "emergency_contact_name",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1566,
+    "prefill_tokens" : 169,
+    "status" : "filled",
+    "value" : "Nia Oyelaran"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "323-555-0115",
+        "segment" : "s0038"
+      }
+    ],
+    "key" : "emergency_contact_phone",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1479,
+    "prefill_tokens" : 163,
+    "status" : "filled",
+    "value" : "323-555-0115"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "My daughter. Nia Oyelaran. 323-555-0115.",
+        "segment" : "s0038"
+      },
+      {
+        "quote" : "323-555-0115, and she's your daughter.",
+        "segment" : "s0039"
+      },
+      {
+        "quote" : "Yes ma'am.",
+        "segment" : "s0040"
+      }
+    ],
+    "key" : "emergency_contact_relationship",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 3796,
+    "prefill_tokens" : 421,
+    "status" : "filled",
+    "value" : "CHILD"
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "release_of_info",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1163,
+    "prefill_tokens" : 500,
+    "status" : "insufficient_evidence"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "Little interest or pleasure in doing things.",
+        "segment" : "s0123"
+      },
+      {
+        "quote" : "Several days.",
+        "segment" : "s0124"
+      }
+    ],
+    "key" : "phq9_1",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1610,
+    "prefill_tokens" : 275,
+    "status" : "filled",
+    "value" : "1"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "Feeling down, depressed, or hopeless.",
+        "segment" : "s0125"
+      },
+      {
+        "quote" : "More than half the days.",
+        "segment" : "s0126"
+      }
+    ],
+    "key" : "phq9_2",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1667,
+    "prefill_tokens" : 271,
+    "status" : "filled",
+    "value" : "2"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "Trouble falling or staying asleep, or sleeping too much.",
+        "segment" : "s0127"
+      },
+      {
+        "quote" : "Nearly every day. The back.",
+        "segment" : "s0128"
+      }
+    ],
+    "key" : "phq9_3",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1791,
+    "prefill_tokens" : 278,
+    "status" : "filled",
+    "value" : "3"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "Feeling tired or having little energy.",
+        "segment" : "s0129"
+      },
+      {
+        "quote" : "More than half.",
+        "segment" : "s0130"
+      }
+    ],
+    "key" : "phq9_4",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1597,
+    "prefill_tokens" : 269,
+    "status" : "filled",
+    "value" : "2"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "Poor appetite or overeating.",
+        "segment" : "s0131"
+      },
+      {
+        "quote" : "Not at all. Appetite's fine.",
+        "segment" : "s0132"
+      }
+    ],
+    "key" : "phq9_5",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 2451,
+    "prefill_tokens" : 461,
+    "status" : "filled",
+    "value" : "0"
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "phq9_6",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 924,
+    "prefill_tokens" : 295,
+    "status" : "insufficient_evidence"
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "phq9_7",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 910,
+    "prefill_tokens" : 284,
+    "status" : "insufficient_evidence"
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "phq9_8",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 922,
+    "prefill_tokens" : 312,
+    "status" : "insufficient_evidence"
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "phq9_9",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 902,
+    "prefill_tokens" : 288,
+    "status" : "insufficient_evidence"
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "phq9_score",
+    "status" : "insufficient_evidence"
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "phq9_severity",
+    "status" : "insufficient_evidence"
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "phq9_difficulty",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1172,
+    "prefill_tokens" : 453,
+    "status" : "insufficient_evidence"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "We'll finish the rest of the questionnaire next time, and we'll do the anxiety one next time too.",
+        "segment" : "s0134"
+      }
+    ],
+    "key" : "gad7_status",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 2803,
+    "prefill_tokens" : 412,
+    "status" : "filled",
+    "value" : "DEFERRED"
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "gad7_1",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 906,
+    "prefill_tokens" : 274,
+    "status" : "insufficient_evidence"
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "gad7_2",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 908,
+    "prefill_tokens" : 275,
+    "status" : "insufficient_evidence"
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "gad7_3",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 905,
+    "prefill_tokens" : 274,
+    "status" : "insufficient_evidence"
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "gad7_4",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1182,
+    "prefill_tokens" : 443,
+    "status" : "insufficient_evidence"
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "gad7_5",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 907,
+    "prefill_tokens" : 279,
+    "status" : "insufficient_evidence"
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "gad7_6",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 900,
+    "prefill_tokens" : 269,
+    "status" : "insufficient_evidence"
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "gad7_7",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 909,
+    "prefill_tokens" : 276,
+    "status" : "insufficient_evidence"
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "gad7_score",
+    "status" : "insufficient_evidence"
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "gad7_severity",
+    "status" : "insufficient_evidence"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "When you think about ending up on the street, have you had any thoughts of ending your life?",
+        "segment" : "s0051"
+      },
+      {
+        "quote" : "No. Never. I'm not like that. I'm just scared.",
+        "segment" : "s0052"
+      }
+    ],
+    "key" : "si_ideation",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 2562,
+    "prefill_tokens" : 458,
+    "status" : "filled",
+    "value" : "NONE"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "When you think about ending up on the street, have you had any thoughts of ending your life?",
+        "segment" : "s0051"
+      },
+      {
+        "quote" : "No. Never. I'm not like that. I'm just scared.",
+        "segment" : "s0052"
+      }
+    ],
+    "key" : "si_frequency",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 2546,
+    "prefill_tokens" : 436,
+    "status" : "filled",
+    "value" : "NONE"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "When you think about ending up on the street, have you had any thoughts of ending your life?",
+        "segment" : "s0051"
+      },
+      {
+        "quote" : "No. Never. I'm not like that. I'm just scared.",
+        "segment" : "s0052"
+      }
+    ],
+    "key" : "si_plan",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 2515,
+    "prefill_tokens" : 402,
+    "status" : "filled",
+    "value" : "NO"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "When you think about ending up on the street, have you had any thoughts of ending your life?",
+        "segment" : "s0051"
+      },
+      {
+        "quote" : "No. Never. I'm not like that. I'm just scared.",
+        "segment" : "s0052"
+      }
+    ],
+    "key" : "si_intent",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 2515,
+    "prefill_tokens" : 401,
+    "status" : "filled",
+    "value" : "NO"
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "si_means",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1176,
+    "prefill_tokens" : 458,
+    "status" : "insufficient_evidence"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "Have you ever, in the past, tried to hurt yourself or end your life?",
+        "segment" : "s0053"
+      },
+      {
+        "quote" : "Never. No.",
+        "segment" : "s0054"
+      }
+    ],
+    "key" : "si_prior_attempts",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 2155,
+    "prefill_tokens" : 412,
+    "status" : "filled",
+    "value" : "NONE"
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "hi_ideation",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1126,
+    "prefill_tokens" : 403,
+    "status" : "insufficient_evidence"
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "hi_plan",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1135,
+    "prefill_tokens" : 407,
+    "status" : "insufficient_evidence"
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "safety_plan",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1952,
+    "prefill_tokens" : 418,
+    "status" : "insufficient_evidence"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "When you think about ending up on the street, have you had any thoughts of ending your life?",
+        "segment" : "s0051"
+      },
+      {
+        "quote" : "No. Never. I'm not like that. I'm just scared.",
+        "segment" : "s0052"
+      },
+      {
+        "quote" : "Have you ever, in the past, tried to hurt yourself or end your life?",
+        "segment" : "s0053"
+      },
+      {
+        "quote" : "Never. No.",
+        "segment" : "s0054"
+      },
+      {
+        "quote" : "If you ever do have thoughts like that, call or text 988. Any time.",
+        "segment" : "s0055"
+      },
+      {
+        "quote" : "988. Okay.",
+        "segment" : "s0056"
+      }
+    ],
+    "key" : "risk_narrative",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 6837,
+    "prefill_tokens" : 227,
+    "status" : "filled",
+    "value" : "The worker asked if the client had any thoughts of ending his life when thinking about ending up on the street, and the client responded, \"No. Never. I'm not like that. I'm just scared.\" The worker asked if the client had ever tried to hurt himself or end his life in the past, and the client stated, \"Never. No.\" The worker provided the client with the 988 crisis number, and the client acknowledged the information."
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "risk_level",
+    "status" : "clinician_only"
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "supervisor_consult",
+    "status" : "clinician_only"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "Tell me about your support. Who's in your corner?",
+        "segment" : "s0078"
+      },
+      {
+        "quote" : "Nia. She calls me every day.",
+        "segment" : "s0079"
+      },
+      {
+        "quote" : "Tell me about your support. Who's in your corner?",
+        "segment" : "s0078"
+      },
+      {
+        "quote" : "And the baby's eight months. My granddaughter, Amara.",
+        "segment" : "s0076"
+      },
+      {
+        "quote" : "That baby's everything. I want to see her grow up.",
+        "segment" : "s0077"
+      },
+      {
+        "quote" : "Tell me about your support. Who's in your corner?",
+        "segment" : "s0078"
+      },
+      {
+        "quote" : "Find a place I can afford before December and keep working.",
+        "segment" : "s0137"
+      }
+    ],
+    "key" : "protective_factors",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 4524,
+    "prefill_tokens" : 512,
+    "status" : "filled",
+    "value" : [
+      "FAMILY_CONNECTION",
+      "CHILDREN_IN_HOME",
+      "FUTURE_ORIENTATION"
+    ]
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "If you ever do have thoughts like that, call or text 988. Any time.",
+        "segment" : "s0055"
+      }
+    ],
+    "key" : "crisis_resources",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 2771,
+    "prefill_tokens" : 449,
+    "status" : "filled",
+    "value" : [
+      "LINE_988"
+    ]
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "I told him I wasn't sleeping and I was stressed out of my mind",
+        "segment" : "s0034"
+      },
+      {
+        "quote" : "the building got sold. The landlord sold it to some company. And last month everybody got a sixty-day notice.",
+        "segment" : "s0042"
+      },
+      {
+        "quote" : "I have to be out by December 15th.",
+        "segment" : "s0043"
+      },
+      {
+        "quote" : "rents around here — I can't afford anything.",
+        "segment" : "s0045"
+      },
+      {
+        "quote" : "Find a place I can afford before December and keep working.",
+        "segment" : "s0137"
+      }
+    ],
+    "key" : "presenting_problem",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 5809,
+    "prefill_tokens" : 193,
+    "status" : "filled",
+    "value" : "The client reported feeling stressed and having trouble sleeping. The client is facing housing instability because the landlord sold the building and issued a sixty-day notice. The client must move out by December 15th and expressed concern about being unable to afford new rent. The client's goal is to find an affordable place to live before December and maintain employment."
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "I work the booth at a parking garage downtown. Part-time, about twenty-five hours.",
+        "segment" : "s0058"
+      },
+      {
+        "quote" : "I used to work a warehouse, till I hurt my back in 2022. Herniated disc.",
+        "segment" : "s0059"
+      },
+      {
+        "quote" : "I applied for SSDI in March, for the back. Still waiting.",
+        "segment" : "s0067"
+      },
+      {
+        "quote" : "Nobody. Just me.",
+        "segment" : "s0073"
+      }
+    ],
+    "key" : "psychosocial_history",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 5278,
+    "prefill_tokens" : 203,
+    "status" : "filled",
+    "value" : "The client works part-time at a parking garage booth, working approximately twenty-five hours per week. The client previously worked in a warehouse until sustaining a herniated disc in 2022. The client has applied for Social Security Disability Insurance (SSDI) in March and is currently waiting for a decision. The client lives alone."
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "Do I have your verbal consent for a video session?",
+        "segment" : "s0007"
+      },
+      {
+        "quote" : "Yes.",
+        "segment" : "s0008"
+      },
+      {
+        "quote" : "What we discuss is confidential, except if I'm worried someone is in danger, or a child is being hurt.",
+        "segment" : "s0011"
+      },
+      {
+        "quote" : "If you ever do have thoughts like that, call or text 988.",
+        "segment" : "s0055"
+      },
+      {
+        "quote" : "What I can do today is refer you to our housing navigation program.",
+        "segment" : "s0116"
+      },
+      {
+        "quote" : "Yes. Please. That's what I need.",
+        "segment" : "s0117"
+      }
+    ],
+    "key" : "interventions",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 5788,
+    "prefill_tokens" : 198,
+    "status" : "filled",
+    "value" : "The worker obtained verbal consent for a video session and for the use of a transcription tool. The worker provided information regarding the confidentiality of the session. The worker provided the 988 crisis number for the client. The worker referred the client to the housing navigation program."
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "I'm putting in the housing navigation referral now.",
+        "segment" : "s0118"
+      },
+      {
+        "quote" : "Monday the 26th at one?",
+        "segment" : "s0139"
+      },
+      {
+        "quote" : "Monday the 26th at one. Okay.",
+        "segment" : "s0140"
+      },
+      {
+        "quote" : "We'll finish the rest of the questionnaire next time, and we'll do the anxiety one next time too.",
+        "segment" : "s0134"
+      }
+    ],
+    "key" : "plan",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 4772,
+    "prefill_tokens" : 186,
+    "status" : "filled",
+    "value" : "The worker will refer the client to the housing navigation program. The worker and client will meet weekly, with the next session scheduled for Monday, October 26th at 1:00 PM. The worker and client will complete the remainder of the PHQ-9 and an anxiety questionnaire during the next session."
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "Nia. She calls me every day. She's the one who told me to go to the doctor.",
+        "segment" : "s0079"
+      },
+      {
+        "quote" : "I work the booth at a parking garage downtown. Part-time, about twenty-five hours.",
+        "segment" : "s0058"
+      }
+    ],
+    "key" : "client_strengths",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 3163,
+    "prefill_tokens" : 191,
+    "status" : "filled",
+    "value" : "The client has a daughter, Nia, who calls him every day and encouraged him to see a doctor. The client is currently employed part-time at a parking garage."
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "Your address?",
+        "segment" : "s0025"
+      },
+      {
+        "quote" : "88 Harbor Boulevard, Apartment 3C. Castor Bay. 90744.",
+        "segment" : "s0026"
+      },
+      {
+        "quote" : "The building got sold. The landlord sold it to some company. And last month everybody got a sixty-day notice.",
+        "segment" : "s0042"
+      },
+      {
+        "quote" : "I have to be out by December 15th.",
+        "segment" : "s0043"
+      }
+    ],
+    "key" : "housing_status",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 3644,
+    "prefill_tokens" : 456,
+    "status" : "filled",
+    "value" : "AT_RISK"
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "living_situation",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1942,
+    "prefill_tokens" : 422,
+    "reject_reason" : "quote_not_found",
+    "status" : "rejected"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "Is the back still giving you trouble?",
+        "segment" : "s0060"
+      },
+      {
+        "quote" : "I work the booth at a parking garage downtown. Part-time, about twenty-five hours.",
+        "segment" : "s0058"
+      }
+    ],
+    "key" : "employment_status",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 2391,
+    "prefill_tokens" : 456,
+    "status" : "filled",
+    "value" : "EMPLOYED_PT"
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "food_security",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 2003,
+    "prefill_tokens" : 389,
+    "status" : "insufficient_evidence"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "And the income — is it just the job right now?",
+        "segment" : "s0066"
+      },
+      {
+        "quote" : "I work the booth at a parking garage downtown. Part-time, about twenty-five hours.",
+        "segment" : "s0058"
+      }
+    ],
+    "key" : "income_sources",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 2708,
+    "prefill_tokens" : 530,
+    "status" : "filled",
+    "value" : [
+      "WAGES"
+    ]
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "transportation",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1877,
+    "prefill_tokens" : 394,
+    "status" : "insufficient_evidence"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "Anything with the law — court, probation?",
+        "segment" : "s0110"
+      },
+      {
+        "quote" : "No. Nothing.",
+        "segment" : "s0111"
+      }
+    ],
+    "key" : "legal_involvement",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 2025,
+    "prefill_tokens" : 470,
+    "status" : "filled",
+    "value" : "NONE"
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "children_in_home",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 2386,
+    "prefill_tokens" : 389,
+    "status" : "insufficient_evidence"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "A couple drinks on the weekend. Two, three times a month.",
+        "segment" : "s0100"
+      },
+      {
+        "quote" : "A couple drinks on the weekend. Two, three times a month.",
+        "segment" : "s0100"
+      },
+      {
+        "quote" : "No. If it wasn't for the drug testing at work I'd try the weed for the pain. But no.",
+        "segment" : "s0105"
+      }
+    ],
+    "key" : "substances",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 4924,
+    "prefill_tokens" : 535,
+    "status" : "filled",
+    "value" : [
+      "ALCOHOL",
+      "CANNABIS"
+    ]
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "Any cannabis, or other drugs?",
+        "segment" : "s0104"
+      },
+      {
+        "quote" : "A couple drinks on the weekend. Two, three times a month.",
+        "segment" : "s0100"
+      }
+    ],
+    "key" : "alcohol_frequency",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 2592,
+    "prefill_tokens" : 602,
+    "status" : "filled",
+    "value" : "TWO_TO_FOUR_PER_MONTH"
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "tobacco_use",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1909,
+    "prefill_tokens" : 397,
+    "reject_reason" : "quote_not_found",
+    "status" : "rejected"
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "substance_tx_history",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1130,
+    "prefill_tokens" : 416,
+    "status" : "insufficient_evidence"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "Dr. Abara",
+        "segment" : "s0034"
+      }
+    ],
+    "key" : "pcp_name",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1129,
+    "prefill_tokens" : 172,
+    "status" : "filled",
+    "value" : "Dr. Abara"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "So right now it's two or three times a month.",
+        "segment" : "s0102"
+      },
+      {
+        "quote" : "I take it maybe once a day. I don't like pills.",
+        "segment" : "s0086"
+      }
+    ],
+    "key" : "medication_adherence",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 2365,
+    "prefill_tokens" : 423,
+    "status" : "filled",
+    "value" : "PARTIAL"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "Ibuprofen. The big ones, 800. Dr. Abara said three times a day.",
+        "segment" : "s0085"
+      }
+    ],
+    "key" : "current_medications",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1694,
+    "prefill_tokens" : 180,
+    "status" : "filled",
+    "value" : "Ibuprofen, 800mg"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "I used to work a warehouse, till I hurt my back in 2022. Herniated disc. Couldn't lift anymore.",
+        "segment" : "s0059"
+      }
+    ],
+    "key" : "medical_conditions",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1881,
+    "prefill_tokens" : 161,
+    "status" : "filled",
+    "value" : "Herniated disc"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "Four hours. Maybe.",
+        "segment" : "s0093"
+      }
+    ],
+    "key" : "sleep_hours",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1089,
+    "prefill_tokens" : 180,
+    "status" : "filled",
+    "value" : "4"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "Tell me about your support. Who's in your corner?",
+        "segment" : "s0078"
+      },
+      {
+        "quote" : "Nia. She calls me every day.",
+        "segment" : "s0079"
+      }
+    ],
+    "key" : "support_system",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 2310,
+    "prefill_tokens" : 482,
+    "status" : "filled",
+    "value" : [
+      "FAMILY"
+    ]
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "mse_appearance",
+    "status" : "clinician_only"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "Scared. Worn down.",
+        "segment" : "s0097"
+      }
+    ],
+    "key" : "mse_mood",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1272,
+    "prefill_tokens" : 179,
+    "status" : "filled",
+    "value" : "Scared. Worn down."
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "mse_affect",
+    "status" : "clinician_only"
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "mse_thought_process",
+    "status" : "clinician_only"
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "mse_orientation",
+    "status" : "clinician_only"
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "mse_insight",
+    "status" : "clinician_only"
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "mse_judgment",
+    "status" : "clinician_only"
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "adl_bathing",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1154,
+    "prefill_tokens" : 440,
+    "status" : "insufficient_evidence"
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "adl_dressing",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1167,
+    "prefill_tokens" : 436,
+    "status" : "insufficient_evidence"
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "adl_eating",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1666,
+    "prefill_tokens" : 449,
+    "status" : "insufficient_evidence"
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "adl_mobility",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1170,
+    "prefill_tokens" : 436,
+    "status" : "insufficient_evidence"
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "iadl_finances",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1172,
+    "prefill_tokens" : 451,
+    "status" : "insufficient_evidence"
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "iadl_transport",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1172,
+    "prefill_tokens" : 438,
+    "status" : "insufficient_evidence"
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "iadl_medications",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1833,
+    "prefill_tokens" : 450,
+    "status" : "insufficient_evidence"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "What I can do today is refer you to our housing navigation program.",
+        "segment" : "s0116"
+      },
+      {
+        "quote" : "Yes. Please. That's what I need.",
+        "segment" : "s0117"
+      }
+    ],
+    "key" : "referrals_made",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 3039,
+    "prefill_tokens" : 493,
+    "status" : "filled",
+    "value" : [
+      "HOUSING_NAV"
+    ]
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "Find a place I can afford before December and keep working.",
+        "segment" : "s0137"
+      }
+    ],
+    "key" : "client_goal",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1498,
+    "prefill_tokens" : 175,
+    "status" : "filled",
+    "value" : "Find a place I can afford before December and keep working."
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "Monday the 26th at one?",
+        "segment" : "s0139"
+      },
+      {
+        "quote" : "Monday the 26th at one. Okay.",
+        "segment" : "s0140"
+      }
+    ],
+    "key" : "next_appointment",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 1864,
+    "prefill_tokens" : 149,
+    "status" : "filled",
+    "value" : "2026-10-26"
+  },
+  {
+    "evidence" : [
+      {
+        "quote" : "Let's meet weekly. Monday the 26th at one?",
+        "segment" : "s0139"
+      },
+      {
+        "quote" : "Monday the 26th at one. Okay.",
+        "segment" : "s0140"
+      }
+    ],
+    "key" : "follow_up_interval",
+    "model" : "gemma-4-26b-a4b-it-qat-q4_0",
+    "ms" : 2860,
+    "prefill_tokens" : 387,
+    "status" : "filled",
+    "value" : "WEEKLY"
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "level_of_care",
+    "status" : "clinician_only"
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "diagnosis_impression",
+    "status" : "clinician_only"
+  },
+  {
+    "evidence" : [
+
+    ],
+    "key" : "note_attestation",
+    "status" : "clinician_only"
+  }
+]

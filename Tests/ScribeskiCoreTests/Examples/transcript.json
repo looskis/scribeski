@@ -1,0 +1,8 @@
+{ "schema": "scribeski.transcript/1", "session_id": "SES-TEST",
+  "started_at": "2026-09-17T14:00:00-07:00",
+  "retention": "days:30",
+  "tracks": { "worker": { "source": "mic:BuiltInMicrophoneDevice" },
+              "client": { "source": "tap:us.zoom.xos" } },
+  "segments": [{ "id": "s0041", "speaker": "client", "start": 228.1, "end": 241.0,
+                 "text": "Several days. Not like — I'm not going to do anything.", "confidence": 0.91 }],
+  "gaps": [{ "track": "client", "start": 1210.4, "end": 1212.0, "reason": "device_rebuild" }] }

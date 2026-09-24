@@ -1,0 +1,6 @@
+[ { "key": "si_ideation", "status": "filled", "value": "PASSIVE",
+    "evidence": [{ "segment": "s0041", "quote": "Several days. Not like — I'm not going to do anything." }],
+    "reject_reason": null, "model": "qwen3-8b-q4_k_m@sha256:0000", "prefill_tokens": 41, "ms": 380 },
+  { "key": "substances", "status": "rejected", "value": ["CANNABIS"],
+    "evidence": [{ "segment": "s0102", "quote": "Any cannabis?" }], "reject_reason": "speaker_mismatch" },
+  { "key": "risk_level", "status": "clinician_only", "evidence": [] } ]

@@ -1,0 +1,2 @@
+[ { "key": "case_number", "intended": "AB-114322", "read_back": "AB-114322", "outcome": "ok", "prior_value": "" },
+  { "key": "substances", "intended": ["ALCOHOL"], "read_back": [], "outcome": "reverted", "prior_value": [] } ]

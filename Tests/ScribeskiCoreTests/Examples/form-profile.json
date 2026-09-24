@@ -1,0 +1,17 @@
+{ "schema": "scribeski.form-profile/1",
+  "origin": "http://localhost:8787", "path_pattern": "/index.html", "fingerprint": "sha256:0000",
+  "steps": [{ "id": "step-client", "activate": { "click": ["#tab-client"] } }],
+  "fields": [
+    { "key": "case_number", "step": "step-client", "frame": [], "kind": "text",
+      "label": "Case number", "label_source": "label_for", "help": "Format: AB-000000", "required": false,
+      "options": [], "selectors": ["#case_number", "[name=\"case_number\"]", "xpath=//input[@id='case_number']"],
+      "write": "native_setter", "computed": false },
+    { "key": "si_ideation", "step": "step-risk", "frame": ["#risk_frame"], "kind": "select",
+      "label": "Suicidal ideation", "label_source": "label_for", "required": false,
+      "options": [{ "value": "NONE", "label": "None" }, { "value": "PASSIVE", "label": "Passive" }],
+      "selectors": ["#si_ideation"], "write": "select", "computed": false },
+    { "key": "phq9_score", "step": "step-screening", "frame": [], "kind": "hidden",
+      "label": "", "required": false, "options": [], "selectors": ["#phq9_score"],
+      "write": "never", "computed": true }
+  ],
+  "unreachable": [{ "frame": "https://other-origin.example/widget", "reason": "cross-origin" }] }

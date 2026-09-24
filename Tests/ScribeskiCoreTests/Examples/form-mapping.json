@@ -1,0 +1,12 @@
+{ "schema": "scribeski.form-mapping/1", "profile_fingerprint": "sha256:0000",
+  "fields": {
+    "si_ideation": {
+      "intent": "Whether the client reported suicidal ideation this session, and its form",
+      "mode": "discrete", "evidence_speaker": "client",
+      "option_semantics": { "PASSIVE": "wishes to be dead / others better off, no intent or plan" },
+      "max_chars": null, "derive": null },
+    "phq9_score": {
+      "intent": "PHQ-9 total", "mode": "derived", "evidence_speaker": "any",
+      "derive": { "function": "phq9_total", "inputs": ["phq9_1", "phq9_2"] } },
+    "risk_level": { "intent": "Clinician's overall risk determination", "mode": "clinician_only", "evidence_speaker": "any" }
+  } }

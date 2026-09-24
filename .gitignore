@@ -1,0 +1,32 @@
+.DS_Store
+.build/
+.swiftpm/
+xcuserdata/
+DerivedData/
+node_modules/
+/page/dist/
+/page/test-results/
+/page/playwright-report/
+# model weights and sidecar binaries are fetched, never committed
+/models/
+/sidecars/
+*.gguf
+*.bin
+
+# secrets
+.env
+.env.*
+# synthetic training data (tools/synth) — regenerable, never eval
+/data/
+# python envs and training artifacts (tools/distill)
+.venv/
+/tools/distill/out/
+# packaged dataset releases (tools/synth/export_dataset.py)
+/dist/
+
+# Built by scripts/build-llama-server.sh
+App/Helpers/llama-server
+App/Helpers/llama-server.version
+# local app builds
+/build/
+__pycache__/

@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  swift:
+    # arm64. Package needs tools 6.2 / macOS 26 SDK or newer.
+    runs-on: macos-26
+    steps:
+      - uses: actions/checkout@v4
+      - uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
+      - run: swift --version
+      - run: scripts/swift-test.sh
+      - name: SuiteModelStore
+        run: scripts/swift-test.sh --package-path Packages/SuiteModelStore
+      - name: App builds
+        run: xcodebuild -project App/Scribeski.xcodeproj -scheme Scribeski -derivedDataPath .build/xcode CODE_SIGNING_ALLOWED=NO build
+
+  page:
+    runs-on: macos-26
+    defaults:
+      run:
+        working-directory: page
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: page/package-lock.json
+      - run: npm ci
+      - run: npx playwright install webkit
+      - run: npm run typecheck
+      - run: npm test
+      - name: Swift's embedded copy of the bundle is current
+        run: git diff --exit-code -- ../Sources/FormDriver/Resources/scribeski-page.js
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-report
+          path: page/playwright-report

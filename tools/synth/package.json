@@ -1,0 +1,9 @@
+{
+  "name": "scribeski-synth",
+  "private": true,
+  "type": "module",
+  "description": "Synthetic + public training data for the P1.9 classifier tier",
+  "dependencies": {
+    "undici": "^7.29.1"
+  }
+}

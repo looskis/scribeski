@@ -1,0 +1,413 @@
+// Choice fields the classifier tier answers, mirrored from fixtures/mock-ehr/FIELDS.md
+// (keys and option values must match it; `node tools/synth/generate.mjs --check` verifies).
+//
+// prior:  realistic weights for a county behavioural-health caseload (sampled with --balance
+//         mixed toward uniform so rare options get coverage).
+// desc:   what the value means in plain speech, for the dialogue writer. Codes never reach it.
+// modes:  disclosure modes this field allows beyond STATED / INDIRECT / NOT_DISCUSSED.
+//         PAST = a different value used to be true; PENDING = applied for / only followed up;
+//         PASSING = mentioned only in passing (an aside, a detail in a story), never asked about. It counts.
+// section: where in the session it naturally comes up (see SECTIONS).
+
+export const SECTIONS = [
+  "opening",      // 0 consent, language, why they're here
+  "identity",     // 1 demographics, contact, insurance, emergency contact, releases
+  "psychosocial", // 2 work, money, housing, household, legal, supports
+  "health",       // 3 substances, medical, meds, sleep
+  "screening",    // 4 PHQ-9, GAD-7
+  "risk",         // 5 SI/HI, safety plan
+  "functioning",  // 6 ADLs/IADLs
+  "plan",         // 7 referrals, resources, goal, follow-up
+];
+
+const PHQ_ITEMS = [
+  "Little interest or pleasure in doing things",
+  "Feeling down, depressed, or hopeless",
+  "Trouble falling or staying asleep, or sleeping too much",
+  "Feeling tired or having little energy",
+  "Poor appetite or overeating",
+  "Feeling bad about yourself — or that you are a failure or have let yourself or your family down",
+  "Trouble concentrating on things, such as reading the newspaper or watching television",
+  "Moving or speaking so slowly that other people could have noticed, or the opposite — being so fidgety or restless that you have been moving around a lot more than usual",
+  "Thoughts that you would be better off dead, or of hurting yourself in some way",
+];
+const GAD_ITEMS = [
+  "Feeling nervous, anxious, or on edge",
+  "Not being able to stop or control worrying",
+  "Worrying too much about different things",
+  "Trouble relaxing",
+  "Being so restless that it is hard to sit still",
+  "Becoming easily annoyed or irritable",
+  "Feeling afraid, as if something awful might happen",
+];
+export const ITEM_TEXT = {
+  ...Object.fromEntries(PHQ_ITEMS.map((t, i) => [`phq9_${i + 1}`, t])),
+  ...Object.fromEntries(GAD_ITEMS.map((t, i) => [`gad7_${i + 1}`, t])),
+};
+
+// Answer anchors. INDIRECT answers give a day count in the past two weeks instead;
+// 7 days is deliberately never used (it sits on the several/more-than-half boundary).
+export const ITEM_ANCHORS = {
+  0: { words: "not at all", days: "0 days" },
+  1: { words: "several days", days: "2 to 6 days out of the last 14" },
+  2: { words: "more than half the days", days: "8 to 11 days out of the last 14" },
+  3: { words: "nearly every day", days: "12 to 14 days out of the last 14" },
+};
+
+const ADL = {
+  kind: "select", section: 6,
+  options: ["INDEPENDENT", "NEEDS_ASSISTANCE", "DEPENDENT", "NOT_ASSESSED"],
+  prior: [0.7, 0.22, 0.08, 0],
+  desc: {
+    INDEPENDENT: "does this fully on their own",
+    NEEDS_ASSISTANCE: "does it but needs some help or supervision from someone",
+    DEPENDENT: "cannot do it; someone else does it for them",
+  },
+  modes: ["CORRECTED", "MISREFLECTED", "AMBIGUOUS"],
+};
+
+export const FIELDS = {
+  pronouns: {
+    kind: "select", section: 1, options: ["SHE_HER", "HE_HIM", "THEY_THEM", "OTHER", "NOT_ASKED"],
+    prior: [0.45, 0.42, 0.08, 0.05, 0], topic: "the client's pronouns",
+    desc: { SHE_HER: "uses she/her", HE_HIM: "uses he/him", THEY_THEM: "uses they/them", OTHER: "uses neopronouns (e.g. xe/xem) or another set" },
+    modes: ["CORRECTED"],
+  },
+  gender_identity: {
+    kind: "select", section: 1,
+    options: ["WOMAN", "MAN", "NONBINARY", "TRANSGENDER_WOMAN", "TRANSGENDER_MAN", "OTHER", "DECLINED"],
+    prior: [0.44, 0.42, 0.05, 0.03, 0.02, 0.01, 0.03], topic: "the client's gender identity",
+    desc: {
+      WOMAN: "identifies as a woman", MAN: "identifies as a man", NONBINARY: "identifies as nonbinary",
+      TRANSGENDER_WOMAN: "identifies as a transgender woman", TRANSGENDER_MAN: "identifies as a transgender man",
+      OTHER: "describes their gender in their own terms (e.g. genderfluid, two-spirit)",
+      DECLINED: "is asked and says they'd rather not say",
+    },
+    modes: [],
+  },
+  contact_ok_voicemail: {
+    kind: "select", section: 1, options: ["YES", "NO"], prior: [0.75, 0.25],
+    topic: "whether it's OK to leave voicemails",
+    desc: { YES: "says it's fine to leave a voicemail", NO: "does not want voicemails left (e.g. shared phone, privacy)" },
+    modes: ["CORRECTED", "AMBIGUOUS"],
+  },
+  language_combo: {
+    kind: "select", section: 0, options: ["ENGLISH", "SPANISH", "VIETNAMESE", "TAGALOG", "MANDARIN", "ARABIC", "OTHER"],
+    prior: [0, 0, 0, 0, 0, 0, 0], topic: "the client's preferred language", // set from the session language
+    desc: {
+      ENGLISH: "prefers English", SPANISH: "prefers Spanish", VIETNAMESE: "prefers Vietnamese for anything written, though comfortable speaking English today",
+      TAGALOG: "prefers Tagalog for anything written, though comfortable speaking English today", MANDARIN: "prefers Mandarin for anything written, though comfortable speaking English today",
+      ARABIC: "prefers Arabic for anything written, though comfortable speaking English today", OTHER: "prefers another language (e.g. Punjabi) for anything written, though comfortable speaking English today",
+    },
+    modes: [],
+  },
+  interpreter_needed: {
+    kind: "select", section: 0, options: ["YES", "NO"], prior: [0.1, 0.9],
+    topic: "whether the client needs an interpreter",
+    desc: { YES: "would need an interpreter for sessions", NO: "does not need an interpreter" },
+    modes: [],
+  },
+  session_type: {
+    kind: "select", section: 0, options: ["INTAKE", "FOLLOW_UP", "CRISIS"], prior: [0.55, 0.38, 0.07],
+    topic: "what kind of session this is",
+    desc: { INTAKE: "a first intake session", FOLLOW_UP: "a follow-up with an existing client", CRISIS: "an unscheduled crisis contact" },
+    modes: [],
+  },
+  referral_source: {
+    kind: "select", section: 0,
+    options: ["SELF", "SCHOOL", "PCP", "HOSPITAL", "CPS", "COURT", "COMMUNITY_ORG", "OTHER"],
+    prior: [0.25, 0.08, 0.2, 0.12, 0.06, 0.06, 0.15, 0.08], topic: "who referred the client",
+    desc: {
+      SELF: "reached out on their own", SCHOOL: "was referred by a school (counselor, teacher)",
+      PCP: "was referred by their primary care doctor", HOSPITAL: "was referred after a hospital or ER visit",
+      CPS: "was referred by child protective services", COURT: "was referred by a court or judge",
+      COMMUNITY_ORG: "was referred by a community organization (food bank, church program, nonprofit)",
+      OTHER: "was referred by someone else (e.g. an employer's EAP, a landlord)",
+    },
+    modes: ["CORRECTED", "MISREFLECTED"],
+  },
+  insurance_type: {
+    kind: "select", section: 1, options: ["MEDI_CAL", "MEDICARE", "PRIVATE", "UNINSURED", "UNKNOWN"],
+    prior: [0.55, 0.12, 0.15, 0.1, 0.08], topic: "the client's health coverage",
+    desc: {
+      MEDI_CAL: "is covered by Medi-Cal", MEDICARE: "is covered by Medicare", PRIVATE: "has private insurance (through work or bought)",
+      UNINSURED: "has no health coverage", UNKNOWN: "genuinely doesn't know what coverage they have, and it stays unresolved",
+    },
+    modes: ["CORRECTED", "THIRD_PARTY"],
+  },
+  emergency_contact_relationship: {
+    kind: "select", section: 1, options: ["PARENT", "SIBLING", "PARTNER", "CHILD", "FRIEND", "OTHER"],
+    prior: [0.25, 0.2, 0.2, 0.12, 0.15, 0.08], topic: "who the emergency contact is to the client",
+    desc: {
+      PARENT: "emergency contact is their parent", SIBLING: "emergency contact is their sibling", PARTNER: "emergency contact is their partner/spouse",
+      CHILD: "emergency contact is their adult child", FRIEND: "emergency contact is a friend", OTHER: "emergency contact is someone else (aunt, pastor, neighbor)",
+    },
+    modes: ["CORRECTED", "MISREFLECTED"],
+  },
+  consent_telehealth: {
+    kind: "select", section: 0, options: ["VERBAL", "WRITTEN", "DECLINED"], prior: [0.85, 0.15, 0],
+    topic: "consent to telehealth",
+    desc: { VERBAL: "gives verbal consent to telehealth when the worker asks", WRITTEN: "says they already signed the telehealth consent form" },
+    modes: [], onlyRemote: true,
+  },
+  release_of_info: {
+    kind: "checkbox", section: 1, options: ["PCP", "PSYCHIATRIST", "SCHOOL", "FAMILY", "NONE"],
+    prior: [0.35, 0.2, 0.1, 0.2, 0.3], topic: "releases of information on file",
+    desc: {
+      PCP: "has a signed release for their primary care doctor", PSYCHIATRIST: "has a signed release for their psychiatrist",
+      SCHOOL: "has a signed release for a school", FAMILY: "has a signed release for a family member",
+      NONE: "has no releases signed",
+    },
+    modes: ["CORRECTED"],
+  },
+  phq9_difficulty: {
+    kind: "select", section: 4, options: ["NOT_DIFFICULT", "SOMEWHAT", "VERY", "EXTREMELY"],
+    prior: [0.2, 0.4, 0.28, 0.12], topic: "how difficult these problems made work, home, and getting along with people",
+    desc: { NOT_DIFFICULT: "not difficult at all", SOMEWHAT: "somewhat difficult", VERY: "very difficult", EXTREMELY: "extremely difficult" },
+    modes: [],
+  },
+  gad7_status: {
+    kind: "select", section: 4, options: ["COMPLETED", "DEFERRED", "DECLINED", "NOT_INDICATED"],
+    prior: [0.6, 0.15, 0.1, 0.15], topic: "whether the GAD-7 anxiety questionnaire was done",
+    desc: {
+      COMPLETED: "the worker administers all seven GAD-7 questions",
+      DEFERRED: "the worker says they'll do the anxiety questionnaire next time (out of time, or client is tired)",
+      DECLINED: "the client declines to do the anxiety questionnaire",
+      NOT_INDICATED: "the worker says the anxiety questionnaire isn't needed (e.g. done last week, no anxiety concerns)",
+    },
+    modes: [],
+  },
+  si_ideation: {
+    kind: "select", section: 5, options: ["NONE", "PASSIVE", "ACTIVE_NO_PLAN", "ACTIVE_WITH_PLAN"],
+    prior: [0.65, 0.22, 0.09, 0.04], topic: "suicidal thoughts",
+    desc: {
+      NONE: "denies any thoughts of suicide or of being better off dead",
+      PASSIVE: "has had thoughts of being better off dead or not waking up, but no thoughts of killing themselves",
+      ACTIVE_NO_PLAN: "has had thoughts of killing themselves, but no plan for how",
+      ACTIVE_WITH_PLAN: "has had thoughts of killing themselves and has thought about a specific method or plan",
+    },
+    modes: ["MISREFLECTED", "HYPOTHETICAL"],
+  },
+  si_prior_attempts: {
+    kind: "select", section: 5, options: ["NONE", "ONE", "MULTIPLE", "UNKNOWN"], prior: [0.7, 0.18, 0.08, 0.04],
+    topic: "past suicide attempts",
+    desc: { NONE: "has never attempted suicide", ONE: "made one suicide attempt in the past", MULTIPLE: "has made more than one suicide attempt", UNKNOWN: "is unsure whether a past incident was an attempt, and it stays unresolved" },
+    modes: ["THIRD_PARTY", "CORRECTED"],
+  },
+  si_means: {
+    kind: "select", section: 5, options: ["NO_ACCESS", "HAS_ACCESS", "NOT_ASSESSED"], prior: [0.6, 0.4, 0],
+    topic: "access to firearms, stockpiled medication, or other lethal means",
+    desc: { NO_ACCESS: "has no firearms, no stockpiled medication, and no other lethal means at home", HAS_ACCESS: "has access to a firearm or stockpiled medication at home" },
+    modes: ["THIRD_PARTY", "CORRECTED"],
+  },
+  hi_ideation: {
+    kind: "select", section: 5, options: ["NONE", "PASSIVE", "ACTIVE"], prior: [0.92, 0.06, 0.02],
+    topic: "thoughts of harming others",
+    desc: { NONE: "denies any thoughts of harming anyone", PASSIVE: "has had fleeting angry thoughts of someone getting hurt, with no wish to act", ACTIVE: "has had thoughts of hurting a specific person" },
+    modes: ["HYPOTHETICAL"],
+  },
+  safety_plan: {
+    kind: "select", section: 5, options: ["COMPLETED", "UPDATED", "REVIEWED", "DEFERRED", "DECLINED", "NOT_INDICATED"],
+    prior: [0.3, 0.2, 0.2, 0.1, 0.1, 0.1], topic: "a safety plan",
+    desc: {
+      COMPLETED: "worker and client write a new safety plan together during the session",
+      UPDATED: "they change an existing safety plan (new contact, new coping step)",
+      REVIEWED: "they go over the existing safety plan without changing it",
+      DEFERRED: "the worker says they'll do the safety plan next session",
+      DECLINED: "the client refuses to do a safety plan",
+      NOT_INDICATED: "the worker says a safety plan isn't needed right now",
+    },
+    modes: [],
+  },
+  protective_factors: {
+    kind: "checkbox", section: 5,
+    options: ["FAMILY_CONNECTION", "CHILDREN_IN_HOME", "FUTURE_ORIENTATION", "RELIGIOUS_BELIEFS", "TREATMENT_ENGAGEMENT", "PETS"],
+    prior: [0.5, 0.25, 0.35, 0.2, 0.3, 0.25], topic: "reasons for living / protective factors",
+    desc: {
+      FAMILY_CONNECTION: "names family they're close to as a reason to keep going", CHILDREN_IN_HOME: "names the kids at home as a reason to keep going",
+      FUTURE_ORIENTATION: "talks about concrete things they're looking forward to", RELIGIOUS_BELIEFS: "says their faith keeps them going",
+      TREATMENT_ENGAGEMENT: "says therapy or treatment is helping and they want to keep coming", PETS: "names a pet as a reason to keep going",
+    },
+    modes: ["HYPOTHETICAL", "THIRD_PARTY", "PASSING"],
+  },
+  crisis_resources: {
+    kind: "checkbox", section: 7, options: ["LINE_988", "COUNTY_CRISIS", "MOBILE_CRISIS", "WARMLINE", "NONE"],
+    prior: [0.5, 0.25, 0.15, 0.2, 0.1], topic: "crisis resources the worker gives",
+    desc: {
+      LINE_988: "worker gives the 988 Suicide & Crisis Lifeline", COUNTY_CRISIS: "worker gives the county crisis line number",
+      MOBILE_CRISIS: "worker explains the mobile crisis team and how to reach it", WARMLINE: "worker gives the peer warmline number",
+      NONE: "worker explicitly notes no crisis resources were needed today",
+    },
+    modes: [],
+  },
+  housing_status: {
+    kind: "select", section: 2, options: ["STABLE", "AT_RISK", "DOUBLED_UP", "SHELTERED", "UNSHELTERED"],
+    prior: [0.5, 0.2, 0.12, 0.1, 0.08], topic: "housing",
+    desc: {
+      STABLE: "has stable housing (own lease or owned home, not at risk)", AT_RISK: "has housing but is at risk of losing it (eviction notice, behind on rent)",
+      DOUBLED_UP: "is staying with friends or family temporarily because they have nowhere of their own",
+      SHELTERED: "is staying in a shelter or transitional housing", UNSHELTERED: "is sleeping in a car, tent, or outside",
+    },
+    modes: ["CORRECTED", "MISREFLECTED", "HYPOTHETICAL", "THIRD_PARTY", "AMBIGUOUS", "PAST", "PASSING"],
+  },
+  living_situation: {
+    kind: "select", section: 2, options: ["ALONE", "WITH_FAMILY", "WITH_PARTNER", "ROOMMATES", "OTHER"],
+    prior: [0.3, 0.3, 0.2, 0.12, 0.08], topic: "who the client lives with",
+    desc: { ALONE: "lives alone", WITH_FAMILY: "lives with family (parents, kids, siblings) and no partner", WITH_PARTNER: "lives with a partner or spouse", ROOMMATES: "lives with roommates who aren't family", OTHER: "lives in another arrangement (shelter dorm, board-and-care)" },
+    modes: ["CORRECTED", "MISREFLECTED", "HYPOTHETICAL", "PAST", "PASSING"],
+  },
+  employment_status: {
+    kind: "select", section: 2, options: ["EMPLOYED_FT", "EMPLOYED_PT", "UNEMPLOYED", "NOT_IN_LABOR_FORCE", "DISABLED", "STUDENT"],
+    prior: [0.25, 0.18, 0.25, 0.1, 0.14, 0.08], topic: "work",
+    desc: {
+      EMPLOYED_FT: "works full time", EMPLOYED_PT: "works part time", UNEMPLOYED: "is out of work and looking",
+      NOT_IN_LABOR_FORCE: "isn't working or looking (retired, caregiving at home)", DISABLED: "can't work because of a disability",
+      STUDENT: "is a full-time student",
+    },
+    modes: ["CORRECTED", "MISREFLECTED", "HYPOTHETICAL", "THIRD_PARTY", "PAST", "PASSING"],
+  },
+  income_sources: {
+    kind: "checkbox", section: 2,
+    options: ["WAGES", "UNEMPLOYMENT_INSURANCE", "SNAP", "TANF", "SSI", "SSDI", "CHILD_SUPPORT", "NONE"],
+    prior: [0.4, 0.12, 0.35, 0.08, 0.12, 0.1, 0.08, 0.08], topic: "sources of income",
+    desc: {
+      WAGES: "gets a paycheck", UNEMPLOYMENT_INSURANCE: "is receiving unemployment benefits", SNAP: "gets food stamps / CalFresh / EBT",
+      TANF: "gets cash aid (CalWORKs)", SSI: "receives SSI", SSDI: "receives SSDI (disability through Social Security)",
+      CHILD_SUPPORT: "receives child support", NONE: "has no income at all right now",
+    },
+    modes: ["CORRECTED", "HYPOTHETICAL", "THIRD_PARTY", "PAST", "PENDING", "PASSING"],
+  },
+  food_security: {
+    kind: "select", section: 2, options: ["SECURE", "INSECURE"], prior: [0.6, 0.4], topic: "having enough food",
+    desc: { SECURE: "has enough food", INSECURE: "runs out of food or skips meals because of money" },
+    modes: ["AMBIGUOUS", "THIRD_PARTY", "PASSING"],
+  },
+  transportation: {
+    kind: "select", section: 2, options: ["RELIABLE", "UNRELIABLE", "NONE"], prior: [0.55, 0.3, 0.15], topic: "transportation",
+    desc: { RELIABLE: "has reliable transportation (working car, dependable ride)", UNRELIABLE: "has transportation that often falls through (old car, buses that don't come)", NONE: "has no way to get around on their own" },
+    modes: ["CORRECTED", "HYPOTHETICAL", "AMBIGUOUS", "PAST", "PASSING"],
+  },
+  legal_involvement: {
+    kind: "select", section: 2, options: ["NONE", "PROBATION", "PENDING_CASE", "FAMILY_COURT", "CPS_OPEN"],
+    prior: [0.65, 0.1, 0.08, 0.1, 0.07], topic: "legal involvement",
+    desc: { NONE: "has no current legal involvement", PROBATION: "is on probation", PENDING_CASE: "has a pending criminal case", FAMILY_COURT: "has an active family court matter (custody, divorce)", CPS_OPEN: "has an open CPS case" },
+    modes: ["HYPOTHETICAL", "THIRD_PARTY", "CORRECTED", "PAST", "PASSING"],
+  },
+  children_in_home: {
+    kind: "select", section: 2, options: ["YES", "NO"], prior: [0.35, 0.65], topic: "minor children living in the home",
+    desc: { YES: "has children under 18 living with them", NO: "has no minor children living with them" },
+    modes: ["HYPOTHETICAL", "MISREFLECTED", "PASSING"],
+  },
+  substances: {
+    kind: "checkbox", section: 3, options: ["ALCOHOL", "CANNABIS", "OPIOIDS", "STIMULANTS", "SEDATIVES", "NONE_REPORTED"],
+    prior: [0.5, 0.3, 0.06, 0.07, 0.05, 0.3], topic: "substance use in the past 30 days",
+    desc: {
+      ALCOHOL: "drank alcohol in the past month", CANNABIS: "used cannabis in the past month", OPIOIDS: "used opioids (non-prescribed pills, fentanyl, heroin) in the past month",
+      STIMULANTS: "used meth or cocaine in the past month", SEDATIVES: "used non-prescribed benzos or sleeping pills in the past month",
+      NONE_REPORTED: "denies any substance use in the past month",
+    },
+    modes: ["CORRECTED", "MISREFLECTED", "HYPOTHETICAL", "THIRD_PARTY", "PAST", "PASSING"],
+  },
+  alcohol_frequency: {
+    kind: "select", section: 3, options: ["NEVER", "MONTHLY_OR_LESS", "TWO_TO_FOUR_PER_MONTH", "TWO_TO_THREE_PER_WEEK", "FOUR_PLUS_PER_WEEK"],
+    prior: [0.3, 0.2, 0.2, 0.15, 0.15], topic: "how often the client drinks",
+    desc: {
+      NEVER: "never drinks", MONTHLY_OR_LESS: "drinks once a month or less", TWO_TO_FOUR_PER_MONTH: "drinks two to four times a month",
+      TWO_TO_THREE_PER_WEEK: "drinks two or three times a week", FOUR_PLUS_PER_WEEK: "drinks four or more days a week",
+    },
+    modes: ["CORRECTED", "MISREFLECTED", "HYPOTHETICAL", "THIRD_PARTY", "AMBIGUOUS", "PAST", "PASSING"],
+  },
+  tobacco_use: {
+    kind: "select", section: 3, options: ["NEVER", "FORMER", "CURRENT"], prior: [0.5, 0.2, 0.3], topic: "tobacco or nicotine use",
+    desc: { NEVER: "has never smoked or vaped", FORMER: "used to smoke or vape but quit", CURRENT: "currently smokes or vapes" },
+    modes: ["CORRECTED", "THIRD_PARTY", "PASSING"],
+  },
+  substance_tx_history: {
+    kind: "select", section: 3, options: ["NONE", "OUTPATIENT", "RESIDENTIAL", "MAT"], prior: [0.7, 0.12, 0.1, 0.08],
+    topic: "past substance-use treatment",
+    desc: { NONE: "has never been in substance-use treatment", OUTPATIENT: "did outpatient substance-use treatment", RESIDENTIAL: "went to residential rehab", MAT: "has been on medication-assisted treatment (methadone, buprenorphine)" },
+    modes: ["THIRD_PARTY", "HYPOTHETICAL"],
+  },
+  medication_adherence: {
+    kind: "select", section: 3, options: ["ADHERENT", "PARTIAL", "NOT_TAKING", "NONE_PRESCRIBED"],
+    prior: [0.35, 0.25, 0.15, 0.25], topic: "taking prescribed medications",
+    desc: { ADHERENT: "takes their meds as prescribed", PARTIAL: "misses doses or takes them only sometimes", NOT_TAKING: "has stopped taking their prescribed meds", NONE_PRESCRIBED: "isn't prescribed any medication" },
+    modes: ["CORRECTED", "MISREFLECTED", "THIRD_PARTY", "PAST", "PASSING"],
+  },
+  support_system: {
+    kind: "checkbox", section: 2, options: ["FAMILY", "FRIENDS", "FAITH_COMMUNITY", "PEER_GROUP", "NONE"],
+    prior: [0.5, 0.4, 0.2, 0.12, 0.12], topic: "who the client can lean on",
+    desc: { FAMILY: "can lean on family", FRIENDS: "can lean on friends", FAITH_COMMUNITY: "can lean on a church or faith community", PEER_GROUP: "attends a peer support group (AA, NA, NAMI)", NONE: "says they have no one to lean on" },
+    modes: ["HYPOTHETICAL", "THIRD_PARTY", "PAST", "PASSING"],
+  },
+  adl_bathing: { ...ADL, topic: "bathing" },
+  adl_dressing: { ...ADL, topic: "getting dressed" },
+  adl_eating: { ...ADL, topic: "eating" },
+  adl_mobility: { ...ADL, topic: "getting around the home" },
+  iadl_finances: { ...ADL, topic: "managing money and bills" },
+  iadl_transport: { ...ADL, topic: "getting to appointments and errands" },
+  iadl_medications: { ...ADL, topic: "managing their own medications" },
+  referrals_made: {
+    kind: "checkbox", section: 7, options: ["FOOD_BANK", "HOUSING_NAV", "BENEFITS", "PSYCHIATRY", "SUBSTANCE_TX", "LEGAL_AID", "NONE"],
+    prior: [0.2, 0.2, 0.2, 0.25, 0.1, 0.1, 0.15], topic: "referrals the worker makes today",
+    desc: {
+      FOOD_BANK: "worker refers the client to a food bank", HOUSING_NAV: "worker refers the client to a housing navigator",
+      BENEFITS: "worker refers the client for benefits help (CalFresh, SSI application)", PSYCHIATRY: "worker refers the client to psychiatry",
+      SUBSTANCE_TX: "worker refers the client to substance-use treatment", LEGAL_AID: "worker refers the client to legal aid",
+      NONE: "worker explicitly makes no new referrals today",
+    },
+    modes: ["HYPOTHETICAL", "PENDING"],
+  },
+  follow_up_interval: {
+    kind: "select", section: 7, options: ["WEEKLY", "BIWEEKLY", "MONTHLY", "AS_NEEDED"], prior: [0.4, 0.3, 0.2, 0.1],
+    topic: "how often they'll meet going forward",
+    desc: { WEEKLY: "they agree to meet every week", BIWEEKLY: "they agree to meet every two weeks", MONTHLY: "they agree to meet once a month", AS_NEEDED: "they agree the client will reach out as needed" },
+    modes: ["CORRECTED"],
+  },
+};
+
+// Never sent to the model and never labelled: always blank, "needs your judgement".
+export const CLINICIAN_ONLY = [
+  "risk_level", "supervisor_consult", "mse_appearance", "mse_affect", "mse_thought_process",
+  "mse_orientation", "mse_insight", "mse_judgment", "level_of_care", "diagnosis_impression", "note_attestation",
+];
+
+// Temptations the writer may plant: statements that sound like a clinician-only answer.
+export const CLINICIAN_TEMPTATIONS = [
+  "the worker says out loud that they'll run this by their supervisor",
+  "the client mentions a diagnosis a previous doctor gave them",
+  "the client says 'I know I look like a mess today'",
+  "the client asks 'am I high risk or something?' and the worker doesn't give a level",
+  "the client says they think they need something more intensive, like a day program",
+];
+
+// Header facts the generator writes; the classifier never sees these as questions.
+export const TEXT_FIELDS = [
+  "case_number", "client_first_name", "client_last_name", "client_preferred_name", "client_dob",
+  "contact_phone", "contact_email", "address_line", "address_city", "address_zip",
+  "insurance_member_id", "emergency_contact_name", "emergency_contact_phone",
+  "pcp_name", "current_medications", "medical_conditions", "sleep_hours", "mse_mood",
+  "client_goal", "next_appointment",
+];
+
+// Risk sub-fields the sampler derives from si_ideation / hi_ideation (same FIELDS.md options).
+Object.assign(FIELDS, {
+  si_frequency: {
+    kind: "select", section: 5, options: ["NONE", "SEVERAL_DAYS", "MORE_THAN_HALF", "NEARLY_EVERY_DAY"], prior: [0, 0, 0, 0],
+    topic: "how often suicidal thoughts came in the past two weeks",
+    desc: { NONE: "no such thoughts in the past two weeks", SEVERAL_DAYS: "such thoughts on several days (2–6 of the last 14)", MORE_THAN_HALF: "such thoughts on more than half the days (8–11 of 14)", NEARLY_EVERY_DAY: "such thoughts nearly every day (12–14 of 14)" },
+    modes: [],
+  },
+  si_plan: {
+    kind: "select", section: 5, options: ["NO", "YES", "NOT_ASSESSED"], prior: [0, 0, 0], topic: "whether there's a suicide plan",
+    desc: { NO: "worker asks and client says they have no plan", YES: "client describes a plan or method they've thought about", NOT_ASSESSED: "" }, modes: [],
+  },
+  si_intent: {
+    kind: "select", section: 5, options: ["NO", "YES", "NOT_ASSESSED"], prior: [0, 0, 0], topic: "intent to act on suicidal thoughts",
+    desc: { NO: "worker asks and client says they don't intend to act on the thoughts", YES: "client says they intend or might act on the thoughts", NOT_ASSESSED: "" }, modes: [],
+  },
+  hi_plan: {
+    kind: "select", section: 5, options: ["NO", "YES", "NOT_ASSESSED"], prior: [0, 0, 0], topic: "a plan to harm someone",
+    desc: { NO: "worker asks and client says they have no plan to hurt anyone", YES: "client describes how they've thought about hurting the person", NOT_ASSESSED: "" }, modes: [],
+  },
+});

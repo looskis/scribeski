@@ -1,0 +1,19 @@
+{
+  "name": "scribeski-page",
+  "version": "0.0.1",
+  "private": true,
+  "description": "The only code that touches the EHR DOM. Built to one IIFE, injected over AppleScript `do JavaScript` (Safari) or page.evaluate (Playwright).",
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "typecheck": "tsc --noEmit",
+    "serve": "node scripts/serve.mjs ../fixtures/mock-ehr 8787",
+    "test": "npm run build && playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.63.0",
+    "@types/node": "^26.6.2",
+    "esbuild": "^0.28.2",
+    "typescript": "^7.0.2"
+  }
+}

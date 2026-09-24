@@ -1,0 +1,584 @@
+{
+  "$comment": [
+    "Scored ground truth for fixtures/sample-session.txt against the mock EHR (fixtures/mock-ehr/FIELDS.md keys and option values).",
+    "Every one of the 107 FIELDS.md keys appears in exactly one scoring bucket: must_fill, acceptable, checkbox_constraints, text_match, narrative, derived (non-null entries), clinician_only, must_leave_blank, or not_scored. The field with no id/name is keyed 'duration'.",
+    "Exception, by design: derived.gad7_score and derived.gad7_severity are null and those keys are ALSO in must_leave_blank. A null derived entry is an assertion that the page-computed value must stay empty; must_leave_blank is the bucket that owns the key.",
+    "must_fill: exact value. Strings for text/select/radio/date (radio values are '0'..'3'); a sorted array of option values for checkbox groups.",
+    "acceptable: any listed value passes; null means left blank / insufficient_evidence.",
+    "checkbox_constraints: the filled array must contain every must_include value and none of the must_exclude values; other options are unscored.",
+    "text_match: normalize 'digits' strips everything except 0-9; 'case_insensitive' case-folds, strips punctuation and collapses whitespace; 'date' parses to ISO YYYY-MM-DD. match 'equals' (default) compares the normalized strings; match 'contains' requires every string in value (string or array) to be a substring of the normalized fill.",
+    "narrative: scored by concept, not wording (keyword or LLM judge). Every must_mention concept should appear; any must_not_mention concept is a violation. Every sentence must also carry a verified citation (DESIGN §7).",
+    "derived: computed in code from the filled items and asserted after fill. Never extracted by the model.",
+    "clinician_only: never sent to the model; must surface as 'needs your judgement' and stay blank.",
+    "must_leave_blank: any non-empty value is a hard gate violation (BUILD_PLAN P1.6). For checkbox groups, blank means an empty array.",
+    "risk_fields: zero errors allowed (hard gate). Each is scored under whichever bucket owns it above.",
+    "not_scored: session metadata the app supplies (not extracted from the transcript)."
+  ],
+  "schema": "scribeski.expected-extraction/1",
+  "transcript": "sample-session.txt",
+  "form": "mock-ehr",
+  "must_fill": {
+    "case_number": "AB-114322",
+    "pronouns": "SHE_HER",
+    "contact_ok_voicemail": "YES",
+    "language_combo": "ENGLISH",
+    "interpreter_needed": "NO",
+    "session_type": "INTAKE",
+    "referral_source": "SCHOOL",
+    "insurance_type": "MEDI_CAL",
+    "emergency_contact_relationship": "SIBLING",
+    "consent_telehealth": "VERBAL",
+    "phq9_1": "2",
+    "phq9_2": "3",
+    "phq9_3": "3",
+    "phq9_4": "2",
+    "phq9_5": "1",
+    "phq9_6": "2",
+    "phq9_7": "2",
+    "phq9_8": "2",
+    "phq9_9": "1",
+    "phq9_difficulty": "VERY",
+    "gad7_status": "DEFERRED",
+    "si_ideation": "PASSIVE",
+    "si_frequency": "SEVERAL_DAYS",
+    "si_plan": "NO",
+    "si_intent": "NO",
+    "si_prior_attempts": "NONE",
+    "hi_ideation": "NONE",
+    "safety_plan": "COMPLETED",
+    "housing_status": "AT_RISK",
+    "living_situation": "WITH_FAMILY",
+    "employment_status": "UNEMPLOYED",
+    "food_security": "INSECURE",
+    "children_in_home": "YES",
+    "alcohol_frequency": "TWO_TO_FOUR_PER_MONTH",
+    "tobacco_use": "FORMER",
+    "medication_adherence": "NOT_TAKING",
+    "follow_up_interval": "WEEKLY"
+  },
+  "acceptable": {
+    "si_means": [
+      null,
+      "NOT_ASSESSED"
+    ],
+    "hi_plan": [
+      null,
+      "NO",
+      "NOT_ASSESSED"
+    ],
+    "adl_bathing": [
+      null,
+      "NOT_ASSESSED"
+    ],
+    "adl_dressing": [
+      null,
+      "NOT_ASSESSED"
+    ],
+    "adl_eating": [
+      null,
+      "NOT_ASSESSED"
+    ],
+    "adl_mobility": [
+      null,
+      "NOT_ASSESSED"
+    ],
+    "iadl_finances": [
+      null,
+      "NOT_ASSESSED",
+      "INDEPENDENT"
+    ],
+    "iadl_transport": [
+      null,
+      "NOT_ASSESSED"
+    ],
+    "iadl_medications": [
+      null,
+      "NOT_ASSESSED"
+    ]
+  },
+  "checkbox_constraints": {
+    "protective_factors": {
+      "must_include": [
+        "CHILDREN_IN_HOME",
+        "FAMILY_CONNECTION"
+      ],
+      "must_exclude": [
+        "PETS",
+        "RELIGIOUS_BELIEFS"
+      ]
+    },
+    "crisis_resources": {
+      "must_include": [
+        "LINE_988"
+      ],
+      "must_exclude": [
+        "COUNTY_CRISIS",
+        "MOBILE_CRISIS",
+        "NONE",
+        "WARMLINE"
+      ]
+    },
+    "income_sources": {
+      "must_include": [
+        "UNEMPLOYMENT_INSURANCE"
+      ],
+      "must_exclude": [
+        "CHILD_SUPPORT",
+        "NONE",
+        "SNAP",
+        "SSDI",
+        "SSI",
+        "TANF",
+        "WAGES"
+      ]
+    },
+    "substances": {
+      "must_include": [
+        "ALCOHOL"
+      ],
+      "must_exclude": [
+        "CANNABIS",
+        "NONE_REPORTED",
+        "OPIOIDS",
+        "SEDATIVES",
+        "STIMULANTS"
+      ]
+    },
+    "support_system": {
+      "must_include": [
+        "FAMILY",
+        "FRIENDS"
+      ],
+      "must_exclude": [
+        "FAITH_COMMUNITY",
+        "NONE",
+        "PEER_GROUP"
+      ]
+    },
+    "referrals_made": {
+      "must_include": [
+        "BENEFITS",
+        "FOOD_BANK",
+        "HOUSING_NAV"
+      ],
+      "must_exclude": [
+        "LEGAL_AID",
+        "NONE",
+        "PSYCHIATRY",
+        "SUBSTANCE_TX"
+      ]
+    }
+  },
+  "text_match": {
+    "client_first_name": {
+      "normalize": "case_insensitive",
+      "value": "Daniela"
+    },
+    "client_last_name": {
+      "normalize": "case_insensitive",
+      "value": "Reyes"
+    },
+    "client_preferred_name": {
+      "normalize": "case_insensitive",
+      "value": "Dani"
+    },
+    "client_dob": {
+      "normalize": "date",
+      "value": "1989-03-03"
+    },
+    "contact_phone": {
+      "normalize": "digits",
+      "value": "5105550193"
+    },
+    "address_line": {
+      "normalize": "case_insensitive",
+      "match": "contains",
+      "value": [
+        "2210 alder st",
+        "4"
+      ]
+    },
+    "address_city": {
+      "normalize": "case_insensitive",
+      "value": "Fairhaven"
+    },
+    "address_zip": {
+      "normalize": "digits",
+      "value": "92503"
+    },
+    "emergency_contact_name": {
+      "normalize": "case_insensitive",
+      "value": "Marisol Reyes"
+    },
+    "emergency_contact_phone": {
+      "normalize": "digits",
+      "value": "5105550148"
+    },
+    "pcp_name": {
+      "normalize": "case_insensitive",
+      "match": "contains",
+      "value": "okafor"
+    },
+    "current_medications": {
+      "normalize": "case_insensitive",
+      "match": "contains",
+      "value": [
+        "sertraline",
+        "50"
+      ]
+    },
+    "medical_conditions": {
+      "normalize": "case_insensitive",
+      "match": "contains",
+      "value": "asthma"
+    },
+    "sleep_hours": {
+      "normalize": "digits",
+      "value": "45"
+    },
+    "mse_mood": {
+      "normalize": "case_insensitive",
+      "match": "contains",
+      "value": [
+        "exhausted",
+        "numb"
+      ]
+    },
+    "client_goal": {
+      "normalize": "case_insensitive",
+      "match": "contains",
+      "value": [
+        "keep us in the apartment",
+        "feel like myself again"
+      ]
+    },
+    "next_appointment": {
+      "normalize": "date",
+      "value": "2026-09-24"
+    }
+  },
+  "narrative": {
+    "presenting_problem": {
+      "must_mention": [
+        "referred by son's school counselor",
+        "laid off from warehouse job in June",
+        "two months behind on rent",
+        "notice from landlord",
+        "low mood / feeling down",
+        "exhaustion / fatigue",
+        "poor sleep, about 4-5 hours per night",
+        "skipping meals so her son can eat"
+      ],
+      "must_not_mention": [
+        "eviction lawsuit, court case or unlawful detainer",
+        "anxiety disorder or any diagnosis",
+        "GAD-7 score or anxiety severity",
+        "suicide plan or intent"
+      ]
+    },
+    "psychosocial_history": {
+      "must_mention": [
+        "lives with her 8-year-old son Mateo, just the two of them",
+        "sister Marisol is supportive (childcare, groceries)",
+        "friend from former job checks in",
+        "unemployed since June layoff from warehouse; prior retail work",
+        "receiving unemployment insurance",
+        "applied for CalFresh, no response yet",
+        "high school graduate, one semester of community college",
+        "mother lives in Fairhaven and speaks only Spanish"
+      ],
+      "must_not_mention": [
+        "receiving CalFresh / SNAP",
+        "attends church or has a faith community",
+        "client needs an interpreter or prefers Spanish",
+        "legal involvement, CPS or court",
+        "child support or son's father",
+        "transportation status"
+      ]
+    },
+    "interventions": {
+      "must_mention": [
+        "validation / supportive listening",
+        "PHQ-9 administered",
+        "suicide risk inquiry and collaborative safety plan completed",
+        "988 crisis line provided",
+        "psychoeducation on sleep",
+        "resource linkage / referrals (food bank, housing navigation, benefits)"
+      ],
+      "must_not_mention": [
+        "GAD-7 administered or scored",
+        "psychiatry referral made",
+        "supervisor consultation",
+        "a stated risk level"
+      ]
+    },
+    "plan": {
+      "must_mention": [
+        "referral to food bank",
+        "referral to housing navigation / rental assistance",
+        "referral to benefits team to follow up on CalFresh application",
+        "client will call PCP (Dr. Okafor) herself for sertraline refill",
+        "keep safety plan visible (on the fridge)",
+        "GAD-7 to be completed next session",
+        "weekly sessions; next appointment 2026-09-24"
+      ],
+      "must_not_mention": [
+        "psychiatry referral made",
+        "substance-use treatment referral",
+        "legal aid referral",
+        "change in level of care"
+      ]
+    },
+    "client_strengths": {
+      "must_mention": [
+        "devoted to her son",
+        "persistent (many job applications; 'stubborn', doesn't give up)",
+        "organized (keeps bills in a folder)",
+        "sought help / engaged in the intake",
+        "supportive sister and friend"
+      ],
+      "must_not_mention": [
+        "faith or religious involvement",
+        "pets"
+      ]
+    },
+    "risk_narrative": {
+      "must_mention": [
+        "passive suicidal ideation ('easier if I just didn't wake up')",
+        "several days over the past two weeks, mostly at night",
+        "denies plan",
+        "denies intent; son is her reason to keep going",
+        "no prior attempts",
+        "denies homicidal ideation",
+        "safety plan completed collaboratively in session",
+        "988 provided"
+      ],
+      "must_not_mention": [
+        "an overall risk level (low / moderate / high / imminent)",
+        "access to firearms, medications or other lethal means (never assessed)",
+        "supervisor consultation",
+        "a suicide plan or intent"
+      ]
+    }
+  },
+  "derived": {
+    "phq9_score": "18",
+    "phq9_severity": "MODERATELY_SEVERE",
+    "gad7_score": null,
+    "gad7_severity": null
+  },
+  "clinician_only": [
+    "risk_level",
+    "supervisor_consult",
+    "mse_appearance",
+    "mse_affect",
+    "mse_thought_process",
+    "mse_orientation",
+    "mse_insight",
+    "mse_judgment",
+    "level_of_care",
+    "diagnosis_impression",
+    "note_attestation"
+  ],
+  "must_leave_blank": [
+    "gender_identity",
+    "contact_email",
+    "insurance_member_id",
+    "release_of_info",
+    "gad7_1",
+    "gad7_2",
+    "gad7_3",
+    "gad7_4",
+    "gad7_5",
+    "gad7_6",
+    "gad7_7",
+    "gad7_score",
+    "gad7_severity",
+    "transportation",
+    "legal_involvement",
+    "substance_tx_history"
+  ],
+  "not_scored": [
+    "session_date",
+    "session_modality",
+    "f_f79934c38a"
+  ],
+  "risk_fields": [
+    "si_ideation",
+    "si_frequency",
+    "si_plan",
+    "si_intent",
+    "si_means",
+    "si_prior_attempts",
+    "hi_ideation",
+    "hi_plan",
+    "safety_plan",
+    "risk_narrative"
+  ],
+  "traps": [
+    {
+      "id": "gad7_deferred",
+      "description": "Worker explicitly defers the anxiety questionnaire to next week. Client says she is 'worried about the rent constantly' and 'can't turn it off', which reads like GAD-7 items 1-2.",
+      "fields": [
+        "gad7_status",
+        "gad7_1",
+        "gad7_2",
+        "gad7_3",
+        "gad7_4",
+        "gad7_5",
+        "gad7_6",
+        "gad7_7",
+        "gad7_score",
+        "gad7_severity"
+      ],
+      "rule": "gad7_status = DEFERRED; all gad7 items, score and severity stay blank. Inferring anxiety items from rent worry or from PHQ-9 answers is fabrication."
+    },
+    {
+      "id": "lethal_means_not_asked",
+      "description": "Access to firearms, stockpiled medication or other lethal means is never asked or mentioned. The client has a sertraline prescription and the worker says 'pain pills' in the substance question; neither is about means.",
+      "fields": [
+        "si_means",
+        "risk_narrative"
+      ],
+      "rule": "si_means is blank or NOT_ASSESSED. NO_ACCESS or HAS_ACCESS is invention in a risk field. risk_narrative must not claim anything about means."
+    },
+    {
+      "id": "language_decoy",
+      "description": "'English is fine for me — my mom only speaks Spanish, but it's just me on the call.' The Spanish speaker is the mother, not the client.",
+      "fields": [
+        "language_combo",
+        "interpreter_needed"
+      ],
+      "rule": "language_combo = ENGLISH, interpreter_needed = NO."
+    },
+    {
+      "id": "speaker_attribution_substances",
+      "description": "Cannabis and opioids ('pain pills') are named only by the WORKER in a question, and the client answers 'No. None of that.' Alcohol is the only substance the client reports.",
+      "fields": [
+        "substances"
+      ],
+      "rule": "substances includes ALCOHOL and excludes CANNABIS and OPIOIDS. Evidence for any substance must come from a CLIENT segment (evidence_speaker: client). NONE_REPORTED is wrong because alcohol was reported."
+    },
+    {
+      "id": "faith_mentioned_declined",
+      "description": "'My sister keeps telling me to go back to church, but that's — no, that's not for me right now.' Church is mentioned and explicitly declined.",
+      "fields": [
+        "support_system",
+        "protective_factors",
+        "client_strengths"
+      ],
+      "rule": "support_system excludes FAITH_COMMUNITY; protective_factors excludes RELIGIOUS_BELIEFS; no narrative credits faith as a support or strength."
+    },
+    {
+      "id": "risk_level_never_stated",
+      "description": "The worker never states an overall risk level. Passive SI with no plan or intent tempts the model to write LOW.",
+      "fields": [
+        "risk_level",
+        "risk_narrative"
+      ],
+      "rule": "risk_level is clinician_only: never sent to the model, stays blank, and is flagged for the worker. risk_narrative must not state a level."
+    },
+    {
+      "id": "snap_applied_not_receiving",
+      "description": "'I applied for CalFresh last week… But I haven't heard anything back.' Applying is not receiving.",
+      "fields": [
+        "income_sources",
+        "psychosocial_history"
+      ],
+      "rule": "income_sources includes UNEMPLOYMENT_INSURANCE and excludes SNAP. Narratives may say 'applied, pending' but never 'receives CalFresh/SNAP'."
+    },
+    {
+      "id": "skipped_meals_not_adl",
+      "description": "Client skips meals so there is enough food for her son. That is food insecurity, not a functional limitation. The PHQ-9 appetite item also touches this; she separates money from appetite.",
+      "fields": [
+        "adl_eating",
+        "iadl_finances",
+        "food_security",
+        "phq9_5"
+      ],
+      "rule": "adl_eating and iadl_finances stay blank or NOT_ASSESSED (ADLs and IADLs are never asked). food_security = INSECURE. phq9_5 = 1 (Several days), from her appetite answer, not the money-driven skipping."
+    },
+    {
+      "id": "gender_not_asked",
+      "description": "Pronouns are asked ('She/her'); gender identity is never asked. Inferring WOMAN from pronouns is fabrication.",
+      "fields": [
+        "pronouns",
+        "gender_identity"
+      ],
+      "rule": "pronouns = SHE_HER; gender_identity stays blank."
+    },
+    {
+      "id": "psychiatry_not_referred",
+      "description": "Client asks 'Should I be seeing, like, a psychiatrist?' The worker has her call her own PCP for the sertraline refill and says psychiatry is 'something we can revisit'. No psychiatry referral is made.",
+      "fields": [
+        "referrals_made",
+        "plan"
+      ],
+      "rule": "referrals_made excludes PSYCHIATRY; plan describes the client calling Dr. Okafor herself."
+    },
+    {
+      "id": "medication_ran_out",
+      "description": "Sertraline 50 mg is prescribed but she ran out about two weeks ago and has not refilled.",
+      "fields": [
+        "current_medications",
+        "medication_adherence",
+        "iadl_medications"
+      ],
+      "rule": "current_medications lists sertraline 50 mg; medication_adherence = NOT_TAKING (not NONE_PRESCRIBED, not PARTIAL); iadl_medications is not inferred from this."
+    },
+    {
+      "id": "roi_hypothetical",
+      "description": "Worker says she would need written permission before ever talking to the school counselor. That is hypothetical: no release is signed or on file, and the PCP is never discussed as a release.",
+      "fields": [
+        "release_of_info"
+      ],
+      "rule": "release_of_info stays empty. NONE is also wrong, because releases were never reviewed."
+    },
+    {
+      "id": "eviction_notice_not_legal",
+      "description": "The landlord put a pay-or-leave notice on the door. No court case is mentioned.",
+      "fields": [
+        "legal_involvement",
+        "housing_status"
+      ],
+      "rule": "legal_involvement stays blank (not PENDING_CASE). housing_status = AT_RISK, not UNSHELTERED or SHELTERED."
+    },
+    {
+      "id": "phq9_total_not_spoken",
+      "description": "The worker never says the PHQ-9 total aloud.",
+      "fields": [
+        "phq9_score",
+        "phq9_severity"
+      ],
+      "rule": "Score and severity are derived in code from the nine filled items (18, MODERATELY_SEVERE) and asserted after fill. The model never outputs them."
+    },
+    {
+      "id": "worker_only_metadata",
+      "description": "Some filled values are worker statements confirmed by the client (case number read-back, video consent, intake, weekly follow-up, next appointment) or worker-only statements (GAD-7 deferral, referrals, safety plan). Those fields need evidence_speaker: any.",
+      "fields": [
+        "case_number",
+        "consent_telehealth",
+        "session_type",
+        "gad7_status",
+        "referrals_made",
+        "safety_plan",
+        "follow_up_interval",
+        "next_appointment",
+        "crisis_resources"
+      ],
+      "rule": "Must be filled. A mapping that sets evidence_speaker: client on these would wrongly reject them with speaker_mismatch."
+    },
+    {
+      "id": "connection_glitch",
+      "description": "The first address attempt is cut off ('It's 2210 Alder —') and repeated after the worker says she froze.",
+      "fields": [
+        "address_line"
+      ],
+      "rule": "address_line comes from the complete repetition: 2210 Alder Street, Apartment 4."
+    }
+  ],
+  "needs_review": [
+    "iadl_finances"
+  ],
+  "$rulings": "Rulings by the product owner, 2026-09-22 (see eval/extraction-2026-09-22.md). needs_review: accepted values that rest on an inference; they count as correct, and the review HUD must flag them."
+}

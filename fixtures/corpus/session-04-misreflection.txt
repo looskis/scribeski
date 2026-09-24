@@ -1,0 +1,147 @@
+# scribeski transcript fixture v1
+# session_date: 2026-10-06
+# started_at: 2026-10-06T11:00:00-07:00
+# modality: phone
+# duration_minutes: 20
+# note: synthetic; all people fictional; phone numbers use 555-01xx
+[00:04] WORKER: Hi, Mr. Jennings? It's Denise, from the county. Calling for our eleven o'clock.
+[00:11] CLIENT: Denise. Yes. I've been sitting by the phone. And it's Hal, remember. Mr. Jennings was my father.
+[00:23] WORKER: Hal. Sorry. How are you doing today?
+[00:29] CLIENT: Oh, about the same. Can't complain. Well, I can, but nobody listens.
+[00:36] WORKER: I'm listening. That's what I'm here for. This is our regular follow-up, so I'll check in on how the last couple weeks went, and we'll do one of those questionnaires.
+[00:53] CLIENT: Alright.
+[00:57] WORKER: Last time you mentioned Carol. So you're staying with your daughter now?
+[01:05] CLIENT: No — she stays with me. She moved into my place after her divorce. Back in August.
+[01:16] WORKER: Oh, I had that backwards. She moved in with you.
+[01:25] CLIENT: That's right. It's my house. I paid it off in '09. I'm not going anywhere.
+[01:34] WORKER: And is it just the two of you there?
+[01:42] CLIENT: Just me and Carol. Her boys are grown and gone. One's in Portland, one's in the Navy.
+[01:53] WORKER: How's it been, having her there?
+[02:00] CLIENT: It's nice to have somebody in the house. It was awful quiet after Joan.
+[02:08] CLIENT: But she's got her own troubles. The divorce. I try not to pile on.
+[02:17] WORKER: It's been about a year since Joan passed, is that right?
+[02:26] CLIENT: Two years. Two years in November.
+[02:32] WORKER: Two years in November. I'm sorry, I had that wrong too.
+[02:39] CLIENT: It's alright. Some days it feels like a year. Some days it feels like ten.
+[02:49] WORKER: How have the evenings been? You said last time those were the hardest.
+[02:58] CLIENT: Still the hardest. Supper time. We ate supper together every night for forty-six years.
+[03:08] WORKER: Forty-six years.
+[03:13] CLIENT: Now I eat in front of the TV. Carol works late at the hospital, so it's me and the dog.
+[03:24] WORKER: Biscuit, right?
+[03:28] CLIENT: Biscuit. She's a good girl. She's the only reason I get off the couch some days. She needs her walk.
+[03:41] WORKER: I'm glad you've got her.
+[03:47] CLIENT: Me too. Joan picked her out.
+[03:53] WORKER: And the drinking — you said last time you'd been drinking more since Joan passed?
+[04:03] CLIENT: No, I said less. I used to have a beer with supper every night. Now I don't bother.
+[04:15] CLIENT: I had one at my grandson's going-away party, two weeks back. That's about it. Once a month, maybe.
+[04:28] WORKER: Less, then. Once a month or so. Thank you for correcting me.
+[04:36] CLIENT: You're writing it all down, I want it right.
+[04:42] WORKER: And sleep. You're getting about eight hours?
+[04:50] CLIENT: No, I'm in bed eight hours. I sleep maybe five.
+[04:57] WORKER: In bed eight, asleep about five.
+[05:01] CLIENT: I wake up at two, three o'clock and just lie there. Her side of the bed.
+[05:11] WORKER: That's a hard time of night.
+[05:16] CLIENT: It is.
+[05:19] WORKER: How would you describe your mood these days, in your own words?
+[05:29] CLIENT: Lonesome. And tired. Mostly lonesome.
+[05:35] WORKER: Lonesome, and tired.
+[05:40] WORKER: And you've been going to the grief group at St. Anne's?
+[05:49] CLIENT: I went once. Didn't care for it. Everybody crying in a circle. I'm not going back.
+[05:58] WORKER: Okay. That's fair. It's not for everyone.
+[06:03] CLIENT: I talk to Walt. That's my grief group.
+[06:10] WORKER: Walt is your friend from the post office?
+[06:16] CLIENT: Forty years. He calls me every Sunday. His wife passed too, a few years before Joan.
+[06:26] WORKER: That's a real support.
+[06:30] CLIENT: He's a good man. And my nephew, Pete, stops by.
+[06:39] WORKER: Your son Pete?
+[06:42] CLIENT: I don't have a son. Pete's my nephew. My sister's boy. He mows the lawn.
+[06:51] WORKER: Nephew Pete. Got it.
+[06:55] WORKER: Hal, I want to ask about your medicines. You stopped taking the lisinopril?
+[07:05] CLIENT: No, I take the lisinopril. Ten milligrams, every morning.
+[07:13] CLIENT: It's the cholesterol pill Dr. Halvorsen took me off of. Back in the summer. He said I didn't need it anymore.
+[07:26] WORKER: So the doctor stopped the cholesterol one, and you take the lisinopril every day.
+[07:34] CLIENT: Every day. I've got the box with the days on it. I fill it Sunday nights.
+[07:44] WORKER: And Dr. Halvorsen is still your regular doctor?
+[07:50] CLIENT: Dr. Halvorsen, yes. Over at Mercy Family Medicine.
+[07:56] WORKER: Any other health problems I should know about?
+[08:02] CLIENT: The blood pressure. And arthritis in my knees. That's the big one. Stairs are hard.
+[08:12] WORKER: I wanted to go through some everyday activities today, just to see how you're managing. So you need help with bathing now?
+[08:25] CLIENT: No, no. I bathe myself fine. It's the stairs that get me.
+[08:33] WORKER: Okay. Bathing on your own. What about getting dressed?
+[08:39] CLIENT: Fine. Slow, but fine. Nobody's dressing me yet.
+[08:47] WORKER: And eating — feeding yourself, no trouble there?
+[08:54] CLIENT: No trouble. The appetite's another story, but I can hold a fork.
+[09:03] WORKER: And getting around the house — the stairs?
+[09:10] CLIENT: I use the cane, and Carol gives me an arm going down the front steps. I need a hand on those now.
+[09:24] WORKER: So you need some help with the stairs. Carol's handling your bills now?
+[09:33] CLIENT: No, I do my own bills. Always have. She just drives me to the bank.
+[09:42] WORKER: You do your own bills. And you take care of your own pills, with the pill box?
+[09:54] CLIENT: I do my own pills. Sunday nights, like I said.
+[10:02] WORKER: And getting places — you don't really have a way to get around anymore?
+[10:11] CLIENT: No, I gave up driving last year, but I get around fine. Carol takes me anywhere I need to go, and there's the senior van on Thursdays.
+[10:27] CLIENT: I haven't missed an appointment yet.
+[10:32] WORKER: So you don't drive, and Carol or the senior van gets you where you need to go.
+[10:43] CLIENT: That's right.
+[10:46] WORKER: And money-wise, you're on SSI?
+[10:51] CLIENT: No, regular Social Security. And my pension from the post office. I retired in 2017.
+[11:01] WORKER: Social Security and the pension. Is that enough to get by?
+[11:09] CLIENT: We're fine. Carol pays for groceries now, she insists.
+[11:18] WORKER: Okay. Today I'd like to do the anxiety questionnaire. It's called the GAD-7. Seven questions about the last two weeks.
+[11:28] WORKER: Same as before: not at all, several days, more than half the days, or nearly every day.
+[11:40] CLIENT: Go ahead.
+[11:43] WORKER: Feeling nervous, anxious, or on edge.
+[11:48] CLIENT: Several days. When Carol's late coming home, mostly.
+[11:53] WORKER: Several days. Not being able to stop or control worrying.
+[12:00] CLIENT: More than half the days.
+[12:06] WORKER: So nearly every day for that one?
+[12:12] CLIENT: No — I said more than half. More than half the days.
+[12:20] WORKER: More than half. Sorry. Worrying too much about different things.
+[12:27] CLIENT: More than half. Carol, the house, my knees. Money for the roof.
+[12:35] WORKER: Trouble relaxing.
+[12:39] CLIENT: Several days.
+[12:42] WORKER: Being so restless that it's hard to sit still.
+[12:50] CLIENT: Not at all. I sit still plenty.
+[12:58] WORKER: Becoming easily annoyed or irritable.
+[13:04] CLIENT: Several days. Ask Carol.
+[13:10] WORKER: Feeling afraid, as if something awful might happen.
+[13:18] CLIENT: More than half the days. Ever since Joan. You get the call once, you're always waiting for the next one.
+[13:31] WORKER: That makes a lot of sense. Thank you, Hal. That's the whole questionnaire.
+[13:39] WORKER: I also want to check in about something we talked about last time. Any thoughts of not wanting to be here, or of ending your life?
+[13:52] CLIENT: Sometimes I think I'd like to go be with Joan.
+[13:59] WORKER: So you've been thinking about ending your life.
+[14:04] CLIENT: No, now, that's not what I said. I'm not going to do anything.
+[14:11] CLIENT: I just — some nights I think it'd be all right if I didn't wake up. That I'd be with her. That's all it is.
+[14:26] WORKER: Thank you for explaining. That's different, and I'm glad you told me what it's actually like.
+[14:35] WORKER: How often has that come up in the last two weeks?
+[14:44] CLIENT: A couple of nights. Not most. A couple.
+[14:51] WORKER: A couple of nights. Have you thought about how you might do it — any kind of plan?
+[15:02] CLIENT: No. No plan. I wouldn't do that to Carol.
+[15:09] WORKER: And any intention of acting on those thoughts?
+[15:16] CLIENT: No. None.
+[15:19] WORKER: Have you ever tried to end your life, at any point?
+[15:27] CLIENT: Never.
+[15:32] WORKER: And any thoughts of hurting anybody else?
+[15:37] CLIENT: Good Lord, no.
+[15:41] WORKER: Thank you. Do you still have the safety plan we made together last time?
+[15:49] CLIENT: It's by the phone in the kitchen. Right where you said.
+[15:58] WORKER: Can you read me what's on it?
+[16:04] CLIENT: Warning sign: sitting in the dark after supper. Things to do: walk Biscuit, put the ballgame on. Call Walt, call Carol. And that 988.
+[16:19] WORKER: That's it. Is there anything you'd change on it?
+[16:25] CLIENT: No. It's fine as it is.
+[16:32] WORKER: Good. We've reviewed it, and it still fits. And I'll say it again — 988, call or text, any time, day or night.
+[16:44] CLIENT: 988. I know it by heart now.
+[16:52] WORKER: What's been helping, these last two weeks?
+[16:58] CLIENT: Biscuit. Walt on Sundays. Carol being around.
+[17:05] CLIENT: And the grandson, the Navy one, he video-called me from the ship. That was something.
+[17:14] WORKER: That sounds like it meant a lot.
+[17:19] CLIENT: It did. He looks just like Joan's father.
+[17:25] WORKER: Hal, you've been really honest with me today, and you set me straight on a lot of things. That tells me you're paying attention to your own life.
+[17:41] CLIENT: Somebody has to.
+[17:44] WORKER: Is there anything you want to work on before next time?
+[17:52] CLIENT: I'd like to sleep more than five hours. And eat at the table again, instead of in front of the TV.
+[18:06] WORKER: Eat at the table again. That's a good goal. Could you try it once or twice this week — maybe when Carol's home?
+[18:20] CLIENT: I could try that.
+[18:24] WORKER: I'd like to keep meeting every two weeks. How about Tuesday the 20th, eleven o'clock, by phone again?
+[18:34] CLIENT: The 20th at eleven. I'll be here. I'm always here.
+[18:40] WORKER: Alright. Take care of yourself, Hal. Give Biscuit a pat for me.
+[18:50] CLIENT: I will. Thank you, Denise.

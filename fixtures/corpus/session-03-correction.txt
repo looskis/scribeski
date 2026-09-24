@@ -1,0 +1,193 @@
+# scribeski transcript fixture v1
+# session_date: 2026-10-01
+# started_at: 2026-10-01T09:30:00-07:00
+# modality: video
+# duration_minutes: 25
+# note: synthetic; all people fictional; phone numbers use 555-01xx
+[00:04] WORKER: Morning. Can you see and hear me alright?
+[00:09] CLIENT: Yeah, I got you. Sorry, my camera's kind of dark. Let me — there.
+[00:20] WORKER: That's better. I can see you now. I'm Priya, I'm a social worker here at the county.
+[00:30] CLIENT: Marcus. Nice to meet you.
+[00:34] WORKER: Nice to meet you too. So this is an intake, which just means it's our first meeting and I'll be asking a lot of questions.
+[00:49] CLIENT: Okay. Cool.
+[00:53] WORKER: We're doing this over video. Do I have your verbal consent to meet by video today?
+[01:02] CLIENT: Yeah, that's fine.
+[01:08] WORKER: Thanks. And I use a tool that transcribes our conversation to help with my notes. That okay?
+[01:19] CLIENT: Sure.
+[01:23] WORKER: Everything we talk about is confidential, with a few exceptions — if I'm worried someone's in danger, or a child is being hurt. I'd talk to you about it first.
+[01:40] CLIENT: Got it.
+[01:44] WORKER: Okay. Paperwork first. I've got your case number as AB-207719.
+[01:52] CLIENT: Hold on, I got the letter right here.
+[01:58] CLIENT: It says 207791. AB-207791.
+[02:02] WORKER: Let me look again. Oh — you're right, I flipped the last digits. AB-207791. Thanks for catching that.
+[02:14] CLIENT: No problem. I'm a numbers guy. I used to do inventory.
+[02:23] WORKER: Good thing. Can you tell me your full legal name?
+[02:29] CLIENT: Marcus Bell.
+[02:33] WORKER: And do you go by Marcus?
+[02:39] CLIENT: Marcus is fine.
+[02:44] WORKER: Date of birth?
+[02:50] CLIENT: July 12th, 1991.
+[02:53] CLIENT: No — sorry. '92. 1992. July 12th, 1992. I'm thirty-four.
+[03:00] WORKER: July 12th, 1992. No worries.
+[03:07] CLIENT: My brain's kind of fried lately, I keep mixing stuff up.
+[03:15] WORKER: That's okay. That's part of why we're talking. What pronouns do you use?
+[03:25] CLIENT: He/him.
+[03:28] WORKER: And the best phone number for you?
+[03:36] CLIENT: 951-555-0138.
+[03:40] CLIENT: Wait, sorry — 0183. It's 951-555-0183. I always flip those two.
+[03:48] WORKER: 951-555-0183. Can we leave you a voicemail at that number?
+[03:55] CLIENT: Yeah, voicemail's fine.
+[04:00] WORKER: And your address?
+[04:04] CLIENT: 1457 Birch Avenue, Unit 12.
+[04:08] CLIENT: No, 21. Unit 21. I just moved in, I'm still getting it wrong.
+[04:16] WORKER: Unit 21. And the city?
+[04:21] CLIENT: Riverton. 92509.
+[04:25] WORKER: Riverton, 92509. And what language would you like us to use for sessions?
+[04:35] CLIENT: English.
+[04:38] WORKER: And no interpreter needed?
+[04:44] CLIENT: Nah, no interpreter.
+[04:49] WORKER: How did you find out about us?
+[04:54] CLIENT: I saw a flyer at the library. When I was there using the computers for job stuff. So I just called.
+[05:06] WORKER: Okay. And what kind of health coverage do you have right now?
+[05:14] CLIENT: I had Blue Shield through my job.
+[05:21] CLIENT: But that ended when I got laid off. So right now — nothing. I don't have insurance right now.
+[05:32] WORKER: So currently uninsured.
+[05:35] CLIENT: Yeah. Uninsured.
+[05:40] WORKER: Okay, we'll come back to that, because I might be able to help. Who would you like as an emergency contact?
+[05:51] CLIENT: My brother, Darnell —
+[05:56] CLIENT: Actually, no. Put my cousin Keisha. Darnell never picks up his phone.
+[06:04] WORKER: Keisha. And her last name?
+[06:09] CLIENT: Moore. Keisha Moore.
+[06:15] WORKER: And her number?
+[06:19] CLIENT: 951-555-0129.
+[06:22] WORKER: 951-555-0129. And she's your cousin.
+[06:27] CLIENT: Yeah, my cousin. She's more like a sister, honestly. We grew up in the same house.
+[06:36] WORKER: Okay, I'll put her as your cousin. That's the paperwork. So — what brings you in? What's been going on?
+[06:48] CLIENT: So I got laid off in May.
+[06:54] CLIENT: No, wait — June. June 6th. It was right after my birthday — no, that's July. Man. It was June. The first week of June.
+[07:07] WORKER: June, okay. From where?
+[07:12] CLIENT: Coastline Auto Parts. The distribution center. I was there six years. Receiving, then inventory.
+[07:22] WORKER: Six years is a long time.
+[07:27] CLIENT: Yeah. They got bought out, and the new company cut the whole inventory department.
+[07:37] CLIENT: And since then I've just been — I don't know. Stressed. I'm snapping at people. I can't sleep.
+[07:48] WORKER: Tell me about the sleep.
+[07:54] CLIENT: I get maybe six hours.
+[08:00] CLIENT: Nah, that's generous. Four. Four hours, most nights.
+[08:07] WORKER: Four hours. What keeps you up?
+[08:13] CLIENT: Money. Just running numbers in my head. What if the unemployment runs out, what if I can't find anything.
+[08:24] WORKER: How would you describe your mood these days, in your own words?
+[08:33] CLIENT: Fine.
+[08:38] CLIENT: Nah, not fine. Stressed. Kind of flat, I guess. Like nothing's that fun.
+[08:47] WORKER: Stressed, and kind of flat.
+[08:52] CLIENT: Yeah.
+[08:55] WORKER: You said you just moved. Where are you living now?
+[09:03] CLIENT: I rent a room in a house. Two other guys live there. We each got our own room.
+[09:13] WORKER: How's that working out?
+[09:18] CLIENT: It's alright. They're quiet. The rent's cheap, and it's covered through December with the unemployment, so I'm okay there for now.
+[09:30] WORKER: Okay. And you mentioned unemployment — is that your main income?
+[09:39] CLIENT: Yeah. I applied in June, and I've been getting it since July.
+[09:48] CLIENT: I did some DoorDash in August, but my car died, so that's done. That was it.
+[09:57] WORKER: So right now it's just the unemployment.
+[10:04] CLIENT: Just the unemployment.
+[10:07] WORKER: And how are you getting around without the car?
+[10:14] CLIENT: The bus. Which is rough. It's every forty minutes, and half the time it doesn't show. I missed an interview because of it.
+[10:26] WORKER: That's really frustrating.
+[10:29] CLIENT: Yeah. That one hurt.
+[10:36] WORKER: Do you have any kids?
+[10:40] CLIENT: Yeah, my daughter. Aaliyah. She's six.
+[10:46] CLIENT: She lives with her mom. I get her every other weekend.
+[10:53] WORKER: How are things with her mom?
+[10:58] CLIENT: Good, actually. We're good. We co-parent. Nothing formal, no court or anything, we just work it out.
+[11:09] CLIENT: But last month I had to cancel a weekend because I didn't have the gas money to go get her. Before the car died.
+[11:22] CLIENT: That — that messed me up. She cried on the phone.
+[11:31] WORKER: That sounds painful for both of you.
+[11:38] CLIENT: Yeah. I don't ever want to do that again.
+[11:47] WORKER: Who do you lean on, when things get hard?
+[11:55] CLIENT: Keisha. For real, she's my person. She feeds me every Sunday.
+[12:04] CLIENT: And my boy Terrell, from Coastline. He got cut too. We go to the gym, we send each other job stuff.
+[12:17] WORKER: That's good. Are you connected to any church, or groups, anything like that?
+[12:25] CLIENT: Nah. Not really my thing.
+[12:29] WORKER: Okay. I'm going to ask about alcohol and drugs, same as I ask everybody. Do you drink?
+[12:39] CLIENT: Yeah, a little. Maybe once a week.
+[12:44] CLIENT: Well — if I'm being honest, more like two, three times a week. Since the layoff. A couple beers.
+[12:54] WORKER: Two or three times a week, a couple of beers. Thanks for being straight with me.
+[13:04] CLIENT: I mean, if I'm here I might as well be honest.
+[13:11] WORKER: I appreciate that. Any cannabis, or other drugs?
+[13:19] CLIENT: Weed, I used to. But I haven't since like March. I stopped when I was applying for jobs, 'cause of the drug tests.
+[13:32] WORKER: Nothing since March. Anything else?
+[13:38] CLIENT: No. Nothing else.
+[13:41] WORKER: Tobacco or nicotine?
+[13:47] CLIENT: I vape. Every day, yeah.
+[13:51] WORKER: Okay. And any legal stuff going on — court, probation, anything like that?
+[14:00] CLIENT: No. Nothing like that.
+[14:06] WORKER: Do you have a doctor you see?
+[14:11] CLIENT: Not since I lost the insurance. I had one through work, but I haven't been.
+[14:20] WORKER: That's one reason I want to connect you with our benefits team. They can help you apply for Medi-Cal.
+[14:30] CLIENT: For real? I thought I made too much.
+[14:38] WORKER: With unemployment only, you may well qualify. They'll check. I'm going to put in a referral to the benefits team today.
+[14:51] CLIENT: Okay. Yeah. That'd be good.
+[14:57] WORKER: I'd like to do a short questionnaire called the PHQ-9. Nine questions about the last two weeks.
+[15:07] WORKER: For each one: not at all, several days, more than half the days, or nearly every day.
+[15:18] CLIENT: Okay.
+[15:21] WORKER: Little interest or pleasure in doing things.
+[15:29] CLIENT: Several days. I still like the gym.
+[15:35] WORKER: Several days. Feeling down, depressed, or hopeless.
+[15:41] CLIENT: More than half the days.
+[15:46] WORKER: Trouble falling or staying asleep, or sleeping too much.
+[15:52] CLIENT: More than half.
+[15:56] WORKER: Feeling tired or having little energy.
+[16:01] CLIENT: Several days.
+[16:04] CLIENT: Actually no — more than half. More than half the days. I'm dragging most days.
+[16:14] WORKER: More than half the days. Poor appetite or overeating.
+[16:22] CLIENT: Not at all. I eat fine.
+[16:28] WORKER: Feeling bad about yourself, or that you're a failure, or have let yourself or your family down.
+[16:39] CLIENT: More than half the days. The Aaliyah thing.
+[16:44] WORKER: Trouble concentrating on things, like reading or watching TV.
+[16:50] CLIENT: Several days.
+[16:55] WORKER: Moving or speaking so slowly other people could notice, or being so fidgety or restless you're moving around more than usual.
+[17:06] CLIENT: Not at all.
+[17:11] WORKER: Thoughts that you'd be better off dead, or of hurting yourself in some way.
+[17:22] CLIENT: Not at all. No.
+[17:25] WORKER: And how difficult have these problems made it to do your work, take care of things at home, or get along with people? Not difficult, somewhat, very, or extremely difficult.
+[17:43] CLIENT: Somewhat difficult. I'm snapping at my roommates, like I said.
+[17:51] WORKER: Somewhat difficult. Thank you.
+[17:58] WORKER: I ask everyone this directly. Have you had any thoughts of ending your life?
+[18:08] CLIENT: No. Not me. I've got my daughter.
+[18:15] WORKER: Have you ever tried to hurt yourself or end your life in the past?
+[18:24] CLIENT: Never.
+[18:27] WORKER: And any thoughts of hurting someone else?
+[18:34] CLIENT: No. I get irritated, but no. Nothing like that.
+[18:42] WORKER: Thank you. I'll give you this number just so you have it — 988. You can call or text any time, day or night, if things ever get really bad.
+[18:58] CLIENT: 988. Got it.
+[19:02] WORKER: There's another questionnaire I usually do, about anxiety. Seven questions.
+[19:09] CLIENT: Can we skip that one? I'm kind of wiped.
+[19:17] WORKER: Sure, we'll skip it. That's completely your call.
+[19:24] CLIENT: Thanks.
+[19:27] WORKER: What would you say are some of your strengths?
+[19:34] CLIENT: I'm reliable. Six years, I never missed a shift.
+[19:42] CLIENT: And I'm good with details. Numbers, inventory. You saw.
+[19:48] WORKER: I did see. You caught my typo on the case number.
+[19:57] CLIENT: Ha. Yeah.
+[20:01] WORKER: What about the job search — what have you been doing?
+[20:08] CLIENT: Applying online. Like five a day. And I want to get my forklift certification. The workforce center has a class in November.
+[20:20] WORKER: That sounds like a solid plan. Forklift certification opens up a lot of warehouse jobs.
+[20:31] CLIENT: That's what I'm thinking. It pays better too.
+[20:39] WORKER: If things went well over the next couple months, what would be different? What's your goal?
+[20:50] CLIENT: Get a job by Christmas and get my sleep back.
+[20:59] WORKER: Get a job by Christmas and get your sleep back. Good. Let's work on both.
+[21:10] WORKER: A couple of things that might help the sleep. Try putting the phone down an hour before bed, and if you're running numbers, write them down on paper and leave them for the morning.
+[21:27] CLIENT: I can try that.
+[21:32] WORKER: So, plan. I'm referring you to the benefits team for the Medi-Cal application. They'll call you this week.
+[21:42] CLIENT: Okay.
+[21:45] WORKER: You're going to look into the forklift class at the workforce center.
+[21:54] CLIENT: Yeah, I'll sign up.
+[22:00] WORKER: And I'd like to meet weekly for now. How about next Wednesday, the 7th, at 9:30?
+[22:11] CLIENT: The 7th — oh, I can't. I've got an interview that morning. A real one, in person.
+[22:22] WORKER: That's great news. What about Thursday the 8th, same time?
+[22:28] CLIENT: Thursday the 8th works.
+[22:33] WORKER: Thursday the 8th at 9:30. Good luck at the interview.
+[22:39] CLIENT: Thanks. I'll need it.
+[22:45] WORKER: Any questions for me before we stop?
+[22:51] CLIENT: No. This was good. Better than I thought.
+[22:58] WORKER: I'm glad. Take care, Marcus. See you on the 8th.
+[23:05] CLIENT: See you.

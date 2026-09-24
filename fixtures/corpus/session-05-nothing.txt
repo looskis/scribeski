@@ -1,0 +1,62 @@
+# scribeski transcript fixture v1
+# session_date: 2026-10-14
+# started_at: 2026-10-14T16:00:00-07:00
+# modality: phone
+# duration_minutes: 8
+# note: synthetic; all people fictional; phone numbers use 555-01xx
+[00:04] WORKER: Hi, is this Aisha?
+[00:07] CLIENT: Yeah, hi. Who's this?
+[00:14] WORKER: It's Jordan, from the county. This is just the quick follow-up check-in call we talked about. Is now still a good time?
+[00:26] CLIENT: Oh — yeah. Sorry, I didn't recognize the number. I'm on my break, so I've got like ten minutes.
+[00:37] WORKER: That's plenty. I'll keep it short. I just wanted to see how things went with the stuff from last week.
+[00:51] CLIENT: Okay.
+[00:54] WORKER: Did you make it to the food pantry?
+[01:01] CLIENT: Yeah, I went Saturday morning. There was a line, but it was fine. They gave us a whole box.
+[01:13] WORKER: Oh, good. Was it helpful?
+[01:20] CLIENT: Yeah. Rice, beans, some vegetables, cereal. That stretched us a while.
+[01:28] CLIENT: The volunteers were really nice, too. One of them helped me carry it to the bus stop.
+[01:40] WORKER: Oh, that's kind.
+[01:45] CLIENT: I didn't think I'd like going. I was kind of embarrassed. But it wasn't like that.
+[01:56] WORKER: I'm glad it felt okay. A lot of people feel that way the first time.
+[02:06] WORKER: And the housing navigator — has anyone called you?
+[02:12] CLIENT: They called Monday. A lady named Ms. Ortega.
+[02:20] CLIENT: I have an appointment with her on the 21st. Next Wednesday.
+[02:29] WORKER: That's great. That's quick, actually.
+[02:33] CLIENT: Yeah, I was surprised. She said to bring my lease and my pay stubs.
+[02:43] WORKER: Do you have those together?
+[02:48] CLIENT: Most of it. I have to print two of the pay stubs. I'll do it at the library.
+[03:01] WORKER: The one on Fifth is open till eight on weekdays, if that helps.
+[03:11] CLIENT: Oh, okay. I didn't know that. I thought it closed at six.
+[03:19] WORKER: They changed it over the summer. Printing's ten cents a page.
+[03:27] CLIENT: Okay. That I can do.
+[03:34] WORKER: Did Ms. Ortega say what the appointment would cover?
+[03:42] CLIENT: Kind of. She said they'd look at my rent and what I make, and see what programs I qualify for.
+[03:55] CLIENT: Do you know if they help with, like, deposits? For if I find a cheaper place?
+[04:06] WORKER: It depends on the program. Some of them do deposits. I can't promise, but it's a good question to ask her.
+[04:20] CLIENT: Okay. I'll write it down.
+[04:27] WORKER: Write down any other questions too. It's easy to forget in the moment.
+[04:36] CLIENT: Yeah, I always do that. I get in there and my mind goes blank.
+[04:45] WORKER: A list helps. Bring it on your phone or on paper, whatever's easier.
+[04:55] CLIENT: Okay.
+[04:58] WORKER: Anything else happen since we talked?
+[05:03] CLIENT: Oh — I finally got my CalFresh card. It came in the mail Friday.
+[05:12] WORKER: That's good news. So that's active now?
+[05:18] CLIENT: Yeah, I used it already. At the store Sunday.
+[05:24] WORKER: Good. That should take some of the pressure off.
+[05:33] CLIENT: A little. Yeah.
+[05:38] WORKER: How has your mood been this week?
+[05:45] CLIENT: Honestly? Up and down. Better than last time, though.
+[05:54] WORKER: Up and down, but better than last time.
+[05:59] CLIENT: Yeah. Some days are okay. I'm just tired.
+[06:05] WORKER: I hear that. Last time your PHQ-9 was a 14. We'll do that one again at our regular session, not on a break call.
+[06:20] CLIENT: Okay. That's fine.
+[06:24] WORKER: Is there anything urgent you need from me before Monday?
+[06:32] CLIENT: No. I think I'm okay for now.
+[06:37] WORKER: Okay. Anything you want me to help you get ready for the housing appointment?
+[06:48] CLIENT: No, I think I've got it. Ms. Ortega told me the list.
+[06:55] WORKER: Alright. Then we're still on for our regular weekly session, Monday the 19th, at four?
+[07:05] CLIENT: Monday at four. Yep.
+[07:09] WORKER: Great. I'll call you then. Good luck with the pay stubs.
+[07:18] CLIENT: Thanks. I gotta get back.
+[07:25] WORKER: Go. Take care, Aisha.
+[07:30] CLIENT: Bye.

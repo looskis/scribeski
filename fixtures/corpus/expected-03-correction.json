@@ -1,0 +1,590 @@
+{
+  "$comment": [
+    "Scored ground truth for fixtures/corpus/session-03-correction.txt (video intake; the client repeatedly self-corrects facts) against the mock EHR (fixtures/mock-ehr/FIELDS.md keys and option values).",
+    "Every one of the 107 FIELDS.md keys appears in exactly one scoring bucket: must_fill, acceptable, checkbox_constraints, text_match, narrative, derived (non-null entries), clinician_only, must_leave_blank, or not_scored. The field with no id/name is keyed by its profiler hash, 'f_f79934c38a'.",
+    "Exception, by design: a null derived entry (instrument not done or incomplete) is an assertion that the page-computed value must stay empty; that key is ALSO in must_leave_blank, which is the bucket that owns it.",
+    "must_fill: exact value. Strings for text/select/radio/date (radio values are '0'..'3'); a sorted array of option values for checkbox groups.",
+    "acceptable: any listed value passes; null means left blank / insufficient_evidence.",
+    "checkbox_constraints: the filled array must contain every must_include value and none of the must_exclude values; other options are unscored. An empty must_include means blank also passes.",
+    "text_match: normalize 'digits' strips everything except 0-9; 'case_insensitive' case-folds, strips punctuation and collapses whitespace; 'date' parses to ISO YYYY-MM-DD. match 'equals' (default) compares the normalized strings; match 'contains' requires every string in value (string or array) to be a substring of the normalized fill.",
+    "narrative: scored by concept, not wording (keyword or LLM judge). Every must_mention concept should appear; any must_not_mention concept is a violation. Every sentence must also carry a verified citation (DESIGN §7).",
+    "derived: computed in code from the filled items and asserted after fill. Never extracted by the model.",
+    "clinician_only: never sent to the model; must surface as 'needs your judgement' and stay blank.",
+    "must_leave_blank: any non-empty value is a hard gate violation (BUILD_PLAN P1.6). For checkbox groups, blank means an empty array.",
+    "risk_fields: zero errors allowed (hard gate). Each is scored under whichever bucket owns it above.",
+    "not_scored: session metadata the app supplies (not extracted from the transcript).",
+    "Trap class: self-correction. Whenever the client (or the worker, on the case number) corrects a fact, the expected value is the corrected one, and a quote of only the superseded utterance should not be accepted as evidence. Each correction has its own trap."
+  ],
+  "schema": "scribeski.expected-extraction/1",
+  "transcript": "session-03-correction.txt",
+  "form": "mock-ehr",
+  "must_fill": {
+    "case_number": "AB-207791",
+    "pronouns": "HE_HIM",
+    "contact_ok_voicemail": "YES",
+    "language_combo": "ENGLISH",
+    "interpreter_needed": "NO",
+    "session_type": "INTAKE",
+    "referral_source": "SELF",
+    "insurance_type": "UNINSURED",
+    "emergency_contact_relationship": "OTHER",
+    "consent_telehealth": "VERBAL",
+    "phq9_1": "1",
+    "phq9_2": "2",
+    "phq9_3": "2",
+    "phq9_4": "2",
+    "phq9_5": "0",
+    "phq9_6": "2",
+    "phq9_7": "1",
+    "phq9_8": "0",
+    "phq9_9": "0",
+    "phq9_difficulty": "SOMEWHAT",
+    "gad7_status": "DECLINED",
+    "si_ideation": "NONE",
+    "si_prior_attempts": "NONE",
+    "hi_ideation": "NONE",
+    "housing_status": "STABLE",
+    "living_situation": "ROOMMATES",
+    "employment_status": "UNEMPLOYED",
+    "transportation": "UNRELIABLE",
+    "legal_involvement": "NONE",
+    "children_in_home": "NO",
+    "alcohol_frequency": "TWO_TO_THREE_PER_WEEK",
+    "tobacco_use": "CURRENT",
+    "referrals_made": [
+      "BENEFITS"
+    ],
+    "follow_up_interval": "WEEKLY"
+  },
+  "acceptable": {
+    "client_preferred_name": [
+      null,
+      "Marcus"
+    ],
+    "si_frequency": [
+      null,
+      "NONE"
+    ],
+    "si_plan": [
+      null,
+      "NO",
+      "NOT_ASSESSED"
+    ],
+    "si_intent": [
+      null,
+      "NO",
+      "NOT_ASSESSED"
+    ],
+    "si_means": [
+      null,
+      "NOT_ASSESSED"
+    ],
+    "hi_plan": [
+      null,
+      "NO",
+      "NOT_ASSESSED"
+    ],
+    "adl_bathing": [
+      null,
+      "NOT_ASSESSED"
+    ],
+    "adl_dressing": [
+      null,
+      "NOT_ASSESSED"
+    ],
+    "adl_eating": [
+      null,
+      "NOT_ASSESSED"
+    ],
+    "adl_mobility": [
+      null,
+      "NOT_ASSESSED"
+    ],
+    "iadl_finances": [
+      null,
+      "NOT_ASSESSED"
+    ],
+    "iadl_transport": [
+      null,
+      "NOT_ASSESSED",
+      "INDEPENDENT"
+    ],
+    "iadl_medications": [
+      null,
+      "NOT_ASSESSED"
+    ]
+  },
+  "checkbox_constraints": {
+    "protective_factors": {
+      "must_include": [
+        "FAMILY_CONNECTION"
+      ],
+      "must_exclude": [
+        "CHILDREN_IN_HOME",
+        "PETS",
+        "RELIGIOUS_BELIEFS"
+      ]
+    },
+    "crisis_resources": {
+      "must_include": [
+        "LINE_988"
+      ],
+      "must_exclude": [
+        "COUNTY_CRISIS",
+        "MOBILE_CRISIS",
+        "NONE",
+        "WARMLINE"
+      ]
+    },
+    "income_sources": {
+      "must_include": [
+        "UNEMPLOYMENT_INSURANCE"
+      ],
+      "must_exclude": [
+        "CHILD_SUPPORT",
+        "NONE",
+        "SNAP",
+        "SSDI",
+        "SSI",
+        "TANF",
+        "WAGES"
+      ]
+    },
+    "substances": {
+      "must_include": [
+        "ALCOHOL"
+      ],
+      "must_exclude": [
+        "CANNABIS",
+        "NONE_REPORTED",
+        "OPIOIDS",
+        "SEDATIVES",
+        "STIMULANTS"
+      ]
+    },
+    "support_system": {
+      "must_include": [
+        "FAMILY",
+        "FRIENDS"
+      ],
+      "must_exclude": [
+        "FAITH_COMMUNITY",
+        "NONE",
+        "PEER_GROUP"
+      ]
+    }
+  },
+  "text_match": {
+    "client_first_name": {
+      "normalize": "case_insensitive",
+      "value": "Marcus"
+    },
+    "client_last_name": {
+      "normalize": "case_insensitive",
+      "value": "Bell"
+    },
+    "client_dob": {
+      "normalize": "date",
+      "value": "1992-07-12"
+    },
+    "contact_phone": {
+      "normalize": "digits",
+      "value": "9515550183"
+    },
+    "address_line": {
+      "normalize": "case_insensitive",
+      "match": "contains",
+      "value": [
+        "1457 birch",
+        "21"
+      ]
+    },
+    "address_city": {
+      "normalize": "case_insensitive",
+      "value": "Riverton"
+    },
+    "address_zip": {
+      "normalize": "digits",
+      "value": "92509"
+    },
+    "emergency_contact_name": {
+      "normalize": "case_insensitive",
+      "value": "Keisha Moore"
+    },
+    "emergency_contact_phone": {
+      "normalize": "digits",
+      "value": "9515550129"
+    },
+    "sleep_hours": {
+      "normalize": "digits",
+      "value": "4"
+    },
+    "mse_mood": {
+      "normalize": "case_insensitive",
+      "match": "contains",
+      "value": "stressed"
+    },
+    "client_goal": {
+      "normalize": "case_insensitive",
+      "match": "contains",
+      "value": [
+        "job by christmas",
+        "sleep back"
+      ]
+    },
+    "next_appointment": {
+      "normalize": "date",
+      "value": "2026-10-08"
+    }
+  },
+  "narrative": {
+    "presenting_problem": {
+      "must_mention": [
+        "found the agency through a library flyer and called himself",
+        "laid off in June (first week; June 6) from Coastline Auto Parts distribution center after six years",
+        "stress and irritability (snapping at people)",
+        "poor sleep, about 4 hours a night, worrying about money",
+        "mood stressed and flat",
+        "had to cancel a weekend with his daughter for lack of gas money"
+      ],
+      "must_not_mention": [
+        "laid off in May",
+        "sleeping six hours",
+        "suicidal ideation",
+        "anxiety questionnaire results",
+        "any diagnosis"
+      ]
+    },
+    "psychosocial_history": {
+      "must_mention": [
+        "rents a room in a house with two roommates; rent covered through December",
+        "unemployment insurance since July (applied in June)",
+        "did DoorDash in August, stopped when his car died",
+        "no car; relies on an unreliable bus (missed an interview)",
+        "daughter Aaliyah, 6, lives with her mother; every other weekend; informal co-parenting, no court",
+        "cousin Keisha is his main support; friend Terrell from Coastline",
+        "six years at Coastline in receiving and inventory",
+        "lost employer insurance (Blue Shield) with the layoff; currently uninsured, no current doctor"
+      ],
+      "must_not_mention": [
+        "a brother as his support or emergency contact",
+        "current wages or gig income",
+        "custody case, family court or probation",
+        "church or faith community",
+        "cannabis use in the past month"
+      ]
+    },
+    "interventions": {
+      "must_mention": [
+        "PHQ-9 administered",
+        "direct suicide and homicide risk inquiry",
+        "988 provided",
+        "referral to benefits team for a Medi-Cal application",
+        "sleep suggestions (phone down before bed, write worries down)",
+        "strengths and goal exploration; supported forklift certification plan"
+      ],
+      "must_not_mention": [
+        "GAD-7 administered or scored",
+        "safety plan",
+        "psychiatry or substance-use treatment referral",
+        "a stated risk level"
+      ]
+    },
+    "plan": {
+      "must_mention": [
+        "benefits team referral for Medi-Cal; they will call this week",
+        "client will look into / sign up for the forklift certification class at the workforce center",
+        "weekly sessions; next appointment Thursday 2026-10-08 at 9:30 (moved from the 7th for his interview)"
+      ],
+      "must_not_mention": [
+        "next appointment on October 7",
+        "GAD-7 next session",
+        "substance-use treatment referral"
+      ]
+    },
+    "client_strengths": {
+      "must_mention": [
+        "reliable (six years without missing a shift)",
+        "detail-oriented (caught the case-number error)",
+        "honest and engaged",
+        "active job search and plan for certification",
+        "committed father; supportive cousin and friend"
+      ],
+      "must_not_mention": [
+        "faith or church",
+        "pets"
+      ]
+    },
+    "risk_narrative": {
+      "must_mention": [
+        "PHQ-9 item 9: not at all",
+        "denies thoughts of ending his life (cites his daughter)",
+        "no prior attempts",
+        "denies homicidal ideation (irritable but no thoughts of harm)",
+        "988 provided"
+      ],
+      "must_not_mention": [
+        "an overall risk level (low / moderate / high / imminent)",
+        "access to lethal means (never assessed)",
+        "a safety plan",
+        "suicidal ideation, plan or intent"
+      ]
+    }
+  },
+  "derived": {
+    "phq9_score": "10",
+    "phq9_severity": "MODERATE",
+    "gad7_score": null,
+    "gad7_severity": null
+  },
+  "clinician_only": [
+    "risk_level",
+    "supervisor_consult",
+    "mse_appearance",
+    "mse_affect",
+    "mse_thought_process",
+    "mse_orientation",
+    "mse_insight",
+    "mse_judgment",
+    "level_of_care",
+    "diagnosis_impression",
+    "note_attestation"
+  ],
+  "must_leave_blank": [
+    "gender_identity",
+    "contact_email",
+    "insurance_member_id",
+    "release_of_info",
+    "gad7_1",
+    "gad7_2",
+    "gad7_3",
+    "gad7_4",
+    "gad7_5",
+    "gad7_6",
+    "gad7_7",
+    "gad7_score",
+    "gad7_severity",
+    "safety_plan",
+    "food_security",
+    "substance_tx_history",
+    "pcp_name",
+    "current_medications",
+    "medication_adherence",
+    "medical_conditions"
+  ],
+  "not_scored": [
+    "session_date",
+    "session_modality",
+    "f_f79934c38a"
+  ],
+  "risk_fields": [
+    "si_ideation",
+    "si_frequency",
+    "si_plan",
+    "si_intent",
+    "si_means",
+    "si_prior_attempts",
+    "hi_ideation",
+    "hi_plan",
+    "safety_plan",
+    "risk_narrative"
+  ],
+  "traps": [
+    {
+      "id": "case_number_worker_misread",
+      "description": "The worker reads 'AB-207719'; the client reads 'AB-207791' off the letter; the worker checks and confirms 'AB-207791'.",
+      "fields": [
+        "case_number"
+      ],
+      "rule": "case_number = AB-207791. The first reading is superseded."
+    },
+    {
+      "id": "dob_year_corrected",
+      "description": "'July 12th, 1991.' then 'No — sorry. '92. 1992. July 12th, 1992. I'm thirty-four.'",
+      "fields": [
+        "client_dob"
+      ],
+      "rule": "client_dob = 1992-07-12."
+    },
+    {
+      "id": "phone_digits_corrected",
+      "description": "'951-555-0138.' then 'Wait, sorry — 0183. It's 951-555-0183.'",
+      "fields": [
+        "contact_phone"
+      ],
+      "rule": "contact_phone digits = 9515550183."
+    },
+    {
+      "id": "unit_corrected",
+      "description": "'1457 Birch Avenue, Unit 12.' then 'No, 21. Unit 21.'",
+      "fields": [
+        "address_line"
+      ],
+      "rule": "address_line contains 1457 Birch and unit 21, never unit 12."
+    },
+    {
+      "id": "emergency_contact_switched",
+      "description": "'My brother, Darnell —' then 'Actually, no. Put my cousin Keisha.' She is 'more like a sister' but the worker records her as his cousin.",
+      "fields": [
+        "emergency_contact_name",
+        "emergency_contact_phone",
+        "emergency_contact_relationship"
+      ],
+      "rule": "Keisha Moore, 9515550129, relationship OTHER (cousin is not an option). Not Darnell; not SIBLING."
+    },
+    {
+      "id": "layoff_month_corrected",
+      "description": "'I got laid off in May.' then 'No, wait — June. June 6th.' with a further false start about his birthday month.",
+      "fields": [
+        "presenting_problem",
+        "psychosocial_history"
+      ],
+      "rule": "Narratives say June. May must not appear as the layoff month; July is his birthday, not the layoff."
+    },
+    {
+      "id": "sleep_hours_corrected",
+      "description": "'I get maybe six hours.' then 'Nah, that's generous. Four.'",
+      "fields": [
+        "sleep_hours"
+      ],
+      "rule": "sleep_hours = 4."
+    },
+    {
+      "id": "mood_fine_retracted",
+      "description": "'Fine.' then 'Nah, not fine. Stressed. Kind of flat, I guess.'",
+      "fields": [
+        "mse_mood"
+      ],
+      "rule": "mse_mood contains 'stressed'; a bare 'Fine' is wrong."
+    },
+    {
+      "id": "alcohol_frequency_corrected",
+      "description": "'Maybe once a week.' then 'if I'm being honest, more like two, three times a week.'",
+      "fields": [
+        "alcohol_frequency",
+        "substances"
+      ],
+      "rule": "alcohol_frequency = TWO_TO_THREE_PER_WEEK; substances includes ALCOHOL."
+    },
+    {
+      "id": "phq9_item4_corrected",
+      "description": "Item 4: 'Several days.' then 'Actually no — more than half. More than half the days.'",
+      "fields": [
+        "phq9_4",
+        "phq9_score",
+        "phq9_severity"
+      ],
+      "rule": "phq9_4 = 2; derived total 10 (MODERATE). Using the first answer gives 9 (MILD) and flips the band."
+    },
+    {
+      "id": "appointment_rescheduled",
+      "description": "Worker proposes Wednesday the 7th; the client has an interview; they settle on Thursday the 8th.",
+      "fields": [
+        "next_appointment",
+        "follow_up_interval"
+      ],
+      "rule": "next_appointment = 2026-10-08; follow_up_interval = WEEKLY."
+    },
+    {
+      "id": "insurance_past_vs_current",
+      "description": "'I had Blue Shield through my job. But that ended when I got laid off.'",
+      "fields": [
+        "insurance_type",
+        "referrals_made"
+      ],
+      "rule": "insurance_type = UNINSURED (not PRIVATE). referrals_made = [BENEFITS] for the Medi-Cal application."
+    },
+    {
+      "id": "past_income_and_cannabis",
+      "description": "DoorDash in August stopped when the car died; cannabis stopped in March. Both are outside the current / past-30-days window.",
+      "fields": [
+        "income_sources",
+        "substances"
+      ],
+      "rule": "income_sources includes UNEMPLOYMENT_INSURANCE and excludes WAGES; substances excludes CANNABIS."
+    },
+    {
+      "id": "daughter_not_in_home",
+      "description": "Daughter Aaliyah lives with her mother; he has her every other weekend. 'No court or anything.'",
+      "fields": [
+        "children_in_home",
+        "protective_factors",
+        "legal_involvement"
+      ],
+      "rule": "children_in_home = NO; protective_factors includes FAMILY_CONNECTION and excludes CHILDREN_IN_HOME; legal_involvement = NONE (asked and denied)."
+    },
+    {
+      "id": "gad7_declined_by_client",
+      "description": "'Can we skip that one? I'm kind of wiped.' The worker agrees.",
+      "fields": [
+        "gad7_status",
+        "gad7_1",
+        "gad7_2",
+        "gad7_3",
+        "gad7_4",
+        "gad7_5",
+        "gad7_6",
+        "gad7_7",
+        "gad7_score",
+        "gad7_severity"
+      ],
+      "rule": "gad7_status = DECLINED (the client declined; not DEFERRED). Items, score and severity stay blank."
+    },
+    {
+      "id": "no_doctor_no_meds",
+      "description": "He has no current doctor; medications and medical conditions are never discussed.",
+      "fields": [
+        "pcp_name",
+        "current_medications",
+        "medication_adherence",
+        "medical_conditions"
+      ],
+      "rule": "All four stay blank. NONE_PRESCRIBED is not supported: nobody asked."
+    },
+    {
+      "id": "phq9_total_not_spoken",
+      "description": "The total is never said.",
+      "fields": [
+        "phq9_score",
+        "phq9_severity"
+      ],
+      "rule": "Derived in code: 10, MODERATE."
+    },
+    {
+      "id": "lethal_means_not_asked",
+      "description": "Means are never asked.",
+      "fields": [
+        "si_means",
+        "risk_narrative"
+      ],
+      "rule": "si_means blank or NOT_ASSESSED; risk_narrative says nothing about means."
+    },
+    {
+      "id": "risk_level_never_stated",
+      "description": "No overall risk level is stated.",
+      "fields": [
+        "risk_level",
+        "risk_narrative"
+      ],
+      "rule": "risk_level stays blank (clinician_only); risk_narrative states no level."
+    },
+    {
+      "id": "worker_only_metadata",
+      "description": "Case number confirmation, video consent, intake, the benefits referral, 988, weekly follow-up and the next appointment are worker statements (some confirmed by the client).",
+      "fields": [
+        "case_number",
+        "consent_telehealth",
+        "session_type",
+        "referrals_made",
+        "crisis_resources",
+        "follow_up_interval",
+        "next_appointment"
+      ],
+      "rule": "Must be filled (evidence_speaker: any)."
+    }
+  ],
+  "needs_review": [
+    "iadl_transport"
+  ],
+  "$rulings": "Rulings by the product owner, 2026-09-22 (see eval/extraction-2026-09-22.md). needs_review: accepted values that rest on an inference; they count as correct, and the review HUD must flag them."
+}

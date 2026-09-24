@@ -1,0 +1,157 @@
+# scribeski transcript fixture v1
+# session_date: 2026-10-22
+# started_at: 2026-10-22T15:00:00-07:00
+# modality: video
+# duration_minutes: 20
+# note: synthetic; all people fictional; phone numbers use 555-01xx
+[00:04] WORKER: Hi, Brianna? Can you hear me?
+[00:08] CLIENT: Hi, yes. Sorry, I'm in my car in the parking lot at work. It's the only quiet place I have.
+[00:22] WORKER: That's totally fine. As long as you're somewhere private.
+[00:28] CLIENT: It's private. Just me and a lot of cars.
+[00:34] WORKER: Okay. I'm Marisa, I'm a social worker with the county. This is an intake appointment, so it's our first meeting, and I'll ask a lot of questions.
+[00:50] CLIENT: Okay. I'm ready. I think.
+[00:55] WORKER: We're meeting by video. Do I have your verbal consent to do this session by video?
+[01:05] CLIENT: Yes.
+[01:09] WORKER: And I use a tool that transcribes our conversation for my notes. Is that alright?
+[01:20] CLIENT: That's fine.
+[01:24] WORKER: What we talk about is confidential. The exceptions are if I think someone is in danger, or a child is being hurt. I'd always try to talk with you first.
+[01:41] CLIENT: Okay. Yeah. I understand.
+[01:46] WORKER: I have your case number as AB-440126. Does that sound right?
+[01:55] CLIENT: AB-440126. Yes.
+[01:58] WORKER: And your full legal name?
+[02:03] CLIENT: Brianna Kowalski.
+[02:08] WORKER: Date of birth?
+[02:13] CLIENT: May 21st, 1995.
+[02:16] WORKER: Best phone number for you?
+[02:21] CLIENT: 626-555-0172.
+[02:25] WORKER: Can we leave a voicemail at that number?
+[02:33] CLIENT: No — please don't leave voicemails. Text is better. My phone's on the counter at home a lot and my mom listens to everything.
+[02:48] WORKER: No voicemail, text is better. Got it. And your address?
+[02:54] CLIENT: 1920 Sycamore Lane, in Glenmore. 91776.
+[03:00] WORKER: What language would you like for sessions?
+[03:07] CLIENT: English.
+[03:11] WORKER: How did you end up reaching out to us?
+[03:19] CLIENT: I called myself. I found you on the county website after a really bad week. Nobody sent me.
+[03:30] WORKER: I'm glad you called. What kind of health insurance do you have?
+[03:40] CLIENT: Anthem. Through my job.
+[03:46] CLIENT: My mom's on Medicare, if that matters. But mine's through work.
+[03:53] WORKER: Yours is through work, okay. And an emergency contact?
+[04:00] CLIENT: Not my sister.
+[04:05] CLIENT: Put my friend Ana. Ana Delgado. 626-555-0141.
+[04:11] WORKER: Ana Delgado, 626-555-0141. And she's a friend.
+[04:16] CLIENT: My best friend. Since high school.
+[04:21] WORKER: Okay. So tell me what's been going on — what made this week so bad?
+[04:31] CLIENT: Where do I even start. Okay. So my mom lives with us. She has diabetes, really bad. She lost two toes last year.
+[04:43] CLIENT: And she won't take her insulin right. She skips it, she eats whatever, and then her sugar's in the four hundreds and I'm the one driving her to urgent care.
+[05:01] WORKER: That sounds exhausting.
+[05:06] CLIENT: It is. And my sister, Jen — Jen drinks. A lot. Like, every day. She got a DUI in the spring.
+[05:19] CLIENT: And last month she called me at two in the morning and said she wanted to die.
+[05:31] WORKER: Oh, Brianna. That must have been terrifying.
+[05:36] CLIENT: I drove over there. I stayed with her all night. And then I went to work the next day.
+[05:47] CLIENT: She's in a residential rehab now. She started two weeks ago. So she's safe right now, at least.
+[05:58] WORKER: I'm glad she's safe and getting treatment. How are you doing with all of it?
+[06:08] CLIENT: Me? I'm just — stretched thin. That's the only way to say it.
+[06:16] WORKER: Stretched thin.
+[06:19] CLIENT: Everybody needs me. Mom needs me, Jen needs me, Leo needs me. And I'm at work forty hours a week.
+[06:33] WORKER: Leo is —
+[06:36] CLIENT: My son. He's four.
+[06:40] WORKER: And who lives in your home?
+[06:45] CLIENT: Me, my partner Dev, Leo, and my mom. We rent a house. It's fine, we're not going anywhere. The house is okay.
+[06:59] WORKER: How's Dev in all this?
+[07:05] CLIENT: Dev's good with Leo. He does bath time, bedtime, all of that. He's my partner in that for sure.
+[07:17] CLIENT: But Dev's got his own stuff. He's on probation. From a fight, like, 2023. He has to check in every month.
+[07:28] WORKER: And for you — any legal involvement? Court, probation, anything like that?
+[07:37] CLIENT: Me? No. Dev's on probation, not me. I've never been in trouble.
+[07:44] WORKER: Okay. And CPS?
+[07:48] CLIENT: CPS came out once, for Jen's kids. Not for Leo. Nobody's ever called on me.
+[07:58] WORKER: Thank you. I ask everybody. Tell me about your work.
+[08:05] CLIENT: I'm a dental assistant. Full-time. At a practice here in Glenmore.
+[08:13] WORKER: And money — how is the household doing?
+[08:20] CLIENT: It's tight but okay. My paycheck, and Dev works construction when there's work.
+[08:28] CLIENT: Mom gets SSI, but that mostly goes to her own stuff. Her meds, her copays.
+[08:39] WORKER: And food — do you have enough?
+[08:45] CLIENT: We're fine on food. Tight, but fine.
+[08:52] WORKER: Okay. Let's talk about you, for a minute. Your own health. Any medical conditions?
+[09:02] CLIENT: Migraines. I've had them since I was a teenager.
+[09:09] WORKER: Are you on anything for them?
+[09:15] CLIENT: Sumatriptan. 50 milligrams, when I get one. The doctor said take it at the start, and I do.
+[09:26] WORKER: So as needed, and you take it the way it's prescribed.
+[09:35] CLIENT: Yeah. I'm good about mine. It's Mom who won't take hers.
+[09:44] WORKER: And who's your doctor?
+[09:49] CLIENT: Dr. Feld. At Glenmore Medical Group.
+[09:55] CLIENT: Mom's doctor is Dr. Ruiz. I've basically got him on speed dial.
+[10:03] WORKER: And your sleep?
+[10:07] CLIENT: Like six hours. But broken. Mom gets up at night for the bathroom and I have to help her, because of her feet.
+[10:20] WORKER: So about six hours, but interrupted.
+[10:25] CLIENT: Yeah.
+[10:29] WORKER: How does your mom get to her appointments?
+[10:36] CLIENT: Me. She can't drive anymore. I drive her everywhere. My car's fine, thank God, it's the one thing that works.
+[10:49] WORKER: I'm going to ask about alcohol and drugs. I ask everyone the same questions. Do you drink at all?
+[11:00] CLIENT: No. I don't drink. At all. After watching Jen, no way.
+[11:09] WORKER: Any cannabis, or other drugs?
+[11:13] CLIENT: No. Dev smokes weed, on the back porch, not around Leo. But I don't.
+[11:22] WORKER: Okay. Tobacco or vaping?
+[11:25] CLIENT: Never. Never smoked.
+[11:28] WORKER: Have you ever had treatment for substance use yourself?
+[11:37] CLIENT: Me? No. Never needed it. That's Jen. This is her second rehab.
+[11:45] WORKER: Thanks. Who do you lean on, for yourself?
+[11:52] CLIENT: Ana. Ana's my person. We get coffee on Saturdays, when I can get away.
+[12:00] WORKER: Anyone else?
+[12:04] CLIENT: My mom prays for all of us, she's very Catholic. She has her church ladies.
+[12:14] CLIENT: I'm not really religious. I haven't been to church since I was a kid.
+[12:22] WORKER: Okay. Jen's program probably has family groups. And there's Al-Anon, for family members of people who drink. Have you ever gone?
+[12:36] CLIENT: Jen goes to AA sometimes. I've never gone to anything like that.
+[12:45] WORKER: I'll send you the Al-Anon meeting list, and you can see if anything fits. No pressure.
+[12:57] CLIENT: Okay. Maybe. I don't know when I'd go.
+[13:04] WORKER: I'd like to do a couple of short questionnaires. First, just the first two screening questions about mood, over the last two weeks. Not at all, several days, more than half the days, or nearly every day.
+[13:26] CLIENT: Okay.
+[13:30] WORKER: Little interest or pleasure in doing things.
+[13:35] CLIENT: Several days.
+[13:38] WORKER: Feeling down, depressed, or hopeless.
+[13:42] CLIENT: Several days. I'm not depressed, I don't think. I'm just — tired and worried.
+[13:50] WORKER: Several days. That's all for that one. The second questionnaire is about anxiety, the GAD-7. Seven questions, same choices.
+[14:00] CLIENT: This one's going to be bad.
+[14:06] WORKER: Feeling nervous, anxious, or on edge.
+[14:11] CLIENT: More than half the days.
+[14:17] WORKER: Not being able to stop or control worrying.
+[14:24] CLIENT: More than half.
+[14:29] WORKER: Worrying too much about different things.
+[14:33] CLIENT: Nearly every day. Mom, Jen, Dev's check-ins, Leo. All of it.
+[14:43] WORKER: Trouble relaxing.
+[14:46] CLIENT: More than half the days.
+[14:51] WORKER: Being so restless that it's hard to sit still.
+[14:59] CLIENT: Several days.
+[15:02] WORKER: Becoming easily annoyed or irritable.
+[15:07] CLIENT: More than half. I snap at Dev and then I feel bad.
+[15:14] WORKER: Feeling afraid, as if something awful might happen.
+[15:22] CLIENT: Several days. Like when Jen doesn't answer her phone. Before rehab, that was every night.
+[15:32] WORKER: Thank you. That's the whole thing.
+[15:39] WORKER: I want to ask you some questions directly, about you. You mentioned Jen said she wanted to die. Have you had any thoughts of suicide yourself?
+[15:52] CLIENT: No. Not me. Never. I couldn't do that to Leo.
+[16:01] WORKER: Have you ever tried to hurt yourself or end your life?
+[16:08] CLIENT: No.
+[16:13] WORKER: Any thoughts of hurting someone else?
+[16:19] CLIENT: No. I get mad, but no.
+[16:25] WORKER: Thank you. Is Jen's treatment team helping her with a safety plan for when she leaves?
+[16:34] CLIENT: I think so. They said they'd do one with her before discharge.
+[16:42] WORKER: Good. That's the right place for it. And for you, or for Jen, 988 is there any time. Call or text.
+[16:54] CLIENT: I know. I called it that night, actually, with Jen. They were good.
+[17:03] WORKER: I'm really glad you did that. That was the right call.
+[17:09] WORKER: What would you say are your strengths?
+[17:16] CLIENT: I show up. For everybody. Even when I don't want to.
+[17:25] CLIENT: And I'm organized. I have Mom's meds in a chart on the fridge. I have all of Jen's paperwork.
+[17:37] WORKER: You clearly hold a lot together.
+[17:43] CLIENT: Somebody has to.
+[17:46] WORKER: What about Leo — how's he doing?
+[17:51] CLIENT: He's great. He's the best part of my day. He's why I get up in the morning.
+[18:03] WORKER: If we were working together a few months from now and things were better, what would be different?
+[18:13] CLIENT: I'd take care of myself for once. Not just everybody else.
+[18:21] WORKER: Take care of yourself for once. That's a good goal.
+[18:30] WORKER: A couple of things I can do. I'll send the Al-Anon list. And I'd like to talk next time about getting your mom more help at home, so it's not all on you.
+[18:46] CLIENT: That would be amazing. I didn't know that was a thing.
+[18:56] WORKER: We'll look into it together. I'd like to meet every two weeks. How about Thursday, November 5th, at three?
+[19:08] CLIENT: The 5th at three. I'll do it from the car again.
+[19:18] WORKER: That works. Text me if you need to move it.
+[19:27] CLIENT: I will. Thank you. This helped.
+[19:33] WORKER: I'm glad. Take care of yourself, Brianna. That's homework.
+[19:40] CLIENT: Ha. Okay. Bye.

@@ -1,0 +1,172 @@
+# scribeski transcript fixture v1
+# session_date: 2026-11-02
+# started_at: 2026-11-02T14:00:00-08:00
+# modality: phone
+# duration_minutes: 24
+# note: synthetic; all people fictional; phone numbers use 555-01xx; held-out set, never used while tuning prompts
+[00:04] WORKER: Hello, is this Samuel Achterberg?
+[00:08] CLIENT: Speaking. Sam. You must be the social worker.
+[00:16] WORKER: I am. My name's Gloria, I'm with the county. Is this still a good time?
+[00:25] CLIENT: Good as any. I just got back from seeing my wife.
+[00:32] WORKER: Thank you for making the time. This is an intake call, so it's our first meeting. I'll be asking a lot of questions, and you can skip anything.
+[00:48] CLIENT: Fire away. I spent thirty years filling out Caltrans forms, I can handle yours.
+[00:58] WORKER: We're doing this by phone. Do I have your verbal consent to have our session by phone?
+[01:08] CLIENT: You do.
+[01:13] WORKER: And I use a tool that transcribes our call for my notes. Is that alright with you?
+[01:24] CLIENT: That's fine.
+[01:28] WORKER: What we discuss is confidential. The exceptions are if I'm worried someone's in danger — you or someone else — or if a child is being hurt. I'd talk with you first.
+[01:46] CLIENT: Understood.
+[01:50] WORKER: I have your case number as AB-611904. Does that match your letter?
+[02:00] CLIENT: Let me get my glasses. AB-611904. That's it.
+[02:06] WORKER: And your full legal name?
+[02:10] CLIENT: Samuel Achterberg. A-C-H-T-E-R-B-E-R-G.
+[02:15] WORKER: Thank you. And your date of birth?
+[02:22] CLIENT: April 9th, 1963.
+[02:25] CLIENT: No — the 19th. April 19th. My own birthday. Ruth always did the dates.
+[02:35] WORKER: April 19th, 1963. Best phone number for you?
+[02:42] CLIENT: 559-555-0147. That's the house.
+[02:48] WORKER: Can I leave you a voicemail there?
+[02:55] CLIENT: Sure. The machine still has Ruth's voice on it. I can't bring myself to change it.
+[03:04] WORKER: That's understandable. Your address?
+[03:09] CLIENT: 1188 Quail Run Road. Alder Springs. 93611.
+[03:16] WORKER: Who suggested you reach out to us?
+[03:23] CLIENT: My VA doctor. Dr. Castellanos. I told him I wasn't sleeping, and he asked me some questions, and here I am.
+[03:36] WORKER: And your health coverage?
+[03:41] CLIENT: Medicare. And I use the VA for most things.
+[03:50] WORKER: Who would you like as your emergency contact?
+[03:58] CLIENT: My daughter. Hannah. Hannah Achterberg-Lee, with a hyphen. 559-555-0131.
+[04:04] WORKER: Hannah Achterberg-Lee, 559-555-0131. Your daughter.
+[04:09] CLIENT: My daughter. My only one.
+[04:15] WORKER: Thank you, Sam. That's the paperwork. So tell me what's been happening.
+[04:23] CLIENT: My wife, Ruth, has Alzheimer's. Early onset. She was diagnosed at fifty-nine.
+[04:31] CLIENT: In July, she moved into memory care. Oak Terrace, over on Birch. I couldn't keep her safe at home anymore. She was wandering at night.
+[04:44] WORKER: That must have been an incredibly hard decision.
+[04:51] CLIENT: Hardest thing I ever did. Harder than the Army. She didn't know where she was the day we moved her. She thought it was a hotel.
+[05:05] WORKER: I'm so sorry.
+[05:11] CLIENT: I go every day. Every afternoon. Some days she knows me. Some days she thinks I'm her brother.
+[05:22] WORKER: How has that been for you?
+[05:29] CLIENT: I feel lost. That's the word. Lost. Forty-one years married, and I'm rattling around that house.
+[05:40] WORKER: You said you feel lost. How would you describe your mood, most days?
+[05:48] CLIENT: Lost. Low. Like I'm waiting for something and I don't know what.
+[05:55] WORKER: So since Ruth moved, you've been living with your daughter?
+[06:03] CLIENT: No, I'm still in the house, by myself. Hannah's the one pushing me to move in with her. I'm not ready.
+[06:16] WORKER: I had that wrong. You're in your own house, alone.
+[06:23] CLIENT: Me and Duke. My old Lab. He's twelve. We're two old dogs.
+[06:30] WORKER: Is the house yours?
+[06:36] CLIENT: Paid for. Thirty years in it.
+[06:41] CLIENT: If I have to sell it to pay for Oak Terrace, I don't know where I'd go. That keeps me up.
+[06:53] WORKER: Is selling something that's happening now?
+[06:58] CLIENT: Not now. The long-term care insurance covers her through next year. After that, we'll see. Hannah says we'll figure it out.
+[07:11] WORKER: So for now, the house is secure.
+[07:19] CLIENT: For now. For now it's fine.
+[07:25] WORKER: Tell me about work and money.
+[07:29] CLIENT: I retired from Caltrans in 2023. Thirty years. I get my pension and Social Security.
+[07:39] CLIENT: And I do the crossing guard at Lincoln Elementary, mornings and afternoons. About fifteen hours a week. I like the kids. They call me Mr. Sam.
+[07:53] WORKER: So you're working part-time as a crossing guard.
+[07:59] CLIENT: Part-time, yes. It gets me out of the house.
+[08:06] WORKER: And you're still driving to see Ruth?
+[08:12] CLIENT: No, they took my license after the seizure, last year. I take the bus. The 9 goes right past Oak Terrace, every fifteen minutes. It's never let me down.
+[08:28] WORKER: Tell me about the seizure.
+[08:34] CLIENT: I fell off a ladder in 2021, cleaning the gutters. Hit my head. Since then, seizures. I had one last spring, in the grocery store. That's when they pulled the license.
+[08:50] WORKER: Are you on medication for that?
+[08:57] CLIENT: Levetiracetam. Keppra. 500 milligrams, twice a day.
+[09:03] WORKER: Are you able to take it like it's prescribed?
+[09:11] CLIENT: Every morning and every night. I set an alarm on the phone. I don't miss it. I don't want another one in front of the kids.
+[09:26] WORKER: And Dr. Castellanos is your main doctor?
+[09:33] CLIENT: Dr. Castellanos, at the VA clinic in Alder Springs.
+[09:40] WORKER: Is Ruth on medications too?
+[09:45] CLIENT: Donepezil and memantine. Oak Terrace handles all of it now. I used to do her pill box. Now I don't even do that.
+[09:59] WORKER: Do you have any other health conditions?
+[10:07] CLIENT: Just the seizures. And my knees are shot, but that's age.
+[10:15] WORKER: How are you sleeping?
+[10:20] CLIENT: Five, six hours. I wake up at three and reach for her.
+[10:28] WORKER: I'm so sorry. That's a hard moment.
+[10:34] CLIENT: Every night.
+[10:38] WORKER: Can I ask about alcohol? I ask everybody.
+[10:44] CLIENT: I have a whiskey after dinner.
+[10:49] WORKER: So a couple of drinks a week?
+[10:56] CLIENT: No, most nights. One whiskey, two some nights. Every night lately, if I'm honest.
+[11:07] WORKER: Thank you for being honest. Most nights, one or two.
+[11:13] WORKER: With the seizure medication, alcohol can lower the seizure threshold and it can make sleep worse, not better. I'd want Dr. Castellanos to know about it.
+[11:29] CLIENT: He doesn't know. I suppose I should tell him.
+[11:35] WORKER: Would you be open to talking to someone about the drinking? We have a program I could refer you to.
+[11:47] CLIENT: Not yet. Let me think about it. I'm not there.
+[11:53] WORKER: That's fair. The offer stands. Any other drugs, cannabis, anything?
+[11:59] CLIENT: No. Nothing like that.
+[12:06] WORKER: Tobacco?
+[12:08] CLIENT: I quit in the Army. 1984.
+[12:14] WORKER: Who do you have for support, Sam?
+[12:19] CLIENT: Hannah. She calls every night. She's got two kids, my grandsons, eight and eleven. They come Sundays.
+[12:30] CLIENT: My neighbor, Luis. We play cribbage Thursdays. He lost his wife too.
+[12:39] WORKER: And church, or any groups?
+[12:43] CLIENT: Ruth was the churchgoer. I went for her. I haven't been since she moved. It's not the same without her in the pew.
+[12:58] WORKER: Oak Terrace has a caregiver support group. Spouses of residents. Would that interest you?
+[13:08] CLIENT: Maybe. I'll think about it. I'm not much for talking in groups.
+[13:18] WORKER: I'd like to do a short questionnaire called the PHQ-9. For each one, over the last two weeks: not at all, several days, more than half the days, or nearly every day.
+[13:37] CLIENT: Go ahead.
+[13:42] WORKER: Little interest or pleasure in doing things.
+[13:49] CLIENT: More than half the days. I used to build birdhouses. Haven't touched the shop since July.
+[13:58] WORKER: Feeling down, depressed, or hopeless.
+[14:02] CLIENT: More than half the days.
+[14:07] WORKER: Trouble falling or staying asleep, or sleeping too much.
+[14:12] CLIENT: More than half the days.
+[14:16] WORKER: Feeling tired or having little energy.
+[14:22] CLIENT: Several days. The crossing guard keeps me moving.
+[14:28] WORKER: Poor appetite or overeating.
+[14:34] CLIENT: Several days. I forget to eat dinner, some nights. Ruth always cooked.
+[14:42] WORKER: Feeling bad about yourself, or that you're a failure, or have let yourself or your family down.
+[14:53] CLIENT: Nearly every day. I promised I'd take care of her. In sickness and in health. And I put her in a home.
+[15:06] WORKER: That's a heavy thing to carry. Trouble concentrating, like reading or TV.
+[15:15] CLIENT: Several days.
+[15:18] WORKER: Moving or speaking slowly, or being fidgety or restless.
+[15:25] CLIENT: Not at all.
+[15:31] WORKER: Thoughts that you'd be better off dead, or of hurting yourself in some way.
+[15:39] CLIENT: Several days.
+[15:43] WORKER: Thank you for telling me. And how difficult have these problems made it to do your work, take care of things at home, or get along with people?
+[15:57] CLIENT: Somewhat difficult. I get it done.
+[16:04] WORKER: Somewhat difficult. Thank you. There's also an anxiety questionnaire, but from what you're describing, worry isn't the main thing for you, so I'm not going to do that one.
+[16:20] CLIENT: Fine by me.
+[16:26] WORKER: I want to ask more about that question — thoughts that you'd be better off dead. What are those like for you?
+[16:38] CLIENT: Some nights I think Ruth's already gone, in a way. And I'd just as soon not wake up.
+[16:50] CLIENT: That's all. I'm not going to do anything.
+[16:56] WORKER: How often, over the last two weeks?
+[17:03] CLIENT: A few nights. Not every night.
+[17:09] WORKER: Have you thought about how you might end your life — any kind of plan?
+[17:20] CLIENT: No. No plan.
+[17:23] WORKER: Any intention to act on those thoughts?
+[17:29] CLIENT: No. Hannah would never forgive me. And who'd walk Duke?
+[17:35] WORKER: Have you ever tried to end your life in the past?
+[17:43] CLIENT: Never.
+[17:46] WORKER: I ask everyone this next part. Are there any firearms in your home?
+[17:55] CLIENT: Not anymore. I had two hunting rifles. I gave them to my son-in-law, Mark, two years ago, when Ruth started getting confused. He keeps them at his place. There's nothing in the house.
+[18:14] WORKER: And any extra medications — stockpiled, or more than you need?
+[18:23] CLIENT: No. Just the one bottle of Keppra I'm on. Hannah cleaned out the whole cabinet when Ruth moved. All Ruth's pills went to Oak Terrace.
+[18:37] WORKER: Thank you. And any thoughts of hurting anyone else?
+[18:43] CLIENT: No. No.
+[18:45] WORKER: Sam, I'd like to make a safety plan with you. It's a written plan for nights when those thoughts get stronger.
+[18:59] CLIENT: I don't need anything written down. I'm not going to do anything. I'd rather not.
+[19:08] WORKER: Okay. I respect that. I'd like to come back to it next time, if that's alright.
+[19:19] CLIENT: You can ask. I might say no again.
+[19:27] WORKER: Fair enough. I do want you to have this number: 988. Call or text any time. If you press 1, you get the Veterans Crisis Line.
+[19:40] CLIENT: 988, press 1. Alright. I'll put it on the fridge.
+[19:49] WORKER: What would you say are your strengths?
+[19:56] CLIENT: I'm steady. Thirty years at one job. Forty-one years married. I don't quit.
+[20:06] CLIENT: And I show up. For Ruth, every day. For those kids at the crosswalk.
+[20:17] WORKER: You do. That's clear.
+[20:23] WORKER: If our work goes well, what would be different a few months from now?
+[20:32] CLIENT: I want to be able to visit Ruth without falling apart in the parking lot after.
+[20:41] WORKER: Visit Ruth without falling apart in the parking lot after. That's a good goal.
+[20:52] WORKER: I'd also like to refer you to our benefits team. They can look at what you might qualify for yourself — there's a property tax postponement program for seniors, and a few other things.
+[21:11] CLIENT: Alright. If it helps keep the house.
+[21:17] WORKER: I'm putting in that benefits referral today. They'll call the house number.
+[21:25] CLIENT: They can leave a message.
+[21:30] WORKER: And please tell Dr. Castellanos about the whiskey, with the Keppra.
+[21:39] CLIENT: I'll tell him at my appointment on the 20th.
+[21:46] WORKER: I'd like to meet weekly. How about next Monday, the 9th, at two?
+[21:55] CLIENT: The 9th — no, that's Ruth's care conference at Oak Terrace. Can we do Tuesday the 10th?
+[22:06] WORKER: Tuesday the 10th at two works.
+[22:12] CLIENT: Tuesday the 10th. I'll write it on the calendar. Ruth's calendar. I still use it.
+[22:21] WORKER: Thank you for talking with me today, Sam.
+[22:29] CLIENT: Thank you. It helped more than I thought.
+[22:35] WORKER: Take care. Give Duke a pat.
+[22:40] CLIENT: I will. Goodbye.

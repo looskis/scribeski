@@ -1,0 +1,73 @@
+[
+  {
+    "id": "intake",
+    "name": "Intake",
+    "fields": {}
+  },
+  {
+    "id": "follow-up",
+    "name": "Follow-up",
+    "fields": {
+      "case_number": {
+        "mode": "skip"
+      },
+      "client_first_name": {
+        "mode": "skip"
+      },
+      "client_last_name": {
+        "mode": "skip"
+      },
+      "client_dob": {
+        "mode": "skip"
+      },
+      "gender_identity": {
+        "mode": "skip"
+      },
+      "referral_source": {
+        "mode": "skip"
+      },
+      "release_of_info": {
+        "mode": "skip"
+      },
+      "client_preferred_name": {
+        "update": true
+      },
+      "pronouns": {
+        "update": true
+      },
+      "contact_phone": {
+        "update": true
+      },
+      "contact_email": {
+        "update": true
+      },
+      "contact_ok_voicemail": {
+        "update": true
+      },
+      "address_line": {
+        "update": true
+      },
+      "address_city": {
+        "update": true
+      },
+      "address_zip": {
+        "update": true
+      },
+      "insurance_type": {
+        "update": true
+      },
+      "insurance_member_id": {
+        "update": true
+      },
+      "emergency_contact_name": {
+        "update": true
+      },
+      "emergency_contact_phone": {
+        "update": true
+      },
+      "emergency_contact_relationship": {
+        "update": true
+      }
+    }
+  }
+]

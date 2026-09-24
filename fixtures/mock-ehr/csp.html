@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Riverside County HSA — Quick Note (strict CSP)</title>
+<link rel="stylesheet" href="ehr.css">
+<script src="controlled.js" defer></script>
+<script src="guard.js" defer></script>
+</head>
+<body class="ehr">
+
+<header class="app-header">
+  <div class="brand">
+    <span class="seal">RC</span>
+    <div>
+      <div class="agency">Riverside County HSA</div>
+      <div class="app-name">Quick Contact Note &mdash; strict Content-Security-Policy</div>
+    </div>
+  </div>
+  <table class="session-meta">
+    <tr><th>Worker:</th><td>K. Loo, ASW</td></tr>
+    <tr><th>Session:</th><td>SES-2026-0917-0042</td></tr>
+  </table>
+</header>
+
+<div id="submit_banner" class="banner-error" role="alert" hidden></div>
+
+<main class="record">
+  <form id="csp_form" action="submitted.html" method="post" novalidate data-submit-guard>
+    <section class="panel">
+      <h2>Quick contact note</h2>
+      <table class="frm">
+        <tr>
+          <th><label for="case_number">Case number</label></th>
+          <td>
+            <input type="text" id="case_number" name="case_number" autocomplete="off" aria-describedby="case_number_help" data-controlled>
+            <span id="case_number_help" class="help">Format: AB-000000</span>
+          </td>
+          <th><label for="client_last_name" class="req">Legal last name</label></th>
+          <td><input type="text" id="client_last_name" name="client_last_name" required></td>
+        </tr>
+        <tr>
+          <th><label for="session_type">Session type</label></th>
+          <td>
+            <select id="session_type" name="session_type">
+              <option value="">-- Select --</option>
+              <option value="INTAKE">Intake</option>
+              <option value="FOLLOW_UP">Follow-up</option>
+              <option value="CRISIS">Crisis</option>
+            </select>
+          </td>
+          <th><label for="session_date">Session date</label></th>
+          <td><input type="date" id="session_date" name="session_date"></td>
+        </tr>
+        <tr>
+          <th><label for="presenting_problem">Presenting problem</label></th>
+          <td colspan="3"><textarea id="presenting_problem" name="presenting_problem" rows="3"></textarea></td>
+        </tr>
+      </table>
+    </section>
+    <div class="form-actions">
+      <button type="submit" id="btn_submit">Sign &amp; submit</button>
+    </div>
+  </form>
+</main>
+
+<footer class="app-footer">
+  CSP: default-src 'self'; script-src 'self'; style-src 'self' &mdash; no unsafe-inline, no unsafe-eval. Synthetic test fixture.
+</footer>
+</body>
+</html>

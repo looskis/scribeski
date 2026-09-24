@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Riverside County HSA — Integrated Client Record</title>
+<link rel="stylesheet" href="ehr.css">
+<script src="controlled.js" defer></script>
+<script src="guard.js" defer></script>
+<script src="ehr.js" defer></script>
+</head>
+<body class="ehr">
+
+<header class="app-header">
+  <div class="brand">
+    <span class="seal">RC</span>
+    <div>
+      <div class="agency">Riverside County HSA</div>
+      <div class="app-name">Integrated Client Record &mdash; Behavioral Health Intake</div>
+    </div>
+  </div>
+  <div id="record_banner" class="record-banner">Record AB-114322 · REYES, Daniela</div>
+  <table class="session-meta">
+    <tr><th>Worker:</th><td id="meta_worker">K. Loo, ASW</td></tr>
+    <tr><th>Session:</th><td id="meta_session">SES-2026-0917-0042</td></tr>
+    <tr><th>Last saved:</th><td id="meta_last_saved">09/17/2026 10:42 AM</td></tr>
+  </table>
+</header>
+
+<div class="menubar">
+  <span>File</span><span>Client</span><span>Encounter</span><span>Reports</span><span>Admin</span><span>Help</span>
+</div>
+
+<div class="banner-stale">Previous client record closed: M. Okonkwo</div>
+
+<div id="submit_banner" class="banner-error" role="alert" hidden></div>
+
+<main class="record">
+
+  <div class="tabs" role="tablist" aria-label="Intake steps">
+    <button type="button" role="tab" id="tab-client" aria-controls="panel-client" aria-selected="true" tabindex="0">1. Client &amp; Session</button>
+    <button type="button" role="tab" id="tab-screening" aria-controls="panel-screening" aria-selected="false" tabindex="-1">2. Screening</button>
+    <button type="button" role="tab" id="tab-risk" aria-controls="panel-risk" aria-selected="false" tabindex="-1">3. Risk</button>
+    <button type="button" role="tab" id="tab-plan" aria-controls="panel-plan" aria-selected="false" tabindex="-1">4. Assessment &amp; Plan</button>
+  </div>
+
+  <form id="intake_form" action="submitted.html" method="post" novalidate data-submit-guard>
+
+    <!-- ============================ STEP 1 ============================ -->
+    <section id="panel-client" role="tabpanel" class="panel">
+      <h2>Step 1 &mdash; Client &amp; Session</h2>
+
+      <h3>Client identification</h3>
+      <table class="frm">
+        <tr>
+          <th><label for="case_number">Case number</label></th>
+          <td>
+            <input type="text" id="case_number" name="case_number" autocomplete="off" aria-describedby="case_number_help" data-controlled>
+            <span id="case_number_help" class="help">Format: AB-000000</span>
+          </td>
+          <th><label for="client_first_name" class="req">Legal first name</label></th>
+          <td><input type="text" id="client_first_name" name="client_first_name" required></td>
+        </tr>
+        <tr>
+          <th><label for="client_last_name" class="req">Legal last name</label></th>
+          <td><input type="text" id="client_last_name" name="client_last_name" required></td>
+          <th class="blank"></th>
+          <td><label class="wrap">Preferred name <input type="text" id="client_preferred_name" name="client_preferred_name"></label></td>
+        </tr>
+        <tr>
+          <th><label for="client_dob" class="req">Date of birth</label></th>
+          <td><input type="date" id="client_dob" name="client_dob" required></td>
+          <th><label for="pronouns">Pronouns</label></th>
+          <td>
+            <select id="pronouns" name="pronouns">
+              <option value="">-- Select --</option>
+              <option value="SHE_HER">she/her</option>
+              <option value="HE_HIM">he/him</option>
+              <option value="THEY_THEM">they/them</option>
+              <option value="OTHER">Other</option>
+              <option value="NOT_ASKED">Not asked</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <th><label for="gender_identity">Gender identity</label></th>
+          <td>
+            <select id="gender_identity" name="gender_identity">
+              <option value="">-- Select --</option>
+              <option value="WOMAN">Woman</option>
+              <option value="MAN">Man</option>
+              <option value="NONBINARY">Nonbinary</option>
+              <option value="TRANSGENDER_WOMAN">Transgender woman</option>
+              <option value="TRANSGENDER_MAN">Transgender man</option>
+              <option value="OTHER">Other</option>
+              <option value="DECLINED">Declined to state</option>
+            </select>
+          </td>
+          <th class="blank"></th>
+          <td></td>
+        </tr>
+      </table>
+
+      <h3>Contact</h3>
+      <table class="frm">
+        <tr>
+          <td colspan="2"><input type="text" id="contact_phone" name="contact_phone" placeholder="Primary phone" inputmode="tel"></td>
+          <td colspan="2"><input type="email" id="contact_email" name="contact_email" aria-label="Email"></td>
+        </tr>
+        <tr>
+          <th><label for="contact_ok_voicemail">OK to leave voicemail?</label></th>
+          <td>
+            <select id="contact_ok_voicemail" name="contact_ok_voicemail">
+              <option value="">-- Select --</option>
+              <option value="YES">Yes</option>
+              <option value="NO">No</option>
+            </select>
+          </td>
+          <th class="blank"></th>
+          <td></td>
+        </tr>
+        <tr>
+          <td colspan="2"><label class="wrap">Street address <input type="text" id="address_line" name="address_line" class="wide"></label></td>
+          <td colspan="2">
+            <label class="wrap">City <input type="text" id="address_city" name="address_city"></label>
+            <label class="wrap">ZIP <input type="text" id="address_zip" name="address_zip" class="short" inputmode="numeric"></label>
+          </td>
+        </tr>
+        <tr>
+          <th><span id="language_label" class="lbl">Preferred language</span></th>
+          <td>
+            <div class="combo">
+              <div id="language_combo" class="combo-trigger" role="combobox" tabindex="0"
+                   aria-haspopup="listbox" aria-expanded="false" aria-controls="language_listbox"
+                   aria-labelledby="language_label">-- Select --</div>
+              <ul id="language_listbox" class="combo-list" role="listbox" hidden>
+                <li role="option" data-value="ENGLISH" aria-selected="false" tabindex="-1">English</li>
+                <li role="option" data-value="SPANISH" aria-selected="false" tabindex="-1">Spanish</li>
+                <li role="option" data-value="VIETNAMESE" aria-selected="false" tabindex="-1">Vietnamese</li>
+                <li role="option" data-value="TAGALOG" aria-selected="false" tabindex="-1">Tagalog</li>
+                <li role="option" data-value="MANDARIN" aria-selected="false" tabindex="-1">Mandarin</li>
+                <li role="option" data-value="ARABIC" aria-selected="false" tabindex="-1">Arabic</li>
+                <li role="option" data-value="OTHER" aria-selected="false" tabindex="-1">Other</li>
+              </ul>
+            </div>
+          </td>
+          <th><label for="interpreter_needed">Interpreter needed</label></th>
+          <td>
+            <select id="interpreter_needed" name="interpreter_needed">
+              <option value="">-- Select --</option>
+              <option value="YES">Yes</option>
+              <option value="NO">No</option>
+            </select>
+          </td>
+        </tr>
+      </table>
+
+      <h3>Session</h3>
+      <table class="frm">
+        <tr>
+          <th><label for="session_date">Session date</label></th>
+          <td><input type="date" id="session_date" name="session_date"></td>
+          <th><label for="session_type">Session type</label></th>
+          <td>
+            <select id="session_type" name="session_type">
+              <option value="">-- Select --</option>
+              <option value="INTAKE">Intake</option>
+              <option value="FOLLOW_UP">Follow-up</option>
+              <option value="CRISIS">Crisis</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <fieldset class="group">
+              <legend>Service modality</legend>
+              <label><input type="radio" name="session_modality" value="VIDEO"> Video</label>
+              <label><input type="radio" name="session_modality" value="PHONE"> Phone</label>
+              <label><input type="radio" name="session_modality" value="IN_PERSON"> In person</label>
+            </fieldset>
+          </td>
+          <td colspan="2">
+            <fieldset class="bare">
+              <span class="lbl">Duration (minutes)</span>
+              <input type="number" min="0" max="480" step="1" class="short">
+            </fieldset>
+          </td>
+        </tr>
+        <tr>
+          <th><label for="referral_source">Referral source</label></th>
+          <td>
+            <select id="referral_source" name="referral_source">
+              <option value="">-- Select --</option>
+              <option value="SELF">Self</option>
+              <option value="SCHOOL">School</option>
+              <option value="PCP">Primary care</option>
+              <option value="HOSPITAL">Hospital</option>
+              <option value="CPS">CPS</option>
+              <option value="COURT">Court</option>
+              <option value="COMMUNITY_ORG">Community organization</option>
+              <option value="OTHER">Other</option>
+            </select>
+          </td>
+          <th><label for="consent_telehealth">Telehealth consent</label></th>
+          <td>
+            <select id="consent_telehealth" name="consent_telehealth">
+              <option value="">-- Select --</option>
+              <option value="VERBAL">Verbal</option>
+              <option value="WRITTEN">Written</option>
+              <option value="DECLINED">Declined</option>
+            </select>
+          </td>
+        </tr>
+      </table>
+
+      <h3>Coverage &amp; emergency contact</h3>
+      <table class="frm">
+        <tr>
+          <th><label for="insurance_type">Coverage</label></th>
+          <td>
+            <select id="insurance_type" name="insurance_type">
+              <option value="">-- Select --</option>
+              <option value="MEDI_CAL">Medi-Cal</option>
+              <option value="MEDICARE">Medicare</option>
+              <option value="PRIVATE">Private</option>
+              <option value="UNINSURED">Uninsured</option>
+              <option value="UNKNOWN">Unknown</option>
+            </select>
+          </td>
+          <th><label for="insurance_member_id">Member ID</label></th>
+          <td><input type="text" id="insurance_member_id" name="insurance_member_id"></td>
+        </tr>
+        <tr>
+          <th><label for="emergency_contact_name">Emergency contact name</label></th>
+          <td><input type="text" id="emergency_contact_name" name="emergency_contact_name"></td>
+          <th><label for="emergency_contact_phone">Emergency contact phone</label></th>
+          <td><input type="text" id="emergency_contact_phone" name="emergency_contact_phone" inputmode="tel"></td>
+        </tr>
+        <tr>
+          <th><label for="emergency_contact_relationship">Relationship</label></th>
+          <td>
+            <select id="emergency_contact_relationship" name="emergency_contact_relationship">
+              <option value="">-- Select --</option>
+              <option value="PARENT">Parent</option>
+              <option value="SIBLING">Sibling</option>
+              <option value="PARTNER">Partner</option>
+              <option value="CHILD">Child</option>
+              <option value="FRIEND">Friend</option>
+              <option value="OTHER">Other</option>
+            </select>
+          </td>
+          <th class="blank"></th>
+          <td></td>
+        </tr>
+        <tr>
+          <td colspan="4">
+            <fieldset class="group">
+              <legend>Releases of information on file</legend>
+              <label><input type="checkbox" name="release_of_info" value="PCP"> Primary care provider</label>
+              <label><input type="checkbox" name="release_of_info" value="PSYCHIATRIST"> Psychiatrist</label>
+              <label><input type="checkbox" name="release_of_info" value="SCHOOL"> School</label>
+              <label><input type="checkbox" name="release_of_info" value="FAMILY"> Family</label>
+              <label><input type="checkbox" name="release_of_info" value="NONE"> None</label>
+            </fieldset>
+          </td>
+        </tr>
+      </table>
+    </section>
+
+    <!-- ============================ STEP 2 ============================ -->
+    <section id="panel-screening" role="tabpanel" class="panel" hidden>
+      <h2>Step 2 &mdash; Screening</h2>
+
+      <h3>PHQ-9 (Patient Health Questionnaire)</h3>
+      <p class="leadin">Over the last 2 weeks, how often have you been bothered by any of the following problems?</p>
+      <table class="grid" id="phq9_grid">
+        <thead>
+          <tr>
+            <th class="num">#</th>
+            <th class="q">Item</th>
+            <th id="phq9_c0" class="c">Not at all</th>
+            <th id="phq9_c1" class="c">Several days</th>
+            <th id="phq9_c2" class="c">More than half the days</th>
+            <th id="phq9_c3" class="c">Nearly every day</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="num">1.</td>
+            <td class="q" id="phq9_1_q">Little interest or pleasure in doing things</td>
+            <td class="c"><input type="radio" name="phq9_1" value="0" aria-labelledby="phq9_1_q phq9_c0"></td>
+            <td class="c"><input type="radio" name="phq9_1" value="1" aria-labelledby="phq9_1_q phq9_c1"></td>
+            <td class="c"><input type="radio" name="phq9_1" value="2" aria-labelledby="phq9_1_q phq9_c2"></td>
+            <td class="c"><input type="radio" name="phq9_1" value="3" aria-labelledby="phq9_1_q phq9_c3"></td>
+          </tr>
+          <tr>
+            <td class="num">2.</td>
+            <td class="q" id="phq9_2_q">Feeling down, depressed, or hopeless</td>
+            <td class="c"><input type="radio" name="phq9_2" value="0" aria-labelledby="phq9_2_q phq9_c0"></td>
+            <td class="c"><input type="radio" name="phq9_2" value="1" aria-labelledby="phq9_2_q phq9_c1"></td>
+            <td class="c"><input type="radio" name="phq9_2" value="2" aria-labelledby="phq9_2_q phq9_c2"></td>
+            <td class="c"><input type="radio" name="phq9_2" value="3" aria-labelledby="phq9_2_q phq9_c3"></td>
+          </tr>
+          <tr>
+            <td class="num">3.</td>
+            <td class="q" id="phq9_3_q">Trouble falling or staying asleep, or sleeping too much</td>
+            <td class="c"><input type="radio" name="phq9_3" value="0" aria-labelledby="phq9_3_q phq9_c0"></td>
+            <td class="c"><input type="radio" name="phq9_3" value="1" aria-labelledby="phq9_3_q phq9_c1"></td>
+            <td class="c"><input type="radio" name="phq9_3" value="2" aria-labelledby="phq9_3_q phq9_c2"></td>
+            <td class="c"><input type="radio" name="phq9_3" value="3" aria-labelledby="phq9_3_q phq9_c3"></td>
+          </tr>
+          <tr>
+            <td class="num">4.</td>
+            <td class="q" id="phq9_4_q">Feeling tired or having little energy</td>
+            <td class="c"><input type="radio" name="phq9_4" value="0" aria-labelledby="phq9_4_q phq9_c0"></td>
+            <td class="c"><input type="radio" name="phq9_4" value="1" aria-labelledby="phq9_4_q phq9_c1"></td>
+            <td class="c"><input type="radio" name="phq9_4" value="2" aria-labelledby="phq9_4_q phq9_c2"></td>
+            <td class="c"><input type="radio" name="phq9_4" value="3" aria-labelledby="phq9_4_q phq9_c3"></td>
+          </tr>
+          <tr>
+            <td class="num">5.</td>
+            <td class="q" id="phq9_5_q">Poor appetite or overeating</td>
+            <td class="c"><input type="radio" name="phq9_5" value="0" aria-labelledby="phq9_5_q phq9_c0"></td>
+            <td class="c"><input type="radio" name="phq9_5" value="1" aria-labelledby="phq9_5_q phq9_c1"></td>
+            <td class="c"><input type="radio" name="phq9_5" value="2" aria-labelledby="phq9_5_q phq9_c2"></td>
+            <td class="c"><input type="radio" name="phq9_5" value="3" aria-labelledby="phq9_5_q phq9_c3"></td>
+          </tr>
+          <tr>
+            <td class="num">6.</td>
+            <td class="q" id="phq9_6_q">Feeling bad about yourself — or that you are a failure or have let yourself or your family down</td>
+            <td class="c"><input type="radio" name="phq9_6" value="0" aria-labelledby="phq9_6_q phq9_c0"></td>
+            <td class="c"><input type="radio" name="phq9_6" value="1" aria-labelledby="phq9_6_q phq9_c1"></td>
+            <td class="c"><input type="radio" name="phq9_6" value="2" aria-labelledby="phq9_6_q phq9_c2"></td>
+            <td class="c"><input type="radio" name="phq9_6" value="3" aria-labelledby="phq9_6_q phq9_c3"></td>
+          </tr>
+          <tr>
+            <td class="num">7.</td>
+            <td class="q" id="phq9_7_q">Trouble concentrating on things, such as reading the newspaper or watching television</td>
+            <td class="c"><input type="radio" name="phq9_7" value="0" aria-labelledby="phq9_7_q phq9_c0"></td>
+            <td class="c"><input type="radio" name="phq9_7" value="1" aria-labelledby="phq9_7_q phq9_c1"></td>
+            <td class="c"><input type="radio" name="phq9_7" value="2" aria-labelledby="phq9_7_q phq9_c2"></td>
+            <td class="c"><input type="radio" name="phq9_7" value="3" aria-labelledby="phq9_7_q phq9_c3"></td>
+          </tr>
+          <tr>
+            <td class="num">8.</td>
+            <td class="q" id="phq9_8_q">Moving or speaking so slowly that other people could have noticed? Or the opposite — being so fidgety or restless that you have been moving around a lot more than usual</td>
+            <td class="c"><input type="radio" name="phq9_8" value="0" aria-labelledby="phq9_8_q phq9_c0"></td>
+            <td class="c"><input type="radio" name="phq9_8" value="1" aria-labelledby="phq9_8_q phq9_c1"></td>
+            <td class="c"><input type="radio" name="phq9_8" value="2" aria-labelledby="phq9_8_q phq9_c2"></td>
+            <td class="c"><input type="radio" name="phq9_8" value="3" aria-labelledby="phq9_8_q phq9_c3"></td>
+          </tr>
+          <tr>
+            <td class="num">9.</td>
+            <td class="q" id="phq9_9_q">Thoughts that you would be better off dead or of hurting yourself in some way</td>
+            <td class="c"><input type="radio" name="phq9_9" value="0" aria-labelledby="phq9_9_q phq9_c0"></td>
+            <td class="c"><input type="radio" name="phq9_9" value="1" aria-labelledby="phq9_9_q phq9_c1"></td>
+            <td class="c"><input type="radio" name="phq9_9" value="2" aria-labelledby="phq9_9_q phq9_c2"></td>
+            <td class="c"><input type="radio" name="phq9_9" value="3" aria-labelledby="phq9_9_q phq9_c3"></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="score-line">
+        <span class="score-label">PHQ-9</span>
+        <span id="phq9_total" class="score-total">Total: &mdash; (incomplete)</span>
+        <input type="hidden" id="phq9_score" name="phq9_score" value="">
+        <input type="hidden" id="phq9_severity" name="phq9_severity" value="">
+      </div>
+      <table class="frm">
+        <tr>
+          <th class="wide-th"><label for="phq9_difficulty">If you checked off any problems, how difficult have these problems made it for you to do your work, take care of things at home, or get along with other people?</label></th>
+          <td>
+            <select id="phq9_difficulty" name="phq9_difficulty">
+              <option value="">-- Select --</option>
+              <option value="NOT_DIFFICULT">Not difficult at all</option>
+              <option value="SOMEWHAT">Somewhat difficult</option>
+              <option value="VERY">Very difficult</option>
+              <option value="EXTREMELY">Extremely difficult</option>
+            </select>
+          </td>
+        </tr>
+      </table>
+
+      <h3>GAD-7 (Generalized Anxiety Disorder)</h3>
+      <table class="frm">
+        <tr>
+          <th><label for="gad7_status">GAD-7 administration</label></th>
+          <td>
+            <select id="gad7_status" name="gad7_status">
+              <option value="">-- Select --</option>
+              <option value="COMPLETED">Completed</option>
+              <option value="DEFERRED">Deferred</option>
+              <option value="DECLINED">Declined</option>
+              <option value="NOT_INDICATED">Not indicated</option>
+            </select>
+          </td>
+        </tr>
+      </table>
+      <p class="leadin">Over the last 2 weeks, how often have you been bothered by the following problems?</p>
+      <table class="grid" id="gad7_grid">
+        <thead>
+          <tr>
+            <th class="num">#</th>
+            <th class="q">Item</th>
+            <th id="gad7_c0" class="c">Not at all</th>
+            <th id="gad7_c1" class="c">Several days</th>
+            <th id="gad7_c2" class="c">More than half the days</th>
+            <th id="gad7_c3" class="c">Nearly every day</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="num">1.</td>
+            <td class="q" id="gad7_1_q">Feeling nervous, anxious or on edge</td>
+            <td class="c"><input type="radio" name="gad7_1" value="0" aria-labelledby="gad7_1_q gad7_c0"></td>
+            <td class="c"><input type="radio" name="gad7_1" value="1" aria-labelledby="gad7_1_q gad7_c1"></td>
+            <td class="c"><input type="radio" name="gad7_1" value="2" aria-labelledby="gad7_1_q gad7_c2"></td>
+            <td class="c"><input type="radio" name="gad7_1" value="3" aria-labelledby="gad7_1_q gad7_c3"></td>
+          </tr>
+          <tr>
+            <td class="num">2.</td>
+            <td class="q" id="gad7_2_q">Not being able to stop or control worrying</td>
+            <td class="c"><input type="radio" name="gad7_2" value="0" aria-labelledby="gad7_2_q gad7_c0"></td>
+            <td class="c"><input type="radio" name="gad7_2" value="1" aria-labelledby="gad7_2_q gad7_c1"></td>
+            <td class="c"><input type="radio" name="gad7_2" value="2" aria-labelledby="gad7_2_q gad7_c2"></td>
+            <td class="c"><input type="radio" name="gad7_2" value="3" aria-labelledby="gad7_2_q gad7_c3"></td>
+          </tr>
+          <tr>
+            <td class="num">3.</td>
+            <td class="q" id="gad7_3_q">Worrying too much about different things</td>
+            <td class="c"><input type="radio" name="gad7_3" value="0" aria-labelledby="gad7_3_q gad7_c0"></td>
+            <td class="c"><input type="radio" name="gad7_3" value="1" aria-labelledby="gad7_3_q gad7_c1"></td>
+            <td class="c"><input type="radio" name="gad7_3" value="2" aria-labelledby="gad7_3_q gad7_c2"></td>
+            <td class="c"><input type="radio" name="gad7_3" value="3" aria-labelledby="gad7_3_q gad7_c3"></td>
+          </tr>
+          <tr>
+            <td class="num">4.</td>
+            <td class="q" id="gad7_4_q">Trouble relaxing</td>
+            <td class="c"><input type="radio" name="gad7_4" value="0" aria-labelledby="gad7_4_q gad7_c0"></td>
+            <td class="c"><input type="radio" name="gad7_4" value="1" aria-labelledby="gad7_4_q gad7_c1"></td>
+            <td class="c"><input type="radio" name="gad7_4" value="2" aria-labelledby="gad7_4_q gad7_c2"></td>
+            <td class="c"><input type="radio" name="gad7_4" value="3" aria-labelledby="gad7_4_q gad7_c3"></td>
+          </tr>
+          <tr>
+            <td class="num">5.</td>
+            <td class="q" id="gad7_5_q">Being so restless that it is hard to sit still</td>
+            <td class="c"><input type="radio" name="gad7_5" value="0" aria-labelledby="gad7_5_q gad7_c0"></td>
+            <td class="c"><input type="radio" name="gad7_5" value="1" aria-labelledby="gad7_5_q gad7_c1"></td>
+            <td class="c"><input type="radio" name="gad7_5" value="2" aria-labelledby="gad7_5_q gad7_c2"></td>
+            <td class="c"><input type="radio" name="gad7_5" value="3" aria-labelledby="gad7_5_q gad7_c3"></td>
+          </tr>
+          <tr>
+            <td class="num">6.</td>
+            <td class="q" id="gad7_6_q">Becoming easily annoyed or irritable</td>
+            <td class="c"><input type="radio" name="gad7_6" value="0" aria-labelledby="gad7_6_q gad7_c0"></td>
+            <td class="c"><input type="radio" name="gad7_6" value="1" aria-labelledby="gad7_6_q gad7_c1"></td>
+            <td class="c"><input type="radio" name="gad7_6" value="2" aria-labelledby="gad7_6_q gad7_c2"></td>
+            <td class="c"><input type="radio" name="gad7_6" value="3" aria-labelledby="gad7_6_q gad7_c3"></td>
+          </tr>
+          <tr>
+            <td class="num">7.</td>
+            <td class="q" id="gad7_7_q">Feeling afraid as if something awful might happen</td>
+            <td class="c"><input type="radio" name="gad7_7" value="0" aria-labelledby="gad7_7_q gad7_c0"></td>
+            <td class="c"><input type="radio" name="gad7_7" value="1" aria-labelledby="gad7_7_q gad7_c1"></td>
+            <td class="c"><input type="radio" name="gad7_7" value="2" aria-labelledby="gad7_7_q gad7_c2"></td>
+            <td class="c"><input type="radio" name="gad7_7" value="3" aria-labelledby="gad7_7_q gad7_c3"></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="score-line">
+        <span class="score-label">GAD-7</span>
+        <span id="gad7_total" class="score-total">Total: &mdash; (incomplete)</span>
+        <input type="hidden" id="gad7_score" name="gad7_score" value="">
+        <input type="hidden" id="gad7_severity" name="gad7_severity" value="">
+      </div>
+      <p class="fineprint">PHQ-9 and GAD-7 developed by Drs. Robert L. Spitzer, Janet B.W. Williams, Kurt Kroenke and colleagues, with an educational grant from Pfizer Inc. No permission required to reproduce, translate, display or distribute.</p>
+    </section>
+
+    <!-- ============================ STEP 3 ============================ -->
+    <section id="panel-risk" role="tabpanel" class="panel" hidden>
+      <h2>Step 3 &mdash; Risk</h2>
+      <h3>Risk screening (embedded module)</h3>
+      <iframe id="risk_frame" src="risk.html" title="Risk assessment"></iframe>
+
+      <h3>Clinician determination</h3>
+      <table class="frm">
+        <tr>
+          <th><label for="risk_level">Overall risk level (clinician determination)</label></th>
+          <td>
+            <select id="risk_level" name="risk_level">
+              <option value="">-- Select --</option>
+              <option value="LOW">Low</option>
+              <option value="MODERATE">Moderate</option>
+              <option value="HIGH">High</option>
+              <option value="IMMINENT">Imminent</option>
+            </select>
+          </td>
+          <th><label for="supervisor_consult">Supervisor consulted</label></th>
+          <td>
+            <select id="supervisor_consult" name="supervisor_consult">
+              <option value="">-- Select --</option>
+              <option value="YES">Yes</option>
+              <option value="NO">No</option>
+              <option value="PLANNED">Planned</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4">
+            <fieldset class="group">
+              <legend>Protective factors</legend>
+              <label><input type="checkbox" name="protective_factors" value="FAMILY_CONNECTION"> Family connection</label>
+              <label><input type="checkbox" name="protective_factors" value="CHILDREN_IN_HOME"> Children in home</label>
+              <label><input type="checkbox" name="protective_factors" value="FUTURE_ORIENTATION"> Future orientation</label>
+              <label><input type="checkbox" name="protective_factors" value="RELIGIOUS_BELIEFS"> Religious beliefs</label>
+              <label><input type="checkbox" name="protective_factors" value="TREATMENT_ENGAGEMENT"> Treatment engagement</label>
+              <label><input type="checkbox" name="protective_factors" value="PETS"> Pets</label>
+            </fieldset>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4">
+            <fieldset class="group">
+              <legend>Crisis resources provided</legend>
+              <label><input type="checkbox" name="crisis_resources" value="LINE_988"> 988 Suicide &amp; Crisis Lifeline</label>
+              <label><input type="checkbox" name="crisis_resources" value="COUNTY_CRISIS"> County crisis line</label>
+              <label><input type="checkbox" name="crisis_resources" value="MOBILE_CRISIS"> Mobile crisis team</label>
+              <label><input type="checkbox" name="crisis_resources" value="WARMLINE"> Warmline</label>
+              <label><input type="checkbox" name="crisis_resources" value="NONE"> None</label>
+            </fieldset>
+          </td>
+        </tr>
+      </table>
+    </section>
+
+    <!-- ============================ STEP 4 ============================ -->
+    <section id="panel-plan" role="tabpanel" class="panel" hidden>
+      <h2>Step 4 &mdash; Assessment &amp; Plan</h2>
+
+      <h3>Narrative</h3>
+      <table class="frm narrative">
+        <tr>
+          <th><label for="presenting_problem">Presenting problem</label></th>
+          <td><textarea id="presenting_problem" name="presenting_problem" rows="4"></textarea></td>
+        </tr>
+        <tr>
+          <th><label for="psychosocial_history">Psychosocial history</label></th>
+          <td><textarea id="psychosocial_history" name="psychosocial_history" rows="4"></textarea></td>
+        </tr>
+        <tr>
+          <th><label for="interventions">Interventions this session</label></th>
+          <td><textarea id="interventions" name="interventions" rows="3"></textarea></td>
+        </tr>
+        <tr>
+          <th><label for="plan">Plan</label></th>
+          <td><textarea id="plan" name="plan" rows="3"></textarea></td>
+        </tr>
+        <tr>
+          <th><label for="client_strengths">Client strengths</label></th>
+          <td><textarea id="client_strengths" name="client_strengths" rows="2"></textarea></td>
+        </tr>
+      </table>
+
+      <h3>Psychosocial</h3>
+      <table class="frm">
+        <tr>
+          <th><label for="housing_status">Housing status</label></th>
+          <td>
+            <select id="housing_status" name="housing_status">
+              <option value="">-- Select --</option>
+              <option value="STABLE">Stable</option>
+              <option value="AT_RISK">At risk</option>
+              <option value="DOUBLED_UP">Doubled up</option>
+              <option value="SHELTERED">Sheltered</option>
+              <option value="UNSHELTERED">Unsheltered</option>
+            </select>
+          </td>
+          <th><label for="living_situation">Lives with</label></th>
+          <td>
+            <select id="living_situation" name="living_situation">
+              <option value="">-- Select --</option>
+              <option value="ALONE">Alone</option>
+              <option value="WITH_FAMILY">With family</option>
+              <option value="WITH_PARTNER">With partner</option>
+              <option value="ROOMMATES">Roommates</option>
+              <option value="OTHER">Other</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <th><label for="employment_status">Employment</label></th>
+          <td>
+            <select id="employment_status" name="employment_status">
+              <option value="">-- Select --</option>
+              <option value="EMPLOYED_FT">Employed full-time</option>
+              <option value="EMPLOYED_PT">Employed part-time</option>
+              <option value="UNEMPLOYED">Unemployed</option>
+              <option value="NOT_IN_LABOR_FORCE">Not in labor force</option>
+              <option value="DISABLED">Disabled</option>
+              <option value="STUDENT">Student</option>
+            </select>
+          </td>
+          <th><label for="food_security">Food security</label></th>
+          <td>
+            <select id="food_security" name="food_security">
+              <option value="">-- Select --</option>
+              <option value="SECURE">Secure</option>
+              <option value="INSECURE">Insecure</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4">
+            <fieldset class="group">
+              <legend>Current income sources</legend>
+              <label><input type="checkbox" name="income_sources" value="WAGES"> Wages</label>
+              <label><input type="checkbox" name="income_sources" value="UNEMPLOYMENT_INSURANCE"> Unemployment insurance</label>
+              <label><input type="checkbox" name="income_sources" value="SNAP"> SNAP / CalFresh</label>
+              <label><input type="checkbox" name="income_sources" value="TANF"> TANF / CalWORKs</label>
+              <label><input type="checkbox" name="income_sources" value="SSI"> SSI</label>
+              <label><input type="checkbox" name="income_sources" value="SSDI"> SSDI</label>
+              <label><input type="checkbox" name="income_sources" value="CHILD_SUPPORT"> Child support</label>
+              <label><input type="checkbox" name="income_sources" value="NONE"> None</label>
+            </fieldset>
+          </td>
+        </tr>
+        <tr>
+          <th><label for="transportation">Transportation</label></th>
+          <td>
+            <select id="transportation" name="transportation">
+              <option value="">-- Select --</option>
+              <option value="RELIABLE">Reliable</option>
+              <option value="UNRELIABLE">Unreliable</option>
+              <option value="NONE">None</option>
+            </select>
+          </td>
+          <th><label for="legal_involvement">Legal involvement</label></th>
+          <td>
+            <select id="legal_involvement" name="legal_involvement">
+              <option value="">-- Select --</option>
+              <option value="NONE">None</option>
+              <option value="PROBATION">Probation</option>
+              <option value="PENDING_CASE">Pending case</option>
+              <option value="FAMILY_COURT">Family court</option>
+              <option value="CPS_OPEN">Open CPS case</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <th><label for="children_in_home">Minor children in home</label></th>
+          <td>
+            <select id="children_in_home" name="children_in_home">
+              <option value="">-- Select --</option>
+              <option value="YES">Yes</option>
+              <option value="NO">No</option>
+            </select>
+          </td>
+          <th class="blank"></th>
+          <td></td>
+        </tr>
+      </table>
+
+      <h3>Substance use</h3>
+      <table class="frm">
+        <tr>
+          <td colspan="4">
+            <fieldset class="group">
+              <legend>Substances used (past 30 days)</legend>
+              <label><input type="checkbox" name="substances" value="ALCOHOL"> Alcohol</label>
+              <label><input type="checkbox" name="substances" value="CANNABIS"> Cannabis</label>
+              <label><input type="checkbox" name="substances" value="OPIOIDS"> Opioids</label>
+              <label><input type="checkbox" name="substances" value="STIMULANTS"> Stimulants</label>
+              <label><input type="checkbox" name="substances" value="SEDATIVES"> Sedatives</label>
+              <label><input type="checkbox" name="substances" value="NONE_REPORTED"> None reported</label>
+            </fieldset>
+          </td>
+        </tr>
+        <tr>
+          <th><label for="alcohol_frequency">Alcohol frequency</label></th>
+          <td>
+            <select id="alcohol_frequency" name="alcohol_frequency">
+              <option value="">-- Select --</option>
+              <option value="NEVER">Never</option>
+              <option value="MONTHLY_OR_LESS">Monthly or less</option>
+              <option value="TWO_TO_FOUR_PER_MONTH">2&ndash;4 times a month</option>
+              <option value="TWO_TO_THREE_PER_WEEK">2&ndash;3 times a week</option>
+              <option value="FOUR_PLUS_PER_WEEK">4+ times a week</option>
+            </select>
+          </td>
+          <th><label for="tobacco_use">Tobacco / nicotine</label></th>
+          <td>
+            <select id="tobacco_use" name="tobacco_use">
+              <option value="">-- Select --</option>
+              <option value="NEVER">Never</option>
+              <option value="FORMER">Former</option>
+              <option value="CURRENT">Current</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <th><label for="substance_tx_history">Prior substance-use treatment</label></th>
+          <td>
+            <select id="substance_tx_history" name="substance_tx_history">
+              <option value="">-- Select --</option>
+              <option value="NONE">None</option>
+              <option value="OUTPATIENT">Outpatient</option>
+              <option value="RESIDENTIAL">Residential</option>
+              <option value="MAT">MAT</option>
+            </select>
+          </td>
+          <th class="blank"></th>
+          <td></td>
+        </tr>
+      </table>
+
+      <h3>Health</h3>
+      <table class="frm">
+        <tr>
+          <th><label for="pcp_name">Primary care provider</label></th>
+          <td><input type="text" id="pcp_name" name="pcp_name"></td>
+          <th><label for="medication_adherence">Medication adherence</label></th>
+          <td>
+            <select id="medication_adherence" name="medication_adherence">
+              <option value="">-- Select --</option>
+              <option value="ADHERENT">Adherent</option>
+              <option value="PARTIAL">Partial</option>
+              <option value="NOT_TAKING">Not taking</option>
+              <option value="NONE_PRESCRIBED">None prescribed</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <th><label for="current_medications">Current medications</label></th>
+          <td colspan="3"><textarea id="current_medications" name="current_medications" rows="2"></textarea></td>
+        </tr>
+        <tr>
+          <th><label for="medical_conditions">Medical conditions</label></th>
+          <td><input type="text" id="medical_conditions" name="medical_conditions"></td>
+          <th><label for="sleep_hours">Typical sleep (hours/night)</label></th>
+          <td><input type="text" id="sleep_hours" name="sleep_hours" class="short"></td>
+        </tr>
+        <tr>
+          <td colspan="4">
+            <fieldset class="group">
+              <legend>Support system</legend>
+              <label><input type="checkbox" name="support_system" value="FAMILY"> Family</label>
+              <label><input type="checkbox" name="support_system" value="FRIENDS"> Friends</label>
+              <label><input type="checkbox" name="support_system" value="FAITH_COMMUNITY"> Faith community</label>
+              <label><input type="checkbox" name="support_system" value="PEER_GROUP"> Peer group</label>
+              <label><input type="checkbox" name="support_system" value="NONE"> None</label>
+            </fieldset>
+          </td>
+        </tr>
+      </table>
+
+      <h3>Mental status exam</h3>
+      <table class="frm">
+        <tr>
+          <th><label for="mse_appearance">Appearance</label></th>
+          <td>
+            <select id="mse_appearance" name="mse_appearance">
+              <option value="">-- Select --</option>
+              <option value="WNL">Within normal limits</option>
+              <option value="DISHEVELED">Disheveled</option>
+              <option value="OTHER">Other</option>
+            </select>
+          </td>
+          <th><label for="mse_mood">Mood (client's words)</label></th>
+          <td><input type="text" id="mse_mood" name="mse_mood"></td>
+        </tr>
+        <tr>
+          <th><label for="mse_affect">Affect</label></th>
+          <td>
+            <select id="mse_affect" name="mse_affect">
+              <option value="">-- Select --</option>
+              <option value="FULL">Full</option>
+              <option value="CONSTRICTED">Constricted</option>
+              <option value="FLAT">Flat</option>
+              <option value="LABILE">Labile</option>
+            </select>
+          </td>
+          <th><label for="mse_thought_process">Thought process</label></th>
+          <td>
+            <select id="mse_thought_process" name="mse_thought_process">
+              <option value="">-- Select --</option>
+              <option value="LINEAR">Linear</option>
+              <option value="TANGENTIAL">Tangential</option>
+              <option value="DISORGANIZED">Disorganized</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <th><label for="mse_orientation">Orientation</label></th>
+          <td>
+            <select id="mse_orientation" name="mse_orientation">
+              <option value="">-- Select --</option>
+              <option value="X4">Oriented x4</option>
+              <option value="IMPAIRED">Impaired</option>
+            </select>
+          </td>
+          <th><label for="mse_insight">Insight</label></th>
+          <td>
+            <select id="mse_insight" name="mse_insight">
+              <option value="">-- Select --</option>
+              <option value="GOOD">Good</option>
+              <option value="FAIR">Fair</option>
+              <option value="POOR">Poor</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <th><label for="mse_judgment">Judgment</label></th>
+          <td>
+            <select id="mse_judgment" name="mse_judgment">
+              <option value="">-- Select --</option>
+              <option value="GOOD">Good</option>
+              <option value="FAIR">Fair</option>
+              <option value="POOR">Poor</option>
+            </select>
+          </td>
+          <th class="blank"></th>
+          <td></td>
+        </tr>
+      </table>
+
+      <h3>ADL / IADL</h3>
+      <table class="frm">
+        <tr>
+          <th><label for="adl_bathing">Bathing</label></th>
+          <td>
+            <select id="adl_bathing" name="adl_bathing">
+              <option value="">-- Select --</option>
+              <option value="INDEPENDENT">Independent</option>
+              <option value="NEEDS_ASSISTANCE">Needs assistance</option>
+              <option value="DEPENDENT">Dependent</option>
+              <option value="NOT_ASSESSED">Not assessed</option>
+            </select>
+          </td>
+          <th><label for="adl_dressing">Dressing</label></th>
+          <td>
+            <select id="adl_dressing" name="adl_dressing">
+              <option value="">-- Select --</option>
+              <option value="INDEPENDENT">Independent</option>
+              <option value="NEEDS_ASSISTANCE">Needs assistance</option>
+              <option value="DEPENDENT">Dependent</option>
+              <option value="NOT_ASSESSED">Not assessed</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <th><label for="adl_eating">Eating</label></th>
+          <td>
+            <select id="adl_eating" name="adl_eating">
+              <option value="">-- Select --</option>
+              <option value="INDEPENDENT">Independent</option>
+              <option value="NEEDS_ASSISTANCE">Needs assistance</option>
+              <option value="DEPENDENT">Dependent</option>
+              <option value="NOT_ASSESSED">Not assessed</option>
+            </select>
+          </td>
+          <th><label for="adl_mobility">Mobility</label></th>
+          <td>
+            <select id="adl_mobility" name="adl_mobility">
+              <option value="">-- Select --</option>
+              <option value="INDEPENDENT">Independent</option>
+              <option value="NEEDS_ASSISTANCE">Needs assistance</option>
+              <option value="DEPENDENT">Dependent</option>
+              <option value="NOT_ASSESSED">Not assessed</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <th><label for="iadl_finances">Managing finances</label></th>
+          <td>
+            <select id="iadl_finances" name="iadl_finances">
+              <option value="">-- Select --</option>
+              <option value="INDEPENDENT">Independent</option>
+              <option value="NEEDS_ASSISTANCE">Needs assistance</option>
+              <option value="DEPENDENT">Dependent</option>
+              <option value="NOT_ASSESSED">Not assessed</option>
+            </select>
+          </td>
+          <th><label for="iadl_transport">Using transportation</label></th>
+          <td>
+            <select id="iadl_transport" name="iadl_transport">
+              <option value="">-- Select --</option>
+              <option value="INDEPENDENT">Independent</option>
+              <option value="NEEDS_ASSISTANCE">Needs assistance</option>
+              <option value="DEPENDENT">Dependent</option>
+              <option value="NOT_ASSESSED">Not assessed</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <th><label for="iadl_medications">Managing medications</label></th>
+          <td>
+            <select id="iadl_medications" name="iadl_medications">
+              <option value="">-- Select --</option>
+              <option value="INDEPENDENT">Independent</option>
+              <option value="NEEDS_ASSISTANCE">Needs assistance</option>
+              <option value="DEPENDENT">Dependent</option>
+              <option value="NOT_ASSESSED">Not assessed</option>
+            </select>
+          </td>
+          <th class="blank"></th>
+          <td></td>
+        </tr>
+      </table>
+
+      <h3>Disposition</h3>
+      <table class="frm">
+        <tr>
+          <td colspan="4">
+            <fieldset class="group">
+              <legend>Referrals made</legend>
+              <label><input type="checkbox" name="referrals_made" value="FOOD_BANK"> Food bank</label>
+              <label><input type="checkbox" name="referrals_made" value="HOUSING_NAV"> Housing navigation</label>
+              <label><input type="checkbox" name="referrals_made" value="BENEFITS"> Benefits enrollment</label>
+              <label><input type="checkbox" name="referrals_made" value="PSYCHIATRY"> Psychiatry</label>
+              <label><input type="checkbox" name="referrals_made" value="SUBSTANCE_TX"> Substance-use treatment</label>
+              <label><input type="checkbox" name="referrals_made" value="LEGAL_AID"> Legal aid</label>
+              <label><input type="checkbox" name="referrals_made" value="NONE"> None</label>
+            </fieldset>
+          </td>
+        </tr>
+        <tr>
+          <th><label for="client_goal">Client goal (client's words)</label></th>
+          <td colspan="3"><input type="text" id="client_goal" name="client_goal" class="wide"></td>
+        </tr>
+        <tr>
+          <th><label for="next_appointment">Next appointment</label></th>
+          <td><input type="date" id="next_appointment" name="next_appointment"></td>
+          <th><label for="follow_up_interval">Follow-up interval</label></th>
+          <td>
+            <select id="follow_up_interval" name="follow_up_interval">
+              <option value="">-- Select --</option>
+              <option value="WEEKLY">Weekly</option>
+              <option value="BIWEEKLY">Every 2 weeks</option>
+              <option value="MONTHLY">Monthly</option>
+              <option value="AS_NEEDED">As needed</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <th><label for="level_of_care">Recommended level of care</label></th>
+          <td>
+            <select id="level_of_care" name="level_of_care">
+              <option value="">-- Select --</option>
+              <option value="OUTPATIENT">Outpatient</option>
+              <option value="INTENSIVE_OUTPATIENT">Intensive outpatient</option>
+              <option value="PARTIAL_HOSPITALIZATION">Partial hospitalization</option>
+              <option value="INPATIENT">Inpatient</option>
+            </select>
+          </td>
+          <th class="blank"></th>
+          <td><input type="text" id="diagnosis_impression" name="diagnosis_impression" aria-label="Diagnostic impression" class="wide"></td>
+        </tr>
+      </table>
+
+      <div class="attest">
+        <label><input type="checkbox" id="note_attestation" name="note_attestation" value="ATTESTED"> I attest this note reflects services I provided</label>
+      </div>
+    </section>
+
+    <div class="form-actions">
+      <button type="button" id="btn_save_draft">Save draft</button>
+      <button type="submit" id="btn_submit">Sign &amp; submit</button>
+      <span id="draft_status" class="draft-status"></span>
+    </div>
+  </form>
+</main>
+
+<footer class="app-footer">
+  Riverside County HSA &middot; Integrated Client Record v4.2.117 &middot; Unauthorized access prohibited &middot; Synthetic test fixture &mdash; contains no real client data
+</footer>
+
+</body>
+</html>

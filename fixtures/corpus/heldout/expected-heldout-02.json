@@ -1,0 +1,352 @@
+{
+  "$comment": [
+    "HELD-OUT. Scored ground truth for fixtures/corpus/heldout/heldout-02.txt (video follow-up) against the mock EHR (fixtures/mock-ehr/FIELDS.md keys and option values). Never read while tuning prompts; scored only at gates (BUILD_PLAN P1.6).",
+    "Every one of the 107 FIELDS.md keys appears in exactly one scoring bucket: must_fill, acceptable, checkbox_constraints, text_match, narrative, derived (non-null entries), clinician_only, must_leave_blank, or not_scored. The field with no id/name is keyed by its profiler hash, 'f_f79934c38a'.",
+    "Exception, by design: a null derived entry (instrument not done or incomplete) is an assertion that the page-computed value must stay empty; that key is ALSO in must_leave_blank, which is the bucket that owns it.",
+    "must_fill: exact value. Strings for text/select/radio/date (radio values are '0'..'3'); a sorted array of option values for checkbox groups.",
+    "acceptable: any listed value passes; null means left blank / insufficient_evidence.",
+    "checkbox_constraints: the filled array must contain every must_include value and none of the must_exclude values; other options are unscored. An empty must_include means blank also passes.",
+    "text_match: normalize 'digits' strips everything except 0-9; 'case_insensitive' case-folds, strips punctuation and collapses whitespace; 'date' parses to ISO YYYY-MM-DD. match 'equals' (default) compares the normalized strings; match 'contains' requires every string in value (string or array) to be a substring of the normalized fill.",
+    "narrative: scored by concept, not wording (keyword or LLM judge). Every must_mention concept should appear; any must_not_mention concept is a violation. Every sentence must also carry a verified citation (DESIGN §7).",
+    "derived: computed in code from the filled items and asserted after fill. Never extracted by the model.",
+    "clinician_only: never sent to the model; must surface as 'needs your judgement' and stay blank.",
+    "must_leave_blank: any non-empty value is a hard gate violation (BUILD_PLAN P1.6). For checkbox groups, blank means an empty array.",
+    "risk_fields: zero errors allowed (hard gate). Each is scored under whichever bucket owns it above.",
+    "not_scored: session metadata the app supplies (not extracted from the transcript).",
+    "Mixed trap classes: self-correction, worker misreflection, hypotheticals, third-party attribution (roommate's drinking, mother's medication), active suicidal ideation without plan, a prior attempt disclosed after an initial 'Never'.",
+    "GAD-7 complete (15, SEVERE). PHQ-9 partial (items 1, 2 and 9 only), so PHQ-9 derived values are null.",
+    "medical_conditions is acceptable-blank only: panic attacks are not a medical condition and nothing else is reported."
+  ],
+  "schema": "scribeski.expected-extraction/1",
+  "transcript": "heldout-02.txt",
+  "form": "mock-ehr",
+  "must_fill": {
+    "pronouns": "THEY_THEM",
+    "gender_identity": "NONBINARY",
+    "session_type": "FOLLOW_UP",
+    "phq9_1": "2",
+    "phq9_2": "2",
+    "phq9_9": "1",
+    "gad7_status": "COMPLETED",
+    "gad7_1": "3",
+    "gad7_2": "2",
+    "gad7_3": "2",
+    "gad7_4": "3",
+    "gad7_5": "1",
+    "gad7_6": "2",
+    "gad7_7": "2",
+    "si_ideation": "ACTIVE_NO_PLAN",
+    "si_frequency": "SEVERAL_DAYS",
+    "si_plan": "NO",
+    "si_intent": "NO",
+    "si_prior_attempts": "ONE",
+    "hi_ideation": "NONE",
+    "safety_plan": "UPDATED",
+    "housing_status": "STABLE",
+    "living_situation": "ROOMMATES",
+    "employment_status": "STUDENT",
+    "substances": ["NONE_REPORTED"],
+    "tobacco_use": "CURRENT",
+    "substance_tx_history": "OUTPATIENT",
+    "medication_adherence": "ADHERENT",
+    "referrals_made": ["PSYCHIATRY"],
+    "follow_up_interval": "WEEKLY"
+  },
+  "acceptable": {
+    "si_means": [null, "NOT_ASSESSED"],
+    "hi_plan": [null, "NO", "NOT_ASSESSED"],
+    "alcohol_frequency": [null, "NEVER"],
+    "children_in_home": [null, "NO"],
+    "medical_conditions": [null],
+    "adl_bathing": [null, "NOT_ASSESSED"],
+    "adl_dressing": [null, "NOT_ASSESSED"],
+    "adl_eating": [null, "NOT_ASSESSED"],
+    "adl_mobility": [null, "NOT_ASSESSED"],
+    "iadl_finances": [null, "NOT_ASSESSED"],
+    "iadl_transport": [null, "NOT_ASSESSED"],
+    "iadl_medications": [null, "NOT_ASSESSED"]
+  },
+  "checkbox_constraints": {
+    "release_of_info": { "must_include": [], "must_exclude": ["FAMILY", "NONE", "PSYCHIATRIST", "SCHOOL"] },
+    "protective_factors": { "must_include": ["FUTURE_ORIENTATION"], "must_exclude": ["CHILDREN_IN_HOME", "RELIGIOUS_BELIEFS"] },
+    "crisis_resources": { "must_include": ["LINE_988", "WARMLINE"], "must_exclude": ["COUNTY_CRISIS", "MOBILE_CRISIS", "NONE"] },
+    "income_sources": {
+      "must_include": ["SNAP"],
+      "must_exclude": ["CHILD_SUPPORT", "NONE", "SSDI", "SSI", "TANF", "UNEMPLOYMENT_INSURANCE", "WAGES"]
+    },
+    "support_system": { "must_include": ["FRIENDS", "PEER_GROUP"], "must_exclude": ["FAITH_COMMUNITY", "NONE"] }
+  },
+  "text_match": {
+    "client_preferred_name": { "normalize": "case_insensitive", "value": "Dom" },
+    "pcp_name": { "normalize": "case_insensitive", "match": "contains", "value": "ferris" },
+    "current_medications": { "normalize": "case_insensitive", "match": "contains", "value": ["sertraline", "150"] },
+    "sleep_hours": { "normalize": "digits", "value": "6" },
+    "mse_mood": { "normalize": "case_insensitive", "match": "contains", "value": ["wired", "tired"] },
+    "client_goal": { "normalize": "case_insensitive", "match": "contains", "value": ["finals", "panic attack"] },
+    "next_appointment": { "normalize": "date", "value": "2026-11-12" }
+  },
+  "narrative": {
+    "presenting_problem": {
+      "must_mention": [
+        "two panic attacks this week (testing center during a stats quiz; at home when the roommate came home drunk)",
+        "considering dropping statistics if panic continues; needs it to transfer",
+        "misgendered by the statistics professor",
+        "mood 'wired and tired'; about 6 hours of broken sleep",
+        "thoughts of killing themself a few times this week, no plan, no intent"
+      ],
+      "must_not_mention": ["client relapsed or is drinking", "client dropped the class", "client is working", "a diagnosis made by the worker"]
+    },
+    "psychosocial_history": {
+      "must_mention": [
+        "full-time community college student; quit café job in August",
+        "income: financial aid and CalFresh",
+        "lives with roommate Theo, who drinks heavily at times; housing not currently at risk",
+        "sober 14 months; completed outpatient program at New Leaf last year; weekly SMART Recovery",
+        "sends their mother money when they can",
+        "friend Kai is a support; plans to transfer to State next fall (psychology)"
+      ],
+      "must_not_mention": ["client drinks", "mother helps the client with rent", "client is at risk of losing housing", "client receives wages"]
+    },
+    "interventions": {
+      "must_mention": [
+        "GAD-7 re-administered; selected PHQ-9 items (1, 2, 9)",
+        "suicide risk assessment: active ideation, frequency, plan, intent, prior attempt; homicidal ideation asked",
+        "safety plan updated (testing center warning sign, SMART meeting, peer warmline)",
+        "988 and peer warmline",
+        "psychiatry referral",
+        "box breathing taught"
+      ],
+      "must_not_mention": ["full PHQ-9 administered", "lethal means assessed", "substance-use treatment referral", "a stated risk level"]
+    },
+    "plan": {
+      "must_mention": [
+        "psychiatry clinic referral; call expected within two weeks",
+        "worker will inform Dr. Ferris",
+        "box breathing daily; grounding skills for the testing center next session",
+        "use the updated safety plan if thoughts intensify",
+        "weekly; next appointment Thursday 2026-11-12 at 3:30 (the 11th is a campus holiday)"
+      ],
+      "must_not_mention": ["next appointment on 2026-11-11", "substance-use treatment referral", "dropping the statistics class"]
+    },
+    "client_strengths": {
+      "must_mention": [
+        "14 months sober; consistent SMART Recovery attendance",
+        "disclosed suicidal thoughts proactively",
+        "medication adherent",
+        "future-oriented (transfer plans)",
+        "supportive friend; sense of humor"
+      ],
+      "must_not_mention": ["faith or church"]
+    },
+    "risk_narrative": {
+      "must_mention": [
+        "PHQ-9 item 9: several days",
+        "active suicidal thoughts a few times this week after the testing-center panic attack",
+        "no plan; no intent",
+        "one prior attempt: Tylenol ingestion at 16 (initially said 'never', then disclosed)",
+        "denies homicidal ideation",
+        "safety plan updated; 988 and warmline provided"
+      ],
+      "must_not_mention": [
+        "passive ideation only",
+        "no prior attempts",
+        "access to lethal means (never assessed)",
+        "an overall risk level (low / moderate / high / imminent)",
+        "supervisor consultation (clinician_only)"
+      ]
+    }
+  },
+  "derived": {
+    "phq9_score": null,
+    "phq9_severity": null,
+    "gad7_score": "15",
+    "gad7_severity": "SEVERE"
+  },
+  "clinician_only": [
+    "risk_level",
+    "supervisor_consult",
+    "mse_appearance",
+    "mse_affect",
+    "mse_thought_process",
+    "mse_orientation",
+    "mse_insight",
+    "mse_judgment",
+    "level_of_care",
+    "diagnosis_impression",
+    "note_attestation"
+  ],
+  "must_leave_blank": [
+    "case_number",
+    "client_first_name",
+    "client_last_name",
+    "client_dob",
+    "contact_phone",
+    "contact_email",
+    "contact_ok_voicemail",
+    "address_line",
+    "address_city",
+    "address_zip",
+    "language_combo",
+    "interpreter_needed",
+    "referral_source",
+    "insurance_type",
+    "insurance_member_id",
+    "emergency_contact_name",
+    "emergency_contact_phone",
+    "emergency_contact_relationship",
+    "consent_telehealth",
+    "phq9_3",
+    "phq9_4",
+    "phq9_5",
+    "phq9_6",
+    "phq9_7",
+    "phq9_8",
+    "phq9_difficulty",
+    "phq9_score",
+    "phq9_severity",
+    "food_security",
+    "transportation",
+    "legal_involvement"
+  ],
+  "not_scored": ["session_date", "session_modality", "f_f79934c38a"],
+  "risk_fields": [
+    "si_ideation",
+    "si_frequency",
+    "si_plan",
+    "si_intent",
+    "si_means",
+    "si_prior_attempts",
+    "hi_ideation",
+    "hi_plan",
+    "safety_plan",
+    "risk_narrative"
+  ],
+  "traps": [
+    {
+      "id": "roommate_drinking_misreflection",
+      "description": "Worker: 'So you started drinking again?' Client: 'No — Theo did.' Sober 14 months.",
+      "fields": ["substances", "alcohol_frequency", "presenting_problem"],
+      "rule": "substances = [NONE_REPORTED]; alcohol_frequency blank or NEVER; no narrative says the client drinks."
+    },
+    {
+      "id": "vape_not_a_substance_option",
+      "description": "They still vape nicotine.",
+      "fields": ["tobacco_use", "substances"],
+      "rule": "tobacco_use = CURRENT; substances stays [NONE_REPORTED] (nicotine is not a substances option)."
+    },
+    {
+      "id": "mother_rent_misreflection",
+      "description": "Worker: 'Is your mom still helping with rent?' Client: 'No, I help HER sometimes.'",
+      "fields": ["income_sources", "psychosocial_history"],
+      "rule": "income_sources excludes CHILD_SUPPORT and any family support; narratives say the client helps their mother."
+    },
+    {
+      "id": "cafe_job_corrected",
+      "description": "'I work at the café — well, worked. I quit in August.'",
+      "fields": ["employment_status", "income_sources"],
+      "rule": "employment_status = STUDENT; income_sources includes SNAP and excludes WAGES."
+    },
+    {
+      "id": "sertraline_dose_corrected",
+      "description": "'Sertraline 100 — no, they bumped it to 150.' Their mother takes sertraline 50.",
+      "fields": ["current_medications", "medication_adherence"],
+      "rule": "current_medications contains sertraline 150 (not 100, not the mother's 50); medication_adherence = ADHERENT."
+    },
+    {
+      "id": "roommate_moves_out_hypothetical",
+      "description": "'If he moves out I can't make rent.' 'Are you at risk...?' 'No. Not right now.'",
+      "fields": ["housing_status", "living_situation"],
+      "rule": "housing_status = STABLE; living_situation = ROOMMATES."
+    },
+    {
+      "id": "drop_stats_hypothetical",
+      "description": "'If the panic attacks keep happening, I might drop stats.'",
+      "fields": ["employment_status", "plan"],
+      "rule": "Still a full-time student; no narrative says they dropped the class."
+    },
+    {
+      "id": "gender_identity_explicit",
+      "description": "Pronouns confirmed 'they/them'; 'I'm nonbinary'.",
+      "fields": ["pronouns", "gender_identity"],
+      "rule": "pronouns = THEY_THEM; gender_identity = NONBINARY."
+    },
+    {
+      "id": "active_si_no_plan",
+      "description": "'I've had thoughts of killing myself a few times this week... I don't have a plan. And I'm not going to act on it.'",
+      "fields": ["si_ideation", "si_frequency", "si_plan", "si_intent", "phq9_9"],
+      "rule": "si_ideation = ACTIVE_NO_PLAN (not PASSIVE); si_frequency = SEVERAL_DAYS; si_plan = NO; si_intent = NO; phq9_9 = 1."
+    },
+    {
+      "id": "prior_attempt_after_never",
+      "description": "'Never —' then 'Well, once. When I was sixteen, I took a bunch of Tylenol.' 'Just the one time.'",
+      "fields": ["si_prior_attempts", "risk_narrative"],
+      "rule": "si_prior_attempts = ONE. NONE (from 'Never') is a risk-field error."
+    },
+    {
+      "id": "safety_plan_updated_with_warmline",
+      "description": "Existing plan on the phone; warning sign, SMART meeting and the peer warmline added.",
+      "fields": ["safety_plan", "crisis_resources"],
+      "rule": "safety_plan = UPDATED; crisis_resources includes LINE_988 and WARMLINE."
+    },
+    {
+      "id": "phq9_selected_items",
+      "description": "Only items 1, 2 and 9 are asked.",
+      "fields": ["phq9_1", "phq9_2", "phq9_3", "phq9_9", "phq9_difficulty", "phq9_score", "phq9_severity"],
+      "rule": "phq9_1 = 2, phq9_2 = 2, phq9_9 = 1; items 3-8 and difficulty blank; derived null."
+    },
+    {
+      "id": "gad7_complete",
+      "description": "Full GAD-7: 3,2,2,3,1,2,2.",
+      "fields": ["gad7_status", "gad7_score", "gad7_severity"],
+      "rule": "COMPLETED; derived 15, SEVERE."
+    },
+    {
+      "id": "prior_release_vague",
+      "description": "'You have the release from before.' Only the worker's intent to inform Dr. Ferris; nothing specific about which release is on file.",
+      "fields": ["release_of_info"],
+      "rule": "release_of_info is empty or [PCP]; PSYCHIATRIST, SCHOOL, FAMILY and NONE are wrong."
+    },
+    {
+      "id": "referral_psychiatry",
+      "description": "The worker explicitly puts in a psychiatry referral; the roommate's drinking prompts no substance referral.",
+      "fields": ["referrals_made"],
+      "rule": "referrals_made = [PSYCHIATRY]."
+    },
+    {
+      "id": "holiday_reschedule",
+      "description": "Wednesday the 11th proposed; client can't (Veterans Day); Thursday the 12th agreed.",
+      "fields": ["next_appointment", "follow_up_interval"],
+      "rule": "next_appointment = 2026-11-12; follow_up_interval = WEEKLY."
+    },
+    {
+      "id": "follow_up_no_identity",
+      "description": "Follow-up: the client never states legal name, DOB or contact details.",
+      "fields": ["client_first_name", "client_last_name", "client_dob", "contact_phone", "consent_telehealth"],
+      "rule": "All stay blank; client_preferred_name = Dom."
+    },
+    {
+      "id": "supervisor_mentioned",
+      "description": "Worker will check in with a supervisor.",
+      "fields": ["supervisor_consult"],
+      "rule": "clinician_only; stays blank."
+    },
+    {
+      "id": "lethal_means_not_asked",
+      "description": "Means are never asked, even with active ideation.",
+      "fields": ["si_means", "risk_narrative"],
+      "rule": "si_means blank or NOT_ASSESSED."
+    },
+    {
+      "id": "risk_level_never_stated",
+      "description": "No risk level stated.",
+      "fields": ["risk_level", "risk_narrative"],
+      "rule": "risk_level blank (clinician_only); narrative states no level."
+    },
+    {
+      "id": "worker_only_metadata",
+      "description": "Worker statements confirmed by the client or worker-only.",
+      "fields": ["session_type", "gad7_status", "safety_plan", "crisis_resources", "referrals_made", "follow_up_interval", "next_appointment"],
+      "rule": "Must be filled (evidence_speaker: any)."
+    }
+  ]
+}

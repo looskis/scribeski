@@ -1,0 +1,403 @@
+# scribeski transcript fixture v1
+# session_date: 2026-09-17
+# started_at: 2026-09-17T14:00:00-07:00
+# modality: video
+# duration_minutes: 45
+# note: synthetic; all people fictional; phone numbers use 555-01xx
+[00:04] WORKER: Hi — can you hear me okay?
+[00:09] CLIENT: Hi, yeah. I can hear you. Can you hear me?
+[00:15] WORKER: I can, yeah. And I can see you — the video's pretty clear on my end.
+[00:24] CLIENT: Oh good. Okay. Sorry, I was — I was looking for my headphones.
+[00:32] WORKER: No, no problem at all. Take your time.
+[00:41] CLIENT: Okay. I'm good. I'm ready.
+[00:45] WORKER: Great. So my name is Kim, I'm a social worker with Riverside County HSA.
+[00:52] WORKER: Um, thank you for making time today. I know it's the middle of the afternoon.
+[01:01] CLIENT: Yeah, it's fine. Mateo gets out at three, so I have a little bit.
+[01:09] WORKER: Oh good, okay. And how's your day been so far?
+[01:15] CLIENT: It's — honestly it's been hot. It's been so hot this week.
+[01:22] WORKER: Oh, it's been brutal. We had the fans going in the office all morning.
+[01:31] CLIENT: Yeah. Our place doesn't really cool down, so.
+[01:36] WORKER: Mm. Well — I'll try to keep us moving so you're not stuck in front of the laptop.
+[01:46] CLIENT: Okay.
+[01:48] WORKER: So before we get into anything, a couple of housekeeping things.
+[01:54] WORKER: We're meeting by video today, not in person. Do I have your verbal consent to have this session over video?
+[02:05] CLIENT: Yes. Yeah, that's fine.
+[02:09] WORKER: Okay, thank you. And I use a tool that helps me with my notes — it transcribes what we say. Is that okay with you?
+[02:22] CLIENT: Um, sure. That's fine.
+[02:25] WORKER: Thanks. And today is an intake — it's our first meeting — so I'm going to be asking a lot of questions.
+[02:37] WORKER: Some of them are gonna feel kind of like paperwork, and some are more personal. You can skip anything you don't want to answer.
+[02:49] CLIENT: Okay.
+[02:51] WORKER: And I'll just say up front — what we talk about is confidential.
+[02:58] WORKER: The exceptions are if I'm worried someone's in danger — you, or somebody else — or if a child's being hurt. Then I'd have to act on it.
+[03:12] WORKER: But I'd always try to talk with you about it first. Does that make sense?
+[03:21] CLIENT: Yeah. That makes sense.
+[03:25] WORKER: And if you need a break at any point, just tell me.
+[03:32] CLIENT: Okay. Thank you.
+[03:35] WORKER: So let me start with the paperwork part. I have your case number here as AB-114322.
+[03:43] WORKER: Does that match what's on the letter you got from us?
+[03:50] CLIENT: Um, hold on, let me — I have it right here.
+[04:01] CLIENT: Yeah. AB-114322. That's it.
+[04:04] WORKER: Perfect. And can you tell me your full legal name?
+[04:11] CLIENT: Daniela Reyes.
+[04:13] CLIENT: But everyone calls me Dani.
+[04:17] WORKER: Dani. Is it okay if I call you Dani?
+[04:23] CLIENT: Yeah, please. Only my mom calls me Daniela, and that's when I'm in trouble.
+[04:31] WORKER: Okay, Dani it is. And your date of birth?
+[04:36] CLIENT: March 3rd, 1989.
+[04:40] WORKER: March 3rd, 1989. Thank you.
+[04:43] WORKER: And what pronouns do you use?
+[04:47] CLIENT: She/her.
+[04:50] WORKER: Okay. Um, and what's the best phone number to reach you?
+[04:56] CLIENT: It's 510-555-0193.
+[04:59] WORKER: 510-555-0193. And is it okay if I leave a voicemail at that number?
+[05:07] CLIENT: Yes. Yeah, you can leave a message, that's fine.
+[05:12] WORKER: Okay. And your current address?
+[05:16] CLIENT: It's 2210 Alder —
+[05:26] WORKER: Sorry, you froze — can you say that again?
+[05:32] CLIENT: Oh — sorry. Can you hear me now?
+[05:37] WORKER: Yeah, you're back. I got "2210 Alder" and then it cut out.
+[05:44] CLIENT: Okay. 2210 Alder Street, Apartment 4.
+[05:49] WORKER: Apartment 4. And that's in Fairhaven?
+[05:53] CLIENT: Yes, Fairhaven. 92503.
+[05:56] WORKER: 92503. Great.
+[05:58] WORKER: And what language do you prefer for our sessions?
+[06:04] CLIENT: English is fine for me — my mom only speaks Spanish, but it's just me on the call.
+[06:14] WORKER: Okay. So no interpreter needed for you?
+[06:19] CLIENT: No, no interpreter. I'm good.
+[06:23] WORKER: Got it. And how did you hear about us — who sent you our way?
+[06:32] CLIENT: My son's school counselor.
+[06:34] CLIENT: Um, Mateo was having a hard time at school, and she called me in, and we talked for a while, and she gave me your number.
+[06:48] WORKER: Okay. I'm glad she did. And what kind of health coverage do you have?
+[06:56] CLIENT: Medi-Cal.
+[06:58] WORKER: Medi-Cal, okay.
+[07:00] WORKER: And for an emergency contact — who should we call if we ever needed to reach someone for you?
+[07:11] CLIENT: My sister. Marisol Reyes.
+[07:14] WORKER: Marisol. And a number for her?
+[07:19] CLIENT: 510-555-0148.
+[07:21] WORKER: 510-555-0148. And she's your sister.
+[07:25] CLIENT: Yeah. My older sister.
+[07:29] WORKER: Alright. That's most of the paperwork part done. Thank you for bearing with me.
+[07:37] CLIENT: No, it's fine.
+[07:40] WORKER: So — tell me, in your own words, what's been going on. What made you want to reach out?
+[07:54] CLIENT: Um. Where do I start.
+[07:57] CLIENT: So I got laid off in June. I was at a warehouse — I was there almost four years.
+[08:07] CLIENT: Shipping and receiving. And they just — they cut the whole second shift. Like, just gone.
+[08:16] WORKER: Four years. That's a lot.
+[08:20] CLIENT: Yeah. They gave us like two weeks' notice. That was it.
+[08:26] CLIENT: And I thought I'd find something quick, you know, because I've always worked. But it's been — it's been nothing.
+[08:37] WORKER: Mm-hm.
+[08:39] CLIENT: And now I'm two months behind on the rent.
+[08:45] WORKER: Two months.
+[08:48] CLIENT: Yeah. And last week the landlord put a notice on the door.
+[08:54] CLIENT: Like a — you know, a notice. Saying I have to pay or — or leave.
+[09:03] WORKER: That's really scary. I'm sorry.
+[09:07] CLIENT: Yeah. Mateo doesn't know. I took it down before he saw it.
+[09:14] WORKER: Have you been able to talk to the landlord at all?
+[09:21] CLIENT: I tried. I left a message. He's — he's not a bad guy, but he said he has a mortgage too, you know.
+[09:33] WORKER: Right.
+[09:36] CLIENT: So I don't know. I don't know how long he's gonna wait.
+[09:43] WORKER: Who's at home with you — is it you and Mateo?
+[09:50] CLIENT: Just the two of us. Yeah. Just me and him.
+[09:56] WORKER: And how old is Mateo?
+[10:00] CLIENT: He's eight. He just started third grade.
+[10:05] WORKER: Third grade. Okay.
+[10:08] CLIENT: And he's — he's a good kid. He's a really good kid.
+[10:14] CLIENT: He's just been kind of acting out at school, which is why the counselor called. Like talking back, not doing his work.
+[10:26] CLIENT: I think he can tell. Like, kids can tell when something's wrong.
+[10:33] WORKER: They really can. Yeah.
+[10:36] CLIENT: The counselor said he's been really distracted, and one time he cried in class and wouldn't say why.
+[10:46] WORKER: That must have been hard to hear.
+[10:51] CLIENT: It was. I sat on the bench outside the school afterwards for like twenty minutes.
+[10:59] CLIENT: He asked me the other day if we were poor now.
+[11:06] WORKER: Oh. That's a hard question to get from your kid.
+[11:12] CLIENT: Yeah. I didn't know what to say. I said no, we're fine. But.
+[11:20] WORKER: Mm.
+[11:22] WORKER: And how have you been doing, with all of this?
+[11:28] CLIENT: Honestly? Not good.
+[11:30] CLIENT: I'm tired all the time. Like, exhausted. And I can't sleep.
+[11:37] WORKER: Tell me about the sleep.
+[11:41] CLIENT: I lay down and my brain just won't stop. I'm thinking about the rent, I'm thinking about the notice.
+[11:51] CLIENT: I'm worried about the rent constantly. I can't turn it off.
+[11:58] WORKER: Mm-hm.
+[12:00] CLIENT: So I end up getting maybe four, five hours a night. If that.
+[12:08] WORKER: Four or five hours. That's not a lot of sleep for anybody.
+[12:15] CLIENT: No. And then I have to get him up for school and I'm just — I'm a zombie.
+[12:25] WORKER: Yeah. And how about eating — how's food been at home?
+[12:35] CLIENT: Um. I make sure he eats.
+[12:39] CLIENT: Like, he gets breakfast at school, and I make dinner, but sometimes I — I skip. So there's enough for him.
+[12:50] WORKER: So sometimes you're skipping meals so that Mateo has enough.
+[12:56] CLIENT: Yeah. Not every day. But — yeah. When it's tight at the end of the month.
+[13:05] WORKER: Thank you for telling me that. I know that's not easy to say out loud.
+[13:14] CLIENT: It's embarrassing.
+[13:17] WORKER: I hear that it feels that way. But what I'm hearing is a mom making sure her kid eats. That's what you're doing.
+[13:29] CLIENT: Yeah.
+[13:31] WORKER: We're gonna talk about some food resources later on, okay? I don't want to leave that hanging.
+[13:41] CLIENT: Okay. Thank you.
+[13:44] WORKER: And your mood — how would you describe your mood lately? In your own words.
+[13:52] CLIENT: Exhausted. Kind of numb.
+[13:56] WORKER: Exhausted, and kind of numb.
+[14:00] CLIENT: Yeah. Like I'm just going through the motions. Wake up, get him to school, look for jobs, make dinner, go to bed, don't sleep.
+[14:12] WORKER: That sounds really heavy. Carrying all of it by yourself.
+[14:19] CLIENT: It is. Yeah.
+[14:22] WORKER: When did you start feeling this way — was it after the layoff, or before?
+[14:30] CLIENT: I mean, I was stressed before. But it got a lot worse after. Like July, August, it just — it got bad.
+[14:42] CLIENT: Like the first few weeks I was kind of okay, I was like, fine, I'll update my resume, I'll get something.
+[14:52] CLIENT: And then the weeks just kept going. And the savings went. And that's when it got — heavy.
+[15:02] WORKER: Okay. So it's been building since about July.
+[15:08] CLIENT: Yeah. That sounds right.
+[15:11] WORKER: Let me make sure I'm getting it. You lost the warehouse job in June, you've been looking hard and nothing's come through yet.
+[15:23] WORKER: You're two months behind, there's a notice from the landlord, you're not sleeping, you're exhausted, and some days you're going without so Mateo can eat.
+[15:35] WORKER: Is that — did I miss anything?
+[15:40] CLIENT: No. That's — yeah. When you say it all at once it sounds bad.
+[15:48] WORKER: It's a lot. It's a lot for one person. And you're still here, getting help. That counts for something.
+[15:59] CLIENT: I guess.
+[16:01] WORKER: Okay.
+[16:03] WORKER: So — I'd like to go through a short questionnaire with you. It's called the PHQ-9. It's nine questions about how you've been feeling.
+[16:15] WORKER: It's something we do with everybody at intake. It just helps me get a picture.
+[16:24] CLIENT: Okay.
+[16:26] WORKER: For each one, I'll ask how often it's bothered you over the last two weeks.
+[16:34] WORKER: And the choices are: not at all, several days, more than half the days, or nearly every day.
+[16:44] CLIENT: Okay. Not at all, several days, more than half, nearly every day.
+[16:51] WORKER: That's it. You got it.
+[16:55] WORKER: So the first one. Over the last two weeks, how often have you been bothered by little interest or pleasure in doing things?
+[17:07] CLIENT: Um. Like — stuff I used to like?
+[17:12] WORKER: Mm-hm. Things you'd normally enjoy.
+[17:16] CLIENT: I used to cook a lot. Like, I loved cooking. And now it's just — whatever. I don't care.
+[17:26] CLIENT: I'd say more than half the days.
+[17:31] WORKER: More than half the days. Okay.
+[17:35] WORKER: Number two. Feeling down, depressed, or hopeless.
+[17:40] CLIENT: Nearly every day.
+[17:43] WORKER: Nearly every day.
+[17:46] CLIENT: Yeah. That one's — yeah.
+[17:50] WORKER: Okay. Number three. Trouble falling or staying asleep, or sleeping too much.
+[17:57] CLIENT: Nearly every day. Like I said, the sleep is bad.
+[18:03] WORKER: Nearly every day. Four: feeling tired or having little energy.
+[18:10] CLIENT: Um. I mean, I'm tired a lot, but some days I kind of push through.
+[18:18] CLIENT: More than half the days, I guess. Yeah, more than half.
+[18:24] WORKER: More than half the days. Number five. Poor appetite or overeating.
+[18:31] CLIENT: Hmm. That's — like I said, I skip sometimes, but that's more because of money. Not because I'm not hungry.
+[18:42] WORKER: Right. So this one's really about your appetite itself.
+[18:48] CLIENT: Then — several days, maybe. Some days I just don't feel like eating. But not a lot.
+[18:57] WORKER: Several days. Okay.
+[19:00] WORKER: Six. Feeling bad about yourself — or that you are a failure, or have let yourself or your family down.
+[19:14] CLIENT: Yeah.
+[19:16] CLIENT: More than half the days. Like, I feel like I let him down. Losing the job, all of it.
+[19:26] WORKER: More than half the days.
+[19:30] WORKER: Seven. Trouble concentrating on things, such as reading the newspaper or watching television.
+[19:37] CLIENT: More than half the days. I'll be filling out a job application and I'll read the same line like five times.
+[19:49] WORKER: More than half the days. Okay.
+[19:52] WORKER: Eight. This one's kind of a two-parter. Moving or speaking so slowly that other people could have noticed?
+[20:02] WORKER: Or the opposite — being so fidgety or restless that you've been moving around a lot more than usual.
+[20:12] CLIENT: Um. The slow one, I think. My sister said I seem slowed down. Like I'm underwater.
+[20:21] CLIENT: More than half the days, probably.
+[20:25] WORKER: More than half the days.
+[20:29] WORKER: And the last one. Thoughts that you would be better off dead, or of hurting yourself in some way.
+[20:44] CLIENT: Several days. Not like — I'm not going to do anything.
+[20:50] WORKER: Okay. Thank you for being honest with me about that. I'm gonna come back to that one in just a minute, okay?
+[21:02] CLIENT: Okay.
+[21:04] WORKER: And one more on this form. If you've had any of these problems, how difficult have they made it for you to do your work, take care of things at home, or get along with other people?
+[21:22] WORKER: Not difficult at all, somewhat difficult, very difficult, or extremely difficult.
+[21:29] CLIENT: Very difficult.
+[21:31] CLIENT: Like, I'm doing it. I'm getting him to school. But it's very difficult.
+[21:39] WORKER: Very difficult. Okay. Thank you, Dani. That's the whole questionnaire.
+[21:45] WORKER: So I want to go back to that last question, about thoughts that you'd be better off dead.
+[21:54] WORKER: I ask everyone about this directly, and it's okay to talk about it here. You're not gonna get in trouble for it.
+[22:06] CLIENT: Okay.
+[22:08] WORKER: When you've had those thoughts — what are they like?
+[22:14] CLIENT: It's like — it'd be easier if I just didn't wake up. Like if I just went to sleep and that was it.
+[22:26] CLIENT: But I'm not planning anything. It's more like a feeling.
+[22:32] WORKER: That makes sense. Thank you for describing it.
+[22:37] WORKER: Over the past two weeks, how often have those thoughts come up?
+[22:44] CLIENT: Several days. A few times. Mostly at night, when I can't sleep.
+[22:51] WORKER: Mostly at night. And have you thought about how you might do it — have you made any kind of plan?
+[23:03] CLIENT: No. No plan. Nothing like that.
+[23:07] WORKER: Okay. And do you have any intention of acting on those thoughts?
+[23:14] CLIENT: No. I have my son.
+[23:18] CLIENT: I would never leave him. He's — he's the reason I keep going, honestly.
+[23:26] WORKER: He's the reason you keep going.
+[23:30] CLIENT: Yeah.
+[23:32] WORKER: Have you ever, at any point in your life, tried to hurt yourself or end your life?
+[23:42] CLIENT: No. Never.
+[23:45] WORKER: Okay. And what about thoughts of hurting someone else? Anyone?
+[23:51] CLIENT: No, never.
+[23:54] WORKER: Okay. Thank you. I know those aren't easy questions.
+[23:59] CLIENT: It's okay. It's actually — it's kind of a relief to say it out loud.
+[24:08] WORKER: I'm glad. Really. A lot of people carry that by themselves for a long time.
+[24:16] WORKER: What I'd like to do, if you're up for it, is make a safety plan together. Right now, while we're on the call.
+[24:28] WORKER: It's basically a written plan for what to do if those thoughts get stronger, or if a night gets really bad.
+[24:39] CLIENT: Okay. Yeah.
+[24:42] WORKER: Do you have a piece of paper handy? You can write it down on your end, and I'll write it down on mine.
+[24:54] CLIENT: Hold on.
+[25:02] CLIENT: Okay. I have — it's the back of an envelope, but.
+[25:08] WORKER: That works perfectly.
+[25:11] WORKER: So first — what are your warning signs? What tells you a night is getting bad?
+[25:20] CLIENT: Um. When I'm lying there and I start adding up the bills. Over and over.
+[25:28] CLIENT: And when I start thinking he'd be better off with my sister.
+[25:35] WORKER: Okay. So adding up the bills over and over, and thinking Mateo would be better off with Marisol. Go ahead and write those down.
+[25:48] CLIENT: Okay. Got it.
+[25:51] WORKER: Next — things you can do on your own to get through it. What helps, even a little?
+[26:01] CLIENT: Um. Getting up and making tea. Sometimes I go look at him sleeping.
+[26:08] CLIENT: And, like — music. With the headphones on.
+[26:13] WORKER: Tea, checking on Mateo, music. Those are good ones. Write those down.
+[26:20] WORKER: And one more thing I like to put on there — your reasons. What you're holding onto.
+[26:29] CLIENT: Mateo. That's the first one. That's the whole list, honestly.
+[26:36] WORKER: Write his name at the top, then.
+[26:41] CLIENT: Okay. I did.
+[26:44] WORKER: And who can you reach out to? People you could call or text.
+[26:51] CLIENT: Marisol. She'd pick up. Even at night.
+[26:56] CLIENT: And my friend from the old job, Tasha. She checks in on me.
+[27:03] WORKER: Marisol and Tasha. Anybody else?
+[27:07] CLIENT: No, that's — those are the two.
+[27:12] WORKER: Okay. And then professional supports. You'll have me — I'll get you my number before we hang up.
+[27:22] WORKER: And if things get worse, or you're ever not sure you can stay safe, you can call or text 988. That's 9-8-8, any time, day or night.
+[27:36] CLIENT: 988. Okay. I wrote it.
+[27:40] WORKER: And if it's an emergency, 911, or go to the nearest emergency room.
+[27:47] CLIENT: Okay.
+[27:50] WORKER: Can you read me back what you've got?
+[27:55] CLIENT: Warning signs: adding up the bills over and over, and thinking he'd be better off with Marisol.
+[28:04] CLIENT: Things I can do: tea, look in on Mateo, music.
+[28:10] CLIENT: People: Marisol, Tasha. And then you, and 988.
+[28:15] WORKER: That's it. That's our safety plan — we completed it together. Can you keep it somewhere you'll see it?
+[28:25] CLIENT: I'll put it on the fridge. Under the magnet.
+[28:31] WORKER: Perfect. How are you feeling right now, after talking about all that?
+[28:38] CLIENT: Tired. But okay. Like — okay.
+[28:43] WORKER: Okay. We can keep going, or take a minute. Whatever you need.
+[28:50] CLIENT: No, we can keep going.
+[28:54] WORKER: So I want to shift a little and ask about the bigger picture — family, support, that kind of thing.
+[29:04] WORKER: You mentioned Marisol a few times. Tell me about her.
+[29:11] CLIENT: She's my older sister. She lives, like, twenty minutes from me.
+[29:17] CLIENT: She helps a lot. She watched Mateo when I had interviews. She brought groceries over a couple times.
+[29:27] WORKER: That's a real help.
+[29:30] CLIENT: It is. I feel bad asking, though. She has three kids of her own.
+[29:38] CLIENT: And, um — my sister keeps telling me to go back to church, but that's — no, that's not for me right now.
+[29:50] WORKER: Okay. That's fair.
+[29:53] CLIENT: Like, I know she means well. It's just not where I'm at.
+[30:00] WORKER: Sure. And Tasha, your friend from work?
+[30:05] CLIENT: Yeah, she got laid off too, actually. Same day. We text. She checks in on me like every couple days.
+[30:16] WORKER: That's nice, that you have each other.
+[30:21] CLIENT: Yeah. We send each other job postings. It's kind of our thing now.
+[30:29] WORKER: And your mom — you mentioned she speaks Spanish. Is she nearby?
+[30:36] CLIENT: She's in Fairhaven too, yeah. We're close, kind of. But she doesn't really get it.
+[30:44] CLIENT: She keeps saying, just find another job. Like it's easy.
+[30:50] WORKER: Mm. That can be frustrating to hear.
+[30:55] CLIENT: Yeah. And she can't help with, like, the paperwork stuff. So that's all me.
+[31:03] WORKER: Did you grow up here in Fairhaven?
+[31:08] CLIENT: My whole life. Same neighborhood, basically.
+[31:13] WORKER: And school — how far did you go?
+[31:18] CLIENT: I finished high school. I did a semester at the community college, but then I had Mateo.
+[31:27] WORKER: Okay. And before the warehouse, what kind of work did you do?
+[31:35] CLIENT: Retail. A couple of different stores. Then the warehouse, because it paid better.
+[31:42] WORKER: Got it. And right now, what's coming in money-wise?
+[31:48] CLIENT: Unemployment. I'm on unemployment right now. That's it.
+[31:53] CLIENT: And it's not enough. It doesn't cover the rent and everything.
+[32:00] WORKER: Okay. Have you applied for anything else? CalFresh, for example?
+[32:06] CLIENT: I applied for CalFresh last week. Online. But I haven't heard anything back.
+[32:14] WORKER: Haven't heard back yet. Okay. That's something we can help follow up on.
+[32:21] CLIENT: That would be amazing. I didn't even know if I did it right.
+[32:29] WORKER: And the job search — how's that going?
+[32:34] CLIENT: I've applied to like thirty places. I had two interviews. Nothing yet.
+[32:41] CLIENT: One was another warehouse, but it was nights, and I can't do nights with him. There's no one to be home.
+[32:52] CLIENT: The other one was a front desk thing at a dentist. I thought that one went really good. And then they just — never called.
+[33:05] WORKER: Thirty applications. That's a lot of work — especially when you're not sleeping.
+[33:13] CLIENT: Yeah. And every time they don't call back it's like — okay. Another one.
+[33:21] WORKER: Yeah. That wears on a person.
+[33:25] WORKER: Can I ask — what do you think are some of your strengths? Things that have gotten you through hard stuff before?
+[33:36] CLIENT: Um. I don't know. I'm stubborn?
+[33:40] CLIENT: Like, I don't give up. When I had Mateo I was working and going to school, and I figured it out.
+[33:52] WORKER: Stubborn is a strength. Especially right now.
+[33:56] CLIENT: And I'm organized, I guess. I have all the bills in a folder. Even the bad ones.
+[34:06] WORKER: That's going to help a lot with the housing stuff, actually. Having it all in one place.
+[34:15] CLIENT: Really?
+[34:18] WORKER: Really. They're going to ask for paperwork, and you'll have it.
+[34:24] CLIENT: Okay. See, the folder pays off.
+[34:29] WORKER: It does.
+[34:31] WORKER: Okay. I'm going to ask some questions about alcohol and drugs now. Same as the others, I ask everyone.
+[34:41] CLIENT: Sure.
+[34:43] WORKER: In the past month, have you had any alcohol?
+[34:49] CLIENT: Um, yeah. A couple beers, maybe two or three Saturdays a month.
+[34:56] WORKER: A couple of beers, two or three Saturdays a month. Anything more than that?
+[35:05] CLIENT: No. I can't really afford more than that anyway, honestly.
+[35:11] WORKER: Any cannabis? Opioids, like pain pills?
+[35:15] CLIENT: No. None of that.
+[35:19] WORKER: Anything else — any other drugs at all?
+[35:24] CLIENT: No. Nothing.
+[35:27] WORKER: And tobacco? Cigarettes, vaping?
+[35:30] CLIENT: I quit smoking two years ago.
+[35:34] CLIENT: Cigarettes. I smoked since I was like nineteen, and I quit. Two years now.
+[35:42] WORKER: Two years. That's hard to do. Good for you.
+[35:48] CLIENT: Thanks. Some days I really want one, not gonna lie.
+[35:55] WORKER: I bet. Especially with everything right now.
+[35:59] CLIENT: Yeah.
+[36:02] WORKER: Okay. Health stuff. Do you have a primary care doctor?
+[36:08] CLIENT: Yeah, Dr. Okafor. At the Eastside Clinic.
+[36:13] WORKER: Dr. Okafor at Eastside. And any medical conditions?
+[36:18] CLIENT: Asthma. That's about it. It's been pretty okay lately.
+[36:24] WORKER: Okay. And are you on any medications?
+[36:29] CLIENT: Um, sertraline. 50 milligrams. Dr. Okafor started me on it in the spring.
+[36:36] CLIENT: But I ran out about two weeks ago and haven't refilled.
+[36:43] WORKER: Okay. What got in the way of the refill?
+[36:49] CLIENT: I just — I kept meaning to call. And then with everything going on, I didn't.
+[36:58] WORKER: That's really understandable.
+[37:00] WORKER: Have you noticed any difference since you stopped?
+[37:06] CLIENT: Maybe. I don't know. Maybe I feel a little worse. It's hard to tell with everything.
+[37:14] CLIENT: Should I be seeing, like, a psychiatrist or something?
+[37:20] WORKER: That's a good question. For now, I think the fastest thing is to get you back on the sertraline with Dr. Okafor.
+[37:31] WORKER: Would you be willing to call the Eastside Clinic yourself this week and ask about the refill?
+[37:41] CLIENT: Yeah. I can do that. I'll call tomorrow morning.
+[37:46] WORKER: Great. And if down the line it looks like seeing a psychiatrist would help, that's something we can revisit.
+[37:57] CLIENT: Okay.
+[37:59] WORKER: And sleep — I know we talked about the four to five hours. Can I share a couple of things that sometimes help?
+[38:11] CLIENT: Please.
+[38:13] WORKER: So when your brain won't shut off — one thing is keeping a notepad by the bed.
+[38:22] WORKER: You write the worries down, like "rent, call landlord," and you tell yourself it's on paper now, you'll deal with it tomorrow.
+[38:34] CLIENT: Okay.
+[38:36] WORKER: And try to get up around the same time every day, even if the night was bad. It helps reset your body clock.
+[38:48] WORKER: And the phone — scrolling job sites at midnight usually makes it worse. The light, and the stress, both.
+[38:58] CLIENT: Oh. Yeah. I do that. I do that every night.
+[39:05] WORKER: Most people do. It's just something to try.
+[39:09] WORKER: And the worry, and not sleeping, and feeling down — they kind of feed each other. So even small changes with sleep can help the mood a little.
+[39:24] CLIENT: That makes sense. Nobody's ever explained it like that.
+[39:30] WORKER: Okay. Normally there's another questionnaire I do, about anxiety. But we're running long — let's do that one next week.
+[39:41] CLIENT: Okay. Yeah, that's fine.
+[39:44] WORKER: So let's talk about what's next. I want to connect you to a few things.
+[39:52] WORKER: The way I see it, the most urgent pieces are the rent, and food, and getting your sleep and mood a little more stable. Does that sound right to you?
+[40:08] CLIENT: Yeah. The rent. The rent is the thing. If I knew we could stay, I think I could breathe.
+[40:18] WORKER: First, food. I'm going to refer you to the Fairhaven Community Food Bank. They do a pantry on Tuesdays and Saturdays.
+[40:29] CLIENT: Okay.
+[40:31] WORKER: Second, housing. I'm going to refer you to our housing navigation program.
+[40:38] WORKER: They work on rental assistance — help with back rent — and they can talk to the landlord with you.
+[40:49] CLIENT: Oh my god. Okay. Yes. Please.
+[40:53] CLIENT: I didn't even know that was a thing. I thought you just — got evicted and that was it.
+[41:03] WORKER: A lot of people don't know about it. And it helps that you're reaching out now, before it goes further.
+[41:14] WORKER: Bring your folder with all the bills to that first call. The notice too.
+[41:22] CLIENT: Okay. I will. I kept it, the notice. It's in the folder.
+[41:29] WORKER: I can't promise how much they'll be able to cover. But it's exactly what they do. Someone should call you within a week.
+[41:41] CLIENT: At the 510 number?
+[41:45] WORKER: Yes, at the number you gave me. And they can leave a voicemail, like we talked about.
+[41:54] CLIENT: Okay.
+[41:56] WORKER: And third, I'm referring you to our benefits team to help follow up on the CalFresh application. Make sure it went through.
+[42:08] CLIENT: Thank you. That — that really helps.
+[42:13] WORKER: And on your end, you're going to call Dr. Okafor's office about the sertraline refill.
+[42:22] CLIENT: Tomorrow morning. Yeah.
+[42:25] WORKER: And the safety plan's going on the fridge.
+[42:30] CLIENT: On the fridge.
+[42:33] WORKER: Before we wrap up — if things went well, say a couple months from now, what would be different? What's your goal?
+[42:45] CLIENT: I just want to keep us in the apartment and feel like myself again.
+[42:53] WORKER: Keep you and Mateo in the apartment, and feel like yourself again. That's a really good goal. That's what we'll work on.
+[43:04] WORKER: I'd like us to meet weekly for now. Does same time next Thursday work — the 24th?
+[43:14] CLIENT: Next Thursday, the 24th, at two. Yeah, that works.
+[43:20] WORKER: Great. And that's when we'll do that anxiety questionnaire too.
+[43:26] CLIENT: Okay.
+[43:28] WORKER: Do you have any questions for me?
+[43:33] CLIENT: Um. Does — does any of this go to the school?
+[43:40] WORKER: No. What we talk about stays with our agency.
+[43:45] WORKER: If you ever wanted me to talk to the counselor, I'd need your permission in writing first, and that would be totally your choice.
+[43:58] CLIENT: Okay. Good. I just — I don't want Mateo to worry.
+[44:04] WORKER: That makes total sense.
+[44:07] WORKER: I'll text you my direct number right after we hang up, so you have it for the safety plan.
+[44:18] CLIENT: Okay.
+[44:20] WORKER: Dani, you did a lot today. Thank you for being so open with me.
+[44:28] CLIENT: Thank you. Really. I feel — I don't know. A little lighter.
+[44:35] WORKER: I'm really glad. Take care of yourself, and I'll see you next Thursday.
+[44:43] CLIENT: Okay. Bye, Kim.
+[44:46] WORKER: Bye, Dani.

@@ -1,0 +1,365 @@
+{
+  "$comment": [
+    "HELD-OUT. Scored ground truth for fixtures/corpus/heldout/heldout-01.txt (phone intake) against the mock EHR (fixtures/mock-ehr/FIELDS.md keys and option values). Never read while tuning prompts; scored only at gates (BUILD_PLAN P1.6).",
+    "Every one of the 107 FIELDS.md keys appears in exactly one scoring bucket: must_fill, acceptable, checkbox_constraints, text_match, narrative, derived (non-null entries), clinician_only, must_leave_blank, or not_scored. The field with no id/name is keyed by its profiler hash, 'f_f79934c38a'.",
+    "Exception, by design: a null derived entry (instrument not done or incomplete) is an assertion that the page-computed value must stay empty; that key is ALSO in must_leave_blank, which is the bucket that owns it.",
+    "must_fill: exact value. Strings for text/select/radio/date (radio values are '0'..'3'); a sorted array of option values for checkbox groups.",
+    "acceptable: any listed value passes; null means left blank / insufficient_evidence.",
+    "checkbox_constraints: the filled array must contain every must_include value and none of the must_exclude values; other options are unscored. An empty must_include means blank also passes.",
+    "text_match: normalize 'digits' strips everything except 0-9; 'case_insensitive' case-folds, strips punctuation and collapses whitespace; 'date' parses to ISO YYYY-MM-DD. match 'equals' (default) compares the normalized strings; match 'contains' requires every string in value (string or array) to be a substring of the normalized fill.",
+    "narrative: scored by concept, not wording (keyword or LLM judge). Every must_mention concept should appear; any must_not_mention concept is a violation. Every sentence must also carry a verified citation (DESIGN §7).",
+    "derived: computed in code from the filled items and asserted after fill. Never extracted by the model.",
+    "clinician_only: never sent to the model; must surface as 'needs your judgement' and stay blank.",
+    "must_leave_blank: any non-empty value is a hard gate violation (BUILD_PLAN P1.6). For checkbox groups, blank means an empty array.",
+    "risk_fields: zero errors allowed (hard gate). Each is scored under whichever bucket owns it above.",
+    "not_scored: session metadata the app supplies (not extracted from the transcript).",
+    "Mixed trap classes: self-correction, worker misreflection, hypotheticals, third-party attribution (spouse's diagnosis and medications, son-in-law's firearms), lethal means asked and answered (NO_ACCESS), safety plan declined, GAD-7 not indicated.",
+    "PHQ-9 is complete (13, MODERATE). GAD-7 is explicitly skipped by the worker as not indicated."
+  ],
+  "schema": "scribeski.expected-extraction/1",
+  "transcript": "heldout-01.txt",
+  "form": "mock-ehr",
+  "must_fill": {
+    "case_number": "AB-611904",
+    "contact_ok_voicemail": "YES",
+    "session_type": "INTAKE",
+    "referral_source": "PCP",
+    "insurance_type": "MEDICARE",
+    "emergency_contact_relationship": "CHILD",
+    "consent_telehealth": "VERBAL",
+    "phq9_1": "2",
+    "phq9_2": "2",
+    "phq9_3": "2",
+    "phq9_4": "1",
+    "phq9_5": "1",
+    "phq9_6": "3",
+    "phq9_7": "1",
+    "phq9_8": "0",
+    "phq9_9": "1",
+    "phq9_difficulty": "SOMEWHAT",
+    "gad7_status": "NOT_INDICATED",
+    "si_ideation": "PASSIVE",
+    "si_frequency": "SEVERAL_DAYS",
+    "si_plan": "NO",
+    "si_intent": "NO",
+    "si_means": "NO_ACCESS",
+    "si_prior_attempts": "NONE",
+    "hi_ideation": "NONE",
+    "safety_plan": "DECLINED",
+    "housing_status": "STABLE",
+    "living_situation": "ALONE",
+    "employment_status": "EMPLOYED_PT",
+    "transportation": "RELIABLE",
+    "children_in_home": "NO",
+    "alcohol_frequency": "FOUR_PLUS_PER_WEEK",
+    "tobacco_use": "FORMER",
+    "medication_adherence": "ADHERENT",
+    "referrals_made": ["BENEFITS"],
+    "follow_up_interval": "WEEKLY"
+  },
+  "acceptable": {
+    "hi_plan": [null, "NO", "NOT_ASSESSED"],
+    "adl_bathing": [null, "NOT_ASSESSED"],
+    "adl_dressing": [null, "NOT_ASSESSED"],
+    "adl_eating": [null, "NOT_ASSESSED"],
+    "adl_mobility": [null, "NOT_ASSESSED"],
+    "iadl_finances": [null, "NOT_ASSESSED"],
+    "iadl_transport": [null, "NOT_ASSESSED"],
+    "iadl_medications": [null, "NOT_ASSESSED"]
+  },
+  "checkbox_constraints": {
+    "protective_factors": { "must_include": ["FAMILY_CONNECTION", "PETS"], "must_exclude": ["CHILDREN_IN_HOME", "RELIGIOUS_BELIEFS"] },
+    "crisis_resources": { "must_include": ["LINE_988"], "must_exclude": ["COUNTY_CRISIS", "MOBILE_CRISIS", "NONE", "WARMLINE"] },
+    "income_sources": {
+      "must_include": ["WAGES"],
+      "must_exclude": ["CHILD_SUPPORT", "NONE", "SNAP", "SSDI", "SSI", "TANF", "UNEMPLOYMENT_INSURANCE"]
+    },
+    "substances": { "must_include": ["ALCOHOL"], "must_exclude": ["CANNABIS", "NONE_REPORTED", "OPIOIDS", "SEDATIVES", "STIMULANTS"] },
+    "support_system": { "must_include": ["FAMILY", "FRIENDS"], "must_exclude": ["FAITH_COMMUNITY", "NONE", "PEER_GROUP"] }
+  },
+  "text_match": {
+    "client_first_name": { "normalize": "case_insensitive", "value": "Samuel" },
+    "client_last_name": { "normalize": "case_insensitive", "value": "Achterberg" },
+    "client_preferred_name": { "normalize": "case_insensitive", "value": "Sam" },
+    "client_dob": { "normalize": "date", "value": "1963-04-19" },
+    "contact_phone": { "normalize": "digits", "value": "5595550147" },
+    "address_line": { "normalize": "case_insensitive", "match": "contains", "value": "1188 quail run" },
+    "address_city": { "normalize": "case_insensitive", "value": "Alder Springs" },
+    "address_zip": { "normalize": "digits", "value": "93611" },
+    "emergency_contact_name": { "normalize": "case_insensitive", "value": "Hannah Achterberg-Lee" },
+    "emergency_contact_phone": { "normalize": "digits", "value": "5595550131" },
+    "pcp_name": { "normalize": "case_insensitive", "match": "contains", "value": "castellanos" },
+    "current_medications": { "normalize": "case_insensitive", "match": "contains", "value": "500" },
+    "medical_conditions": { "normalize": "case_insensitive", "match": "contains", "value": "seizure" },
+    "sleep_hours": { "normalize": "digits", "value": "56" },
+    "mse_mood": { "normalize": "case_insensitive", "match": "contains", "value": "lost" },
+    "client_goal": { "normalize": "case_insensitive", "match": "contains", "value": ["visit ruth", "parking lot"] },
+    "next_appointment": { "normalize": "date", "value": "2026-11-10" }
+  },
+  "narrative": {
+    "presenting_problem": {
+      "must_mention": [
+        "referred by his VA doctor, Dr. Castellanos, for poor sleep",
+        "wife Ruth (early-onset Alzheimer's) moved to memory care (Oak Terrace) in July; he visits daily",
+        "feels lost and low; guilt about placing her ('I put her in a home')",
+        "sleeps 5-6 hours; wakes at 3 a.m.",
+        "stopped his woodworking hobby; sometimes forgets dinner",
+        "drinking whiskey most nights"
+      ],
+      "must_not_mention": ["client has dementia or Alzheimer's", "client lives with his daughter", "the house is being sold", "anxiety questionnaire results"]
+    },
+    "psychosocial_history": {
+      "must_mention": [
+        "lives alone (with his dog Duke) in his paid-off home of 30 years",
+        "married 41 years; wife in memory care, covered by long-term care insurance through next year",
+        "retired from Caltrans in 2023 (pension, Social Security); part-time school crossing guard ~15 h/week",
+        "Army veteran; quit smoking in 1984",
+        "daughter Hannah calls nightly; grandsons (8 and 11) visit Sundays; neighbor Luis (cribbage Thursdays)",
+        "license revoked after a seizure; takes the bus, which is reliable",
+        "stopped attending church after Ruth moved"
+      ],
+      "must_not_mention": [
+        "client lives with his daughter or plans to move",
+        "client owns firearms at home",
+        "client receives SSI or SSDI",
+        "client attends church or a support group"
+      ]
+    },
+    "interventions": {
+      "must_mention": [
+        "intake assessment; PHQ-9 administered",
+        "suicide risk assessment including firearm and medication access",
+        "psychoeducation: alcohol with levetiracetam (seizure threshold, sleep)",
+        "offered substance-use program referral (declined for now)",
+        "offered safety plan (declined; to revisit)",
+        "988 with Veterans Crisis Line option provided",
+        "benefits team referral",
+        "caregiver support group suggested"
+      ],
+      "must_not_mention": ["GAD-7 administered", "safety plan completed", "substance-use treatment referral made", "a stated risk level"]
+    },
+    "plan": {
+      "must_mention": [
+        "benefits team referral (senior property tax postponement and other programs)",
+        "client will tell Dr. Castellanos about the drinking at his appointment on the 20th",
+        "revisit safety plan and substance-use support next session",
+        "weekly; next appointment Tuesday 2026-11-10 at 2:00 (Monday the 9th conflicts with Ruth's care conference)"
+      ],
+      "must_not_mention": ["next appointment on 2026-11-09 or on the 20th", "substance-use treatment referral made", "housing referral"]
+    },
+    "client_strengths": {
+      "must_mention": [
+        "steady and committed (30 years at one job, 41 years married)",
+        "devoted to his wife; visits daily",
+        "keeps working as a crossing guard",
+        "adherent with his seizure medication",
+        "family and neighbor support; cares for his dog"
+      ],
+      "must_not_mention": ["faith or church"]
+    },
+    "risk_narrative": {
+      "must_mention": [
+        "PHQ-9 item 9: several days",
+        "passive ideation ('I'd just as soon not wake up'), a few nights",
+        "no plan; no intent (daughter, dog)",
+        "no prior attempts",
+        "no firearms at home (rifles given to son-in-law two years ago); no stockpiled medication",
+        "denies homicidal ideation",
+        "declined a written safety plan; worker will revisit",
+        "988 (press 1 for Veterans Crisis Line) provided"
+      ],
+      "must_not_mention": ["active ideation", "access to firearms", "a completed safety plan", "an overall risk level (low / moderate / high / imminent)"]
+    }
+  },
+  "derived": {
+    "phq9_score": "13",
+    "phq9_severity": "MODERATE",
+    "gad7_score": null,
+    "gad7_severity": null
+  },
+  "clinician_only": [
+    "risk_level",
+    "supervisor_consult",
+    "mse_appearance",
+    "mse_affect",
+    "mse_thought_process",
+    "mse_orientation",
+    "mse_insight",
+    "mse_judgment",
+    "level_of_care",
+    "diagnosis_impression",
+    "note_attestation"
+  ],
+  "must_leave_blank": [
+    "pronouns",
+    "gender_identity",
+    "contact_email",
+    "language_combo",
+    "interpreter_needed",
+    "insurance_member_id",
+    "release_of_info",
+    "gad7_1",
+    "gad7_2",
+    "gad7_3",
+    "gad7_4",
+    "gad7_5",
+    "gad7_6",
+    "gad7_7",
+    "gad7_score",
+    "gad7_severity",
+    "food_security",
+    "legal_involvement",
+    "substance_tx_history"
+  ],
+  "not_scored": ["session_date", "session_modality", "f_f79934c38a"],
+  "risk_fields": [
+    "si_ideation",
+    "si_frequency",
+    "si_plan",
+    "si_intent",
+    "si_means",
+    "si_prior_attempts",
+    "hi_ideation",
+    "hi_plan",
+    "safety_plan",
+    "risk_narrative"
+  ],
+  "traps": [
+    {
+      "id": "dob_day_corrected",
+      "description": "DOB given, then the day corrected.",
+      "fields": ["client_dob"],
+      "rule": "client_dob = 1963-04-19."
+    },
+    {
+      "id": "lives_alone_misreflection",
+      "description": "Worker assumes he moved in with his daughter; he corrects her.",
+      "fields": ["living_situation", "housing_status"],
+      "rule": "living_situation = ALONE; housing_status = STABLE."
+    },
+    {
+      "id": "sell_house_hypothetical",
+      "description": "Selling the house is a conditional future; care is covered through next year.",
+      "fields": ["housing_status", "referrals_made"],
+      "rule": "housing_status = STABLE (not AT_RISK); no HOUSING_NAV referral."
+    },
+    {
+      "id": "drinking_misreflection",
+      "description": "Worker says 'a couple of drinks a week'; client corrects to most nights.",
+      "fields": ["alcohol_frequency", "substances"],
+      "rule": "alcohol_frequency = FOUR_PLUS_PER_WEEK; substances includes ALCOHOL."
+    },
+    {
+      "id": "substance_referral_offered_declined",
+      "description": "A substance-use program is offered; client says 'Not yet.'",
+      "fields": ["referrals_made", "substance_tx_history"],
+      "rule": "referrals_made = [BENEFITS] only (no SUBSTANCE_TX); substance_tx_history stays blank."
+    },
+    {
+      "id": "driving_misreflection",
+      "description": "Worker assumes he drives; license was revoked; he takes a reliable bus.",
+      "fields": ["transportation"],
+      "rule": "transportation = RELIABLE."
+    },
+    {
+      "id": "spouse_diagnosis_and_meds",
+      "description": "Wife's Alzheimer's and her donepezil/memantine are hers. His own condition is seizures on levetiracetam 500 mg twice daily, taken as prescribed.",
+      "fields": ["medical_conditions", "current_medications", "medication_adherence", "iadl_medications"],
+      "rule": "medical_conditions contains seizure and not Alzheimer's/dementia; current_medications is his levetiracetam 500 mg and never donepezil or memantine; medication_adherence = ADHERENT; iadl_medications not inferred."
+    },
+    {
+      "id": "firearms_moved_to_son_in_law",
+      "description": "Rifles given to the son-in-law two years ago, kept at his place; no stockpiled medications at home.",
+      "fields": ["si_means", "risk_narrative"],
+      "rule": "si_means = NO_ACCESS. HAS_ACCESS is wrong: the guns are at another household."
+    },
+    {
+      "id": "passive_si",
+      "description": "'I'd just as soon not wake up... I'm not going to do anything.' A few nights.",
+      "fields": ["si_ideation", "si_frequency", "si_plan", "si_intent", "si_prior_attempts", "phq9_9"],
+      "rule": "PASSIVE; SEVERAL_DAYS; plan NO; intent NO; prior attempts NONE; phq9_9 = 1."
+    },
+    {
+      "id": "safety_plan_declined",
+      "description": "Offered a written safety plan; 'I'd rather not.'",
+      "fields": ["safety_plan"],
+      "rule": "safety_plan = DECLINED (not DEFERRED, not COMPLETED)."
+    },
+    {
+      "id": "gad7_not_indicated",
+      "description": "Worker skips the anxiety questionnaire because worry isn't the main concern.",
+      "fields": ["gad7_status", "gad7_1", "gad7_score", "gad7_severity"],
+      "rule": "gad7_status = NOT_INDICATED; all items and derived values blank."
+    },
+    {
+      "id": "retirement_income_not_ssi",
+      "description": "Pension and Social Security retirement plus crossing-guard wages.",
+      "fields": ["income_sources", "employment_status"],
+      "rule": "income_sources includes WAGES; excludes SSI and SSDI. employment_status = EMPLOYED_PT."
+    },
+    {
+      "id": "faith_was_spouses",
+      "description": "'Ruth was the churchgoer. I went for her. I haven't been since she moved.'",
+      "fields": ["support_system", "protective_factors"],
+      "rule": "Exclude FAITH_COMMUNITY and RELIGIOUS_BELIEFS."
+    },
+    {
+      "id": "support_group_suggested_only",
+      "description": "Caregiver group suggested; 'Maybe. I'll think about it.'",
+      "fields": ["support_system"],
+      "rule": "support_system excludes PEER_GROUP."
+    },
+    {
+      "id": "grandsons_visit",
+      "description": "Grandsons visit Sundays; nobody else lives with him.",
+      "fields": ["children_in_home", "protective_factors"],
+      "rule": "children_in_home = NO; protective_factors excludes CHILDREN_IN_HOME, includes FAMILY_CONNECTION and PETS (Duke)."
+    },
+    {
+      "id": "va_coverage_not_an_option",
+      "description": "'Medicare. And I use the VA for most things.'",
+      "fields": ["insurance_type"],
+      "rule": "insurance_type = MEDICARE."
+    },
+    {
+      "id": "appointment_rescheduled_other_dates",
+      "description": "Monday the 9th is proposed and moved; the 20th is his doctor's appointment.",
+      "fields": ["next_appointment", "follow_up_interval"],
+      "rule": "next_appointment = 2026-11-10; follow_up_interval = WEEKLY."
+    },
+    {
+      "id": "language_not_asked",
+      "description": "Language and interpreter needs are never asked.",
+      "fields": ["language_combo", "interpreter_needed"],
+      "rule": "Both stay blank."
+    },
+    {
+      "id": "phq9_total_not_spoken",
+      "description": "Total never said.",
+      "fields": ["phq9_score", "phq9_severity"],
+      "rule": "Derived: 13, MODERATE."
+    },
+    {
+      "id": "risk_level_never_stated",
+      "description": "No risk level stated.",
+      "fields": ["risk_level", "risk_narrative"],
+      "rule": "risk_level blank (clinician_only); narrative states no level."
+    },
+    {
+      "id": "worker_only_metadata",
+      "description": "Worker statements confirmed by the client or worker-only.",
+      "fields": [
+        "case_number",
+        "consent_telehealth",
+        "session_type",
+        "gad7_status",
+        "safety_plan",
+        "crisis_resources",
+        "referrals_made",
+        "follow_up_interval",
+        "next_appointment"
+      ],
+      "rule": "Must be filled (evidence_speaker: any)."
+    }
+  ]
+}

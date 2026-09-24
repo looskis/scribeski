@@ -1,0 +1,138 @@
+# scribeski transcript fixture v1
+# session_date: 2026-11-05
+# started_at: 2026-11-05T15:30:00-08:00
+# modality: video
+# duration_minutes: 18
+# note: synthetic; all people fictional; phone numbers use 555-01xx; held-out set, never used while tuning prompts
+[00:04] WORKER: Hey, there you are. Can you hear me?
+[00:09] CLIENT: Yeah. Sorry, I'm in the study room at the library. I had to fight a guy for it.
+[00:22] WORKER: Did you win?
+[00:25] CLIENT: I won. He had a laptop and a sandwich. I had a reservation.
+[00:33] WORKER: Good for you. Is it still Dom, by the way? I want to make sure I have it right.
+[00:46] CLIENT: Yeah, Dom. Always Dom.
+[00:51] WORKER: And it's still they/them for you?
+[00:56] CLIENT: Yep, they/them.
+[01:00] WORKER: Great. This is our regular follow-up. I want to check in on the week, and I'd like to redo the anxiety questionnaire today, since last time it was pretty high.
+[01:18] CLIENT: Yeah. Probably still high. Spoiler.
+[01:23] WORKER: How has the week been?
+[01:29] CLIENT: Kind of a mess. I had two panic attacks. One in the testing center, during my stats quiz.
+[01:41] WORKER: Oh, Dom. That sounds awful.
+[01:47] CLIENT: I had to leave. The proctor was nice about it, but I just — my chest, my hands. I thought I was dying.
+[02:00] CLIENT: If the panic attacks keep happening, I might drop stats. I don't want to. I need it to transfer.
+[02:11] WORKER: So right now you're still in it.
+[02:18] CLIENT: Still in it. Still a full-time student. For now.
+[02:25] CLIENT: And the stats professor keeps calling me "she." I'm nonbinary, I emailed him about it twice. It's exhausting on top of everything.
+[02:37] WORKER: That's a real stressor, being misgendered in the same room where you're already anxious.
+[02:47] CLIENT: Yeah. It's like two alarms going off at once.
+[02:54] WORKER: What was the other one?
+[03:00] CLIENT: Monday night, at the apartment. Theo came home really drunk, and he was loud, and it just set me off.
+[03:13] WORKER: Theo's your roommate.
+[03:17] CLIENT: Yeah.
+[03:20] WORKER: So you started drinking again?
+[03:27] CLIENT: No — Theo did. Not me. I've been sober fourteen months. October 3rd was fourteen months.
+[03:38] WORKER: I'm sorry, I heard that wrong. Fourteen months. That's huge.
+[03:46] CLIENT: It is huge. I have the chip on my keys.
+[03:53] CLIENT: Since I finished the outpatient program at New Leaf last year. Twice a week for three months.
+[04:05] WORKER: Anything else — any other substances?
+[04:12] CLIENT: No. Nothing. I still vape, though. Nicotine. That's the one thing I haven't quit.
+[04:21] WORKER: How is it, living with someone who's drinking?
+[04:27] CLIENT: Hard. He doesn't drink every day. But when he does, it's a lot. He keeps it in his room at least. I asked him to.
+[04:43] CLIENT: If he moves out I can't make rent. So I can't exactly kick him out.
+[04:52] WORKER: Are you at risk of losing the apartment right now?
+[04:58] CLIENT: No. Not right now. Only if he leaves, and he says he's not going anywhere.
+[05:08] WORKER: Okay. And money — are you still working at the café?
+[05:15] CLIENT: I work at the café — well, worked. I quit in August. To focus on school. I forget I don't work there anymore.
+[05:28] WORKER: So no job right now.
+[05:35] CLIENT: No job. Financial aid, and I'm still getting CalFresh. That's it.
+[05:43] WORKER: Is your mom still helping with rent?
+[05:50] CLIENT: No, I help HER sometimes. She's the one who's always short. I send her forty bucks when I can.
+[06:03] WORKER: I had that backwards too. I'm batting zero today.
+[06:08] CLIENT: It's fine. It's a lot of people to keep track of.
+[06:16] WORKER: How's your mood been, in your own words?
+[06:23] CLIENT: Wired and tired. Like, my body's buzzing but I have no energy.
+[06:31] WORKER: Wired and tired.
+[06:35] CLIENT: Yeah. That's the best I can do.
+[06:40] WORKER: How are you sleeping?
+[06:46] CLIENT: Maybe six hours. But broken. I wake up with my heart going.
+[06:54] WORKER: And the sertraline — are you still on 100 milligrams?
+[07:01] CLIENT: Sertraline 100 — no, they bumped it to 150. Last week. Dr. Ferris did.
+[07:09] WORKER: At the campus health center?
+[07:15] CLIENT: Yeah. Dr. Ferris at the campus health center. She said give it a few weeks.
+[07:26] WORKER: Are you taking it every day?
+[07:32] CLIENT: Every morning. I haven't missed. I put it next to my toothbrush.
+[07:40] WORKER: Good. My mom's on sertraline too, you said last time?
+[07:47] CLIENT: Yeah, she's on the 50. Funny coincidence. We compare side effects. Very bonding.
+[07:55] WORKER: Are you still going to SMART Recovery?
+[08:01] CLIENT: Every Wednesday. That's non-negotiable. That's my people.
+[08:07] WORKER: And your friend Kai?
+[08:11] CLIENT: Kai's great. Kai drove me home from campus after the testing center thing. Kai's the best.
+[08:21] WORKER: Okay. Let's do the GAD-7. For each one, over the last two weeks: not at all, several days, more than half the days, or nearly every day.
+[08:37] CLIENT: Okay. Hit me.
+[08:41] WORKER: Feeling nervous, anxious, or on edge.
+[08:48] CLIENT: Nearly every day.
+[08:52] WORKER: Not being able to stop or control worrying.
+[08:59] CLIENT: More than half.
+[09:04] WORKER: Worrying too much about different things.
+[09:10] CLIENT: More than half.
+[09:15] WORKER: Trouble relaxing.
+[09:19] CLIENT: Nearly every day. I don't know what relaxing is.
+[09:26] WORKER: Being so restless that it's hard to sit still.
+[09:35] CLIENT: Several days.
+[09:38] WORKER: Becoming easily annoyed or irritable.
+[09:44] CLIENT: More than half. Poor Theo. Well, not poor Theo.
+[09:51] WORKER: Feeling afraid, as if something awful might happen.
+[09:58] CLIENT: More than half the days. That's the panic thing.
+[10:04] WORKER: Thank you. I'd also like to ask just a few of the mood questions today, not the whole thing.
+[10:15] WORKER: Little interest or pleasure in doing things, over the last two weeks.
+[10:23] CLIENT: More than half the days.
+[10:30] WORKER: Feeling down, depressed, or hopeless.
+[10:36] CLIENT: More than half.
+[10:39] WORKER: And thoughts that you'd be better off dead, or of hurting yourself in some way.
+[10:50] CLIENT: Several days.
+[10:53] CLIENT: Actually — I should tell you this properly. I've had thoughts of killing myself a few times this week. After the testing center. Like, what's the point.
+[11:07] WORKER: Thank you for telling me. I'm really glad you did. Can we talk about it?
+[11:16] CLIENT: Yeah. That's why I said it.
+[11:21] WORKER: When those thoughts come, have you thought about how you would do it? Any kind of plan?
+[11:33] CLIENT: No. I don't have a plan. And I'm not going to act on it. It's more like a thought that shows up and I have to wait it out.
+[11:48] WORKER: No plan, and no intention of acting on it.
+[11:56] CLIENT: Right.
+[11:58] WORKER: Have you ever tried to hurt yourself or end your life before?
+[12:06] CLIENT: Never —
+[12:11] CLIENT: Well, once. When I was sixteen, I took a bunch of Tylenol. I don't usually count it. I threw up and nobody found out.
+[12:23] WORKER: I'm glad you told me. That does count, and it's important for me to know. Just the one time?
+[12:36] CLIENT: Just the one time. Never again after that.
+[12:44] WORKER: And any thoughts of hurting anyone else?
+[12:51] CLIENT: No. Not even Theo.
+[12:57] WORKER: Okay. Let's pull out your safety plan. Do you have it?
+[13:07] CLIENT: It's on my phone. Hold on.
+[13:25] CLIENT: Okay. Got it.
+[13:29] WORKER: I'd like to add two things. The testing center as a warning sign, and your SMART meeting as something to do.
+[13:40] CLIENT: Yeah. Adding the testing center. And Wednesday SMART.
+[13:46] WORKER: And there's a number I don't think we put on last time — the peer warmline. It's for nights when you just need to talk to someone. It's 559-555-0199.
+[14:01] CLIENT: 559-555-0199. Adding it.
+[14:03] WORKER: And 988 is still there, call or text, any time.
+[14:11] CLIENT: 988's at the top. I know.
+[14:16] WORKER: So we've updated the plan with the warning sign, SMART, and the warmline.
+[14:26] CLIENT: Updated. Saved.
+[14:30] WORKER: Dom, with the panic attacks this bad, and the thoughts this week, I'm putting in a referral to our psychiatry clinic. Dr. Ferris is great, but I think you'd benefit from a psychiatrist looking at this too.
+[14:50] CLIENT: Okay. Yeah. I think that's right.
+[14:55] WORKER: They'll call you within two weeks. I'll also let Dr. Ferris know, if that's okay.
+[15:06] CLIENT: That's fine. You have the release from before.
+[15:12] WORKER: I'll also be checking in with my supervisor after our session, which is standard when someone tells me about thoughts like these.
+[15:24] CLIENT: Makes sense.
+[15:30] WORKER: What's something you're looking forward to?
+[15:34] CLIENT: Transferring to State next fall. Psychology. I want to do what you do, sort of.
+[15:44] WORKER: I'd love that. And what do you want to work on these next few weeks?
+[15:52] CLIENT: Get through finals without a panic attack in the testing center.
+[16:01] WORKER: Get through finals without a panic attack in the testing center. Let's practice some grounding skills next time, specifically for that.
+[16:14] CLIENT: Yes. Please.
+[16:20] WORKER: For the next few days: box breathing when you feel it starting. Four in, hold four, four out, hold four.
+[16:30] CLIENT: Four, four, four, four. Okay.
+[16:37] WORKER: Let's meet next week. Wednesday the 11th, same time?
+[16:43] CLIENT: The 11th — that's Veterans Day. Campus is closed and my bus doesn't run the normal schedule. Can we do Thursday the 12th?
+[16:58] WORKER: Thursday the 12th at 3:30. We'll keep meeting weekly for now.
+[17:06] CLIENT: Thursday the 12th. Got it.
+[17:12] WORKER: And if the thoughts get stronger before then, the plan's on your phone. Use it.
+[17:21] CLIENT: I will. I promise.
+[17:25] WORKER: Thanks, Dom. Go hold that study room.
+[17:30] CLIENT: Ha. Bye.

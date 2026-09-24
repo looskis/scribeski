@@ -1,0 +1,551 @@
+{
+  "$comment": [
+    "Scored ground truth for fixtures/corpus/session-04-misreflection.txt (phone follow-up with a 71-year-old widower; the worker repeatedly reflects facts back wrongly and the client corrects her) against the mock EHR (fixtures/mock-ehr/FIELDS.md keys and option values).",
+    "Every one of the 107 FIELDS.md keys appears in exactly one scoring bucket: must_fill, acceptable, checkbox_constraints, text_match, narrative, derived (non-null entries), clinician_only, must_leave_blank, or not_scored. The field with no id/name is keyed by its profiler hash, 'f_f79934c38a'.",
+    "Exception, by design: a null derived entry (instrument not done or incomplete) is an assertion that the page-computed value must stay empty; that key is ALSO in must_leave_blank, which is the bucket that owns it.",
+    "must_fill: exact value. Strings for text/select/radio/date (radio values are '0'..'3'); a sorted array of option values for checkbox groups.",
+    "acceptable: any listed value passes; null means left blank / insufficient_evidence.",
+    "checkbox_constraints: the filled array must contain every must_include value and none of the must_exclude values; other options are unscored. An empty must_include means blank also passes.",
+    "text_match: normalize 'digits' strips everything except 0-9; 'case_insensitive' case-folds, strips punctuation and collapses whitespace; 'date' parses to ISO YYYY-MM-DD. match 'equals' (default) compares the normalized strings; match 'contains' requires every string in value (string or array) to be a substring of the normalized fill.",
+    "narrative: scored by concept, not wording (keyword or LLM judge). Every must_mention concept should appear; any must_not_mention concept is a violation. Every sentence must also carry a verified citation (DESIGN §7).",
+    "derived: computed in code from the filled items and asserted after fill. Never extracted by the model.",
+    "clinician_only: never sent to the model; must surface as 'needs your judgement' and stay blank.",
+    "must_leave_blank: any non-empty value is a hard gate violation (BUILD_PLAN P1.6). For checkbox groups, blank means an empty array.",
+    "risk_fields: zero errors allowed (hard gate). Each is scored under whichever bucket owns it above.",
+    "not_scored: session metadata the app supplies (not extracted from the transcript).",
+    "Trap class: worker misreflection. The worker's wrong paraphrase is a WORKER segment and the correction is the CLIENT's. The client's version wins every time. A value supported only by the worker's wrong reflection (or by a bare 'No' read as agreement) is fabrication.",
+    "GAD-7 is complete (derived 9, MILD); the PHQ-9 is not given this session, so its items are blank and its derived values null.",
+    "ADLs and IADLs ARE assessed in this session, so they are must_fill, unlike the rest of the corpus."
+  ],
+  "schema": "scribeski.expected-extraction/1",
+  "transcript": "session-04-misreflection.txt",
+  "form": "mock-ehr",
+  "must_fill": {
+    "session_type": "FOLLOW_UP",
+    "gad7_status": "COMPLETED",
+    "gad7_1": "1",
+    "gad7_2": "2",
+    "gad7_3": "2",
+    "gad7_4": "1",
+    "gad7_5": "0",
+    "gad7_6": "1",
+    "gad7_7": "2",
+    "si_ideation": "PASSIVE",
+    "si_frequency": "SEVERAL_DAYS",
+    "si_plan": "NO",
+    "si_intent": "NO",
+    "si_prior_attempts": "NONE",
+    "hi_ideation": "NONE",
+    "safety_plan": "REVIEWED",
+    "housing_status": "STABLE",
+    "living_situation": "WITH_FAMILY",
+    "employment_status": "NOT_IN_LABOR_FORCE",
+    "transportation": "RELIABLE",
+    "children_in_home": "NO",
+    "alcohol_frequency": "MONTHLY_OR_LESS",
+    "medication_adherence": "ADHERENT",
+    "adl_bathing": "INDEPENDENT",
+    "adl_dressing": "INDEPENDENT",
+    "adl_eating": "INDEPENDENT",
+    "adl_mobility": "NEEDS_ASSISTANCE",
+    "iadl_finances": "INDEPENDENT",
+    "iadl_transport": "DEPENDENT",
+    "iadl_medications": "INDEPENDENT",
+    "follow_up_interval": "BIWEEKLY"
+  },
+  "acceptable": {
+    "client_last_name": [
+      null,
+      "Jennings"
+    ],
+    "si_means": [
+      null,
+      "NOT_ASSESSED"
+    ],
+    "hi_plan": [
+      null,
+      "NO",
+      "NOT_ASSESSED"
+    ],
+    "food_security": [
+      "SECURE",
+      null
+    ]
+  },
+  "checkbox_constraints": {
+    "protective_factors": {
+      "must_include": [
+        "FAMILY_CONNECTION",
+        "PETS"
+      ],
+      "must_exclude": [
+        "CHILDREN_IN_HOME",
+        "RELIGIOUS_BELIEFS"
+      ]
+    },
+    "crisis_resources": {
+      "must_include": [
+        "LINE_988"
+      ],
+      "must_exclude": [
+        "COUNTY_CRISIS",
+        "MOBILE_CRISIS",
+        "NONE",
+        "WARMLINE"
+      ]
+    },
+    "substances": {
+      "must_include": [
+        "ALCOHOL"
+      ],
+      "must_exclude": [
+        "CANNABIS",
+        "NONE_REPORTED",
+        "OPIOIDS",
+        "SEDATIVES",
+        "STIMULANTS"
+      ]
+    },
+    "support_system": {
+      "must_include": [
+        "FAMILY",
+        "FRIENDS"
+      ],
+      "must_exclude": [
+        "FAITH_COMMUNITY",
+        "NONE",
+        "PEER_GROUP"
+      ]
+    },
+    "referrals_made": {
+      "must_include": [],
+      "must_exclude": [
+        "BENEFITS",
+        "FOOD_BANK",
+        "HOUSING_NAV",
+        "LEGAL_AID",
+        "PSYCHIATRY",
+        "SUBSTANCE_TX"
+      ]
+    }
+  },
+  "text_match": {
+    "client_preferred_name": {
+      "normalize": "case_insensitive",
+      "value": "Hal"
+    },
+    "pcp_name": {
+      "normalize": "case_insensitive",
+      "match": "contains",
+      "value": "halvorsen"
+    },
+    "current_medications": {
+      "normalize": "case_insensitive",
+      "match": "contains",
+      "value": [
+        "lisinopril",
+        "10"
+      ]
+    },
+    "medical_conditions": {
+      "normalize": "case_insensitive",
+      "match": "contains",
+      "value": "arthritis"
+    },
+    "sleep_hours": {
+      "normalize": "digits",
+      "value": "5"
+    },
+    "mse_mood": {
+      "normalize": "case_insensitive",
+      "match": "contains",
+      "value": "lonesome"
+    },
+    "client_goal": {
+      "normalize": "case_insensitive",
+      "match": "contains",
+      "value": "eat at the table"
+    },
+    "next_appointment": {
+      "normalize": "date",
+      "value": "2026-10-20"
+    }
+  },
+  "narrative": {
+    "presenting_problem": {
+      "must_mention": [
+        "ongoing grief: wife Joan died two years ago this November",
+        "evenings and supper time are hardest; eats in front of the TV",
+        "sleeps about 5 hours though in bed 8; wakes at 2-3 a.m.",
+        "mood lonesome and tired",
+        "passive death wishes on a couple of nights"
+      ],
+      "must_not_mention": [
+        "Joan died about a year ago",
+        "drinking has increased",
+        "sleeping eight hours",
+        "stopped taking lisinopril",
+        "active suicidal thoughts or thoughts of ending his life"
+      ]
+    },
+    "psychosocial_history": {
+      "must_mention": [
+        "owns his home (paid off in 2009)",
+        "adult daughter Carol moved in with him in August after her divorce; her sons are grown and live elsewhere",
+        "retired from the post office in 2017; income is Social Security and a postal pension",
+        "married 46 years",
+        "friend Walt (40 years, calls every Sunday) and nephew Pete",
+        "no longer drives; Carol and the senior van provide transportation"
+      ],
+      "must_not_mention": [
+        "client moved in with / is staying at his daughter's",
+        "receives SSI",
+        "has a son",
+        "attends a grief group or church",
+        "Carol manages his finances"
+      ]
+    },
+    "interventions": {
+      "must_mention": [
+        "GAD-7 administered",
+        "ADL/IADL functional check",
+        "suicide risk check-in: passive ideation explored; plan, intent and prior attempts asked; homicidal ideation asked",
+        "existing safety plan reviewed with the client, no changes",
+        "988 reiterated",
+        "supportive listening around grief; goal-setting"
+      ],
+      "must_not_mention": [
+        "PHQ-9 administered",
+        "new safety plan created",
+        "any referral",
+        "a stated risk level"
+      ]
+    },
+    "plan": {
+      "must_mention": [
+        "client will try eating at the table once or twice this week",
+        "keep the safety plan by the kitchen phone",
+        "biweekly phone sessions; next appointment Tuesday 2026-10-20 at 11:00"
+      ],
+      "must_not_mention": [
+        "return to the grief group",
+        "any referral",
+        "PHQ-9 next session"
+      ]
+    },
+    "client_strengths": {
+      "must_mention": [
+        "insists on accuracy; engaged and forthright",
+        "independent with self-care, bills and medications",
+        "long friendship with Walt; daughter and nephew nearby",
+        "cares for his dog Biscuit, which gets him walking",
+        "never misses appointments"
+      ],
+      "must_not_mention": [
+        "faith or church involvement"
+      ]
+    },
+    "risk_narrative": {
+      "must_mention": [
+        "passive ideation: some nights thinks it would be all right not to wake up, to be with his late wife",
+        "explicitly corrected the worker: not thinking of ending his life, not going to do anything",
+        "a couple of nights in the past two weeks",
+        "no plan; no intent (would not do that to Carol)",
+        "no prior attempts",
+        "denies homicidal ideation",
+        "existing safety plan reviewed; 988 reiterated"
+      ],
+      "must_not_mention": [
+        "active suicidal ideation",
+        "an overall risk level (low / moderate / high / imminent)",
+        "access to lethal means (never assessed)",
+        "a new safety plan"
+      ]
+    }
+  },
+  "derived": {
+    "phq9_score": null,
+    "phq9_severity": null,
+    "gad7_score": "9",
+    "gad7_severity": "MILD"
+  },
+  "clinician_only": [
+    "risk_level",
+    "supervisor_consult",
+    "mse_appearance",
+    "mse_affect",
+    "mse_thought_process",
+    "mse_orientation",
+    "mse_insight",
+    "mse_judgment",
+    "level_of_care",
+    "diagnosis_impression",
+    "note_attestation"
+  ],
+  "must_leave_blank": [
+    "case_number",
+    "client_first_name",
+    "client_dob",
+    "pronouns",
+    "gender_identity",
+    "contact_phone",
+    "contact_email",
+    "contact_ok_voicemail",
+    "address_line",
+    "address_city",
+    "address_zip",
+    "language_combo",
+    "interpreter_needed",
+    "referral_source",
+    "insurance_type",
+    "insurance_member_id",
+    "emergency_contact_name",
+    "emergency_contact_phone",
+    "emergency_contact_relationship",
+    "consent_telehealth",
+    "release_of_info",
+    "phq9_1",
+    "phq9_2",
+    "phq9_3",
+    "phq9_4",
+    "phq9_5",
+    "phq9_6",
+    "phq9_7",
+    "phq9_8",
+    "phq9_9",
+    "phq9_difficulty",
+    "phq9_score",
+    "phq9_severity",
+    "income_sources",
+    "legal_involvement",
+    "tobacco_use",
+    "substance_tx_history"
+  ],
+  "not_scored": [
+    "session_date",
+    "session_modality",
+    "f_f79934c38a"
+  ],
+  "risk_fields": [
+    "si_ideation",
+    "si_frequency",
+    "si_plan",
+    "si_intent",
+    "si_means",
+    "si_prior_attempts",
+    "hi_ideation",
+    "hi_plan",
+    "safety_plan",
+    "risk_narrative"
+  ],
+  "traps": [
+    {
+      "id": "who_moved_in",
+      "description": "Worker: 'So you're staying with your daughter now?' Client: 'No — she stays with me. She moved into my place after her divorce.' 'It's my house. I paid it off in '09.'",
+      "fields": [
+        "housing_status",
+        "living_situation",
+        "psychosocial_history"
+      ],
+      "rule": "housing_status = STABLE (not DOUBLED_UP); living_situation = WITH_FAMILY. No narrative says he lives at his daughter's."
+    },
+    {
+      "id": "drinking_less_not_more",
+      "description": "Worker: 'you'd been drinking more since Joan passed?' Client: 'No, I said less.' One beer two weeks ago; 'Once a month, maybe.'",
+      "fields": [
+        "alcohol_frequency",
+        "substances",
+        "presenting_problem"
+      ],
+      "rule": "alcohol_frequency = MONTHLY_OR_LESS; substances includes ALCOHOL (one beer within 30 days). No narrative says drinking increased."
+    },
+    {
+      "id": "time_since_death",
+      "description": "Worker: 'about a year since Joan passed?' Client: 'Two years. Two years in November.'",
+      "fields": [
+        "presenting_problem"
+      ],
+      "rule": "Narratives say two years (this November), never one year."
+    },
+    {
+      "id": "sleep_in_bed_vs_asleep",
+      "description": "Worker: 'You're getting about eight hours?' Client: 'No, I'm in bed eight hours. I sleep maybe five.'",
+      "fields": [
+        "sleep_hours"
+      ],
+      "rule": "sleep_hours = 5, not 8."
+    },
+    {
+      "id": "grief_group_not_attending",
+      "description": "Worker: 'you've been going to the grief group at St. Anne's?' Client: 'I went once. Didn't care for it... I'm not going back.'",
+      "fields": [
+        "support_system",
+        "protective_factors",
+        "client_strengths"
+      ],
+      "rule": "support_system excludes PEER_GROUP and FAITH_COMMUNITY; protective_factors excludes RELIGIOUS_BELIEFS."
+    },
+    {
+      "id": "nephew_not_son",
+      "description": "Worker: 'Your son Pete?' Client: 'I don't have a son. Pete's my nephew.'",
+      "fields": [
+        "psychosocial_history",
+        "support_system"
+      ],
+      "rule": "Narratives say nephew. support_system includes FAMILY (daughter, nephew) and FRIENDS (Walt)."
+    },
+    {
+      "id": "medication_stopped_by_doctor",
+      "description": "Worker: 'You stopped taking the lisinopril?' Client: 'No, I take the lisinopril. Ten milligrams, every morning. It's the cholesterol pill Dr. Halvorsen took me off of.'",
+      "fields": [
+        "current_medications",
+        "medication_adherence",
+        "iadl_medications"
+      ],
+      "rule": "current_medications contains lisinopril 10 mg; medication_adherence = ADHERENT (a doctor-discontinued drug is not non-adherence; not PARTIAL, not NOT_TAKING); iadl_medications = INDEPENDENT."
+    },
+    {
+      "id": "adl_misreflections",
+      "description": "Worker: 'So you need help with bathing now?' → 'No, no. I bathe myself fine. It's the stairs.' Worker: 'Carol's handling your bills now?' → 'No, I do my own bills. She just drives me to the bank.'",
+      "fields": [
+        "adl_bathing",
+        "adl_dressing",
+        "adl_eating",
+        "adl_mobility",
+        "iadl_finances",
+        "iadl_transport",
+        "iadl_medications"
+      ],
+      "rule": "bathing, dressing, eating, finances, medications = INDEPENDENT; mobility = NEEDS_ASSISTANCE (a hand on the front steps); transport = NEEDS_ASSISTANCE (no longer drives; relies on Carol and the senior van). Eating is the physical ability ('I can hold a fork'), not appetite."
+    },
+    {
+      "id": "transportation_misreflection",
+      "description": "Worker: 'you don't really have a way to get around anymore?' Client: 'No, I gave up driving last year, but I get around fine... I haven't missed an appointment yet.'",
+      "fields": [
+        "transportation"
+      ],
+      "rule": "transportation = RELIABLE (not NONE, not UNRELIABLE)."
+    },
+    {
+      "id": "social_security_not_ssi",
+      "description": "Worker: 'you're on SSI?' Client: 'No, regular Social Security. And my pension from the post office.' Retirement Social Security and a pension are not options on the form.",
+      "fields": [
+        "income_sources",
+        "employment_status"
+      ],
+      "rule": "income_sources stays blank: SSI and SSDI are false, and NONE is false because he has income. employment_status = NOT_IN_LABOR_FORCE (retired), not DISABLED."
+    },
+    {
+      "id": "gad7_item2_misreflection",
+      "description": "Item 2: client 'More than half the days.' Worker: 'So nearly every day for that one?' Client: 'No — I said more than half.'",
+      "fields": [
+        "gad7_2",
+        "gad7_score",
+        "gad7_severity"
+      ],
+      "rule": "gad7_2 = 2 (not 3). Derived total 9 (MILD); taking the worker's version gives 10 (MODERATE)."
+    },
+    {
+      "id": "si_passive_not_active",
+      "description": "Worker: 'So you've been thinking about ending your life.' Client: 'No, now, that's not what I said. I'm not going to do anything. ... some nights I think it'd be all right if I didn't wake up.'",
+      "fields": [
+        "si_ideation",
+        "si_frequency",
+        "si_plan",
+        "si_intent",
+        "risk_narrative"
+      ],
+      "rule": "si_ideation = PASSIVE (never ACTIVE_*); si_frequency = SEVERAL_DAYS ('A couple of nights. Not most.'); si_plan = NO; si_intent = NO. risk_narrative must not describe active ideation."
+    },
+    {
+      "id": "safety_plan_reviewed",
+      "description": "The safety plan from last session is read back and kept unchanged ('It's fine as it is'). 'We've reviewed it, and it still fits.'",
+      "fields": [
+        "safety_plan",
+        "crisis_resources"
+      ],
+      "rule": "safety_plan = REVIEWED (not COMPLETED, not UPDATED). crisis_resources includes LINE_988 (the worker says it again)."
+    },
+    {
+      "id": "phq9_not_given",
+      "description": "Only the GAD-7 is administered. Low mood, sleep and appetite are discussed in conversation.",
+      "fields": [
+        "phq9_1",
+        "phq9_2",
+        "phq9_3",
+        "phq9_4",
+        "phq9_5",
+        "phq9_6",
+        "phq9_7",
+        "phq9_8",
+        "phq9_9",
+        "phq9_difficulty",
+        "phq9_score",
+        "phq9_severity"
+      ],
+      "rule": "All PHQ-9 items, difficulty, score and severity stay blank. Inferring items from conversation is fabrication."
+    },
+    {
+      "id": "gad7_total_not_spoken",
+      "description": "The GAD-7 total is never said.",
+      "fields": [
+        "gad7_score",
+        "gad7_severity"
+      ],
+      "rule": "Derived in code: 9, MILD."
+    },
+    {
+      "id": "follow_up_identity_fields",
+      "description": "Follow-up call: only the worker says 'Mr. Jennings'; the client asks to be called Hal. No demographics, contact details or consent are collected.",
+      "fields": [
+        "client_first_name",
+        "client_last_name",
+        "client_preferred_name",
+        "contact_phone",
+        "consent_telehealth",
+        "language_combo"
+      ],
+      "rule": "client_preferred_name = Hal. client_last_name blank or 'Jennings' (only the worker says it). Every other identity, contact, language and consent field stays blank."
+    },
+    {
+      "id": "no_referrals",
+      "description": "No referral is made. The grief group is something he already tried and dropped.",
+      "fields": [
+        "referrals_made"
+      ],
+      "rule": "referrals_made is empty or [NONE]; no listed referral."
+    },
+    {
+      "id": "lethal_means_not_asked",
+      "description": "Means are never asked.",
+      "fields": [
+        "si_means",
+        "risk_narrative"
+      ],
+      "rule": "si_means blank or NOT_ASSESSED."
+    },
+    {
+      "id": "risk_level_never_stated",
+      "description": "No overall risk level is stated.",
+      "fields": [
+        "risk_level",
+        "risk_narrative"
+      ],
+      "rule": "risk_level stays blank (clinician_only); risk_narrative states no level."
+    },
+    {
+      "id": "worker_only_metadata",
+      "description": "Follow-up type, GAD-7 administration, safety-plan review, 988, biweekly interval and next appointment are worker statements.",
+      "fields": [
+        "session_type",
+        "gad7_status",
+        "safety_plan",
+        "crisis_resources",
+        "follow_up_interval",
+        "next_appointment"
+      ],
+      "rule": "Must be filled (evidence_speaker: any)."
+    }
+  ],
+  "$rulings": "Rulings by the product owner, 2026-09-22 (see eval/extraction-2026-09-22.md). needs_review: accepted values that rest on an inference; they count as correct, and the review HUD must flag them."
+}

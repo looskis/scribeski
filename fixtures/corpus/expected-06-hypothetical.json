@@ -1,0 +1,381 @@
+{
+  "$comment": [
+    "Scored ground truth for fixtures/corpus/session-06-hypothetical.txt (short video intake; the client talks in conditionals about housing, drinking, benefits, family and faith) against the mock EHR (fixtures/mock-ehr/FIELDS.md keys and option values).",
+    "Every one of the 107 FIELDS.md keys appears in exactly one scoring bucket: must_fill, acceptable, checkbox_constraints, text_match, narrative, derived (non-null entries), clinician_only, must_leave_blank, or not_scored. The field with no id/name is keyed by its profiler hash, 'f_f79934c38a'.",
+    "Exception, by design: a null derived entry (instrument not done or incomplete) is an assertion that the page-computed value must stay empty; that key is ALSO in must_leave_blank, which is the bucket that owns it.",
+    "must_fill: exact value. Strings for text/select/radio/date (radio values are '0'..'3'); a sorted array of option values for checkbox groups.",
+    "acceptable: any listed value passes; null means left blank / insufficient_evidence.",
+    "checkbox_constraints: the filled array must contain every must_include value and none of the must_exclude values; other options are unscored. An empty must_include means blank also passes.",
+    "text_match: normalize 'digits' strips everything except 0-9; 'case_insensitive' case-folds, strips punctuation and collapses whitespace; 'date' parses to ISO YYYY-MM-DD. match 'equals' (default) compares the normalized strings; match 'contains' requires every string in value (string or array) to be a substring of the normalized fill.",
+    "narrative: scored by concept, not wording (keyword or LLM judge). Every must_mention concept should appear; any must_not_mention concept is a violation. Every sentence must also carry a verified citation (DESIGN §7).",
+    "derived: computed in code from the filled items and asserted after fill. Never extracted by the model.",
+    "clinician_only: never sent to the model; must surface as 'needs your judgement' and stay blank.",
+    "must_leave_blank: any non-empty value is a hard gate violation (BUILD_PLAN P1.6). For checkbox groups, blank means an empty array.",
+    "risk_fields: zero errors allowed (hard gate). Each is scored under whichever bucket owns it above.",
+    "not_scored: session metadata the app supplies (not extracted from the transcript).",
+    "Trap class: hypotheticals and conditionals. 'If X, then Y' is evidence for neither X nor Y. Only present-tense facts fill fields. The worker's conditional statements ('If the landlord ever does file anything...we'd connect you with legal aid') are not actions taken.",
+    "PHQ-9 is interrupted after item 5, so items 1-5 are filled, items 6-9 and difficulty stay blank, and derived phq9_score/phq9_severity are null. GAD-7 is explicitly deferred."
+  ],
+  "schema": "scribeski.expected-extraction/1",
+  "transcript": "session-06-hypothetical.txt",
+  "form": "mock-ehr",
+  "must_fill": {
+    "case_number": "AB-318845",
+    "pronouns": "HE_HIM",
+    "contact_ok_voicemail": "YES",
+    "language_combo": "ENGLISH",
+    "interpreter_needed": "NO",
+    "session_type": "INTAKE",
+    "referral_source": "PCP",
+    "insurance_type": "MEDI_CAL",
+    "emergency_contact_relationship": "CHILD",
+    "consent_telehealth": "VERBAL",
+    "phq9_1": "1",
+    "phq9_2": "2",
+    "phq9_3": "3",
+    "phq9_4": "2",
+    "phq9_5": "0",
+    "gad7_status": "DEFERRED",
+    "si_ideation": "NONE",
+    "si_prior_attempts": "NONE",
+    "housing_status": "AT_RISK",
+    "living_situation": "ALONE",
+    "employment_status": "EMPLOYED_PT",
+    "legal_involvement": "NONE",
+    "children_in_home": "NO",
+    "alcohol_frequency": "TWO_TO_FOUR_PER_MONTH",
+    "tobacco_use": "CURRENT",
+    "medication_adherence": "PARTIAL",
+    "referrals_made": ["HOUSING_NAV"],
+    "follow_up_interval": "WEEKLY"
+  },
+  "acceptable": {
+    "si_frequency": [null, "NONE"],
+    "si_plan": [null, "NO", "NOT_ASSESSED"],
+    "si_intent": [null, "NO", "NOT_ASSESSED"],
+    "si_means": [null, "NOT_ASSESSED"],
+    "hi_plan": [null, "NOT_ASSESSED"],
+    "adl_bathing": [null, "NOT_ASSESSED"],
+    "adl_dressing": [null, "NOT_ASSESSED"],
+    "adl_eating": [null, "NOT_ASSESSED"],
+    "adl_mobility": [null, "NOT_ASSESSED"],
+    "iadl_finances": [null, "NOT_ASSESSED"],
+    "iadl_transport": [null, "NOT_ASSESSED"],
+    "iadl_medications": [null, "NOT_ASSESSED"]
+  },
+  "checkbox_constraints": {
+    "protective_factors": { "must_include": ["FAMILY_CONNECTION"], "must_exclude": ["CHILDREN_IN_HOME", "PETS", "RELIGIOUS_BELIEFS"] },
+    "crisis_resources": { "must_include": ["LINE_988"], "must_exclude": ["COUNTY_CRISIS", "MOBILE_CRISIS", "NONE", "WARMLINE"] },
+    "income_sources": {
+      "must_include": ["WAGES"],
+      "must_exclude": ["CHILD_SUPPORT", "NONE", "SNAP", "SSDI", "SSI", "TANF", "UNEMPLOYMENT_INSURANCE"]
+    },
+    "substances": { "must_include": ["ALCOHOL"], "must_exclude": ["CANNABIS", "NONE_REPORTED", "OPIOIDS", "SEDATIVES", "STIMULANTS"] },
+    "support_system": { "must_include": ["FAMILY"], "must_exclude": ["FAITH_COMMUNITY", "FRIENDS", "NONE", "PEER_GROUP"] }
+  },
+  "text_match": {
+    "client_first_name": { "normalize": "case_insensitive", "value": "Terrence" },
+    "client_last_name": { "normalize": "case_insensitive", "value": "Oyelaran" },
+    "client_preferred_name": { "normalize": "case_insensitive", "value": "Terry" },
+    "client_dob": { "normalize": "date", "value": "1979-02-08" },
+    "contact_phone": { "normalize": "digits", "value": "3235550106" },
+    "address_line": { "normalize": "case_insensitive", "match": "contains", "value": ["88 harbor", "3c"] },
+    "address_city": { "normalize": "case_insensitive", "value": "Castor Bay" },
+    "address_zip": { "normalize": "digits", "value": "90744" },
+    "emergency_contact_name": { "normalize": "case_insensitive", "value": "Nia Oyelaran" },
+    "emergency_contact_phone": { "normalize": "digits", "value": "3235550115" },
+    "pcp_name": { "normalize": "case_insensitive", "match": "contains", "value": "abara" },
+    "current_medications": { "normalize": "case_insensitive", "match": "contains", "value": ["ibuprofen", "800"] },
+    "medical_conditions": { "normalize": "case_insensitive", "match": "contains", "value": "herniated" },
+    "sleep_hours": { "normalize": "digits", "value": "4" },
+    "mse_mood": { "normalize": "case_insensitive", "match": "contains", "value": ["scared", "worn down"] },
+    "client_goal": { "normalize": "case_insensitive", "match": "contains", "value": ["find a place i can afford", "keep working"] },
+    "next_appointment": { "normalize": "date", "value": "2026-10-26" }
+  },
+  "narrative": {
+    "presenting_problem": {
+      "must_mention": [
+        "referred by his PCP, Dr. Abara, for poor sleep and stress",
+        "building sold; 60-day notice; must move out by December 15",
+        "cannot find affordable housing; fears becoming homeless if he does not find a place",
+        "chronic back pain from a 2022 herniated disc",
+        "sleeps about 4 hours; pain wakes him",
+        "mood scared and worn down"
+      ],
+      "must_not_mention": [
+        "currently homeless / unsheltered / living on the street",
+        "suicidal ideation",
+        "an eviction lawsuit or court case",
+        "increased drinking",
+        "any diagnosis"
+      ]
+    },
+    "psychosocial_history": {
+      "must_mention": [
+        "lives alone in an apartment in Castor Bay",
+        "works part-time (~25 h/week) in a parking garage booth; hours were cut once",
+        "former warehouse worker until a 2022 back injury",
+        "applied for SSDI in March; pending",
+        "has not applied for CalFresh",
+        "daughter Nia, 22, and granddaughter Amara (8 months) live elsewhere; Nia calls daily",
+        "no close friends now; lost touch with warehouse coworkers",
+        "has not attended church since his mother died"
+      ],
+      "must_not_mention": ["receives SSDI or CalFresh/SNAP", "daughter or granddaughter live with him", "attends church", "has a dog", "legal involvement"]
+    },
+    "interventions": {
+      "must_mention": [
+        "intake assessment",
+        "direct suicide risk inquiry prompted by 'on the street' statement; clarified that 'I don't know what I'd do' meant money",
+        "988 provided",
+        "referral to housing navigation",
+        "PHQ-9 started (items 1-5), remainder deferred when the client had to leave"
+      ],
+      "must_not_mention": ["legal aid referral", "GAD-7 administered", "safety plan", "homicide risk inquiry", "a stated risk level"]
+    },
+    "plan": {
+      "must_mention": [
+        "housing navigation referral; call expected within a week",
+        "finish the PHQ-9 and do the GAD-7 next session",
+        "weekly; next appointment Monday 2026-10-26 at 1:00 (may move earlier if a Thursday slot opens)",
+        "legal aid only if the landlord files in court (conditional)"
+      ],
+      "must_not_mention": ["legal aid referral made", "CalFresh application submitted", "substance-use treatment"]
+    },
+    "client_strengths": {
+      "must_mention": [
+        "keeps working despite daily pain",
+        "actively looking for housing",
+        "honest and forthcoming",
+        "close to his daughter and granddaughter; wants to see her grow up",
+        "followed his daughter's advice to see his doctor"
+      ],
+      "must_not_mention": ["faith or church", "pets"]
+    },
+    "risk_narrative": {
+      "must_mention": [
+        "'on the street' is a fear about housing, not current homelessness",
+        "asked directly: denies thoughts of ending his life ('I'm just scared')",
+        "no prior attempts",
+        "'I don't know what I'd do' clarified as financial worry, not self-harm",
+        "988 provided"
+      ],
+      "must_not_mention": [
+        "suicidal ideation, plan or intent",
+        "homicidal ideation assessed or denied (never asked)",
+        "access to lethal means (never assessed)",
+        "an overall risk level (low / moderate / high / imminent)",
+        "a safety plan"
+      ]
+    }
+  },
+  "derived": {
+    "phq9_score": null,
+    "phq9_severity": null,
+    "gad7_score": null,
+    "gad7_severity": null
+  },
+  "clinician_only": [
+    "risk_level",
+    "supervisor_consult",
+    "mse_appearance",
+    "mse_affect",
+    "mse_thought_process",
+    "mse_orientation",
+    "mse_insight",
+    "mse_judgment",
+    "level_of_care",
+    "diagnosis_impression",
+    "note_attestation"
+  ],
+  "must_leave_blank": [
+    "gender_identity",
+    "contact_email",
+    "insurance_member_id",
+    "release_of_info",
+    "phq9_6",
+    "phq9_7",
+    "phq9_8",
+    "phq9_9",
+    "phq9_difficulty",
+    "phq9_score",
+    "phq9_severity",
+    "gad7_1",
+    "gad7_2",
+    "gad7_3",
+    "gad7_4",
+    "gad7_5",
+    "gad7_6",
+    "gad7_7",
+    "gad7_score",
+    "gad7_severity",
+    "hi_ideation",
+    "safety_plan",
+    "food_security",
+    "transportation",
+    "substance_tx_history"
+  ],
+  "not_scored": ["session_date", "session_modality", "f_f79934c38a"],
+  "risk_fields": [
+    "si_ideation",
+    "si_frequency",
+    "si_plan",
+    "si_intent",
+    "si_means",
+    "si_prior_attempts",
+    "hi_ideation",
+    "hi_plan",
+    "safety_plan",
+    "risk_narrative"
+  ],
+  "traps": [
+    {
+      "id": "on_the_street_hypothetical",
+      "description": "'If I don't find something by then, I'll be on the street.' / 'If I lose the apartment, I'm on the street.' He is housed until December 15 under a 60-day notice.",
+      "fields": ["housing_status", "presenting_problem"],
+      "rule": "housing_status = AT_RISK. UNSHELTERED (or SHELTERED / DOUBLED_UP) is wrong. Narratives describe a feared future, not a present fact."
+    },
+    {
+      "id": "drink_more_if_pain_worse",
+      "description": "'A couple drinks on the weekend. Two, three times a month.' then 'if the pain gets worse I'd probably drink more.'",
+      "fields": ["alcohol_frequency", "substances", "presenting_problem"],
+      "rule": "alcohol_frequency = TWO_TO_FOUR_PER_MONTH (current use), not a higher band. No narrative reports increased drinking."
+    },
+    {
+      "id": "cannabis_if_no_drug_test",
+      "description": "'No. If it wasn't for the drug testing at work I'd try the weed for the pain. But no.'",
+      "fields": ["substances"],
+      "rule": "substances excludes CANNABIS."
+    },
+    {
+      "id": "stronger_meds_if_worse",
+      "description": "'He said if it gets worse, he might put me on something stronger. I told him I don't want that.'",
+      "fields": ["current_medications", "substances"],
+      "rule": "current_medications is ibuprofen 800 mg only; no opioid. substances excludes OPIOIDS."
+    },
+    {
+      "id": "ibuprofen_partial",
+      "description": "Prescribed three times a day; 'I take it maybe once a day. I don't like pills.'",
+      "fields": ["medication_adherence"],
+      "rule": "medication_adherence = PARTIAL."
+    },
+    {
+      "id": "benefits_conditional",
+      "description": "SSDI applied for in March, pending ('If it goes through, I'd quit the garage'). Food stamps only 'if they cut my hours again'; has not applied.",
+      "fields": ["income_sources", "employment_status"],
+      "rule": "income_sources includes WAGES and excludes SSDI and SNAP. employment_status = EMPLOYED_PT (not DISABLED)."
+    },
+    {
+      "id": "daughter_might_move_in",
+      "description": "'If Nia moves back in, it'll be crowded. But she's with her boyfriend for now.' Nia (22) and the baby live elsewhere.",
+      "fields": ["living_situation", "children_in_home", "protective_factors"],
+      "rule": "living_situation = ALONE; children_in_home = NO; protective_factors includes FAMILY_CONNECTION and excludes CHILDREN_IN_HOME."
+    },
+    {
+      "id": "church_if_mom_alive",
+      "description": "'If my mom were still alive, she'd have me in church every Sunday. But I haven't been since she passed.'",
+      "fields": ["support_system", "protective_factors", "client_strengths"],
+      "rule": "support_system excludes FAITH_COMMUNITY; protective_factors excludes RELIGIOUS_BELIEFS."
+    },
+    {
+      "id": "dog_if_allowed",
+      "description": "'If I had a dog, I'd probably get out more. But I can't have one in the building.'",
+      "fields": ["protective_factors"],
+      "rule": "protective_factors excludes PETS."
+    },
+    {
+      "id": "quit_if_price_rises",
+      "description": "'I smoke. Half a pack a day. If the price goes up again I'll quit.'",
+      "fields": ["tobacco_use"],
+      "rule": "tobacco_use = CURRENT (not FORMER)."
+    },
+    {
+      "id": "legal_aid_conditional",
+      "description": "Asked and denied: 'Anything with the law — court, probation?' 'No. Nothing.' The landlord has filed nothing. Worker: 'If the landlord ever does file anything in court, we'd connect you with legal aid.'",
+      "fields": ["legal_involvement", "referrals_made", "plan"],
+      "rule": "legal_involvement = NONE (not PENDING_CASE). referrals_made = [HOUSING_NAV] only; LEGAL_AID is a conditional, not a referral."
+    },
+    {
+      "id": "conditional_si_clarified",
+      "description": "'If it ever got to where I couldn't work at all, I don't know what I'd do.' The worker asks if that means self-harm; 'No, no. I mean money.' Earlier, asked directly: 'No. Never. I'm not like that. I'm just scared.'",
+      "fields": ["si_ideation", "si_frequency", "si_plan", "si_intent", "si_prior_attempts", "risk_narrative"],
+      "rule": "si_ideation = NONE; si_prior_attempts = NONE; si_frequency blank or NONE; si_plan/si_intent blank, NO or NOT_ASSESSED. PASSIVE is wrong."
+    },
+    {
+      "id": "conditional_988_is_provided",
+      "description": "'If you ever do have thoughts like that, call or text 988.' The resource is given now, even though its use is conditional.",
+      "fields": ["crisis_resources"],
+      "rule": "crisis_resources includes LINE_988. Contrast with the legal aid conditional: this one hands over the resource today."
+    },
+    {
+      "id": "hi_not_asked",
+      "description": "Homicidal ideation is never asked.",
+      "fields": ["hi_ideation", "hi_plan"],
+      "rule": "hi_ideation stays blank (NONE is fabrication); hi_plan blank or NOT_ASSESSED."
+    },
+    {
+      "id": "phq9_partial",
+      "description": "The PHQ-9 stops after item 5 when he has to leave for the bus. Suicidal thoughts were discussed earlier, outside the questionnaire.",
+      "fields": [
+        "phq9_1",
+        "phq9_2",
+        "phq9_3",
+        "phq9_4",
+        "phq9_5",
+        "phq9_6",
+        "phq9_7",
+        "phq9_8",
+        "phq9_9",
+        "phq9_difficulty",
+        "phq9_score",
+        "phq9_severity"
+      ],
+      "rule": "Items 1-5 = 1,2,3,2,0. Items 6-9 and difficulty stay blank: phq9_9 is not inferred from the earlier SI denial. phq9_score and phq9_severity stay null (a partial sum of 8 must not be written)."
+    },
+    {
+      "id": "gad7_deferred",
+      "description": "'we'll do the anxiety one next time too.'",
+      "fields": ["gad7_status", "gad7_1", "gad7_2", "gad7_3", "gad7_4", "gad7_5", "gad7_6", "gad7_7", "gad7_score", "gad7_severity"],
+      "rule": "gad7_status = DEFERRED; items and derived values blank."
+    },
+    {
+      "id": "bus_not_transportation",
+      "description": "He has to catch the bus to work. Transportation is never assessed.",
+      "fields": ["transportation"],
+      "rule": "transportation stays blank."
+    },
+    {
+      "id": "appointment_conditional_move",
+      "description": "'Monday the 26th at one?' agreed; 'If the Thursday slot opens up, I'll call you and we can move it earlier. Otherwise Monday.'",
+      "fields": ["next_appointment", "follow_up_interval"],
+      "rule": "next_appointment = 2026-10-26 (the Thursday slot is hypothetical); follow_up_interval = WEEKLY."
+    },
+    {
+      "id": "lethal_means_not_asked",
+      "description": "Means are never asked.",
+      "fields": ["si_means", "risk_narrative"],
+      "rule": "si_means blank or NOT_ASSESSED."
+    },
+    {
+      "id": "risk_level_never_stated",
+      "description": "No overall risk level is stated.",
+      "fields": ["risk_level", "risk_narrative"],
+      "rule": "risk_level stays blank (clinician_only); risk_narrative states no level."
+    },
+    {
+      "id": "worker_only_metadata",
+      "description": "Case number read-back, video consent, intake, the housing referral, 988, GAD-7 deferral, weekly interval and next appointment are worker statements (some confirmed by the client).",
+      "fields": [
+        "case_number",
+        "consent_telehealth",
+        "session_type",
+        "referrals_made",
+        "crisis_resources",
+        "gad7_status",
+        "follow_up_interval",
+        "next_appointment"
+      ],
+      "rule": "Must be filled (evidence_speaker: any)."
+    }
+  ]
+}

@@ -1,0 +1,150 @@
+# scribeski transcript fixture v1
+# session_date: 2026-10-20
+# started_at: 2026-10-20T13:00:00-07:00
+# modality: video
+# duration_minutes: 18
+# note: synthetic; all people fictional; phone numbers use 555-01xx
+[00:04] WORKER: Hi there. Can you hear me okay?
+[00:09] CLIENT: Yeah. Yeah, I got you. Is this the social worker?
+[00:17] WORKER: It is. I'm Renee, with the county. You must be Terrence.
+[00:25] CLIENT: That's me. Most people call me Terry.
+[00:30] WORKER: Terry, then. Thanks for making the time. This is an intake, our first meeting, so there are a lot of questions today.
+[00:43] CLIENT: That's fine. I've got about twenty minutes, then I have to catch the bus to work.
+[00:54] WORKER: Okay, I'll keep an eye on the clock. First — we're meeting by video. Do I have your verbal consent for a video session?
+[01:07] CLIENT: Yes.
+[01:11] WORKER: And I use a transcription tool for my notes. Is that okay?
+[01:20] CLIENT: Sure, that's fine.
+[01:25] WORKER: What we discuss is confidential, except if I'm worried someone is in danger, or a child is being hurt. I'd talk with you first.
+[01:39] CLIENT: Understood.
+[01:43] WORKER: Your case number on my end is AB-318845. Does that match your letter?
+[01:53] CLIENT: AB-318845. Yeah, that's it.
+[01:57] WORKER: And your full legal name?
+[02:02] CLIENT: Terrence Oyelaran.
+[02:06] WORKER: Date of birth?
+[02:11] CLIENT: February 8th, 1979.
+[02:14] WORKER: What pronouns do you use?
+[02:20] CLIENT: He/him.
+[02:23] WORKER: Best phone number?
+[02:29] CLIENT: 323-555-0106.
+[02:33] WORKER: And can we leave you a voicemail there?
+[02:38] CLIENT: Yeah, that's fine.
+[02:43] WORKER: Your address?
+[02:48] CLIENT: 88 Harbor Boulevard, Apartment 3C. Castor Bay. 90744.
+[02:55] WORKER: And for now that's where you're living?
+[03:02] CLIENT: For now. That's kind of the whole problem. I'll get to it.
+[03:10] WORKER: Okay. What language do you want for our sessions?
+[03:19] CLIENT: English.
+[03:23] WORKER: No interpreter?
+[03:27] CLIENT: No, no interpreter.
+[03:31] WORKER: Who sent you our way?
+[03:37] CLIENT: My doctor. Dr. Abara. I told him I wasn't sleeping and I was stressed out of my mind, and he said I should talk to somebody.
+[03:51] WORKER: And your health coverage?
+[03:55] CLIENT: Medi-Cal.
+[03:58] WORKER: Emergency contact?
+[04:01] CLIENT: My daughter. Nia Oyelaran. 323-555-0115.
+[04:06] WORKER: 323-555-0115, and she's your daughter.
+[04:12] CLIENT: Yes ma'am.
+[04:16] WORKER: Okay. So tell me what's going on.
+[04:23] CLIENT: So the building got sold. The landlord sold it to some company. And last month everybody got a sixty-day notice.
+[04:36] CLIENT: I have to be out by December 15th.
+[04:42] WORKER: December 15th. That's not a lot of time.
+[04:47] CLIENT: No. And rents around here — I can't afford anything. I've been looking.
+[04:56] CLIENT: If I don't find something by then, I'll be on the street. That's what it comes down to.
+[05:08] WORKER: That's a frightening place to be.
+[05:13] CLIENT: If I lose the apartment, I'm on the street. I keep saying it in my head.
+[05:22] WORKER: Right now, though, you're still in the apartment.
+[05:30] CLIENT: Right now I'm in the apartment. Till December 15th.
+[05:36] WORKER: Can I ask you something directly, since you said that? When you think about ending up on the street, have you had any thoughts of ending your life?
+[05:51] CLIENT: No. Never. I'm not like that. I'm just scared.
+[05:57] WORKER: Okay. Thank you. Have you ever, in the past, tried to hurt yourself or end your life?
+[06:09] CLIENT: Never. No.
+[06:14] WORKER: I'm going to give you a number anyway. If you ever do have thoughts like that, call or text 988. Any time.
+[06:27] CLIENT: 988. Okay.
+[06:30] WORKER: Tell me about work.
+[06:34] CLIENT: I work the booth at a parking garage downtown. Part-time, about twenty-five hours.
+[06:42] CLIENT: I used to work a warehouse, till I hurt my back in 2022. Herniated disc. Couldn't lift anymore.
+[06:53] WORKER: I'm sorry. Is the back still giving you trouble?
+[07:00] CLIENT: Every day. Sitting in the booth all shift, it's bad.
+[07:07] CLIENT: If it ever got to where I couldn't work at all, I don't know what I'd do.
+[07:17] WORKER: When you say you don't know what you'd do — do you mean thoughts of hurting yourself?
+[07:28] CLIENT: No, no. I mean money. I don't know how I'd pay for anything. That's all I mean.
+[07:38] WORKER: Okay. Thank you for clarifying.
+[07:45] WORKER: And the income — is it just the job right now?
+[07:52] CLIENT: Just the job. I applied for SSDI in March, for the back. Still waiting. They said it could be a year.
+[08:06] CLIENT: If it goes through, I'd quit the garage. But who knows.
+[08:14] CLIENT: And if they cut my hours again, I'd have to go on food stamps. They already cut me once.
+[08:26] WORKER: Have you applied for CalFresh?
+[08:31] CLIENT: Not yet. I keep thinking I make too much. If they cut me again, I will.
+[08:42] WORKER: Okay. Who do you live with?
+[08:48] CLIENT: Nobody. Just me.
+[08:54] CLIENT: My daughter might move back in with the baby. If Nia moves back in, it'll be crowded. But she's with her boyfriend for now. She's fine where she is.
+[09:09] WORKER: How old is Nia?
+[09:15] CLIENT: Twenty-two. And the baby's eight months. My granddaughter, Amara.
+[09:21] CLIENT: That baby's everything. I want to see her grow up.
+[09:29] WORKER: Tell me about your support. Who's in your corner?
+[09:35] CLIENT: Nia. She calls me every day. She's the one who told me to go to the doctor.
+[09:45] CLIENT: If my mom were still alive, she'd have me in church every Sunday. But I haven't been since she passed.
+[09:57] WORKER: Do you have friends you lean on?
+[10:04] CLIENT: Not really. Guys from the warehouse, we lost touch. I keep to myself.
+[10:14] CLIENT: If I had a dog, I'd probably get out more. But I can't have one in the building. Not that it matters now.
+[10:26] WORKER: What are you taking for the back?
+[10:33] CLIENT: Ibuprofen. The big ones, 800. Dr. Abara said three times a day.
+[10:40] CLIENT: I take it maybe once a day. I don't like pills.
+[10:48] WORKER: Once a day instead of three.
+[10:53] CLIENT: Yeah. When it's really bad.
+[10:57] CLIENT: He said if it gets worse, he might put me on something stronger. I told him I don't want that.
+[11:10] WORKER: And Dr. Abara is at —
+[11:15] CLIENT: Harbor Community Health. On Pine.
+[11:20] WORKER: How about sleep?
+[11:24] CLIENT: Four hours. Maybe. The back wakes me up every time I roll over.
+[11:32] WORKER: Four hours a night.
+[11:37] CLIENT: Yeah. And then I lie there doing the math on rent.
+[11:44] WORKER: How would you describe your mood these days?
+[11:52] CLIENT: Scared. Worn down.
+[11:58] WORKER: Scared and worn down.
+[12:04] WORKER: Do you drink at all?
+[12:10] CLIENT: A couple drinks on the weekend. Two, three times a month.
+[12:19] CLIENT: Honestly, if the pain gets worse I'd probably drink more. I'm just being honest.
+[12:29] WORKER: I appreciate you being honest. So right now it's two or three times a month.
+[12:38] CLIENT: Right now, yeah.
+[12:41] WORKER: Any cannabis, or other drugs?
+[12:46] CLIENT: No. If it wasn't for the drug testing at work I'd try the weed for the pain. But no.
+[12:56] WORKER: Tobacco?
+[12:58] CLIENT: I smoke. Half a pack a day. If the price goes up again I'll quit. That's what I keep telling myself.
+[13:10] WORKER: So you smoke now, about half a pack a day.
+[13:17] CLIENT: Yeah.
+[13:21] WORKER: Anything with the law — court, probation?
+[13:27] CLIENT: No. Nothing.
+[13:32] WORKER: Okay. And with the notice — has the landlord filed anything with the court?
+[13:40] CLIENT: No. It's just the notice. The sixty-day one.
+[13:48] WORKER: Okay. If the landlord ever does file anything in court, we'd connect you with legal aid right away. But for now it's a notice.
+[14:01] CLIENT: Okay. Good to know.
+[14:05] WORKER: What I can do today is refer you to our housing navigation program. They help people find units, apply for relocation money, deal with deposits.
+[14:21] CLIENT: Yes. Please. That's what I need.
+[14:25] WORKER: I'm putting in the housing navigation referral now. Someone should call you within a week.
+[14:35] CLIENT: At the 323 number.
+[14:38] WORKER: At the 323 number.
+[14:44] WORKER: I'd like to start a questionnaire about mood. It's called the PHQ-9. For each one: not at all, several days, more than half the days, or nearly every day, over the last two weeks.
+[15:03] CLIENT: Okay.
+[15:08] WORKER: Little interest or pleasure in doing things.
+[15:12] CLIENT: Several days.
+[15:18] WORKER: Feeling down, depressed, or hopeless.
+[15:22] CLIENT: More than half the days.
+[15:28] WORKER: Trouble falling or staying asleep, or sleeping too much.
+[15:36] CLIENT: Nearly every day. The back.
+[15:41] WORKER: Feeling tired or having little energy.
+[15:46] CLIENT: More than half.
+[15:50] WORKER: Poor appetite or overeating.
+[15:54] CLIENT: Not at all. Appetite's fine.
+[15:59] CLIENT: Oh — I'm sorry, look at the time. I gotta go or I'll miss the bus.
+[16:08] WORKER: No, go. We'll finish the rest of the questionnaire next time, and we'll do the anxiety one next time too.
+[16:21] CLIENT: Okay. I'm sorry.
+[16:26] WORKER: Don't be. Before you go — what's your goal for working together?
+[16:35] CLIENT: Find a place I can afford before December and keep working.
+[16:43] WORKER: Find a place you can afford before December, and keep working. Got it.
+[16:50] WORKER: Let's meet weekly. Monday the 26th at one?
+[16:55] CLIENT: Monday the 26th at one. Okay.
+[17:02] WORKER: If the Thursday slot opens up, I'll call you and we can move it earlier. Otherwise Monday.
+[17:12] CLIENT: Either one. Just call.
+[17:17] WORKER: Okay. Go catch that bus. Take care, Terry.
+[17:25] CLIENT: Thank you. Bye.

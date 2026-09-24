@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Risk assessment module</title>
+<link rel="stylesheet" href="ehr.css">
+</head>
+<body class="ehr risk-frame">
+<!-- Embedded module (same origin). Deliberately NOT a <form>: nothing here can submit. -->
+<div class="module-title">Risk Screening Module &mdash; rev. 2019</div>
+<table class="frm">
+  <tr>
+    <th><label for="si_ideation">Suicidal ideation</label></th>
+    <td>
+      <select id="si_ideation" name="si_ideation">
+        <option value="">-- Select --</option>
+        <option value="NONE">None</option>
+        <option value="PASSIVE">Passive</option>
+        <option value="ACTIVE_NO_PLAN">Active, no plan</option>
+        <option value="ACTIVE_WITH_PLAN">Active, with plan</option>
+      </select>
+    </td>
+    <th><label for="si_frequency">SI frequency (past 2 weeks)</label></th>
+    <td>
+      <select id="si_frequency" name="si_frequency">
+        <option value="">-- Select --</option>
+        <option value="NONE">None</option>
+        <option value="SEVERAL_DAYS">Several days</option>
+        <option value="MORE_THAN_HALF">More than half the days</option>
+        <option value="NEARLY_EVERY_DAY">Nearly every day</option>
+      </select>
+    </td>
+  </tr>
+  <tr>
+    <th><label for="si_plan">Plan</label></th>
+    <td>
+      <select id="si_plan" name="si_plan">
+        <option value="">-- Select --</option>
+        <option value="NO">No</option>
+        <option value="YES">Yes</option>
+        <option value="NOT_ASSESSED">Not assessed</option>
+      </select>
+    </td>
+    <th><label for="si_intent">Intent</label></th>
+    <td>
+      <select id="si_intent" name="si_intent">
+        <option value="">-- Select --</option>
+        <option value="NO">No</option>
+        <option value="YES">Yes</option>
+        <option value="NOT_ASSESSED">Not assessed</option>
+      </select>
+    </td>
+  </tr>
+  <tr>
+    <th><label for="si_means">Access to lethal means</label></th>
+    <td>
+      <select id="si_means" name="si_means">
+        <option value="">-- Select --</option>
+        <option value="NO_ACCESS">No access</option>
+        <option value="HAS_ACCESS">Has access</option>
+        <option value="NOT_ASSESSED">Not assessed</option>
+      </select>
+    </td>
+    <th><label for="si_prior_attempts">Prior attempts</label></th>
+    <td>
+      <select id="si_prior_attempts" name="si_prior_attempts">
+        <option value="">-- Select --</option>
+        <option value="NONE">None</option>
+        <option value="ONE">One</option>
+        <option value="MULTIPLE">Multiple</option>
+        <option value="UNKNOWN">Unknown</option>
+      </select>
+    </td>
+  </tr>
+  <tr>
+    <th><label for="hi_ideation">Homicidal ideation</label></th>
+    <td>
+      <select id="hi_ideation" name="hi_ideation">
+        <option value="">-- Select --</option>
+        <option value="NONE">None</option>
+        <option value="PASSIVE">Passive</option>
+        <option value="ACTIVE">Active</option>
+      </select>
+    </td>
+    <th><label for="hi_plan">HI plan</label></th>
+    <td>
+      <select id="hi_plan" name="hi_plan">
+        <option value="">-- Select --</option>
+        <option value="NO">No</option>
+        <option value="YES">Yes</option>
+        <option value="NOT_ASSESSED">Not assessed</option>
+      </select>
+    </td>
+  </tr>
+  <tr>
+    <th><label for="safety_plan">Safety plan</label></th>
+    <td>
+      <select id="safety_plan" name="safety_plan">
+        <option value="">-- Select --</option>
+        <option value="COMPLETED">Completed</option>
+        <option value="UPDATED">Updated</option>
+        <option value="REVIEWED">Reviewed</option>
+        <option value="DEFERRED">Deferred</option>
+        <option value="DECLINED">Declined</option>
+        <option value="NOT_INDICATED">Not indicated</option>
+      </select>
+    </td>
+    <th class="blank"></th>
+    <td></td>
+  </tr>
+  <tr>
+    <th><label for="risk_narrative">Risk assessment narrative</label></th>
+    <td colspan="3"><textarea id="risk_narrative" name="risk_narrative" rows="4"></textarea></td>
+  </tr>
+</table>
+</body>
+</html>

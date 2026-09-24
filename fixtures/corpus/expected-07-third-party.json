@@ -1,0 +1,597 @@
+{
+  "$comment": [
+    "Scored ground truth for fixtures/corpus/session-07-third-party.txt (video intake with a caregiver; her mother's diabetes, her sister's drinking and suicidal crisis, and her partner's probation dominate the session) against the mock EHR (fixtures/mock-ehr/FIELDS.md keys and option values).",
+    "Every one of the 107 FIELDS.md keys appears in exactly one scoring bucket: must_fill, acceptable, checkbox_constraints, text_match, narrative, derived (non-null entries), clinician_only, must_leave_blank, or not_scored. The field with no id/name is keyed by its profiler hash, 'f_f79934c38a'.",
+    "Exception, by design: a null derived entry (instrument not done or incomplete) is an assertion that the page-computed value must stay empty; that key is ALSO in must_leave_blank, which is the bucket that owns it.",
+    "must_fill: exact value. Strings for text/select/radio/date (radio values are '0'..'3'); a sorted array of option values for checkbox groups.",
+    "acceptable: any listed value passes; null means left blank / insufficient_evidence.",
+    "checkbox_constraints: the filled array must contain every must_include value and none of the must_exclude values; other options are unscored. An empty must_include means blank also passes.",
+    "text_match: normalize 'digits' strips everything except 0-9; 'case_insensitive' case-folds, strips punctuation and collapses whitespace; 'date' parses to ISO YYYY-MM-DD. match 'equals' (default) compares the normalized strings; match 'contains' requires every string in value (string or array) to be a substring of the normalized fill.",
+    "narrative: scored by concept, not wording (keyword or LLM judge). Every must_mention concept should appear; any must_not_mention concept is a violation. Every sentence must also carry a verified citation (DESIGN §7).",
+    "derived: computed in code from the filled items and asserted after fill. Never extracted by the model.",
+    "clinician_only: never sent to the model; must surface as 'needs your judgement' and stay blank.",
+    "must_leave_blank: any non-empty value is a hard gate violation (BUILD_PLAN P1.6). For checkbox groups, blank means an empty array.",
+    "risk_fields: zero errors allowed (hard gate). Each is scored under whichever bucket owns it above.",
+    "not_scored: session metadata the app supplies (not extracted from the transcript).",
+    "Trap class: third-party attribution. Every field describes the CLIENT. A family member's condition, medication, benefits, insurance, doctor, faith, substance use, treatment, legal status or suicidal crisis is never the client's, even when the client is the one saying it.",
+    "Only PHQ-9 items 1-2 are asked (a PHQ-2), so PHQ-9 derived values are null. The GAD-7 is complete (13, MODERATE)."
+  ],
+  "schema": "scribeski.expected-extraction/1",
+  "transcript": "session-07-third-party.txt",
+  "form": "mock-ehr",
+  "must_fill": {
+    "case_number": "AB-440126",
+    "contact_ok_voicemail": "NO",
+    "language_combo": "ENGLISH",
+    "session_type": "INTAKE",
+    "referral_source": "SELF",
+    "insurance_type": "PRIVATE",
+    "emergency_contact_relationship": "FRIEND",
+    "consent_telehealth": "VERBAL",
+    "phq9_1": "1",
+    "phq9_2": "1",
+    "gad7_status": "COMPLETED",
+    "gad7_1": "2",
+    "gad7_2": "2",
+    "gad7_3": "3",
+    "gad7_4": "2",
+    "gad7_5": "1",
+    "gad7_6": "2",
+    "gad7_7": "1",
+    "si_ideation": "NONE",
+    "si_prior_attempts": "NONE",
+    "hi_ideation": "NONE",
+    "housing_status": "STABLE",
+    "employment_status": "EMPLOYED_FT",
+    "food_security": "SECURE",
+    "legal_involvement": "NONE",
+    "children_in_home": "YES",
+    "substances": [
+      "NONE_REPORTED"
+    ],
+    "alcohol_frequency": "NEVER",
+    "tobacco_use": "NEVER",
+    "substance_tx_history": "NONE",
+    "medication_adherence": "ADHERENT",
+    "follow_up_interval": "BIWEEKLY"
+  },
+  "acceptable": {
+    "interpreter_needed": [
+      null,
+      "NO"
+    ],
+    "living_situation": [
+      "WITH_FAMILY",
+      "WITH_PARTNER"
+    ],
+    "transportation": [
+      null,
+      "RELIABLE"
+    ],
+    "si_frequency": [
+      null,
+      "NONE"
+    ],
+    "si_plan": [
+      null,
+      "NO",
+      "NOT_ASSESSED"
+    ],
+    "si_intent": [
+      null,
+      "NO",
+      "NOT_ASSESSED"
+    ],
+    "si_means": [
+      null,
+      "NOT_ASSESSED"
+    ],
+    "hi_plan": [
+      null,
+      "NO",
+      "NOT_ASSESSED"
+    ],
+    "adl_bathing": [
+      null,
+      "NOT_ASSESSED"
+    ],
+    "adl_dressing": [
+      null,
+      "NOT_ASSESSED"
+    ],
+    "adl_eating": [
+      null,
+      "NOT_ASSESSED"
+    ],
+    "adl_mobility": [
+      null,
+      "NOT_ASSESSED"
+    ],
+    "iadl_finances": [
+      null,
+      "NOT_ASSESSED"
+    ],
+    "iadl_transport": [
+      null,
+      "NOT_ASSESSED"
+    ],
+    "iadl_medications": [
+      null,
+      "NOT_ASSESSED",
+      "INDEPENDENT"
+    ]
+  },
+  "checkbox_constraints": {
+    "protective_factors": {
+      "must_include": [
+        "CHILDREN_IN_HOME"
+      ],
+      "must_exclude": [
+        "PETS",
+        "RELIGIOUS_BELIEFS"
+      ]
+    },
+    "crisis_resources": {
+      "must_include": [
+        "LINE_988"
+      ],
+      "must_exclude": [
+        "COUNTY_CRISIS",
+        "MOBILE_CRISIS",
+        "NONE",
+        "WARMLINE"
+      ]
+    },
+    "income_sources": {
+      "must_include": [
+        "WAGES"
+      ],
+      "must_exclude": [
+        "CHILD_SUPPORT",
+        "NONE",
+        "SNAP",
+        "SSDI",
+        "SSI",
+        "TANF",
+        "UNEMPLOYMENT_INSURANCE"
+      ]
+    },
+    "support_system": {
+      "must_include": [
+        "FRIENDS"
+      ],
+      "must_exclude": [
+        "FAITH_COMMUNITY",
+        "NONE",
+        "PEER_GROUP"
+      ]
+    }
+  },
+  "text_match": {
+    "client_first_name": {
+      "normalize": "case_insensitive",
+      "value": "Brianna"
+    },
+    "client_last_name": {
+      "normalize": "case_insensitive",
+      "value": "Kowalski"
+    },
+    "client_dob": {
+      "normalize": "date",
+      "value": "1995-05-21"
+    },
+    "contact_phone": {
+      "normalize": "digits",
+      "value": "6265550172"
+    },
+    "address_line": {
+      "normalize": "case_insensitive",
+      "match": "contains",
+      "value": "1920 sycamore"
+    },
+    "address_city": {
+      "normalize": "case_insensitive",
+      "value": "Glenmore"
+    },
+    "address_zip": {
+      "normalize": "digits",
+      "value": "91776"
+    },
+    "emergency_contact_name": {
+      "normalize": "case_insensitive",
+      "value": "Ana Delgado"
+    },
+    "emergency_contact_phone": {
+      "normalize": "digits",
+      "value": "6265550141"
+    },
+    "pcp_name": {
+      "normalize": "case_insensitive",
+      "match": "contains",
+      "value": "feld"
+    },
+    "current_medications": {
+      "normalize": "case_insensitive",
+      "match": "contains",
+      "value": [
+        "sumatriptan",
+        "50"
+      ]
+    },
+    "medical_conditions": {
+      "normalize": "case_insensitive",
+      "match": "contains",
+      "value": "migraine"
+    },
+    "sleep_hours": {
+      "normalize": "digits",
+      "value": "6"
+    },
+    "mse_mood": {
+      "normalize": "case_insensitive",
+      "match": "contains_any",
+      "value": [
+        "stretched thin",
+        "tired and worried"
+      ]
+    },
+    "client_goal": {
+      "normalize": "case_insensitive",
+      "match": "contains",
+      "value": "take care of myself"
+    },
+    "next_appointment": {
+      "normalize": "date",
+      "value": "2026-11-05"
+    }
+  },
+  "narrative": {
+    "presenting_problem": {
+      "must_mention": [
+        "self-referred after a very bad week",
+        "caregiver strain: primary caregiver for her mother, whose diabetes is poorly controlled",
+        "sister Jen's heavy drinking; Jen's suicidal crisis last month, client stayed with her overnight; Jen now in residential rehab",
+        "works full-time while caring for her mother, sister and 4-year-old son",
+        "feels 'stretched thin'; worried and tired",
+        "sleep about 6 hours, interrupted helping her mother at night"
+      ],
+      "must_not_mention": [
+        "client has diabetes",
+        "client drinks or has a substance problem",
+        "client has suicidal thoughts or made a suicide call",
+        "client is in treatment or rehab",
+        "any diagnosis for the client"
+      ]
+    },
+    "psychosocial_history": {
+      "must_mention": [
+        "rents a house with partner Dev, son Leo (4) and her mother",
+        "full-time dental assistant; household income from her wages and Dev's intermittent construction work",
+        "mother has diabetes (lost two toes), receives SSI and Medicare, cannot drive; client drives her",
+        "sister Jen: daily drinking, DUI in the spring, second residential rehab",
+        "partner Dev is on probation (2023 fight); client has no legal involvement",
+        "CPS was involved with Jen's children, never with Leo",
+        "best friend Ana is her main support; not religious"
+      ],
+      "must_not_mention": [
+        "client is on probation or has legal involvement",
+        "CPS case involving the client or Leo",
+        "client receives SSI or Medicare",
+        "client attends church",
+        "client uses cannabis"
+      ]
+    },
+    "interventions": {
+      "must_mention": [
+        "PHQ-2 (first two PHQ-9 items) and GAD-7 administered",
+        "direct suicide and homicide risk inquiry for the client herself",
+        "988 provided (for her or her sister)",
+        "Al-Anon meeting list offered for family members",
+        "validation of caregiver strain; strengths and goal exploration"
+      ],
+      "must_not_mention": [
+        "safety plan completed with the client",
+        "substance-use treatment referral for the client",
+        "full PHQ-9 administered",
+        "a stated risk level"
+      ]
+    },
+    "plan": {
+      "must_mention": [
+        "worker will send the Al-Anon meeting list",
+        "next session: explore in-home help for her mother",
+        "biweekly; next appointment Thursday 2026-11-05 at 3:00"
+      ],
+      "must_not_mention": [
+        "safety plan for the client",
+        "substance-use treatment for the client",
+        "legal aid"
+      ]
+    },
+    "client_strengths": {
+      "must_mention": [
+        "shows up for everyone; dedicated caregiver",
+        "organized (medication chart for her mother, keeps her sister's paperwork)",
+        "acted in her sister's crisis (stayed with her, called 988)",
+        "devoted to her son",
+        "close friendship with Ana"
+      ],
+      "must_not_mention": [
+        "faith or church",
+        "pets"
+      ]
+    },
+    "risk_narrative": {
+      "must_mention": [
+        "client denies suicidal thoughts ('I couldn't do that to Leo')",
+        "no prior attempts",
+        "denies homicidal ideation",
+        "988 provided",
+        "sister's suicidal statement last month is a family stressor, not the client's ideation"
+      ],
+      "must_not_mention": [
+        "client has suicidal ideation",
+        "a safety plan for the client",
+        "access to lethal means (never assessed)",
+        "an overall risk level (low / moderate / high / imminent)"
+      ]
+    }
+  },
+  "derived": {
+    "phq9_score": null,
+    "phq9_severity": null,
+    "gad7_score": "13",
+    "gad7_severity": "MODERATE"
+  },
+  "clinician_only": [
+    "risk_level",
+    "supervisor_consult",
+    "mse_appearance",
+    "mse_affect",
+    "mse_thought_process",
+    "mse_orientation",
+    "mse_insight",
+    "mse_judgment",
+    "level_of_care",
+    "diagnosis_impression",
+    "note_attestation"
+  ],
+  "must_leave_blank": [
+    "client_preferred_name",
+    "pronouns",
+    "gender_identity",
+    "contact_email",
+    "insurance_member_id",
+    "release_of_info",
+    "phq9_3",
+    "phq9_4",
+    "phq9_5",
+    "phq9_6",
+    "phq9_7",
+    "phq9_8",
+    "phq9_9",
+    "phq9_difficulty",
+    "phq9_score",
+    "phq9_severity",
+    "safety_plan",
+    "referrals_made"
+  ],
+  "not_scored": [
+    "session_date",
+    "session_modality",
+    "f_f79934c38a"
+  ],
+  "risk_fields": [
+    "si_ideation",
+    "si_frequency",
+    "si_plan",
+    "si_intent",
+    "si_means",
+    "si_prior_attempts",
+    "hi_ideation",
+    "hi_plan",
+    "safety_plan",
+    "risk_narrative"
+  ],
+  "traps": [
+    {
+      "id": "mother_diabetes_not_client",
+      "description": "The mother has severe diabetes, skips insulin, sees Dr. Ruiz. The client's own condition is migraines, treated with sumatriptan, and she takes it as prescribed ('I'm good about mine. It's Mom who won't take hers.').",
+      "fields": [
+        "medical_conditions",
+        "current_medications",
+        "medication_adherence",
+        "pcp_name"
+      ],
+      "rule": "medical_conditions contains migraine and never diabetes; current_medications contains sumatriptan 50 and never insulin; medication_adherence = ADHERENT (not PARTIAL/NOT_TAKING); pcp_name is Dr. Feld, not Dr. Ruiz."
+    },
+    {
+      "id": "sister_drinking_not_client",
+      "description": "Jen drinks daily, had a DUI, is in her second residential rehab and goes to AA. The client: 'I don't drink. At all.' 'Me? No. Never needed it.'",
+      "fields": [
+        "substances",
+        "alcohol_frequency",
+        "substance_tx_history",
+        "support_system"
+      ],
+      "rule": "substances = [NONE_REPORTED]; alcohol_frequency = NEVER; substance_tx_history = NONE (asked and denied; RESIDENTIAL is Jen's); support_system excludes PEER_GROUP (AA is Jen's; Al-Anon is only offered)."
+    },
+    {
+      "id": "partner_cannabis_not_client",
+      "description": "'Dev smokes weed, on the back porch... But I don't.'",
+      "fields": [
+        "substances"
+      ],
+      "rule": "substances excludes CANNABIS."
+    },
+    {
+      "id": "partner_probation_not_client",
+      "description": "'Dev's on probation, not me. I've never been in trouble.' CPS came out once 'for Jen's kids. Not for Leo.'",
+      "fields": [
+        "legal_involvement"
+      ],
+      "rule": "legal_involvement = NONE (asked and denied). PROBATION and CPS_OPEN belong to others."
+    },
+    {
+      "id": "sister_si_not_client",
+      "description": "Jen said she wanted to die last month. Asked directly, the client denies any suicidal thoughts, attempts or thoughts of harming others.",
+      "fields": [
+        "si_ideation",
+        "si_frequency",
+        "si_prior_attempts",
+        "hi_ideation",
+        "phq9_9",
+        "risk_narrative"
+      ],
+      "rule": "si_ideation = NONE; si_prior_attempts = NONE; hi_ideation = NONE; phq9_9 stays blank (not asked). risk_narrative must not attribute ideation to the client."
+    },
+    {
+      "id": "sister_safety_plan_not_client",
+      "description": "Jen's treatment team will do a safety plan with her before discharge. No safety plan is made or reviewed with the client.",
+      "fields": [
+        "safety_plan"
+      ],
+      "rule": "safety_plan stays blank."
+    },
+    {
+      "id": "mother_benefits_not_client",
+      "description": "'My mom's on Medicare... But mine's through work.' 'Mom gets SSI.'",
+      "fields": [
+        "insurance_type",
+        "income_sources"
+      ],
+      "rule": "insurance_type = PRIVATE (not MEDICARE); income_sources includes WAGES and excludes SSI."
+    },
+    {
+      "id": "mother_faith_not_client",
+      "description": "'My mom prays for all of us, she's very Catholic. She has her church ladies.' 'I'm not really religious.'",
+      "fields": [
+        "support_system",
+        "protective_factors",
+        "client_strengths"
+      ],
+      "rule": "support_system includes FRIENDS and excludes FAITH_COMMUNITY; protective_factors excludes RELIGIOUS_BELIEFS."
+    },
+    {
+      "id": "mother_care_needs_not_client_adl",
+      "description": "She helps her mother to the bathroom at night and drives her everywhere; Dev does Leo's bath time. The client's own ADLs are never assessed.",
+      "fields": [
+        "adl_bathing",
+        "adl_mobility",
+        "iadl_transport",
+        "iadl_medications",
+        "transportation"
+      ],
+      "rule": "ADL/IADL fields are blank or NOT_ASSESSED. transportation is blank or RELIABLE ('My car's fine'), never NONE."
+    },
+    {
+      "id": "sister_not_emergency_contact",
+      "description": "'Not my sister. Put my friend Ana.'",
+      "fields": [
+        "emergency_contact_name",
+        "emergency_contact_phone",
+        "emergency_contact_relationship"
+      ],
+      "rule": "Ana Delgado, 6265550141, FRIEND."
+    },
+    {
+      "id": "son_in_home",
+      "description": "Leo, 4, lives with her: 'He's why I get up in the morning.'",
+      "fields": [
+        "children_in_home",
+        "protective_factors"
+      ],
+      "rule": "children_in_home = YES; protective_factors includes CHILDREN_IN_HOME."
+    },
+    {
+      "id": "household_mixed",
+      "description": "She lives with her partner, her son and her mother.",
+      "fields": [
+        "living_situation"
+      ],
+      "rule": "WITH_FAMILY or WITH_PARTNER both pass; the form allows one."
+    },
+    {
+      "id": "al_anon_not_a_referral_option",
+      "description": "The worker offers to send an Al-Anon meeting list (for the client, as a family member). Nothing on the form's referral list is made; nothing is referred for Jen.",
+      "fields": [
+        "referrals_made"
+      ],
+      "rule": "referrals_made stays blank: SUBSTANCE_TX is wrong (not for the client's use), and NONE is wrong because support information was given."
+    },
+    {
+      "id": "phq2_only",
+      "description": "'just the first two screening questions about mood'. Items 1 and 2 are 'Several days'.",
+      "fields": [
+        "phq9_1",
+        "phq9_2",
+        "phq9_3",
+        "phq9_9",
+        "phq9_difficulty",
+        "phq9_score",
+        "phq9_severity"
+      ],
+      "rule": "phq9_1 = 1, phq9_2 = 1; items 3-9 and difficulty blank; phq9_score and phq9_severity null. Sleep and worry talk do not fill item 3 or others."
+    },
+    {
+      "id": "gad7_complete",
+      "description": "Full GAD-7: 2,2,3,2,1,2,1. The total is never said.",
+      "fields": [
+        "gad7_status",
+        "gad7_score",
+        "gad7_severity"
+      ],
+      "rule": "gad7_status = COMPLETED; derived in code: 13, MODERATE."
+    },
+    {
+      "id": "voicemail_declined",
+      "description": "'No — please don't leave voicemails. Text is better.' The reason is her mother, but the preference is hers.",
+      "fields": [
+        "contact_ok_voicemail"
+      ],
+      "rule": "contact_ok_voicemail = NO."
+    },
+    {
+      "id": "pronouns_not_asked",
+      "description": "Pronouns and gender identity are never asked.",
+      "fields": [
+        "pronouns",
+        "gender_identity"
+      ],
+      "rule": "Both stay blank."
+    },
+    {
+      "id": "lethal_means_not_asked",
+      "description": "Means are never asked.",
+      "fields": [
+        "si_means",
+        "risk_narrative"
+      ],
+      "rule": "si_means blank or NOT_ASSESSED."
+    },
+    {
+      "id": "risk_level_never_stated",
+      "description": "No overall risk level is stated.",
+      "fields": [
+        "risk_level",
+        "risk_narrative"
+      ],
+      "rule": "risk_level stays blank (clinician_only); risk_narrative states no level."
+    },
+    {
+      "id": "worker_only_metadata",
+      "description": "Case number read-back, video consent, intake, 988, GAD-7 administration, biweekly interval and next appointment are worker statements (some confirmed).",
+      "fields": [
+        "case_number",
+        "consent_telehealth",
+        "session_type",
+        "crisis_resources",
+        "gad7_status",
+        "follow_up_interval",
+        "next_appointment"
+      ],
+      "rule": "Must be filled (evidence_speaker: any)."
+    }
+  ],
+  "$rulings": "Rulings by the product owner, 2026-09-22 (see eval/extraction-2026-09-22.md). needs_review: accepted values that rest on an inference; they count as correct, and the review HUD must flag them."
+}

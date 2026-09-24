@@ -1,0 +1,407 @@
+# scribeski transcript fixture v1
+# session_date: 2026-10-27
+# started_at: 2026-10-27T10:00:00-07:00
+# modality: video
+# duration_minutes: 60
+# note: synthetic; all people fictional; phone numbers use 555-01xx; long dense intake for latency and prefix-cache measurement
+[00:04] WORKER: Good morning. Can you hear me alright?
+[00:09] CLIENT: I can. Can you hear me? My internet's been weird all week.
+[00:19] WORKER: You're coming through clearly. I can see you fine.
+[00:26] CLIENT: Oh good. Hold on, let me move the cat. Mango, move. Okay.
+[00:34] WORKER: Is that Mango?
+[00:39] CLIENT: That's Mango. She thinks every video call is for her.
+[00:47] WORKER: She's welcome. I'm Theresa, I'm a clinical social worker with the county behavioral health team.
+[00:57] CLIENT: Hi. I'm Jolene. Jo. Nice to meet you. Sorry, I'm still on my first coffee.
+[01:08] WORKER: No apology needed. I'm on my second.
+[01:16] CLIENT: Ha. Then you're ahead of me.
+[01:22] WORKER: Hi, Jo. Thanks for being here. I know you've been in therapy before, so some of this will be familiar.
+[01:35] CLIENT: Yeah. I saw Ms. Bauer for almost six years. She retired in September.
+[01:45] WORKER: So you're transferring to us. This is still an intake on our end, so today's our first session and it's a long one — about an hour.
+[02:02] CLIENT: That's fine. I cleared the morning.
+[02:07] WORKER: Before we start, we're meeting by video. Do I have your verbal consent to do this session over video?
+[02:19] CLIENT: Yes, you have my consent.
+[02:25] WORKER: And I use a tool that transcribes what we say, to help with my notes. It stays on our system. Is that okay?
+[02:40] CLIENT: That's fine.
+[02:43] WORKER: What we talk about is confidential. The exceptions are if I'm worried about your safety or someone else's, or if a child is being hurt. I'd try to talk with you first.
+[03:02] CLIENT: I know the drill. Ms. Bauer said the same thing.
+[03:10] WORKER: Good. And I'll say now — if you need a break at any point, just tell me.
+[03:22] CLIENT: I will.
+[03:27] WORKER: Okay. I have your case number as AB-502268.
+[03:33] CLIENT: That's what's on my letter. AB-502268.
+[03:39] WORKER: Can you give me your full legal name?
+[03:48] CLIENT: Jolene Marie Marsh.
+[03:53] WORKER: And you go by Jo.
+[03:59] CLIENT: Jo. Only my mother called me Jolene, and she's gone.
+[04:07] WORKER: Date of birth?
+[04:13] CLIENT: January 30th, 1981.
+[04:19] WORKER: What pronouns do you use?
+[04:24] CLIENT: She/her.
+[04:27] WORKER: And how do you describe your gender identity? We ask everyone.
+[04:37] CLIENT: I'm a woman. Cis woman, if you need the word.
+[04:44] WORKER: Thank you. Best phone number?
+[04:48] CLIENT: 707-555-0153.
+[04:51] WORKER: And can we leave a voicemail there?
+[04:58] CLIENT: Yes, that's fine. Caleb doesn't touch my phone.
+[05:04] WORKER: Do you have an email we can use?
+[05:12] CLIENT: jolene.marsh@example.com. All lowercase.
+[05:17] WORKER: jolene.marsh@example.com. And your home address?
+[05:23] CLIENT: 3301 Kestrel Way, Apartment 210. In Northgate. 95403.
+[05:32] WORKER: 3301 Kestrel Way, Apartment 210, Northgate. What language do you prefer for sessions?
+[05:40] CLIENT: English.
+[05:42] WORKER: No interpreter needed?
+[05:47] CLIENT: No.
+[05:51] WORKER: And who referred you to us?
+[05:57] CLIENT: The facilitator at my DBSA group. The Depression and Bipolar Support Alliance. She gave me the county number when Ms. Bauer retired.
+[06:09] WORKER: And your insurance?
+[06:15] CLIENT: I have Medicare. And Medi-Cal too. I'm dual.
+[06:21] WORKER: Which member ID do you use at the clinic?
+[06:28] CLIENT: The Medi-Cal one. It's 91402837.
+[06:33] WORKER: 91402837. Thank you.
+[06:38] WORKER: I also have a release of information you signed at the front desk on Monday, for Dr. Ahmed, your psychiatrist. That's on file now.
+[06:54] CLIENT: Yes. I want you two talking. I don't want to be the messenger between my psychiatrist and my therapist again.
+[07:07] WORKER: Understood. Do you want one for your primary care doctor too?
+[07:14] CLIENT: Not yet. Maybe later.
+[07:19] WORKER: Okay. Just Dr. Ahmed for now. And an emergency contact?
+[07:26] CLIENT: My sister. Paula Greene. 707-555-0164.
+[07:31] WORKER: Paula Greene, 707-555-0164. Your sister.
+[07:37] CLIENT: My younger sister. She's my rock.
+[07:42] WORKER: That's the paperwork. Thank you. So — in your own words, what's going on right now? What would you like help with?
+[07:56] CLIENT: The short version is I'm in a depression. A real one. It started in August.
+[08:06] CLIENT: I have bipolar II. Dr. Ahmed diagnosed me in 2014. So I know what this is. But knowing doesn't make it lighter.
+[08:19] WORKER: What happened in August?
+[08:26] CLIENT: My ex-husband, Greg, filed in family court. He wants to lower the child support, and he wants Caleb to live with him.
+[08:39] CLIENT: The hearing's November 18th. And I don't have a lawyer.
+[08:48] WORKER: That's a lot. How old is Caleb?
+[08:55] CLIENT: Fifteen. He's a sophomore.
+[09:01] WORKER: And he lives with you.
+[09:06] CLIENT: He lives with me. He's with his dad every other weekend. He doesn't want to move. He told me that.
+[09:19] WORKER: That must matter a lot to you.
+[09:26] CLIENT: It does. But it's not his decision, legally. That's what scares me.
+[09:37] WORKER: And then Ms. Bauer retired in September.
+[09:43] CLIENT: Right in the middle of it. It wasn't her fault. But I felt dropped.
+[09:53] WORKER: That makes sense. Losing your therapist during a crisis is a real loss.
+[10:02] CLIENT: Yeah. And since then I've been sleeping ten, eleven hours. And I still wake up tired.
+[10:13] WORKER: Ten or eleven hours a night.
+[10:19] CLIENT: Every night. And naps. Some days I don't get out of bed until noon.
+[10:28] WORKER: How would you describe your mood, in your own words?
+[10:35] CLIENT: Heavy. Like I'm wading through mud.
+[10:42] WORKER: Heavy, like wading through mud.
+[10:49] CLIENT: Everything takes three times the effort. Showering is a project. Cooking is a project.
+[10:58] WORKER: Are you still able to do those things — shower, get dressed, eat?
+[11:08] CLIENT: I do them. I just don't want to. Nobody's helping me shower. I can do it. It just takes me till two in the afternoon to talk myself into it.
+[11:24] WORKER: So you can do it on your own, it's the motivation that's hard.
+[11:33] CLIENT: Exactly. The body works. The motor doesn't.
+[11:39] WORKER: And getting around — are you driving?
+[11:44] CLIENT: I drive myself. When the car starts.
+[11:52] WORKER: When the car starts?
+[11:56] CLIENT: It's a 2006 Corolla with two hundred and ten thousand miles. It dies every other week. I've missed two DBSA meetings because of it.
+[12:11] WORKER: So the car is unreliable.
+[12:16] CLIENT: Very. I've got jumper cables in the trunk permanently.
+[12:23] WORKER: Tell me about home. Who lives with you?
+[12:30] CLIENT: Me and Caleb. And Mango. My daughter, Maya, is nineteen. She's at UC Davis, in the dorms. She comes home some weekends.
+[12:43] WORKER: What's your housing like?
+[12:49] CLIENT: It's a Section 8 apartment. Two bedrooms. We've been there seven years. It's stable. That's the one thing that's stable.
+[13:03] WORKER: I'm glad that part's solid.
+[13:10] CLIENT: Me too. If I lost that, I'd lose it.
+[13:19] WORKER: And money — what are you living on?
+[13:27] CLIENT: SSDI. I've been on disability since 2021.
+[13:34] CLIENT: And child support from Greg. Which is the thing he's trying to cut.
+[13:43] CLIENT: And CalFresh. We get CalFresh.
+[13:47] WORKER: Does that cover food for the month?
+[13:53] CLIENT: No. It runs out the third week, every month. Then we go to the pantry at St. Brendan's. Some months I skip lunch so Caleb has enough for his.
+[14:08] WORKER: So some weeks there isn't enough food.
+[14:13] CLIENT: Some weeks there isn't enough. Caleb eats like a horse. He's fifteen.
+[14:22] WORKER: Before disability, what kind of work did you do?
+[14:29] CLIENT: I was a pharmacy tech for seventeen years. At the Rite Way on Fourth.
+[14:40] CLIENT: I loved it. I was good at it. But after the 2020 episode, I couldn't keep up. I kept making mistakes. And you can't make mistakes with pills.
+[14:56] WORKER: That's a hard thing to give up.
+[15:03] CLIENT: It was. It still is. I still know every drug interaction by heart.
+[15:12] WORKER: Let's talk about your health. Do you have a primary care doctor?
+[15:22] CLIENT: Dr. Ross. Imani Ross. At Northgate Family Health.
+[15:28] WORKER: Any medical conditions?
+[15:32] CLIENT: Hypothyroidism. That's the main one. And I'm prediabetic, she says. Borderline.
+[15:42] WORKER: And your medications?
+[15:45] CLIENT: Lamotrigine, 200 milligrams, in the morning. Trazodone, 50 milligrams at night, for sleep. And levothyroxine, 75 micrograms.
+[15:57] WORKER: Are you able to take those the way they're prescribed?
+[16:03] CLIENT: Mostly. The trazodone and the thyroid pill, every day.
+[16:12] CLIENT: The lamotrigine I miss, honestly. Maybe twice a week. When I sleep till noon, I miss the morning dose and then I don't know if I should take it late.
+[16:30] WORKER: So about twice a week the lamotrigine gets missed.
+[16:39] CLIENT: About twice a week. I haven't told Dr. Ahmed.
+[16:44] WORKER: Do you manage your own pills otherwise?
+[16:52] CLIENT: I do. I fill a pill organizer every Sunday night. Old pharmacy tech habits. That part I've got.
+[17:03] WORKER: So you set them up yourself, it's the morning dose that slips.
+[17:13] CLIENT: Right.
+[17:17] WORKER: And your son — is he on anything?
+[17:25] CLIENT: Caleb's on methylphenidate for ADHD. That's his, not mine. I keep his locked up, because of the whole pharmacy thing. I know what those are worth.
+[17:40] WORKER: Got it. And managing money — bills, the budget — how is that going?
+[17:49] CLIENT: Paula helps me. Since the hospital in 2023, she's on my bank account and we do the bills together, first of the month. I can't be trusted with it when I'm low. I forget things. Late fees pile up.
+[18:10] WORKER: So Paula helps you with the bills.
+[18:16] CLIENT: Every month. It's a relief, honestly.
+[18:21] WORKER: You mentioned the hospital in 2023. Can you tell me about that?
+[18:31] CLIENT: I was in the psych unit at Northgate General for eight days. It was a depression like this one. Worse. I stopped eating.
+[18:45] WORKER: I'm really glad you got care. Were there other psychiatric hospitalizations?
+[18:54] CLIENT: That's the only one. Just 2023.
+[19:01] WORKER: Can you tell me a little about your history — where you grew up, school, that kind of thing?
+[19:11] CLIENT: I grew up here in Northgate. My dad worked at the lumber mill, my mom cleaned houses. Paula and me, just the two of us.
+[19:25] CLIENT: I got my pharmacy tech certificate at Northgate Community College when I was twenty-two. I was proud of that. First one in my family with any kind of college.
+[19:43] WORKER: That's something to be proud of.
+[19:48] CLIENT: My mom framed it. It's in my hallway now.
+[19:56] WORKER: When did you first notice mood problems?
+[20:04] CLIENT: Looking back, high school. I'd have these months where I couldn't get out of bed, and then months where I'd barely sleep and redo my whole room at three in the morning.
+[20:21] CLIENT: Nobody called it anything. My mom said I was moody.
+[20:30] WORKER: And the diagnosis came in 2014.
+[20:38] CLIENT: After Maya was born, and then Caleb, it got worse. The lows got longer. In 2014 I finally saw Dr. Ahmed and he put a name on it. Bipolar II.
+[20:57] WORKER: How was it, getting that name?
+[21:04] CLIENT: A relief, honestly. It meant it wasn't just me being lazy. It was a thing, and a thing can be treated.
+[21:18] WORKER: And the 2020 episode, that ended the pharmacy work?
+[21:25] CLIENT: That was the pandemic. Everybody was losing it, and I lost it worse. I was so slowed down I'd count the same pills four times. My manager was kind about it, but I knew.
+[21:44] CLIENT: I went on leave, and I never went back. The disability came through in 2021.
+[21:55] WORKER: That's a lot of loss in a few years.
+[22:04] CLIENT: Job, then marriage before that, then the hospital. But also — I'm still here. I keep telling myself that.
+[22:16] WORKER: Okay. I'm going to ask about alcohol and drugs now. I ask everyone the same questions.
+[22:26] CLIENT: Go ahead. I'm an open book.
+[22:31] WORKER: Do you drink alcohol?
+[22:38] CLIENT: A glass of wine, maybe once a month. If that. It messes with the lamotrigine and my sleep.
+[22:50] WORKER: Once a month or less. Cannabis?
+[22:55] CLIENT: Edibles. For sleep. A few nights a week. Ten milligram gummies.
+[23:04] WORKER: A few nights a week, in the past month too?
+[23:13] CLIENT: Yes. Most weeks. Dr. Ahmed knows about that one.
+[23:20] WORKER: Anything else — opioids, pain pills, stimulants, anything?
+[23:27] CLIENT: Not now. I had a problem with pain pills. In 2010, 2011. After my back surgery.
+[23:38] CLIENT: I haven't touched them since 2011. Fifteen years.
+[23:44] WORKER: Fifteen years. That's a real accomplishment.
+[23:49] CLIENT: Thank you. It was hard.
+[23:57] WORKER: Did you get treatment back then?
+[24:04] CLIENT: I did an outpatient program in 2012. Three nights a week for four months, at New Horizons.
+[24:16] WORKER: Outpatient, at New Horizons. Any tobacco or vaping?
+[24:24] CLIENT: Never. I've never smoked.
+[24:31] WORKER: Okay. Who do you have for support?
+[24:36] CLIENT: Paula. She's twenty minutes away. She'd come in the middle of the night if I called.
+[24:47] CLIENT: My church. Northgate Community Church. I'm in a small group on Wednesdays. They've been bringing meals.
+[24:57] CLIENT: And my DBSA group, Tuesday nights. Those people get it. They're the only ones who really get it.
+[25:09] WORKER: What does your faith mean to you, in all this?
+[25:17] CLIENT: Honestly, it's what keeps me here some days. I believe my life isn't mine to end.
+[25:29] WORKER: Thank you for telling me that.
+[25:36] WORKER: And Maya — how is she?
+[25:42] CLIENT: She's doing well at school. She has some anxiety, she's in counseling at Davis. But she's okay.
+[25:52] CLIENT: Her graduation is in 2029. I intend to be there. In the front row. Crying.
+[26:02] WORKER: I hope you are.
+[26:06] CLIENT: I will be.
+[26:12] WORKER: And Greg — what's he like, as a co-parent?
+[26:19] CLIENT: He drinks. Always has. That's part of why we split, in 2019.
+[26:28] CLIENT: He's better with Caleb than he was with me. But I don't want Caleb living in that house full time.
+[26:41] WORKER: That's an understandable worry.
+[26:47] WORKER: How is Caleb handling everything?
+[26:52] CLIENT: He's quiet. He's fifteen, so he's always quiet. But he's been staying in his room more.
+[27:04] CLIENT: His grades are okay. He's in the robotics club. That's his thing. He'd live at the school if they let him.
+[27:15] WORKER: Does he know about the court hearing?
+[27:21] CLIENT: He knows. Greg told him, which I didn't love. Caleb asked me if he'd have to pick.
+[27:33] WORKER: What did you tell him?
+[27:37] CLIENT: I told him the judge might ask what he wants, and that he can tell the truth, and nobody will be mad at him. Including me.
+[27:53] WORKER: That's a really thoughtful answer.
+[27:58] CLIENT: I practiced it. In the shower. Which took me until two in the afternoon to get into.
+[28:09] WORKER: You're funny, Jo.
+[28:14] CLIENT: It's a coping mechanism. Ms. Bauer said so. Many times.
+[28:22] WORKER: Does Caleb know about your bipolar?
+[28:26] CLIENT: He knows I have it. He knows I take medicine for it. He knows when I'm low. He makes me toast. He's a good kid.
+[28:42] WORKER: It sounds like you two look out for each other.
+[28:51] CLIENT: We do. That's why I'm fighting this.
+[28:59] WORKER: Jo, I'd like to do two short questionnaires. The first is the PHQ-9. You probably know it.
+[29:12] CLIENT: I could recite it.
+[29:17] WORKER: I figured. For each one, over the last two weeks: not at all, several days, more than half the days, or nearly every day.
+[29:33] CLIENT: Okay.
+[29:36] WORKER: Little interest or pleasure in doing things.
+[29:43] CLIENT: More than half the days.
+[29:49] WORKER: Feeling down, depressed, or hopeless.
+[29:55] CLIENT: More than half the days.
+[30:02] WORKER: Trouble falling or staying asleep, or sleeping too much.
+[30:08] CLIENT: Nearly every day. The too much part.
+[30:13] WORKER: Feeling tired or having little energy.
+[30:18] CLIENT: Nearly every day.
+[30:21] WORKER: Poor appetite or overeating.
+[30:25] CLIENT: Several days. I forget to eat, some days. Not because of money. Because I'm not hungry.
+[30:34] WORKER: Several days. Feeling bad about yourself, or that you're a failure, or have let yourself or your family down.
+[30:47] CLIENT: More than half. The court thing makes me feel like a bad mother.
+[30:57] WORKER: Trouble concentrating on things, like reading or TV.
+[31:03] CLIENT: More than half. I read the same page of my court papers ten times.
+[31:12] WORKER: Moving or speaking so slowly other people notice, or being fidgety or restless.
+[31:21] CLIENT: Not at all. Not that anyone's said.
+[31:28] WORKER: And thoughts that you'd be better off dead, or of hurting yourself in some way.
+[31:37] CLIENT: More than half the days. I'll be honest with you.
+[31:45] WORKER: Thank you for being honest. We'll talk about that in just a minute.
+[31:56] WORKER: And how difficult have these problems made it to do your work, take care of things at home, or get along with people?
+[32:10] CLIENT: Very difficult.
+[32:14] WORKER: Very difficult. Thank you. The second one is the GAD-7, about anxiety. Same choices.
+[32:25] CLIENT: Okay.
+[32:29] WORKER: Feeling nervous, anxious, or on edge.
+[32:34] CLIENT: Several days. Mostly before court stuff.
+[32:39] WORKER: Not being able to stop or control worrying.
+[32:45] CLIENT: Several days.
+[32:50] WORKER: Worrying too much about different things.
+[32:58] CLIENT: More than half the days. Caleb, the hearing, money, the car.
+[33:05] WORKER: Trouble relaxing.
+[33:10] CLIENT: Several days. I'm too tired to be tense, most of the time.
+[33:19] WORKER: Being so restless that it's hard to sit still.
+[33:26] CLIENT: Not at all. The opposite.
+[33:30] WORKER: Becoming easily annoyed or irritable.
+[33:36] CLIENT: More than half. Poor Caleb.
+[33:41] WORKER: Feeling afraid, as if something awful might happen.
+[33:46] CLIENT: Several days. Mostly about the hearing.
+[33:51] WORKER: Thank you. That's both.
+[33:57] WORKER: I want to come back to the thoughts of being better off dead. Can you tell me what those are like for you?
+[34:11] CLIENT: Some days I wish I could just not exist for a while. Like pause. Not die, exactly. Just stop.
+[34:23] CLIENT: It's the depression. I know it's the depression.
+[34:32] WORKER: How often, over the last two weeks?
+[34:37] CLIENT: More than half the days, like I said. Most afternoons, when I'm lying there.
+[34:47] WORKER: Have you thought about how you might end your life — any kind of plan?
+[34:56] CLIENT: No. No plan.
+[34:59] WORKER: Any intention of acting on those thoughts?
+[35:04] CLIENT: No. I don't want to die. I want the pain to stop, and I know the difference now. I didn't in 2011.
+[35:18] WORKER: Can you tell me about 2011?
+[35:22] CLIENT: I overdosed. On the pain pills, with wine. My sister found me. I spent three days in the ICU.
+[35:34] WORKER: Was that the only time you tried to end your life?
+[35:44] CLIENT: That was the only time. Just the once.
+[35:52] WORKER: Thank you for telling me. I know that's not easy to say.
+[36:01] CLIENT: It's easier now. It was fifteen years ago. But I don't pretend it didn't happen.
+[36:11] WORKER: I need to ask about access to things you could use to hurt yourself. Are there any guns in your home?
+[36:26] CLIENT: No guns. Never. Not in my house.
+[36:34] WORKER: What about medications? Anything stockpiled, or more than you need?
+[36:43] CLIENT: Yes. I'm going to be honest. I have a shoebox of old pills. Everything from med changes over the years. Old antidepressants, old sleeping pills.
+[36:58] CLIENT: The pharmacy tech in me can't throw them out. I know that's not a good reason.
+[37:09] WORKER: I really appreciate you telling me that. That's exactly the kind of thing that matters.
+[37:19] WORKER: Would you be willing to get that shoebox out of the apartment? Maybe to Paula, or to a take-back bin?
+[37:32] CLIENT: Paula. She'd take it. She's asked me before.
+[37:39] WORKER: Could that happen this week?
+[37:44] CLIENT: I'll call her tonight. She can take it Thursday when she comes for bills.
+[37:54] WORKER: Thank you. That's a big step.
+[38:01] WORKER: And any thoughts of hurting anyone else?
+[38:08] CLIENT: No. Not even Greg. I just want him to leave us alone.
+[38:17] WORKER: Okay. Did you have a safety plan with Ms. Bauer?
+[38:26] CLIENT: I did. It's in my nightstand. It's old, though. It has Ms. Bauer's number on it.
+[38:38] WORKER: Could you get it? I'd like us to update it together, today.
+[38:48] CLIENT: Hold on.
+[39:19] CLIENT: Okay. I've got it.
+[39:24] WORKER: Let's go through it. Warning signs first. What's on there?
+[39:32] CLIENT: It says: not showering for three days, and not answering Paula's texts.
+[39:42] WORKER: Are those still true? Anything to add?
+[39:50] CLIENT: Add: lying in bed in the afternoon thinking about not existing. That's the new one. And reading the court papers at night.
+[40:04] WORKER: Okay. Write those in. Coping things you can do on your own?
+[40:11] CLIENT: Old list says: take Mango's picture, which sounds silly. Go to the car and sing loud.
+[40:21] CLIENT: I'd add: walk to the mailbox. Pray. Put on my Wednesday group's playlist.
+[40:32] WORKER: Those are good. People and places?
+[40:39] CLIENT: Paula. My small group leader, Denise. The DBSA group.
+[40:47] WORKER: And professionals — cross off Ms. Bauer and put me. I'll text you my number.
+[41:06] CLIENT: Crossed off. Sorry, Ms. Bauer.
+[41:13] WORKER: And Dr. Ahmed's office. And if you're in crisis, 988, call or text, any time. And the county crisis line, 707-555-0100. They can send someone out if needed.
+[41:36] CLIENT: 988 and 707-555-0100. Writing them both.
+[41:41] WORKER: And the last part — making your environment safer. Let's write in: Paula takes the shoebox of old medications on Thursday.
+[42:03] CLIENT: Paula takes the shoebox Thursday. Written.
+[42:08] WORKER: Can you read me the updated version?
+[42:15] CLIENT: Warning signs: not showering three days, not answering Paula, lying in bed thinking about not existing, reading court papers at night.
+[42:30] CLIENT: Things I can do: Mango's picture, sing in the car, walk to the mailbox, pray, the playlist.
+[42:41] CLIENT: People: Paula, Denise, DBSA. Professionals: you, Dr. Ahmed, 988, the county crisis line.
+[42:51] CLIENT: Safer home: Paula takes the shoebox Thursday.
+[42:58] WORKER: That's our updated safety plan. Where will you keep it?
+[43:06] CLIENT: Back in the nightstand. And I'll take a picture of it on my phone.
+[43:17] WORKER: Good. How are you feeling, having talked about all of that?
+[43:26] CLIENT: Tired. But lighter. It's been sitting on me.
+[43:34] WORKER: Would you like a short break?
+[43:39] CLIENT: No. Let's keep going. I'd rather finish.
+[43:46] WORKER: Okay. I want to hear about what's gone well for you, too. What are some of your strengths?
+[43:58] CLIENT: I show up. To everything. I've never missed a Dr. Ahmed appointment in ten years. Not one.
+[44:09] CLIENT: I know my illness. I know my signs. I'm not ashamed of it anymore.
+[44:17] CLIENT: And I'm funny. Paula says I'm funny even when I'm depressed. Especially then.
+[44:27] WORKER: I can tell. You made me laugh twice already.
+[44:34] CLIENT: See? It's a gift.
+[44:40] WORKER: And the pharmacy knowledge — that's a strength too.
+[44:49] CLIENT: It's a strength and a liability. As we just discussed.
+[44:56] WORKER: Fair enough.
+[45:01] WORKER: Tell me about a good day, lately. Even a partly good one.
+[45:11] CLIENT: Last Sunday. Paula came over, we watched old movies, Caleb made pancakes. I showered before noon.
+[45:20] CLIENT: I felt almost like a person. Like the old me was in the next room.
+[45:30] WORKER: What made that day different?
+[45:37] CLIENT: People. Having people in the room. And not being alone in the afternoon, that's the dangerous part for me.
+[45:48] WORKER: That fits with what's on your safety plan. The afternoons.
+[45:54] CLIENT: Yeah. The afternoons are the worst.
+[46:00] WORKER: What do you want from our work together? If this goes well, what's different?
+[46:08] CLIENT: I want to get through the winter without ending up in the hospital.
+[46:18] WORKER: Get through the winter without ending up in the hospital.
+[46:28] CLIENT: That's it. That's the goal. Winter's always the worst.
+[46:34] WORKER: That's a clear goal, and a good one. Let's work on it.
+[46:42] WORKER: One thing that helps a lot with bipolar depression is something called behavioral activation. It's basically scheduling small things that give you a sense of doing or of pleasure, even before you feel like it.
+[47:03] CLIENT: Ms. Bauer did a version of that. The activity log.
+[47:12] WORKER: Similar idea. The motivation usually comes after the action, not before. So we plan the action and let the feeling catch up.
+[47:25] CLIENT: That's the part I forget. I wait to feel like it.
+[47:32] WORKER: Most people do. Could we pick one small thing for each afternoon this week? Something you'd do in that dangerous window.
+[47:45] CLIENT: Monday — I have Caleb's robotics permission form to sign, and I could walk it to the school office instead of emailing it.
+[47:58] WORKER: That's good. Walking, and getting out. Tuesday?
+[48:05] CLIENT: Tuesday is DBSA at night. So the afternoon I could make the soup for my small group. They've been bringing me meals, I want to bring something back.
+[48:22] WORKER: I love that. Wednesday is the small group itself?
+[48:31] CLIENT: Wednesday night. So Wednesday afternoon, laundry. Laundry counts.
+[48:36] WORKER: Laundry absolutely counts. Thursday Paula comes.
+[48:42] CLIENT: Thursday, Paula, bills, the shoebox. That's plenty for Thursday.
+[48:50] WORKER: Agreed. And the weekend?
+[48:57] CLIENT: Caleb's at Greg's this weekend. That's usually a bad one. I'll ask Paula if I can go to her place Saturday.
+[49:10] WORKER: That's a really good idea. The weekends he's gone sound like a risk time too.
+[49:21] CLIENT: They are. The apartment's so quiet.
+[49:28] WORKER: Let's write that down: Saturday at Paula's.
+[49:35] CLIENT: Written. I'm going to run out of envelope.
+[49:42] WORKER: Let's talk about the court hearing. Do you have any help with it?
+[49:52] CLIENT: No. I've been reading everything online. I filled out my response myself. I don't even know if I did it right.
+[50:04] WORKER: I'm going to refer you to legal aid. They have a family law clinic that helps people represent themselves, and sometimes they'll take the case.
+[50:18] CLIENT: Yes. Please. I didn't think I'd qualify.
+[50:25] WORKER: On SSDI, you very likely do. I'm putting in the legal aid referral today, and I'll flag the November 18th date.
+[50:37] CLIENT: Thank you. That's the thing that's keeping me up. Well — keeping me in bed.
+[50:47] WORKER: What papers have you filed so far?
+[50:53] CLIENT: The response form. I filed it on October 9th. And I got a notice for a mediation appointment with Family Court Services on November 4th.
+[51:07] WORKER: So mediation on November 4th, and the hearing on November 18th.
+[51:16] CLIENT: Right. I'm scared I'll freeze in mediation. I get so slow when I'm like this. I lose words.
+[51:28] WORKER: Legal aid can help you prepare for mediation too. And it's okay to bring notes, and to ask for a moment to think.
+[51:44] CLIENT: I didn't know that was allowed.
+[51:49] WORKER: It is. We can practice what you want to say, in our session next week, before the mediation.
+[52:02] CLIENT: Yes. I'd like that. That would really help.
+[52:07] WORKER: I also want to connect you with our benefits team. Your CalFresh recertification is coming up, and they can check whether your benefit amount is right, with Caleb being fifteen now.
+[52:26] CLIENT: It's due in December. I've been dreading it.
+[52:33] WORKER: They'll walk you through it. That's the second referral.
+[52:41] CLIENT: Okay. What about food before that?
+[52:48] WORKER: You already know the St. Brendan's pantry. Keep using it. The benefits team may be able to get the CalFresh amount up.
+[53:02] CLIENT: Okay.
+[53:05] WORKER: Now, the lamotrigine. I'd like you to tell Dr. Ahmed about the missed doses and the oversleeping. Would you call his office this week?
+[53:21] CLIENT: I should. I've been embarrassed.
+[53:26] WORKER: He needs to know, and he won't be surprised. With the release, I can also let him know I've started seeing you.
+[53:41] CLIENT: Please do. I'll call him too. Tomorrow.
+[53:47] WORKER: And the edibles — would you mention those are a few nights a week now?
+[53:59] CLIENT: He knows. But I'll tell him it's more than it was.
+[54:08] WORKER: Thank you. And one more thing about sleep. Ten or eleven hours, plus naps — that's part of the depression, and it also feeds it.
+[54:24] WORKER: I'd like you to try setting an alarm for nine, even on bad days, and getting to the window for ten minutes of light. Even if you go back to the couch after.
+[54:44] CLIENT: Nine. With the light. Okay. Mango will help, she yells for breakfast at seven anyway.
+[54:56] WORKER: I'd also say — you said winter is always the worst. Have you noticed a seasonal pattern?
+[55:06] CLIENT: Every year. November to February. The light goes and I go with it.
+[55:16] WORKER: That's worth telling Dr. Ahmed too. Some people with that pattern use a light box in the mornings. That's his call, not mine, but it's worth asking.
+[55:31] CLIENT: I've heard of those. I'll ask. Pharmacy tech me wants to research it tonight.
+[55:40] WORKER: Maybe research it at nine in the morning instead.
+[55:49] CLIENT: Touché.
+[55:54] WORKER: Then Mango's on your treatment team.
+[55:58] CLIENT: She'll want a title.
+[56:02] WORKER: Before we wrap up, is there anything I haven't asked that you want me to know?
+[56:12] CLIENT: Just — Caleb doesn't know about the hospital, the 2023 one. He thinks I was at a conference. Please don't bring it up if you ever talk to him.
+[56:31] WORKER: I won't. And I wouldn't talk to him without your say-so.
+[56:40] CLIENT: Thank you.
+[56:46] CLIENT: Oh — and I told you the wrong zip code. It's 95404, not 95403. We're on the other side of Kestrel. I always do that.
+[57:00] WORKER: 95404. Thanks for catching that. I'll fix it.
+[57:06] WORKER: Here's what I'm thinking for next steps. We'll meet weekly for now. Same time next Tuesday, November 3rd, at ten?
+[57:17] CLIENT: November 3rd at ten. Yes.
+[57:23] WORKER: Between now and then: Paula takes the shoebox Thursday. You'll call Dr. Ahmed. Legal aid and the benefits team should call you this week.
+[57:38] CLIENT: And the nine o'clock alarm.
+[57:42] WORKER: And the nine o'clock alarm. And I'll text you my number right after this, so it's on your safety plan.
+[57:54] CLIENT: Okay. That's a lot of homework, but it's good homework.
+[58:02] WORKER: It's a lot, and you've already done the hard part today.
+[58:10] WORKER: One more thing — I'll be checking in with my supervisor after our session. I do that with everyone who has a history like yours. It's standard.
+[58:24] CLIENT: That's fine. I'd expect that.
+[58:28] WORKER: Thank you, Jo. You were really open with me today.
+[58:35] CLIENT: Thank you. It felt good to start over with someone. I was scared I'd have to explain everything from scratch.
+[58:48] WORKER: You did explain everything from scratch. And you did it really well.
+[58:57] CLIENT: Ha. I suppose I did.
+[59:03] WORKER: Take care of yourself. I'll see you on the 3rd.
+[59:12] CLIENT: See you on the 3rd. Bye, Theresa. Say bye, Mango.
+[59:20] WORKER: Bye, Mango.

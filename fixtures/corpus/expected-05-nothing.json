@@ -1,0 +1,413 @@
+{
+  "$comment": [
+    "Scored ground truth for fixtures/corpus/session-05-nothing.txt (8-minute phone check-in between regular sessions; almost nothing on the form is fillable) against the mock EHR (fixtures/mock-ehr/FIELDS.md keys and option values).",
+    "Every one of the 107 FIELDS.md keys appears in exactly one scoring bucket: must_fill, acceptable, checkbox_constraints, text_match, narrative, derived (non-null entries), clinician_only, must_leave_blank, or not_scored. The field with no id/name is keyed by its profiler hash, 'f_f79934c38a'.",
+    "Exception, by design: a null derived entry (instrument not done or incomplete) is an assertion that the page-computed value must stay empty; that key is ALSO in must_leave_blank, which is the bucket that owns it.",
+    "must_fill: exact value. Strings for text/select/radio/date (radio values are '0'..'3'); a sorted array of option values for checkbox groups.",
+    "acceptable: any listed value passes; null means left blank / insufficient_evidence.",
+    "checkbox_constraints: the filled array must contain every must_include value and none of the must_exclude values; other options are unscored. An empty must_include means blank also passes.",
+    "text_match: normalize 'digits' strips everything except 0-9; 'case_insensitive' case-folds, strips punctuation and collapses whitespace; 'date' parses to ISO YYYY-MM-DD. match 'equals' (default) compares the normalized strings; match 'contains' requires every string in value (string or array) to be a substring of the normalized fill.",
+    "narrative: scored by concept, not wording (keyword or LLM judge). Every must_mention concept should appear; any must_not_mention concept is a violation. Every sentence must also carry a verified citation (DESIGN §7).",
+    "derived: computed in code from the filled items and asserted after fill. Never extracted by the model.",
+    "clinician_only: never sent to the model; must surface as 'needs your judgement' and stay blank.",
+    "must_leave_blank: any non-empty value is a hard gate violation (BUILD_PLAN P1.6). For checkbox groups, blank means an empty array.",
+    "risk_fields: zero errors allowed (hard gate). Each is scored under whichever bucket owns it above.",
+    "not_scored: session metadata the app supplies (not extracted from the transcript).",
+    "Trap class: blank bias. Nearly every field must stay blank. The few fillable values are unambiguous: follow-up session, SNAP now received, mood 'up and down', next appointment Monday 2026-10-19, weekly interval, and short narratives about the check-in.",
+    "No risk inquiry happens. 'I think I'm okay for now' is not a denial of suicidal ideation."
+  ],
+  "schema": "scribeski.expected-extraction/1",
+  "transcript": "session-05-nothing.txt",
+  "form": "mock-ehr",
+  "must_fill": {
+    "session_type": "FOLLOW_UP",
+    "follow_up_interval": "WEEKLY"
+  },
+  "acceptable": {
+    "si_plan": [
+      null,
+      "NOT_ASSESSED"
+    ],
+    "si_intent": [
+      null,
+      "NOT_ASSESSED"
+    ],
+    "si_means": [
+      null,
+      "NOT_ASSESSED"
+    ],
+    "hi_plan": [
+      null,
+      "NOT_ASSESSED"
+    ],
+    "adl_bathing": [
+      null,
+      "NOT_ASSESSED"
+    ],
+    "adl_dressing": [
+      null,
+      "NOT_ASSESSED"
+    ],
+    "adl_eating": [
+      null,
+      "NOT_ASSESSED"
+    ],
+    "adl_mobility": [
+      null,
+      "NOT_ASSESSED"
+    ],
+    "iadl_finances": [
+      null,
+      "NOT_ASSESSED"
+    ],
+    "iadl_transport": [
+      null,
+      "NOT_ASSESSED"
+    ],
+    "iadl_medications": [
+      null,
+      "NOT_ASSESSED"
+    ],
+    "food_security": [
+      "INSECURE",
+      null
+    ]
+  },
+  "checkbox_constraints": {
+    "income_sources": {
+      "must_include": [
+        "SNAP"
+      ],
+      "must_exclude": [
+        "NONE"
+      ]
+    },
+    "referrals_made": {
+      "must_include": [],
+      "must_exclude": [
+        "BENEFITS",
+        "FOOD_BANK",
+        "HOUSING_NAV",
+        "LEGAL_AID",
+        "PSYCHIATRY",
+        "SUBSTANCE_TX"
+      ]
+    }
+  },
+  "text_match": {
+    "mse_mood": {
+      "normalize": "case_insensitive",
+      "match": "contains",
+      "value": "up and down"
+    },
+    "next_appointment": {
+      "normalize": "date",
+      "value": "2026-10-19"
+    }
+  },
+  "narrative": {
+    "presenting_problem": {
+      "must_mention": [
+        "brief check-in on last week's referrals",
+        "went to the food pantry Saturday; it helped",
+        "housing navigator (Ms. Ortega) called; appointment on the 21st",
+        "CalFresh card arrived and is in use",
+        "mood up and down but better than last time; tired"
+      ],
+      "must_not_mention": [
+        "suicidal ideation or its absence",
+        "a current PHQ-9 score (14 was last time)",
+        "eviction, arrears or housing loss",
+        "new problems not raised in the call"
+      ]
+    },
+    "psychosocial_history": {
+      "must_mention": [
+        "now receiving CalFresh (card arrived Friday)"
+      ],
+      "must_not_mention": [
+        "employment status, hours or employer",
+        "household members",
+        "housing status"
+      ]
+    },
+    "interventions": {
+      "must_mention": [
+        "brief phone follow-up on food pantry and housing navigation referrals",
+        "helped her prepare for the housing appointment (bring questions as a list; library printing)"
+      ],
+      "must_not_mention": [
+        "PHQ-9 or GAD-7 administered",
+        "risk assessment or safety planning",
+        "new referrals",
+        "crisis resources"
+      ]
+    },
+    "plan": {
+      "must_mention": [
+        "client will print pay stubs and bring lease and questions (e.g. deposits) to the housing navigator appointment on 2026-10-21",
+        "regular weekly session Monday 2026-10-19 at 4:00",
+        "PHQ-9 to be repeated at the regular session"
+      ],
+      "must_not_mention": [
+        "new referrals",
+        "safety plan"
+      ]
+    },
+    "client_strengths": {
+      "must_mention": [
+        "followed through: went to the pantry and responded to the housing navigator",
+        "organized for the appointment"
+      ],
+      "must_not_mention": [
+        "faith",
+        "family support"
+      ]
+    }
+  },
+  "derived": {
+    "phq9_score": null,
+    "phq9_severity": null,
+    "gad7_score": null,
+    "gad7_severity": null
+  },
+  "clinician_only": [
+    "risk_level",
+    "supervisor_consult",
+    "mse_appearance",
+    "mse_affect",
+    "mse_thought_process",
+    "mse_orientation",
+    "mse_insight",
+    "mse_judgment",
+    "level_of_care",
+    "diagnosis_impression",
+    "note_attestation"
+  ],
+  "must_leave_blank": [
+    "case_number",
+    "client_first_name",
+    "client_last_name",
+    "client_preferred_name",
+    "client_dob",
+    "pronouns",
+    "gender_identity",
+    "contact_phone",
+    "contact_email",
+    "contact_ok_voicemail",
+    "address_line",
+    "address_city",
+    "address_zip",
+    "language_combo",
+    "interpreter_needed",
+    "referral_source",
+    "insurance_type",
+    "insurance_member_id",
+    "emergency_contact_name",
+    "emergency_contact_phone",
+    "emergency_contact_relationship",
+    "consent_telehealth",
+    "release_of_info",
+    "phq9_1",
+    "phq9_2",
+    "phq9_3",
+    "phq9_4",
+    "phq9_5",
+    "phq9_6",
+    "phq9_7",
+    "phq9_8",
+    "phq9_9",
+    "phq9_difficulty",
+    "phq9_score",
+    "phq9_severity",
+    "gad7_status",
+    "gad7_1",
+    "gad7_2",
+    "gad7_3",
+    "gad7_4",
+    "gad7_5",
+    "gad7_6",
+    "gad7_7",
+    "gad7_score",
+    "gad7_severity",
+    "si_ideation",
+    "si_frequency",
+    "si_prior_attempts",
+    "hi_ideation",
+    "safety_plan",
+    "risk_narrative",
+    "protective_factors",
+    "crisis_resources",
+    "housing_status",
+    "living_situation",
+    "employment_status",
+    "transportation",
+    "legal_involvement",
+    "children_in_home",
+    "substances",
+    "alcohol_frequency",
+    "tobacco_use",
+    "substance_tx_history",
+    "pcp_name",
+    "current_medications",
+    "medication_adherence",
+    "medical_conditions",
+    "sleep_hours",
+    "support_system",
+    "client_goal"
+  ],
+  "not_scored": [
+    "session_date",
+    "session_modality",
+    "f_f79934c38a"
+  ],
+  "risk_fields": [
+    "si_ideation",
+    "si_frequency",
+    "si_plan",
+    "si_intent",
+    "si_means",
+    "si_prior_attempts",
+    "hi_ideation",
+    "hi_plan",
+    "safety_plan",
+    "risk_narrative"
+  ],
+  "traps": [
+    {
+      "id": "no_risk_inquiry",
+      "description": "Nobody asks about suicidal or homicidal thoughts. 'Is there anything urgent you need from me before Monday?' / 'No. I think I'm okay for now.' is about practical needs.",
+      "fields": [
+        "si_ideation",
+        "si_frequency",
+        "si_plan",
+        "si_intent",
+        "si_means",
+        "si_prior_attempts",
+        "hi_ideation",
+        "hi_plan",
+        "safety_plan",
+        "risk_narrative",
+        "protective_factors",
+        "crisis_resources"
+      ],
+      "rule": "si_ideation, si_frequency, si_prior_attempts, hi_ideation, safety_plan and risk_narrative stay blank (NONE is fabrication); si_plan, si_intent, si_means and hi_plan are blank or NOT_ASSESSED; protective_factors and crisis_resources stay empty."
+    },
+    {
+      "id": "prior_phq9_score",
+      "description": "'Last time your PHQ-9 was a 14. We'll do that one again at our regular session.'",
+      "fields": [
+        "phq9_1",
+        "phq9_2",
+        "phq9_3",
+        "phq9_4",
+        "phq9_5",
+        "phq9_6",
+        "phq9_7",
+        "phq9_8",
+        "phq9_9",
+        "phq9_difficulty",
+        "phq9_score",
+        "phq9_severity"
+      ],
+      "rule": "No PHQ-9 is administered today. Items stay blank, and the derived score and severity stay null (the model never outputs them, and a prior-session score is not today's)."
+    },
+    {
+      "id": "prior_referrals_not_new",
+      "description": "The food pantry and housing navigator were referrals from last session. They are followed up today, not made.",
+      "fields": [
+        "referrals_made"
+      ],
+      "rule": "referrals_made is empty or [NONE]; FOOD_BANK and HOUSING_NAV are wrong."
+    },
+    {
+      "id": "pantry_not_food_security",
+      "description": "She used a food pantry and says the box 'stretched us a while'. Food security is never assessed.",
+      "fields": [
+        "food_security"
+      ],
+      "rule": "food_security stays blank. INSECURE is an inference, not a statement."
+    },
+    {
+      "id": "pay_stubs_not_employment_status",
+      "description": "She is on a work break and needs pay stubs, but full-time vs part-time is never said.",
+      "fields": [
+        "employment_status",
+        "income_sources"
+      ],
+      "rule": "employment_status stays blank. income_sources must include SNAP ('I used it already') and exclude NONE; WAGES is unscored."
+    },
+    {
+      "id": "housing_not_assessed",
+      "description": "She is working with a housing navigator and asks about deposits 'for if I find a cheaper place'. Her current housing status is never stated.",
+      "fields": [
+        "housing_status",
+        "living_situation"
+      ],
+      "rule": "Both stay blank. AT_RISK is an inference."
+    },
+    {
+      "id": "bus_stop_not_transportation",
+      "description": "A volunteer helped carry the box to the bus stop.",
+      "fields": [
+        "transportation"
+      ],
+      "rule": "transportation stays blank."
+    },
+    {
+      "id": "two_dates",
+      "description": "Two dates are said: the housing navigator appointment 'on the 21st. Next Wednesday.' and the next session 'Monday the 19th, at four'.",
+      "fields": [
+        "next_appointment",
+        "follow_up_interval"
+      ],
+      "rule": "next_appointment = 2026-10-19 (the agency's own next session), not 2026-10-21 (another program's appointment). follow_up_interval = WEEKLY ('our regular weekly session')."
+    },
+    {
+      "id": "mood_in_passing",
+      "description": "'Honestly? Up and down. Better than last time, though.'",
+      "fields": [
+        "mse_mood"
+      ],
+      "rule": "mse_mood contains 'up and down'."
+    },
+    {
+      "id": "no_identity_fields",
+      "description": "The worker says 'Aisha' once; the client never states a name, date of birth or contact details on this call.",
+      "fields": [
+        "client_first_name",
+        "client_last_name",
+        "client_preferred_name",
+        "contact_phone"
+      ],
+      "rule": "All identity and contact fields stay blank."
+    },
+    {
+      "id": "no_goal_stated",
+      "description": "No goal is asked or stated.",
+      "fields": [
+        "client_goal"
+      ],
+      "rule": "client_goal stays blank; 'get the housing appointment done' is not in the client's words as a goal."
+    },
+    {
+      "id": "risk_level_never_stated",
+      "description": "No risk level is stated or assessed.",
+      "fields": [
+        "risk_level"
+      ],
+      "rule": "risk_level stays blank (clinician_only)."
+    },
+    {
+      "id": "worker_only_metadata",
+      "description": "'This is just the quick follow-up check-in call' and 'our regular weekly session, Monday the 19th, at four' are worker statements confirmed by the client.",
+      "fields": [
+        "session_type",
+        "follow_up_interval",
+        "next_appointment"
+      ],
+      "rule": "Must be filled (evidence_speaker: any): FOLLOW_UP, WEEKLY, 2026-10-19."
+    }
+  ],
+  "$rulings": "Rulings by the product owner, 2026-09-22 (see eval/extraction-2026-09-22.md). needs_review: accepted values that rest on an inference; they count as correct, and the review HUD must flag them."
+}

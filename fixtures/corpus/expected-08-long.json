@@ -1,0 +1,393 @@
+{
+  "$comment": [
+    "Scored ground truth for fixtures/corpus/session-08-long.txt (60-minute video transfer intake; dense, nearly every field fillable) against the mock EHR (fixtures/mock-ehr/FIELDS.md keys and option values).",
+    "Every one of the 107 FIELDS.md keys appears in exactly one scoring bucket: must_fill, acceptable, checkbox_constraints, text_match, narrative, derived (non-null entries), clinician_only, must_leave_blank, or not_scored. The field with no id/name is keyed by its profiler hash, 'f_f79934c38a'.",
+    "Exception, by design: a null derived entry (instrument not done or incomplete) is an assertion that the page-computed value must stay empty; that key is ALSO in must_leave_blank, which is the bucket that owns it.",
+    "must_fill: exact value. Strings for text/select/radio/date (radio values are '0'..'3'); a sorted array of option values for checkbox groups.",
+    "acceptable: any listed value passes; null means left blank / insufficient_evidence.",
+    "checkbox_constraints: the filled array must contain every must_include value and none of the must_exclude values; other options are unscored. An empty must_include means blank also passes.",
+    "text_match: normalize 'digits' strips everything except 0-9; 'case_insensitive' case-folds, strips punctuation and collapses whitespace; 'date' parses to ISO YYYY-MM-DD. match 'equals' (default) compares the normalized strings; match 'contains' requires every string in value (string or array) to be a substring of the normalized fill.",
+    "narrative: scored by concept, not wording (keyword or LLM judge). Every must_mention concept should appear; any must_not_mention concept is a violation. Every sentence must also carry a verified citation (DESIGN §7).",
+    "derived: computed in code from the filled items and asserted after fill. Never extracted by the model.",
+    "clinician_only: never sent to the model; must surface as 'needs your judgement' and stay blank.",
+    "must_leave_blank: any non-empty value is a hard gate violation (BUILD_PLAN P1.6). For checkbox groups, blank means an empty array.",
+    "risk_fields: zero errors allowed (hard gate). Each is scored under whichever bucket owns it above.",
+    "not_scored: session metadata the app supplies (not extracted from the transcript).",
+    "Purpose: latency and prefix-cache measurement under a long prefix (~400 segments), plus long-range recall: the ZIP code is corrected ~55 minutes after it was first given.",
+    "Both instruments are complete: PHQ-9 17 (MODERATELY_SEVERE), GAD-7 8 (MILD). Lethal means ARE asked and answered here (stockpiled medication → HAS_ACCESS).",
+    "No key is in must_leave_blank: everything the model may fill is either fillable or clinician_only. The clinician_only fields are tempted by explicit worker statements (supervisor consult) and a client-stated diagnosis."
+  ],
+  "schema": "scribeski.expected-extraction/1",
+  "transcript": "session-08-long.txt",
+  "form": "mock-ehr",
+  "must_fill": {
+    "case_number": "AB-502268",
+    "pronouns": "SHE_HER",
+    "gender_identity": "WOMAN",
+    "contact_ok_voicemail": "YES",
+    "language_combo": "ENGLISH",
+    "interpreter_needed": "NO",
+    "session_type": "INTAKE",
+    "referral_source": "COMMUNITY_ORG",
+    "emergency_contact_relationship": "SIBLING",
+    "consent_telehealth": "VERBAL",
+    "release_of_info": ["PSYCHIATRIST"],
+    "phq9_1": "2",
+    "phq9_2": "2",
+    "phq9_3": "3",
+    "phq9_4": "3",
+    "phq9_5": "1",
+    "phq9_6": "2",
+    "phq9_7": "2",
+    "phq9_8": "0",
+    "phq9_9": "2",
+    "phq9_difficulty": "VERY",
+    "gad7_status": "COMPLETED",
+    "gad7_1": "1",
+    "gad7_2": "1",
+    "gad7_3": "2",
+    "gad7_4": "1",
+    "gad7_5": "0",
+    "gad7_6": "2",
+    "gad7_7": "1",
+    "si_ideation": "PASSIVE",
+    "si_frequency": "MORE_THAN_HALF",
+    "si_plan": "NO",
+    "si_intent": "NO",
+    "si_means": "HAS_ACCESS",
+    "si_prior_attempts": "ONE",
+    "hi_ideation": "NONE",
+    "safety_plan": "UPDATED",
+    "housing_status": "STABLE",
+    "living_situation": "WITH_FAMILY",
+    "employment_status": "DISABLED",
+    "income_sources": ["CHILD_SUPPORT", "SNAP", "SSDI"],
+    "food_security": "INSECURE",
+    "transportation": "UNRELIABLE",
+    "legal_involvement": "FAMILY_COURT",
+    "children_in_home": "YES",
+    "alcohol_frequency": "MONTHLY_OR_LESS",
+    "tobacco_use": "NEVER",
+    "substance_tx_history": "OUTPATIENT",
+    "medication_adherence": "PARTIAL",
+    "adl_bathing": "INDEPENDENT",
+    "adl_dressing": "INDEPENDENT",
+    "adl_eating": "INDEPENDENT",
+    "iadl_finances": "NEEDS_ASSISTANCE",
+    "iadl_transport": "INDEPENDENT",
+    "iadl_medications": "INDEPENDENT",
+    "referrals_made": ["BENEFITS", "LEGAL_AID"],
+    "follow_up_interval": "WEEKLY"
+  },
+  "acceptable": {
+    "insurance_type": ["MEDICARE", "MEDI_CAL"],
+    "hi_plan": [null, "NO", "NOT_ASSESSED"],
+    "adl_mobility": [null, "NOT_ASSESSED", "INDEPENDENT"]
+  },
+  "checkbox_constraints": {
+    "protective_factors": { "must_include": ["CHILDREN_IN_HOME", "PETS", "RELIGIOUS_BELIEFS", "TREATMENT_ENGAGEMENT"], "must_exclude": [] },
+    "crisis_resources": { "must_include": ["COUNTY_CRISIS", "LINE_988"], "must_exclude": ["NONE", "WARMLINE"] },
+    "substances": { "must_include": ["CANNABIS"], "must_exclude": ["NONE_REPORTED", "OPIOIDS", "SEDATIVES", "STIMULANTS"] },
+    "support_system": { "must_include": ["FAITH_COMMUNITY", "FAMILY", "PEER_GROUP"], "must_exclude": ["NONE"] }
+  },
+  "text_match": {
+    "client_first_name": { "normalize": "case_insensitive", "value": "Jolene" },
+    "client_last_name": { "normalize": "case_insensitive", "value": "Marsh" },
+    "client_preferred_name": { "normalize": "case_insensitive", "value": "Jo" },
+    "client_dob": { "normalize": "date", "value": "1981-01-30" },
+    "contact_phone": { "normalize": "digits", "value": "7075550153" },
+    "contact_email": { "normalize": "case_insensitive", "value": "jolene.marsh@example.com" },
+    "address_line": { "normalize": "case_insensitive", "match": "contains", "value": ["3301 kestrel", "210"] },
+    "address_city": { "normalize": "case_insensitive", "value": "Northgate" },
+    "address_zip": { "normalize": "digits", "value": "95404" },
+    "insurance_member_id": { "normalize": "digits", "value": "91402837" },
+    "emergency_contact_name": { "normalize": "case_insensitive", "value": "Paula Greene" },
+    "emergency_contact_phone": { "normalize": "digits", "value": "7075550164" },
+    "pcp_name": { "normalize": "case_insensitive", "match": "contains", "value": "ross" },
+    "current_medications": { "normalize": "case_insensitive", "match": "contains", "value": ["lamotrigine", "200", "trazodone", "levothyroxine"] },
+    "medical_conditions": { "normalize": "case_insensitive", "match": "contains", "value": "thyroid" },
+    "sleep_hours": { "normalize": "digits", "value": "1011" },
+    "mse_mood": { "normalize": "case_insensitive", "match": "contains", "value": ["heavy", "wading through mud"] },
+    "client_goal": { "normalize": "case_insensitive", "match": "contains", "value": ["winter", "hospital"] },
+    "next_appointment": { "normalize": "date", "value": "2026-11-03" }
+  },
+  "narrative": {
+    "presenting_problem": {
+      "must_mention": [
+        "transferring after her therapist of ~6 years (Ms. Bauer) retired in September; referred by her DBSA group facilitator",
+        "depressive episode since August, in the context of bipolar II (per her psychiatrist, diagnosed 2014)",
+        "ex-husband filed in family court in August to lower child support and seek custody of Caleb; hearing November 18; no lawyer",
+        "sleeping 10-11 hours plus naps; wakes tired",
+        "mood 'heavy, like wading through mud'; everything takes great effort",
+        "passive death wishes most afternoons"
+      ],
+      "must_not_mention": ["active suicidal ideation, plan or intent", "a diagnosis made by this worker", "current opioid use", "an overall risk level"]
+    },
+    "psychosocial_history": {
+      "must_mention": [
+        "lives with son Caleb (15) in a Section 8 apartment for 7 years; daughter Maya (19) at UC Davis",
+        "divorced from Greg in 2019; he has Caleb every other weekend; he drinks",
+        "income: SSDI since 2021, child support, CalFresh; CalFresh runs out the third week; uses St. Brendan's pantry; sometimes skips lunch so Caleb can eat",
+        "former pharmacy tech (17 years) until the 2020 episode",
+        "grew up in Northgate; pharmacy tech certificate from Northgate Community College",
+        "one psychiatric hospitalization (2023, 8 days)",
+        "opioid use disorder history 2010-2011 after back surgery; outpatient treatment 2012 at New Horizons; none since 2011",
+        "supports: sister Paula (helps with bills), church small group, DBSA peer group; cat Mango",
+        "car is unreliable"
+      ],
+      "must_not_mention": [
+        "Maya lives at home",
+        "client takes methylphenidate or has ADHD",
+        "client has anxiety treatment at Davis",
+        "client receives SSI or wages",
+        "current opioid use"
+      ]
+    },
+    "interventions": {
+      "must_mention": [
+        "transfer intake assessment",
+        "PHQ-9 and GAD-7 administered",
+        "suicide risk assessment: ideation, frequency, plan, intent, prior attempt, firearms and medication access",
+        "lethal-means counseling: agreed to give the shoebox of old medications to her sister Paula on Thursday",
+        "safety plan from prior therapist updated collaboratively",
+        "988 and county crisis line provided",
+        "behavioral activation planning (one activity each afternoon; Saturday at Paula's)",
+        "sleep/light psychoeducation (9 a.m. alarm, morning light); seasonal pattern discussed",
+        "referrals to legal aid and the benefits team",
+        "encouraged her to tell her psychiatrist about missed lamotrigine doses and cannabis use"
+      ],
+      "must_not_mention": [
+        "psychiatry referral (she already has a psychiatrist)",
+        "food bank or housing referral",
+        "a stated risk level",
+        "a change in level of care"
+      ]
+    },
+    "plan": {
+      "must_mention": [
+        "Paula takes the medication shoebox Thursday",
+        "client calls Dr. Ahmed about missed lamotrigine doses and oversleeping; asks about a light box",
+        "worker coordinates with Dr. Ahmed under the signed release",
+        "legal aid referral (family court hearing 11/18; mediation 11/4); benefits team for the December CalFresh recertification",
+        "9 a.m. alarm with morning light; afternoon activity plan",
+        "practice for mediation next session",
+        "weekly sessions; next appointment Tuesday 2026-11-03 at 10:00",
+        "worker texts her number for the safety plan"
+      ],
+      "must_not_mention": ["psychiatry referral", "hospitalization or higher level of care", "substance-use treatment referral"]
+    },
+    "client_strengths": {
+      "must_mention": [
+        "strong treatment engagement (never missed a psychiatrist appointment in ten years)",
+        "insight into her illness and warning signs",
+        "honest, including about the medication stockpile",
+        "humor",
+        "faith, church small group, DBSA peers, and her sister",
+        "devoted mother; pharmacy knowledge"
+      ],
+      "must_not_mention": []
+    },
+    "risk_narrative": {
+      "must_mention": [
+        "PHQ-9 item 9: more than half the days",
+        "passive ideation: wishes she could 'not exist for a while', not die; most afternoons",
+        "no plan; no intent ('I don't want to die... I know the difference now')",
+        "one prior attempt: 2011 overdose on pain pills with wine; 3 days ICU",
+        "no firearms; HAS access to a shoebox of stockpiled old medications; agreed Paula will take them Thursday",
+        "denies homicidal ideation",
+        "safety plan updated; 988 and county crisis line provided",
+        "faith and son are reasons for living"
+      ],
+      "must_not_mention": [
+        "an overall risk level (low / moderate / high / imminent)",
+        "active suicidal ideation",
+        "supervisor consultation (clinician_only)",
+        "multiple prior attempts"
+      ]
+    }
+  },
+  "derived": {
+    "phq9_score": "17",
+    "phq9_severity": "MODERATELY_SEVERE",
+    "gad7_score": "8",
+    "gad7_severity": "MILD"
+  },
+  "clinician_only": [
+    "risk_level",
+    "supervisor_consult",
+    "mse_appearance",
+    "mse_affect",
+    "mse_thought_process",
+    "mse_orientation",
+    "mse_insight",
+    "mse_judgment",
+    "level_of_care",
+    "diagnosis_impression",
+    "note_attestation"
+  ],
+  "must_leave_blank": [],
+  "not_scored": ["session_date", "session_modality", "f_f79934c38a"],
+  "risk_fields": [
+    "si_ideation",
+    "si_frequency",
+    "si_plan",
+    "si_intent",
+    "si_means",
+    "si_prior_attempts",
+    "hi_ideation",
+    "hi_plan",
+    "safety_plan",
+    "risk_narrative"
+  ],
+  "traps": [
+    {
+      "id": "zip_corrected_late",
+      "description": "At ~00:05 she gives '95403'; at ~56:46 she says 'I told you the wrong zip code. It's 95404, not 95403.'",
+      "fields": ["address_zip"],
+      "rule": "address_zip = 95404. Long-range correction: the late statement supersedes the early one."
+    },
+    {
+      "id": "lethal_means_asked_has_access",
+      "description": "Firearms: 'No guns. Never.' Medications: 'I have a shoebox of old pills.' She agrees Paula will take it Thursday, but today it is in her home.",
+      "fields": ["si_means", "risk_narrative"],
+      "rule": "si_means = HAS_ACCESS. NO_ACCESS (from the gun answer or the future hand-off) is wrong. risk_narrative describes the stockpile and the plan to remove it."
+    },
+    {
+      "id": "passive_si_frequency",
+      "description": "'Some days I wish I could just not exist for a while... Not die, exactly.' 'More than half the days... Most afternoons.' PHQ-9 item 9 is also 'More than half the days'.",
+      "fields": ["si_ideation", "si_frequency", "si_plan", "si_intent", "phq9_9"],
+      "rule": "si_ideation = PASSIVE; si_frequency = MORE_THAN_HALF; si_plan = NO; si_intent = NO; phq9_9 = 2."
+    },
+    {
+      "id": "prior_attempt_once",
+      "description": "2011 overdose, 'That was the only time. Just the once.' Separately, one psychiatric hospitalization (2023) for depression, which was not an attempt.",
+      "fields": ["si_prior_attempts", "risk_narrative"],
+      "rule": "si_prior_attempts = ONE (not MULTIPLE: the 2023 hospitalization is not an attempt)."
+    },
+    {
+      "id": "safety_plan_updated",
+      "description": "The plan from her previous therapist is taken out and revised together (new warning signs, coping, contacts, crisis lines, means restriction).",
+      "fields": ["safety_plan", "crisis_resources"],
+      "rule": "safety_plan = UPDATED (not COMPLETED, not REVIEWED). crisis_resources includes LINE_988 and COUNTY_CRISIS; WARMLINE and NONE are wrong."
+    },
+    {
+      "id": "clinician_only_spoken",
+      "description": "The worker says she will consult her supervisor; the client states her psychiatrist's diagnosis (bipolar II).",
+      "fields": ["supervisor_consult", "diagnosis_impression", "risk_level", "level_of_care"],
+      "rule": "All stay blank and are flagged for the worker. Spoken statements do not make clinician_only fields extractable."
+    },
+    {
+      "id": "roi_psychiatrist_only",
+      "description": "A release for Dr. Ahmed (psychiatrist) is signed and on file. Asked about her PCP: 'Not yet. Maybe later.'",
+      "fields": ["release_of_info"],
+      "rule": "release_of_info = [PSYCHIATRIST]. PCP is wrong."
+    },
+    {
+      "id": "family_members_meds_and_problems",
+      "description": "Caleb takes methylphenidate for ADHD ('That's his, not mine'); Maya has anxiety and counseling; Greg drinks.",
+      "fields": ["current_medications", "substances", "medical_conditions", "psychosocial_history"],
+      "rule": "current_medications lists lamotrigine 200, trazodone 50 and levothyroxine 75 only; substances excludes STIMULANTS; none of the family members' conditions are attributed to the client."
+    },
+    {
+      "id": "opioids_historical",
+      "description": "Pain pills in 2010-2011; 'I haven't touched them since 2011.' Outpatient treatment in 2012.",
+      "fields": ["substances", "substance_tx_history"],
+      "rule": "substances excludes OPIOIDS; substance_tx_history = OUTPATIENT."
+    },
+    {
+      "id": "prescribed_trazodone_not_sedative_use",
+      "description": "Trazodone 50 mg is prescribed for sleep; the stockpile includes 'old sleeping pills' she does not take. Cannabis edibles are her past-30-day substance.",
+      "fields": ["substances"],
+      "rule": "substances includes CANNABIS and excludes SEDATIVES. ALCOHOL (a glass of wine 'maybe once a month') is unscored."
+    },
+    {
+      "id": "lamotrigine_partial_but_iadl_independent",
+      "description": "She misses the morning lamotrigine about twice a week, but fills her own pill organizer every Sunday.",
+      "fields": ["medication_adherence", "iadl_medications"],
+      "rule": "medication_adherence = PARTIAL; iadl_medications = INDEPENDENT. Adherence and functional ability are different fields."
+    },
+    {
+      "id": "adl_motivation_not_ability",
+      "description": "'I do them. I just don't want to. Nobody's helping me shower.' Showering takes until 2 p.m. because of motivation.",
+      "fields": ["adl_bathing", "adl_dressing", "adl_eating", "adl_mobility"],
+      "rule": "bathing, dressing, eating = INDEPENDENT. Mobility is not asked directly (blank, NOT_ASSESSED or INDEPENDENT)."
+    },
+    {
+      "id": "finances_assisted",
+      "description": "'Since the hospital in 2023, she's on my bank account and we do the bills together.'",
+      "fields": ["iadl_finances"],
+      "rule": "iadl_finances = NEEDS_ASSISTANCE."
+    },
+    {
+      "id": "skipping_lunch_food_insecurity",
+      "description": "CalFresh runs out the third week; pantry; 'Some months I skip lunch so Caleb has enough.' Appetite answer separates money from appetite.",
+      "fields": ["food_security", "phq9_5", "adl_eating"],
+      "rule": "food_security = INSECURE; phq9_5 = 1; adl_eating = INDEPENDENT."
+    },
+    {
+      "id": "daughter_not_in_home",
+      "description": "Maya (19) lives in the UC Davis dorms; Caleb (15) lives with her.",
+      "fields": ["children_in_home", "living_situation", "protective_factors"],
+      "rule": "children_in_home = YES (Caleb); living_situation = WITH_FAMILY; protective_factors includes CHILDREN_IN_HOME."
+    },
+    {
+      "id": "family_court_legal",
+      "description": "Greg filed in family court to change child support and custody; mediation Nov 4, hearing Nov 18.",
+      "fields": ["legal_involvement", "referrals_made"],
+      "rule": "legal_involvement = FAMILY_COURT (not PENDING_CASE). referrals_made = [BENEFITS, LEGAL_AID]; PSYCHIATRY is wrong (she already has one), FOOD_BANK is wrong (she already uses the pantry; no referral)."
+    },
+    {
+      "id": "income_three_sources",
+      "description": "SSDI since 2021, child support from Greg (which he is trying to cut), CalFresh.",
+      "fields": ["income_sources", "employment_status"],
+      "rule": "income_sources = [CHILD_SUPPORT, SNAP, SSDI]; employment_status = DISABLED."
+    },
+    {
+      "id": "dual_coverage",
+      "description": "'I have Medicare. And Medi-Cal too. I'm dual.' The Medi-Cal member ID is given.",
+      "fields": ["insurance_type", "insurance_member_id"],
+      "rule": "insurance_type MEDICARE or MEDI_CAL (single select); insurance_member_id = 91402837."
+    },
+    {
+      "id": "gender_explicit",
+      "description": "Unlike most sessions, the worker asks gender identity: 'I'm a woman.'",
+      "fields": ["gender_identity", "pronouns"],
+      "rule": "gender_identity = WOMAN; pronouns = SHE_HER."
+    },
+    {
+      "id": "referral_source_peer_group",
+      "description": "'The facilitator at my DBSA group... gave me the county number.'",
+      "fields": ["referral_source"],
+      "rule": "referral_source = COMMUNITY_ORG (not SELF, not PCP)."
+    },
+    {
+      "id": "instrument_totals_not_spoken",
+      "description": "Neither total is said aloud.",
+      "fields": ["phq9_score", "phq9_severity", "gad7_score", "gad7_severity"],
+      "rule": "Derived in code: PHQ-9 17 MODERATELY_SEVERE; GAD-7 8 MILD."
+    },
+    {
+      "id": "risk_level_never_stated",
+      "description": "Despite a prior attempt, means access and frequent passive SI, no risk level is stated.",
+      "fields": ["risk_level", "risk_narrative"],
+      "rule": "risk_level stays blank (clinician_only); risk_narrative states no level."
+    },
+    {
+      "id": "worker_only_metadata",
+      "description": "Case number, video consent, intake, the release on file, safety-plan update, crisis lines, referrals, weekly interval and next appointment are worker statements (some confirmed).",
+      "fields": [
+        "case_number",
+        "consent_telehealth",
+        "session_type",
+        "release_of_info",
+        "safety_plan",
+        "crisis_resources",
+        "referrals_made",
+        "follow_up_interval",
+        "next_appointment",
+        "gad7_status"
+      ],
+      "rule": "Must be filled (evidence_speaker: any)."
+    }
+  ]
+}

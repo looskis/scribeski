@@ -1,0 +1,6 @@
+// Vendored SpeexDSP echo canceller (MDF) and preprocessor, xiph/speexdsp @ 7a158783 (BSD, see ../COPYING).
+module CSpeexEcho {
+    header "speex/speex_echo.h"
+    header "speex/speex_preprocess.h"
+    export *
+}
